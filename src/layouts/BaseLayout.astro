@@ -1,0 +1,54 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Professional Resume of Naga Siva Poluri - AI Integration Engineer, Data Engineer, Full Stack Developer & Agentic AI Specialist" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={`https://nagasivapoluri.com${Astro.url.pathname}`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`https://nagasivapoluri.com${Astro.url.pathname}`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={`https://nagasivapoluri.com${Astro.url.pathname}`} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+  </head>
+  <body>
+    <header>
+      <div class="container header-container">
+        <a href="/" class="logo">
+          <span>NAGA SIVA POLURI</span>
+        </a>
+        <nav>
+          <a href="/" class="active">HOME</a>
+          <a href="/resume">RESUME</a>
+          <a href="/contact">CONTACT</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <div class="container">
+        <p>&copy; {new Date().getFullYear()} Naga Siva Poluri. Built with Astro & Vanilla CSS.</p>
+      </div>
+    </footer>
+  </body>
+</html>

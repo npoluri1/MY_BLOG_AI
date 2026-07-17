@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/global.css';
+---
+
+<BaseLayout title="Naga Siva Poluri | AI Integration Engineer">
+  <div class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>NAGA SIVA POLURI</h1>
+        <p class="hero-subtitle">AI Integration Engineer  •  Data Engineer  •  Full Stack Developer  •  Agentic AI Specialist</p>
+        <p class="hero-contact">
+          📞 +65 81765178 &nbsp;&nbsp; ✉ npoluri1@gmail.com &nbsp;&nbsp; 📍 Singapore | Open to Global Opportunities
+        </p>
+        <p class="hero-description">
+          Forward-thinking AI Integration Engineer, Data Engineer & Full Stack Developer with 15+ years of enterprise solution delivery across Singapore's top-tier Government, Banking, Insurance, Transport, and Fintech sectors.
+        </p>
+        <div class="hero-buttons">
+          <a href="/resume" class="btn btn-primary">View Resume</a>
+          <a href="/contact" class="btn btn-secondary">Contact Me</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .hero {
+      background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+      padding: 6rem 0 4rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: var(--teal-accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .hero-contact {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+      font-family: var(--font-display);
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--accent-gradient);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-gradient-hover);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+    }
+
+    .btn-secondary {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      backdrop-filter: blur(var(--glass-blur));
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-tertiary);
+      border-color: var(--border-hover);
+      color: var(--text-primary);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .hero-subtitle { font-size: 1.1rem; }
+      .hero-contact { font-size: 0.9rem; }
+    }
+  </style>
+</BaseLayout>

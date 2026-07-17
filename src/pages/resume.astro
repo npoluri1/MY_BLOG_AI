@@ -1,0 +1,910 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/global.css';
+---
+
+<BaseLayout title="Resume | Naga Siva Poluri" description="Professional Resume of Naga Siva Poluri - AI Integration Engineer, Data Engineer, Full Stack Developer & Agentic AI Specialist with 15+ years experience.">
+  <div class="resume-page">
+    <div class="page-header">
+      <div class="container">
+        <h1>My Resume</h1>
+        <p class="subtitle">AI Integration Engineer • Data Engineer • Full Stack Developer • Agentic AI Specialist with 15+ years of enterprise solution delivery.</p>
+      </div>
+    </div>
+
+    <div class="container content-container">
+
+      <!-- PROFESSIONAL SUMMARY -->
+      <section class="resume-section">
+        <h2 class="section-title-bar">Professional Summary</h2>
+        <div class="summary-card card">
+          <p>Forward-thinking AI Integration Engineer, Data Engineer & Full Stack Developer with 15+ years of enterprise solution delivery across Singapore's top-tier Government, Banking, Insurance, Transport, and Fintech sectors. Currently leading AI-powered transformation for Singapore's Land Transport Authority (LTA) — delivering intelligent Payments, FDMS, TAPS, Data Analytics, and Fare Management systems serving millions of commuters. Deep expertise in Agentic AI (LangGraph, CrewAI, MCP, OpenClaw-pattern architectures), RAG pipelines, LLM orchestration (Claude API, OpenAI, AWS Bedrock), Data Science (Scikit-learn, XGBoost, MLflow, SageMaker), Data Engineering (Apache Spark, PySpark, Airflow, Snowflake, dbt, Kafka), Java, Python, Spring Boot, ReactJS, Microservices, and Cloud (AWS / OpenShift). A proven technical leader who bridges cutting-edge AI capabilities with robust, scalable production data engineering.</p>
+        </div>
+      </section>
+
+      <!-- PROFESSIONAL EXPERIENCE -->
+      <section class="resume-section">
+        <h2 class="section-title-bar">Professional Experience</h2>
+        <div class="timeline">
+
+          <!-- Portfolio Project 1 -->
+          <div class="timeline-item">
+            <div class="timeline-badge-wrapper">
+              <div class="timeline-badge portfolio-badge">★</div>
+            </div>
+            <div class="card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3>Agentic AI Personal/Enterprise Assistant Platform</h3>
+                  <h4>Portfolio Project (2025-2026) • Singapore</h4>
+                </div>
+                <span class="timeline-date">★ Portfolio Project</span>
+              </div>
+              <p class="tech-stack">Tech Stack: Python • FastAPI • LangGraph • CrewAI • OpenAI Agents SDK • Claude API • MCP • Telegram Bot API • WhatsApp Business API • ChromaDB • Redis • pgvector • PostgreSQL • Playwright • Docker • AWS Bedrock • ReactJS • WebSocket Streaming • Guardrails AI • LangSmith</p>
+              <p class="timeline-details">Inspired by OpenClaw's agentic architecture — built a production-grade, message-driven multi-agent platform that converts natural language instructions from messaging channels into decomposed, executable task plans using stateful AI agents.</p>
+              <ul class="timeline-list">
+                <li><strong>AGENTIC CORE:</strong> Designed LangGraph-based orchestration engine that receives messages via Telegram/WhatsApp, decomposes high-level goals into structured sub-tasks, and assigns each sub-task to specialized agents (Researcher, Executor, Validator, Summarizer) — mirroring OpenClaw's 4-tier architecture.</li>
+                <li><strong>MCP INTEGRATION:</strong> Implemented Model Context Protocol (MCP) to expose business tools (calendar, email, file system, shell commands) as discoverable agent capabilities; agents dynamically invoke tools based on task context without hardcoded logic.</li>
+                <li><strong>MULTI-AGENT ORCHESTRATION:</strong> Built CrewAI-based role-based agent teams for domain tasks — a Finance Agent crew for report generation, a DevOps Agent crew for deployment validation, and a Research Agent crew for real-time web data gathering using browser automation (Playwright).</li>
+                <li><strong>PERSISTENT MEMORY:</strong> Implemented layered agent memory using Redis (short-term session context), ChromaDB vector store (long-term semantic recall), and pgvector (structured knowledge retrieval) — enabling agents to remember user preferences and past task outcomes across sessions.</li>
+                <li><strong>REAL-TIME STREAMING:</strong> Built WebSocket-based streaming response layer so users see agent reasoning steps and task progress live in the Telegram/WhatsApp interface as tasks execute.</li>
+                <li><strong>AI SECURITY LAYER:</strong> Integrated Guardrails AI for prompt injection detection, role-based tool permission enforcement, and human-in-the-loop approval gates for high-risk actions — preventing agent hijacking attacks.</li>
+                <li><strong>OBSERVABILITY:</strong> Wired LangSmith for full agent trace logging, tool call auditing, latency tracking, and token cost dashboards; alerting via Slack webhook for failed agent workflows.</li>
+                <li><strong>RESULT:</strong> End-to-end agent workflow completes in under 8 seconds for standard 3-step tasks; system handles 200+ concurrent agent sessions on a 2-vCPU AWS EC2 instance.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Portfolio Project 2 -->
+          <div class="timeline-item">
+            <div class="timeline-badge-wrapper">
+              <div class="timeline-badge portfolio-badge">★</div>
+            </div>
+            <div class="card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3>Enterprise RAG Intelligence Platform — Financial & Legal Document AI</h3>
+                  <h4>Portfolio Project (2025) • Singapore</h4>
+                </div>
+                <span class="timeline-date">★ Portfolio Project</span>
+              </div>
+              <p class="tech-stack">Tech Stack: Python • FastAPI • LangChain • LangGraph • AWS Bedrock (Claude Sonnet 3.7) • OpenAI GPT-4o • Pinecone • pgvector • HuggingFace Embeddings • ReactJS • Spring AI (Java) • PostgreSQL • Redis • Docker • Kubernetes • MLflow • LangSmith • Weights & Biases • Terraform • AWS SageMaker</p>
+              <p class="timeline-details">Production-grade RAG platform purpose-built for Singapore's financial and legal sectors — ingests complex documents and delivers precise, cited AI answers with stateful multi-turn reasoning.</p>
+              <ul class="timeline-list">
+                <li><strong>ADVANCED RAG PIPELINE:</strong> Built hybrid search RAG using Pinecone dense vector search + BM25 keyword search with cross-encoder reranking — achieving 94% answer relevancy vs 71% with naive RAG.</li>
+                <li><strong>LANGGRAPH REASONING AGENT:</strong> Implemented LangGraph stateful reasoning loop — agent classifies query intent, decides retrieval strategy, validates source confidence, then synthesizes cited answers with source footnotes.</li>
+                <li><strong>MULTI-DOCUMENT COMPARISON:</strong> Built agentic document comparison workflow — upload two contracts/policies, agent identifies clause-level differences, highlights risk areas, and generates structured comparison reports.</li>
+                <li><strong>AWS BEDROCK INTEGRATION:</strong> Deployed Claude Sonnet 3.7 via AWS Bedrock as primary inference engine; implemented intelligent model routing — cutting API costs by 38% while maintaining quality.</li>
+                <li><strong>SPRING AI MICROSERVICE:</strong> Exposed RAG capabilities as a Java Spring AI microservice with typed tool definitions — allowing existing Java enterprise systems to call AI document analysis via standard REST/gRPC.</li>
+                <li><strong>FINE-TUNED EMBEDDINGS:</strong> Fine-tuned HuggingFace embedding model on Singapore financial terminology corpus — improved embedding precision for domain terms by 22%.</li>
+                <li><strong>MLOPS PIPELINE:</strong> Built MLflow experiment tracking, LangSmith for RAG chain tracing, and W&B for retrieval quality dashboards; automated model promotion via GitLab CI.</li>
+                <li><strong>RESULT:</strong> Platform processes 10,000+ document pages, serves 1,200+ daily queries, returns cited answers in under 3 seconds; deployed on Kubernetes with 99.95% uptime SLA.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- LTA -->
+          <div class="timeline-item">
+            <div class="timeline-badge-wrapper">
+              <div class="timeline-badge">LTA</div>
+            </div>
+            <div class="card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3>AI Integration Engineer</h3>
+                  <h4>Land Transport Authority (LTA) — via Deziretech • Singapore</h4>
+                </div>
+                <span class="timeline-date">Nov 2025 — Present</span>
+              </div>
+              <p class="tech-stack">Tech Stack: Java • Spring Boot • Python • ReactJS • Kafka • AWS Bedrock • LangChain • PostgreSQL • Oracle • OpenShift • Jenkins • Power BI</p>
+              <p class="timeline-details">Leading end-to-end AI integration and full-stack delivery across LTA's critical public transport systems — FDMS, TAPS, ABT, and Fare Display — serving millions of daily commuters on Singapore's MRT, LRT, and Bus networks.</p>
+              <ul class="timeline-list">
+                <li><strong>PAYMENTS MODULE:</strong> Architected AI-enhanced payment processing pipelines for SimplyGo (ABT), EZ-Link, NETS, and contactless bank card transactions; implemented ML-based anomaly detection for real-time fraud prevention.</li>
+                <li><strong>FDMS:</strong> Designed microservices-based Fare Data Management System for centralised fare rule management, tariff configuration, and fare calculation engine; integrated AI-assisted fare rule validation reducing configuration errors by 50%.</li>
+                <li><strong>TAPS:</strong> Built scalable TAPS microservices for 10M+ daily transit transactions; implemented Kafka event streaming for real-time ingestion, settlement reconciliation, and operator revenue distribution.</li>
+                <li><strong>DATA ANALYTICS:</strong> Developed AI-powered ridership analytics dashboards and predictive modelling platform using Python (PySpark, Pandas), AWS Bedrock, and Power BI for peak demand forecasting.</li>
+                <li><strong>INQUIRY MANAGEMENT:</strong> Built intelligent LLM-powered (LangChain + RAG) inquiry system with NLP-based intent detection automating 60% of standard fare dispute enquiries without human intervention.</li>
+                <li><strong>ABT REFUND MODULE:</strong> Engineered automated ABT Refund processing with rule-based and ML-assisted eligibility validation; reduced refund processing time from 5 days to under 4 hours.</li>
+                <li>Leading cross-functional Agile team of 14; established AI governance and model monitoring (MLflow) aligned with Singapore Smart Nation and GovTech data standards.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Bank of Singapore -->
+          <div class="timeline-item">
+            <div class="timeline-badge-wrapper">
+              <div class="timeline-badge">BOS</div>
+            </div>
+            <div class="card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3>AI Integration Engineer</h3>
+                  <h4>Bank of Singapore (BOS) — via HCL Technologies • Singapore</h4>
+                </div>
+                <span class="timeline-date">Sep 2024 — Jul 2025</span>
+              </div>
+              <p class="tech-stack">Tech Stack: AWS Bedrock • LangChain • Python • Pandas • NumPy • Scikit-learn • XGBoost • PySpark • MLflow • Jupyter • SageMaker • Spring Boot • Kafka • ReactJS • OpenShift • SQL Server • Jenkins</p>
+              <p class="timeline-details">Architected AI-powered Loan Processing Platform with LLM-based document analysis, automated KYC, and real-time fraud detection using AWS Bedrock and LangChain — serving private banking clients.</p>
+              <ul class="timeline-list">
+                <li>Implemented RAG pipelines over banking policy documents, enabling intelligent query resolution and reducing manual review time by 40%.</li>
+                <li>Integrated Amazon Lex conversational AI for customer self-service loan enquiries, handling 5,000+ daily interactions; built AI fraud detection microservices improving fraud catch rate by 25%.</li>
+                <li>Designed end-to-end loan microservices on OpenShift with Kafka event streaming and Spring Batch regulatory reporting.</li>
+                <li><strong>DATA SCIENCE & ML:</strong> Built credit risk scoring & loan default prediction models using XGBoost and Scikit-learn on 10M+ records; achieved 0.87 AUC vs 0.74 baseline, deployed to AWS SageMaker.</li>
+                <li><strong>FRAUD ANALYTICS:</strong> Engineered fraud detection ML pipeline using Isolation Forest + LightGBM ensemble; reduced false-positive alerts by 35% while improving fraud catch rate.</li>
+                <li><strong>CUSTOMER ANALYTICS:</strong> Developed customer segmentation (K-Means clustering) and churn prediction models for private banking clients.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- UOB -->
+          <div class="timeline-item">
+            <div class="timeline-badge-wrapper">
+              <div class="timeline-badge">UOB</div>
+            </div>
+            <div class="card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3>Senior Lead Engineer</h3>
+                  <h4>United Overseas Bank (UOB) — via HCL Technologies • Singapore</h4>
+                </div>
+                <span class="timeline-date">Jan 2023 — Sep 2024</span>
+              </div>
+              <p class="tech-stack">Tech Stack: Java • Spring Boot • Apache Kafka • Apache Spark • PySpark • Airflow • AWS Glue • AWS S3 • Redshift • Snowflake • dbt • Debezium CDC • ReactJS • React Native • Oracle • PostgreSQL • OpenShift • Jenkins</p>
+              <p class="timeline-details">Led Agile delivery of Wealth Management and Open Banking platforms for UOB TMRW digital bank; ensured AML/CDD and IFRS regulatory compliance.</p>
+              <ul class="timeline-list">
+                <li>Designed Spring Boot microservices for core banking APIs; real-time messaging with Kafka, RabbitMQ, and Solace; mobile UIs with ReactJS and React Native.</li>
+                <li><strong>DATA PIPELINE ENGINEERING:</strong> Built scalable ETL pipelines using Apache Spark (PySpark) and AWS Glue to process 50M+ daily wealth-management transactions; reduced batch processing time from 6 hours to under 90 minutes.</li>
+                <li><strong>REAL-TIME STREAMING:</strong> Architected Kafka-based event streaming platform for Open Banking APIs; implemented Debezium CDC for Oracle-to-Snowflake replication.</li>
+                <li><strong>DATA WAREHOUSE & ANALYTICS:</strong> Built dimensional data models (star schema) on Snowflake; authored 80+ dbt transformations for daily financial reconciliation and IFRS-9 compliance reporting; enforced data quality with Great Expectations.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- SingLife -->
+          <div class="timeline-item">
+            <div class="timeline-badge-wrapper">
+              <div class="timeline-badge">SL</div>
+            </div>
+            <div class="card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3>Technical Lead</h3>
+                  <h4>Sing Life (with Aviva) — via Recruit Express • Singapore</h4>
+                </div>
+                <span class="timeline-date">Aug 2022 — Jan 2023</span>
+              </div>
+              <p class="tech-stack">Tech Stack: Java • Kotlin • Spring Boot • Kafka • ReactJS • AWS • OpenShift</p>
+              <p class="timeline-details">Led development of Payment and Collections microservices integrating with DBS PayNow/eDDA for Singapore's leading digital insurer; enforced quality via SonarQube, Coverity, and Black Duck.</p>
+            </div>
+          </div>
+
+          <!-- OCBC -->
+          <div class="timeline-item">
+            <div class="timeline-badge-wrapper">
+              <div class="timeline-badge">OCBC</div>
+            </div>
+            <div class="card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3>Full Stack Developer</h3>
+                  <h4>OCBC Bank — via Recruit Express • Singapore</h4>
+                </div>
+                <span class="timeline-date">Aug 2021 — Aug 2022</span>
+              </div>
+              <p class="tech-stack">Tech Stack: Java • Spring Boot • ReactJS • Kafka • Redis • PostgreSQL • AWS • OpenShift • ISO 8583</p>
+              <p class="timeline-details">Migrated legacy .NET banking systems to Spring Boot microservices; delivered digital banking, payments, fund transfers, card controls, and wealth management; implemented tokenization, 3DS, CVV security, and ISO 8583 compliance.</p>
+            </div>
+          </div>
+
+          <!-- NTUC Income -->
+          <div class="timeline-item">
+            <div class="timeline-badge-wrapper">
+              <div class="timeline-badge">NTUC</div>
+            </div>
+            <div class="card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3>Full Stack Developer</h3>
+                  <h4>NTUC Income — via EPS Computer Systems • Singapore</h4>
+                </div>
+                <span class="timeline-date">Sep 2020 — Aug 2021</span>
+              </div>
+              <p class="tech-stack">Tech Stack: Java • Scala • Spring Boot • ReactJS • AWS • Oracle • Spring Cloud Gateway</p>
+              <p class="timeline-details">Delivered Digital Sales Force (DSF) insurance platform for policy management, agent registration, premium payments, and renewals; managed AWS deployments with 24/7 production support.</p>
+            </div>
+          </div>
+
+          <!-- NCS / LTA ERP2 -->
+          <div class="timeline-item">
+            <div class="timeline-badge-wrapper">
+              <div class="timeline-badge">NCS</div>
+            </div>
+            <div class="card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3>Senior Java Developer</h3>
+                  <h4>NCS (Client: LTA Singapore — ERP2) • Singapore</h4>
+                </div>
+                <span class="timeline-date">Aug 2017 — Aug 2020</span>
+              </div>
+              <p class="tech-stack">Tech Stack: Java • Spring Boot • Angular 4 • Scala • Go • Oracle • AWS • Solace</p>
+              <p class="timeline-details">Built next-gen Electronic Road Pricing (ERP2) system using satellite tech for dynamic road pricing, real-time vehicle tracking, and automated enforcement across Singapore's road network; led Agile/Scrum team.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- EARLIER EXPERIENCE -->
+      <section class="resume-section">
+        <h2 class="section-title-bar">Earlier Experience</h2>
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="timeline-badge-wrapper">
+              <div class="timeline-badge">MB</div>
+            </div>
+            <div class="card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3>Senior Java Developer</h3>
+                  <h4>Maybank • Malaysia</h4>
+                </div>
+                <span class="timeline-date">Dec 2016 — Jul 2017</span>
+              </div>
+              <p class="tech-stack">Tech Stack: Java, Spring Boot, Angular 2, NodeJS, Spark, SQL Server</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-badge-wrapper">
+              <div class="timeline-badge">CDC</div>
+            </div>
+            <div class="card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3>Senior Java Developer</h3>
+                  <h4>Commerce Dot Com • India</h4>
+                </div>
+                <span class="timeline-date">Dec 2014 — Nov 2016</span>
+              </div>
+              <p class="tech-stack">Tech Stack: Java, SOA, BPM, JSF, Oracle</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-badge-wrapper">
+              <div class="timeline-badge">EI</div>
+            </div>
+            <div class="card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3>Software Developer</h3>
+                  <h4>Emerson Innovation Center • India</h4>
+                </div>
+                <span class="timeline-date">Jun 2011 — Oct 2014</span>
+              </div>
+              <p class="tech-stack">Tech Stack: J2EE, Hadoop, SOA, BPM, Oracle</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-badge-wrapper">
+              <div class="timeline-badge">BOB</div>
+            </div>
+            <div class="card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3>Software Engineer</h3>
+                  <h4>BOB Tech Solutions • India</h4>
+                </div>
+                <span class="timeline-date">Apr 2010 — Mar 2011</span>
+              </div>
+              <p class="tech-stack">Tech Stack: Java, Struts, EJB, Hibernate, Spring, Oracle</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+      <section class="resume-section">
+        <h2 class="section-title-bar">Education</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-badge-wrapper">
+              <div class="timeline-badge">MBA</div>
+            </div>
+            <div class="card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3>MBA — Finance, Sales & Marketing</h3>
+                  <h4>SMU, Hyderabad, India</h4>
+                </div>
+                <span class="timeline-date">Completed</span>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-badge-wrapper">
+              <div class="timeline-badge">BE</div>
+            </div>
+            <div class="card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3>B.E. — Electrical & Electronics Engineering</h3>
+                  <h4>Anna University, Chennai, India</h4>
+                </div>
+                <span class="timeline-date">Completed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI INTEGRATION TECH STACK -->
+      <section class="resume-section">
+        <h2 class="section-title-bar">AI Integration Tech Stack</h2>
+        <div class="skills-grid">
+          <div class="card skill-category-card">
+            <div class="skill-category-header">
+              <h3>LLM & GenAI</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">LangChain</span>
+              <span class="skill-tag">LangGraph</span>
+              <span class="skill-tag">OpenAI API (GPT-4o)</span>
+              <span class="skill-tag">Claude (Anthropic) API</span>
+              <span class="skill-tag">Hugging Face Transformers</span>
+              <span class="skill-tag">Prompt Engineering</span>
+              <span class="skill-tag">Function Calling</span>
+              <span class="skill-tag">Tool Use</span>
+            </div>
+          </div>
+          <div class="card skill-category-card">
+            <div class="skill-category-header">
+              <h3>Agentic AI</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">OpenClaw Architecture</span>
+              <span class="skill-tag">Multi-Agent Orchestration</span>
+              <span class="skill-tag">CrewAI</span>
+              <span class="skill-tag">AutoGen</span>
+              <span class="skill-tag">OpenAI Agents SDK</span>
+              <span class="skill-tag">MCP (Model Context Protocol)</span>
+              <span class="skill-tag">n8n AI Workflows</span>
+              <span class="skill-tag">LangGraph Stateful Agents</span>
+            </div>
+          </div>
+          <div class="card skill-category-card">
+            <div class="skill-category-header">
+              <h3>RAG & Vector Search</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">RAG</span>
+              <span class="skill-tag">Pinecone</span>
+              <span class="skill-tag">Weaviate</span>
+              <span class="skill-tag">ChromaDB</span>
+              <span class="skill-tag">pgvector</span>
+              <span class="skill-tag">Embedding Models</span>
+              <span class="skill-tag">Reranking</span>
+              <span class="skill-tag">Hybrid Search</span>
+            </div>
+          </div>
+          <div class="card skill-category-card">
+            <div class="skill-category-header">
+              <h3>Cloud AI (AWS)</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">AWS Bedrock</span>
+              <span class="skill-tag">SageMaker</span>
+              <span class="skill-tag">Amazon Lex</span>
+              <span class="skill-tag">Rekognition</span>
+              <span class="skill-tag">Comprehend</span>
+              <span class="skill-tag">Kinesis</span>
+              <span class="skill-tag">Lambda AI Functions</span>
+            </div>
+          </div>
+          <div class="card skill-category-card">
+            <div class="skill-category-header">
+              <h3>ML & Data Science</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">Scikit-learn</span>
+              <span class="skill-tag">XGBoost</span>
+              <span class="skill-tag">LightGBM</span>
+              <span class="skill-tag">TensorFlow</span>
+              <span class="skill-tag">PySpark</span>
+              <span class="skill-tag">Jupyter</span>
+              <span class="skill-tag">MLflow</span>
+              <span class="skill-tag">LoRA/QLoRA Fine-tuning</span>
+              <span class="skill-tag">Time-Series Forecasting</span>
+            </div>
+          </div>
+          <div class="card skill-category-card">
+            <div class="skill-category-header">
+              <h3>Messaging & Automation</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">Telegram Bot API</span>
+              <span class="skill-tag">WhatsApp Business API</span>
+              <span class="skill-tag">Slack Bolt</span>
+              <span class="skill-tag">WebSocket Streaming</span>
+              <span class="skill-tag">Playwright</span>
+            </div>
+          </div>
+          <div class="card skill-category-card">
+            <div class="skill-category-header">
+              <h3>AI Security & MLOps</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">Guardrails AI</span>
+              <span class="skill-tag">NeMo Guardrails</span>
+              <span class="skill-tag">LangSmith</span>
+              <span class="skill-tag">Weights & Biases</span>
+              <span class="skill-tag">CI/CD for ML</span>
+              <span class="skill-tag">Splunk AI Logging</span>
+            </div>
+          </div>
+          <div class="card skill-category-card">
+            <div class="skill-category-header">
+              <h3>NLP & Doc AI</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">spaCy</span>
+              <span class="skill-tag">NLTK</span>
+              <span class="skill-tag">OCR (Tesseract)</span>
+              <span class="skill-tag">SWIFT Parsing</span>
+              <span class="skill-tag">Sentiment Analysis</span>
+            </div>
+          </div>
+          <div class="card skill-category-card">
+            <div class="skill-category-header">
+              <h3>AI in FinTech</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">Fraud Detection AI</span>
+              <span class="skill-tag">KYC Automation</span>
+              <span class="skill-tag">AML Screening</span>
+              <span class="skill-tag">Trade Anomaly Detection</span>
+              <span class="skill-tag">Credit Risk Scoring</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CORE TECHNICAL SKILLS -->
+      <section class="resume-section">
+        <h2 class="section-title-bar">Core Technical Skills</h2>
+        <div class="skills-grid">
+          <div class="card skill-category-card">
+            <div class="skill-category-header">
+              <h3>Languages</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">Java 8/11/17</span>
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">Kotlin</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">Scala</span>
+              <span class="skill-tag">Go</span>
+              <span class="skill-tag">C#</span>
+              <span class="skill-tag">.NET Core</span>
+            </div>
+          </div>
+          <div class="card skill-category-card">
+            <div class="skill-category-header">
+              <h3>Backend / APIs</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">Spring Boot</span>
+              <span class="skill-tag">Spring Batch</span>
+              <span class="skill-tag">Spring Cloud Gateway</span>
+              <span class="skill-tag">Spring AI</span>
+              <span class="skill-tag">Microservices</span>
+              <span class="skill-tag">REST</span>
+              <span class="skill-tag">NodeJS</span>
+              <span class="skill-tag">Django</span>
+              <span class="skill-tag">Flask</span>
+              <span class="skill-tag">FastAPI</span>
+            </div>
+          </div>
+          <div class="card skill-category-card">
+            <div class="skill-category-header">
+              <h3>Frontend</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">ReactJS</span>
+              <span class="skill-tag">React Native</span>
+              <span class="skill-tag">Angular (v2-16+)</span>
+              <span class="skill-tag">HTML5</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">jQuery</span>
+            </div>
+          </div>
+          <div class="card skill-category-card">
+            <div class="skill-category-header">
+              <h3>Messaging & Events</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">Apache Kafka</span>
+              <span class="skill-tag">Kafka Streams</span>
+              <span class="skill-tag">RabbitMQ</span>
+              <span class="skill-tag">Solace</span>
+              <span class="skill-tag">AWS SQS/SNS</span>
+              <span class="skill-tag">Kinesis</span>
+              <span class="skill-tag">Debezium CDC</span>
+              <span class="skill-tag">Apache Pulsar</span>
+            </div>
+          </div>
+          <div class="card skill-category-card">
+            <div class="skill-category-header">
+              <h3>Data Engineering</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">Apache Spark</span>
+              <span class="skill-tag">PySpark</span>
+              <span class="skill-tag">Apache Airflow</span>
+              <span class="skill-tag">AWS Glue</span>
+              <span class="skill-tag">Snowflake</span>
+              <span class="skill-tag">Redshift</span>
+              <span class="skill-tag">dbt</span>
+              <span class="skill-tag">Delta Lake</span>
+              <span class="skill-tag">Great Expectations</span>
+            </div>
+          </div>
+          <div class="card skill-category-card">
+            <div class="skill-category-header">
+              <h3>DevOps & CI/CD</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">Docker</span>
+              <span class="skill-tag">Kubernetes</span>
+              <span class="skill-tag">OpenShift</span>
+              <span class="skill-tag">Jenkins</span>
+              <span class="skill-tag">GitLab CI</span>
+              <span class="skill-tag">Ansible</span>
+              <span class="skill-tag">SonarQube</span>
+            </div>
+          </div>
+          <div class="card skill-category-card">
+            <div class="skill-category-header">
+              <h3>Cloud (AWS)</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">EC2</span>
+              <span class="skill-tag">S3</span>
+              <span class="skill-tag">Lambda</span>
+              <span class="skill-tag">Cognito</span>
+              <span class="skill-tag">API Gateway</span>
+              <span class="skill-tag">CloudFormation</span>
+              <span class="skill-tag">DynamoDB</span>
+              <span class="skill-tag">ElastiCache</span>
+            </div>
+          </div>
+          <div class="card skill-category-card">
+            <div class="skill-category-header">
+              <h3>Databases</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">Oracle</span>
+              <span class="skill-tag">PostgreSQL</span>
+              <span class="skill-tag">MySQL</span>
+              <span class="skill-tag">SQL Server</span>
+              <span class="skill-tag">MongoDB</span>
+              <span class="skill-tag">Redis</span>
+              <span class="skill-tag">Cassandra</span>
+              <span class="skill-tag">DynamoDB</span>
+            </div>
+          </div>
+          <div class="card skill-category-card">
+            <div class="skill-category-header">
+              <h3>Security</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">CyberArk</span>
+              <span class="skill-tag">OAuth2</span>
+              <span class="skill-tag">JWT</span>
+              <span class="skill-tag">Tokenization</span>
+              <span class="skill-tag">3DS</span>
+              <span class="skill-tag">ISO 8583</span>
+              <span class="skill-tag">SWIFT</span>
+            </div>
+          </div>
+          <div class="card skill-category-card">
+            <div class="skill-category-header">
+              <h3>ERP / Finance</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">Aptitude AAH/AICE/AAE</span>
+              <span class="skill-tag">SAP</span>
+              <span class="skill-tag">Oracle EBS</span>
+              <span class="skill-tag">IFRS/IASB Compliance</span>
+              <span class="skill-tag">Multi-GAAP Reporting</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="availability-banner card">
+        <p>Singapore EP | Available for Banking, FinTech, AI & Cloud opportunities globally | References on request</p>
+      </div>
+
+    </div>
+  </div>
+
+  <style>
+    .resume-page {
+      padding-bottom: 5rem;
+    }
+
+    .page-header {
+      background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+      padding: 5rem 0 3rem;
+      border-bottom: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 1rem auto 0;
+    }
+
+    .content-container {
+      margin-top: 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 5rem;
+    }
+
+    .resume-section {
+      position: relative;
+    }
+
+    .section-title-bar {
+      font-size: 2rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      border-bottom: none;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .summary-card {
+      background: #11152080;
+      border: 1px solid var(--glass-border);
+      padding: 2rem;
+    }
+
+    .summary-card p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 0;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 40px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent-color) 0%, var(--teal-accent) 100%);
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      display: flex;
+      gap: 2rem;
+    }
+
+    .timeline-badge-wrapper {
+      width: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-shrink: 0;
+    }
+
+    .timeline-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--bg-tertiary);
+      border: 2px solid var(--accent-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      z-index: 2;
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.65rem;
+      color: var(--text-primary);
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    .portfolio-badge {
+      border-color: var(--teal-accent);
+      box-shadow: 0 0 15px rgba(20, 184, 166, 0.4);
+      font-size: 1.2rem;
+      color: var(--teal-accent);
+    }
+
+    .timeline-card {
+      flex-grow: 1;
+      background: rgba(17, 21, 32, 0.5);
+      border: 1px solid var(--glass-border);
+      padding: 2rem;
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1rem;
+    }
+
+    .timeline-header h3 {
+      margin: 0 0 0.25rem;
+      font-size: 1.35rem;
+    }
+
+    .timeline-header h4 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .timeline-date {
+      font-family: var(--font-display);
+      color: var(--teal-accent);
+      font-weight: 600;
+      font-size: 0.95rem;
+      background: rgba(20, 184, 166, 0.1);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      border: 1px solid rgba(20, 184, 166, 0.2);
+      white-space: nowrap;
+    }
+
+    .tech-stack {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .timeline-details {
+      margin: 0 0 1rem;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .timeline-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .timeline-list li {
+      position: relative;
+      padding-left: 1.25rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .timeline-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--accent-color);
+      font-weight: 700;
+    }
+
+    .timeline-list li strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-category-card {
+      background: rgba(17, 21, 32, 0.4);
+      border: 1px solid var(--glass-border);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .skill-category-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.75rem;
+    }
+
+    .skill-category-header h3 {
+      margin: 0;
+      font-size: 1.25rem;
+    }
+
+    .skill-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .skill-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      padding: 0.5rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .skill-tag:hover {
+      border-color: var(--accent-color);
+      background: rgba(139, 92, 246, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .availability-banner {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1.5rem 2rem;
+      background: rgba(20, 184, 166, 0.05);
+      border: 1px solid rgba(20, 184, 166, 0.2);
+    }
+
+    .availability-banner p {
+      margin: 0;
+      color: var(--teal-accent);
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .timeline::before { left: 20px; }
+      .timeline-item { gap: 1rem; }
+      .timeline-badge-wrapper { width: 40px; }
+      .timeline-badge { width: 36px; height: 36px; font-size: 0.5rem; }
+      .timeline-card { padding: 1.25rem; }
+      .timeline-header { flex-direction: column; gap: 0.5rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</BaseLayout>
