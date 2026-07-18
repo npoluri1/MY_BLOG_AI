@@ -2,7 +2,7 @@
 title: "Anthropic's Mid-2026 Wave: Claude Sonnet 5, Claude Science, and Fable 5 Redeployment"
 description: "A summary of Anthropic's major announcements: Claude Sonnet 5, the new Claude Science AI workbench, and the global redeployment of Fable 5."
 pubDate: 2026-07-02
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1764147173174.jpg"
 category: ["ai", "agentic", "claude-code"]
 author: "Naga Siva Poluri"
 ---

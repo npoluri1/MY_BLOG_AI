@@ -1,4 +1,5 @@
 ---
+heroImage: "/images/linkedin/1773830938257.jpg"
 title: "Understanding Vector Embeddings: The Foundation of Semantic Search"
 description: "A deep dive into vector embeddings — what they are, how they work, and why they're the backbone of modern AI applications from search to recommendation systems."
 pubDate: 2025-06-15

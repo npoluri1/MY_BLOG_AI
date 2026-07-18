@@ -2,7 +2,7 @@
 title: "Deleting linux from dual boot"
 description: "Steps for safely removing linux from dual boot"
 pubDate: 2020-01-02
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1764565070017.jpg"
 category: ["linux", "windows", "tutorial"]
 author: "Naga Siva Poluri"
 ---

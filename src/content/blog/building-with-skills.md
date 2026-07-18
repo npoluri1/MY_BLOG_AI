@@ -1,4 +1,5 @@
 ---
+heroImage: "/images/linkedin/Udemy-Business-Manager-Essentials-Critical-Thinking-for-AI-Workbookpdf_thumb.jpg"
 title: "Building with Skills: The Missing Piece in Enterprise AI"
 description: "Deep dive into Skills as agentic AI primitives — architecture patterns, code examples in TypeScript and Python, real-world implementations, and building a skill marketplace for enterprise environments."
 pubDate: 2025-06-12

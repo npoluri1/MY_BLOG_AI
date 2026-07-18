@@ -2,7 +2,7 @@
 title: "Profiling & Visualization Tools in Python - Part 1"
 description: "Profiling & Visualization Tools in Python using cProfile"
 pubDate: 2020-10-19
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1770134683244.jpg"
 category: ["python", "profiling", "tutorial"]
 author: "Naga Siva Poluri"
 ---

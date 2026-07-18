@@ -2,7 +2,7 @@
 title: "Setting up Google Antigravity CLI: The AI-First Terminal Assistant"
 description: "Complete guide to installing and configuring Google Antigravity CLI (agy) on Mac, Windows, and Linux."
 pubDate: 2026-06-20
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1770914835114.jpg"
 category: ["ai", "agentic", "google"]
 author: "Naga Siva Poluri"
 ---

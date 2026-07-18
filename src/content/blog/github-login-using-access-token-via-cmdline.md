@@ -2,7 +2,7 @@
 title: "Github login using access token via command line"
 description: "Logging in using github access token (no more passwords)"
 pubDate: 2021-09-29
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1766050293745.jpg"
 category: ["github", "git", "tutorial"]
 author: "Naga Siva Poluri"
 ---

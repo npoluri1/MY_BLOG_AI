@@ -2,7 +2,7 @@
 title: "Setting up Claude Code: The Ultimate Terminal AI Pair Programmer"
 description: "A step-by-step setup guide for installing, configuring, and authenticating Anthropic's Claude Code CLI across macOS, Windows, and Linux."
 pubDate: 2026-06-28
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1771200450392.jpg"
 category: ["ai", "agentic", "claude-code"]
 author: "Naga Siva Poluri"
 ---

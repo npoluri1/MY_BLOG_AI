@@ -2,7 +2,7 @@
 title: "Claude Code Custom Plugins: Build and Host Your Own Marketplace"
 description: "Learn how to build, structure, and host a custom, decentralized Claude Code plugin marketplace using a simple GitHub repository."
 pubDate: 2026-07-05
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1762860525115.jpg"
 category: ["ai", "agentic", "claude-code"]
 author: "Naga Siva Poluri"
 ---

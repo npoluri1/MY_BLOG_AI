@@ -1,4 +1,5 @@
 ---
+heroImage: "/images/linkedin/1693886840555.jpeg"
 title: "1000+ Agentic AI Use Cases: The Enterprise AI Revolution"
 description: "A comprehensive catalog of agentic AI use cases across financial services, government, transport, healthcare, and enterprise. From simple copilots to fully autonomous systems."
 pubDate: 2025-07-01

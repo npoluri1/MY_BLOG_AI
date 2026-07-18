@@ -2,7 +2,7 @@
 title: "Running Local LLMs: Ollama vs. vLLM"
 description: "A comprehensive guide to running Large Language Models locally on Windows, macOS, and Linux using Ollama and vLLM."
 pubDate: 2026-07-04
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/Open Source AI Infrastructure Whitepaper_thumb.jpg"
 category: ["ai", "agentic", "claude-code"]
 author: "Naga Siva Poluri"
 ---

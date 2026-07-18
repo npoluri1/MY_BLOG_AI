@@ -2,7 +2,7 @@
 title: "Anthropic's Claude Model Family: Specs, Pros, Cons, and Use Cases"
 description: "Compare Anthropic's Claude models—Fable 5, Opus 4.8, Sonnet 5, Haiku 4.5, and Claude Science. Learn their pros, cons, and best use cases."
 pubDate: 2026-07-03
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1763635713299.jpg"
 category: ["ai", "agentic", "claude-code"]
 author: "Naga Siva Poluri"
 ---

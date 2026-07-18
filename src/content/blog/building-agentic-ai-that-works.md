@@ -1,4 +1,5 @@
 ---
+heroImage: "/images/linkedin/1761454243079.jpeg"
 title: "Building Agentic AI That Actually Works in Production"
 description: "Practical guide to building production-ready agentic AI systems. From tool orchestration to memory management to safety guardrails."
 pubDate: 2025-07-22

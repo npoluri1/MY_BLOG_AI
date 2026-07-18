@@ -2,7 +2,7 @@
 title: "Claude Code Customization: CLAUDE.md, AGENTS.md, and SKILLS.md"
 description: "Master project-level customization for Anthropic's Claude Code by writing rules and guidelines in CLAUDE.md, AGENTS.md, and custom SKILLS.md."
 pubDate: 2026-06-29
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1763455365474.jpg"
 category: ["ai", "agentic", "claude-code"]
 author: "Naga Siva Poluri"
 ---

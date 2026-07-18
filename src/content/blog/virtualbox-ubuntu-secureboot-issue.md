@@ -2,7 +2,7 @@
 title: "Secureboot + Ubuntu + VirtualBox Signing kernel modules"
 description: "Steps required for dealing with secureboot on Ubuntu where VirtualBox has issues"
 pubDate: 2021-05-09
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1773892471050.jpeg"
 category: ["linux", "ubuntu", "virtualbox", "devops"]
 author: "Naga Siva Poluri"
 ---

@@ -2,7 +2,7 @@
 title: "The Two Pillars of LLM Inference: Prefill vs. Decode"
 description: "Explore the two execution phases of LLM inference: compute-bound prefill vs. memory-bandwidth-bound decode. Understand arithmetic intensity and the role of the KV cache."
 pubDate: 2026-07-10
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1769769910926.jpg"
 category: ["ai", "machine-learning"]
 author: "Naga Siva Poluri"
 ---

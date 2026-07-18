@@ -2,7 +2,7 @@
 title: "Training vs. Inference Lifecycle: A Developer's Guide to Weights, Backpropagation, and Serving"
 description: "A step-by-step developer's view of the AI model lifecycle—from raw weights and backpropagation during training to freezing weights and serving inference."
 pubDate: 2026-07-07
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1773400769859.jpg"
 category: ["ai", "agentic", "claude-code"]
 author: "Naga Siva Poluri"
 ---

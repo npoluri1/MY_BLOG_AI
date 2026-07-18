@@ -1,4 +1,5 @@
 ---
+heroImage: "/images/linkedin/Rapid7SampleThreatAssessmentReportpdf_thumb.jpg"
 title: "Production AI Deployment Patterns: Lessons from Singapore Government"
 description: "Real-world lessons from deploying AI systems in Singapore government infrastructure — covering multi-region deployment, GPU management, security compliance, performance optimization, and monitoring patterns for production AI."
 pubDate: 2025-06-18

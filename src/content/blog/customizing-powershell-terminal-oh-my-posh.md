@@ -2,7 +2,7 @@
 title: "Customizing the Powershell terminal with oh-my-posh"
 description: "Instructions on customizing the terminal in powershell with oh-my-posh and winget"
 pubDate: 2022-07-07
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1764337015045.jpg"
 category: ["windows", "powershell", "tutorial"]
 author: "Naga Siva Poluri"
 ---

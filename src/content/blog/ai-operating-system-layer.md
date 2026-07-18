@@ -1,4 +1,5 @@
 ---
+heroImage: "/images/linkedin/GTR26_Executive-Summary_06_ja-JPpdf_thumb.jpg"
 title: "AI is Not a Tool. It is an Operating System Layer."
 description: "Why AI is not just another technology to adopt, but a fundamental shift in how enterprises operate. The 5-layer model for enterprise AI integration and why most companies are doing it wrong."
 pubDate: 2025-07-18

@@ -1,4 +1,5 @@
 ---
+heroImage: "/images/linkedin/1725944281790.jpeg"
 title: "AI Automation Failure Patterns: 7 Anti-Patterns in Enterprise AI"
 description: "Identify and fix the 7 most common anti-patterns in enterprise AI automation. Real-world failure cases, root cause analysis, and production-tested solutions from banking and government deployments."
 pubDate: 2025-07-08

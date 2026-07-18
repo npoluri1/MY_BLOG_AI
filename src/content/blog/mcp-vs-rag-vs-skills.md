@@ -1,4 +1,5 @@
 ---
+heroImage: "/images/linkedin/1768222560981.jpg"
 title: "MCP vs RAG vs Skills: The 3 Core Pillars of Enterprise AI Integration"
 description: "A deep technical comparison of Model Context Protocol, Retrieval Augmented Generation, and AI Skills — the three foundational patterns for enterprise AI integration. With architecture diagrams, code examples, and a decision framework."
 pubDate: 2025-07-12

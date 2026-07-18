@@ -2,7 +2,7 @@
 title: "Running a react app on Local Kubernetes cluster on Windows 10"
 description: "Process and steps for running react app on local k8s cluster using minikube on windows 10"
 pubDate: 2021-03-16
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1770816401669.jpg"
 category: ["kubernetes", "react", "docker", "windows"]
 author: "Naga Siva Poluri"
 ---

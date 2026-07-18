@@ -2,7 +2,7 @@
 title: "Introduction to SLURM"
 description: "Simple Linux Utility for Resource Management (SLURM)"
 pubDate: 2024-05-26
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1771249371631.jpg"
 category: ["hpc", "linux", "slurm", "tutorial"]
 author: "Naga Siva Poluri"
 ---

@@ -2,7 +2,7 @@
 title: "OpenClaw in Action: Connecting WhatsApp to Automated Workflows"
 description: "A step-by-step developer guide to configuring OpenClaw's WhatsApp gateway, setting up secure session authorization, and building automated task sync skills."
 pubDate: 2026-07-16
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1769171391352.jpg"
 category: ["ai", "machine-learning"]
 author: "Naga Siva Poluri"
 ---

@@ -1,4 +1,5 @@
 ---
+heroImage: "/images/linkedin/1767701882951.jpg"
 title: "LLM Inference Optimization: From KV Cache to Speculative Decoding"
 description: "Deep dive into LLM serving optimizations including KV cache management, FlashAttention, speculative decoding, and continuous batching for maximum throughput."
 pubDate: 2025-07-05

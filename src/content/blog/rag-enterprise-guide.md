@@ -1,4 +1,5 @@
 ---
+heroImage: "/images/linkedin/1770199609191.jpg"
 title: "Enterprise RAG: Building Production-Ready Retrieval Augmented Generation"
 description: "A comprehensive guide to building enterprise-grade RAG systems. Learn about chunking strategies, vector databases, reranking, and evaluation frameworks for production deployments."
 pubDate: 2025-07-10

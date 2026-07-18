@@ -2,7 +2,7 @@
 title: "Managing the NodeJS versions on Windows"
 description: "Node Version Manager (nvm) helps in managing multiple NodeJS versions"
 pubDate: 2022-11-13
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1768914156377.jpg"
 category: ["nodejs", "windows", "tutorial"]
 author: "Naga Siva Poluri"
 ---

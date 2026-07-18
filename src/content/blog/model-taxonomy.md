@@ -2,7 +2,7 @@
 title: "The Model Taxonomy: LLMs, Vision Models, VLAs, and Diffusion"
 description: "A developer's guide to the modern AI model taxonomy. Understand the architecture, modalities, and performance profiles of LLMs, ViTs, VLAs, and Diffusion."
 pubDate: 2026-07-08
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1768485647924.jpg"
 category: ["ai", "machine-learning"]
 author: "Naga Siva Poluri"
 ---

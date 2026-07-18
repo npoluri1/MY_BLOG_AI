@@ -2,7 +2,7 @@
 title: "Claude Code Basics: Commands, Subagents, and Memory Layers"
 description: "Learn the difference between slash commands and file context mentions, configure global vs local memory, and understand how custom skills and subagents operate."
 pubDate: 2026-06-30
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1762423882550.jpg"
 category: ["ai", "agentic", "claude-code"]
 author: "Naga Siva Poluri"
 ---

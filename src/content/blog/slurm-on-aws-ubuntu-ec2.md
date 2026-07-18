@@ -2,7 +2,7 @@
 title: "SLURM Demo on AWS Ubuntu EC2 instance"
 description: "Demo of slurm usage on a single instance of Ubuntu 24.04 EC2 instances on AWS"
 pubDate: 2024-05-29
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1771432956311.jpg"
 category: ["hpc", "aws", "linux", "slurm"]
 author: "Naga Siva Poluri"
 ---

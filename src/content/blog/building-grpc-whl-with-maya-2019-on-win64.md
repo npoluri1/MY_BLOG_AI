@@ -2,7 +2,7 @@
 title: "Building grpc whl with Maya 2019 on Windows"
 description: "My struggle with building a grpc python library with Maya 2019 on Windows"
 pubDate: 2020-03-06
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1761801051976.jpg"
 category: ["python", "maya", "grpc", "windows"]
 author: "Naga Siva Poluri"
 ---

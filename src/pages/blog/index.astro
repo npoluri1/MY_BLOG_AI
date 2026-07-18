@@ -7,19 +7,13 @@ const posts = (await getCollection('blog'))
 
 const years = [...new Set(posts.map(p => p.data.pubDate.getFullYear()))].sort((a, b) => b - a);
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-function getReadingTime(content: string): number {
-  const wordCount = content.split(/\s+/).length;
-  return Math.max(1, Math.ceil(wordCount / 200));
-}
 ---
 
 <BaseLayout title="Blog | Naga Siva Poluri" description="Thoughts on AI, enterprise engineering, and building intelligent systems.">
   <div class="page-header">
     <div class="container">
       <h1>My Blog</h1>
-      <p class="subtitle">Reflections on AI, enterprise engineering, and building intelligent systems.</p>
-      <p class="post-count">{posts.length} articles</p>
+      <p class="subtitle">Reflections on software engineering, pipeline automation, graphics, and system reliability.</p>
     </div>
   </div>
 
@@ -55,15 +49,9 @@ function getReadingTime(content: string): number {
             data-tags={(post.data.category || post.data.tags || []).join(',')}
             data-title={post.data.title.toLowerCase()}
           >
-            <div class="post-image-wrapper">
-              {(post.data.image || post.data.heroImage) && (
-                <img src={post.data.image || post.data.heroImage} alt={post.data.title} class="post-image" loading="lazy" />
-              )}
-            </div>
             <div class="post-content">
               <div class="post-meta">
                 <span class="post-date">{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                <span class="reading-time">{getReadingTime(post.body || '')} min read</span>
               </div>
               <div class="post-tags">
                 {(post.data.category || post.data.tags || []).slice(0, 3).map(tag => (
@@ -104,12 +92,6 @@ function getReadingTime(content: string): number {
     color: var(--text-muted);
     max-width: 600px;
     margin: 0 auto;
-  }
-
-  .post-count {
-    font-size: 0.9rem;
-    color: var(--accent-light);
-    margin-top: 0.75rem;
   }
 
   .blog-section { padding: 2rem 0 6rem; }
@@ -183,9 +165,7 @@ function getReadingTime(content: string): number {
   }
 
   .post-card {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 1.5rem;
+    display: block;
     padding: 1.5rem 0;
     border-bottom: 1px solid var(--border);
     text-decoration: none;
@@ -195,21 +175,6 @@ function getReadingTime(content: string): number {
 
   .post-card:hover {
     padding-left: 0.5rem;
-  }
-
-  .post-image-wrapper {
-    width: 200px;
-    height: 130px;
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-    flex-shrink: 0;
-  }
-
-  .post-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
   }
 
   .post-content {
@@ -228,14 +193,6 @@ function getReadingTime(content: string): number {
   .post-date {
     font-size: 0.82rem;
     color: var(--text-muted);
-  }
-
-  .reading-time {
-    font-size: 0.75rem;
-    padding: 0.15rem 0.5rem;
-    background: rgba(139, 92, 246, 0.1);
-    border-radius: var(--radius-full);
-    color: var(--accent-light);
   }
 
   .post-tags {
@@ -346,8 +303,6 @@ function getReadingTime(content: string): number {
   }
 
   @media (max-width: 768px) {
-    .post-card { grid-template-columns: 1fr; }
-    .post-image-wrapper { width: 100%; height: 180px; }
     .blog-controls { flex-direction: column; align-items: flex-start; }
     .filter-group { flex-direction: column; align-items: flex-start; }
     .pagination { flex-wrap: wrap; }

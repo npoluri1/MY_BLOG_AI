@@ -2,7 +2,7 @@
 title: "Productive Taskbar Settings missing in Windows 11"
 description: "Very useful Taskbar Settings goes missing in Windows 11"
 pubDate: 2021-07-06
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1766573469229.jpg"
 category: ["windows", "productivity"]
 author: "Naga Siva Poluri"
 ---

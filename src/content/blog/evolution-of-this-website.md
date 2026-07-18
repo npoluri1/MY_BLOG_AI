@@ -2,7 +2,7 @@
 title: "Evolution of this website"
 description: "Capturing the evolution of my website chronologically (latest first)"
 pubDate: 2020-10-31
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1764840780436.jpg"
 category: ["webdev", "personal"]
 author: "Naga Siva Poluri"
 ---

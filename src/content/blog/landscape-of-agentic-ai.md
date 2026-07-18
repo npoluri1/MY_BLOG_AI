@@ -2,7 +2,7 @@
 title: "The Landscape of Agentic AI: From Single-Agent Scripts to Multi-Agent Networks"
 description: "Start the Autonomous AI Agents Series. Learn about the ReAct pattern, single-agent context decay, and multi-agent coordination graph topologies."
 pubDate: 2026-07-13
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/Untitled4pdf_thumb.jpg"
 category: ["ai", "machine-learning"]
 author: "Naga Siva Poluri"
 ---

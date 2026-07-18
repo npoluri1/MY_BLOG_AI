@@ -2,7 +2,7 @@
 title: "Missing permissions issue linking google analytics and adsense"
 description: "Problem of linking google analytics and adsense"
 pubDate: 2020-10-16
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1768309201420.jpg"
 category: ["analytics", "google", "tutorial"]
 author: "Naga Siva Poluri"
 ---

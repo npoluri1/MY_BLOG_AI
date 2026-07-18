@@ -2,7 +2,7 @@
 title: "Making of Tree Story Animated Short"
 description: "Behind the scenes of the Animated Short Tree Story"
 pubDate: 2020-10-21
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1767789069445.jpg"
 category: ["animation", "creative", "personal"]
 author: "Naga Siva Poluri"
 ---

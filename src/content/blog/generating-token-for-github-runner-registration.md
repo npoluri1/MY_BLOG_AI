@@ -2,7 +2,7 @@
 title: "Token generation for Registering Self Hosted Github Runner via REST API"
 description: "Generate a token using github API for self hosted runner registration"
 pubDate: 2023-03-21
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1765098421838.jpg"
 category: ["github", "ci-cd", "devops"]
 author: "Naga Siva Poluri"
 ---

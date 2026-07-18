@@ -2,7 +2,7 @@
 title: "Setting up a Self Hosted Github Runner"
 description: "How to setup a Github self hosted runner and register"
 pubDate: 2023-03-20
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1770905758230.jpg"
 category: ["github", "ci-cd", "devops"]
 author: "Naga Siva Poluri"
 ---

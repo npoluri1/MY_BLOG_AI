@@ -2,7 +2,7 @@
 title: "Claude Code Custom Skills: Design Methodology and Workspace Personas"
 description: "Learn how to design, structure, and implement persistent, context-aware custom agent skills in Claude Code to automate code reviews and git workflows."
 pubDate: 2026-07-01
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1763030428112.jpg"
 category: ["ai", "agentic", "claude-code"]
 author: "Naga Siva Poluri"
 ---

@@ -2,7 +2,7 @@
 title: "What is a Model Weight? Demystifying Tensors, Matrices, and File Formats"
 description: "What actually happens when you download a model from Hugging Face? A developer's guide to tensors, weights, biases, and serialization formats."
 pubDate: 2026-07-06
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1773983859706.jpeg"
 category: ["ai", "agentic", "claude-code"]
 author: "Naga Siva Poluri"
 ---

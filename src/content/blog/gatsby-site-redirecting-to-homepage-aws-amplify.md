@@ -2,7 +2,7 @@
 title: "Gatsby site hosted on AWS Amplify redirecting to homepage always"
 description: "Using the rewrites and redirects on AWS Amplify for the deployed personal website"
 pubDate: 2020-11-02
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1765098101935.jpg"
 category: ["gatsby", "aws", "webdev"]
 author: "Naga Siva Poluri"
 ---

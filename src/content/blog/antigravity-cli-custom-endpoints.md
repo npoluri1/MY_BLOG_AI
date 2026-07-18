@@ -2,7 +2,7 @@
 title: "Custom Model Endpoints: Hooking up Local & Enterprise Models with Antigravity CLI"
 description: "Configure Google Antigravity CLI (agy) to run with local LLMs or private enterprise endpoints for privacy and cost efficiency."
 pubDate: 2026-06-24
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1760694483650.jpg"
 category: ["ai", "agentic", "google"]
 author: "Naga Siva Poluri"
 ---

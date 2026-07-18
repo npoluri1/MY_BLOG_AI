@@ -1,4 +1,5 @@
 ---
+heroImage: "/images/linkedin/1767082368232.jpg"
 title: "Inference Optimizations: Speeding up Prefill and Decode"
 description: "Explore advanced LLM serving optimizations. Learn how FlashAttention, chunked prefill, speculative decoding, and KV cache eviction speed up TTFT and inter-token latency."
 pubDate: 2025-07-17

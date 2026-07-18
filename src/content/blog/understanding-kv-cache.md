@@ -2,7 +2,7 @@
 title: "Understanding the KV Cache: The VRAM Bottleneck of LLM Serving"
 description: "Why do LLM serving nodes run out of VRAM? Explore the mechanics, calculations, and capacity bottlenecks of the Key-Value (KV) Cache."
 pubDate: 2026-07-11
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1773814788769.jpeg"
 category: ["ai", "machine-learning"]
 author: "Naga Siva Poluri"
 ---

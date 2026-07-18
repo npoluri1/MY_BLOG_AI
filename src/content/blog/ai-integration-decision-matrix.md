@@ -1,4 +1,5 @@
 ---
+heroImage: "/images/linkedin/SME_AI_Readiness_Playbookpdf_thumb.jpg"
 title: "The AI Integration Decision Matrix: When to Build vs Buy vs Partner"
 description: "A practical framework for deciding whether to build AI in-house, buy commercial solutions, or partner with specialists. Includes real-world examples and cost analysis."
 pubDate: 2025-07-15

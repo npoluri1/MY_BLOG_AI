@@ -2,7 +2,7 @@
 title: "Basics of AI Inference: Demystifying Latency, Throughput, and Serving"
 description: "Start the AI Inference Deep-Dive Series. Learn the fundamentals of inference vs training, key performance metrics, and the systems engineering behind serving."
 pubDate: 2026-07-09
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1761026282017.jpg"
 category: ["ai", "machine-learning"]
 author: "Naga Siva Poluri"
 ---

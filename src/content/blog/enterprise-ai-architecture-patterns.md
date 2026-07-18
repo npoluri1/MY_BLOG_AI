@@ -1,4 +1,5 @@
 ---
+heroImage: "/images/linkedin/Capitalizing_on_AI_Docusign_Deloitte_2026pdf_thumb.jpg"
 title: "Enterprise AI Architecture: Patterns That Scale"
 description: "Battle-tested architecture patterns for enterprise AI systems. From microservices to event-driven to hybrid approaches that actually work."
 pubDate: 2025-07-25

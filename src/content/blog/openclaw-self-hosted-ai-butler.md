@@ -2,7 +2,7 @@
 title: "The Self-Hosted AI Butler: Modular Assistance with OpenClaw"
 description: "Learn how to build and host your own AI assistant with OpenClaw. Configure the ClawHub modular skill store, write SKILL.md files, and connect to chat platforms."
 pubDate: 2026-07-15
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1769091447623.jpg"
 category: ["ai", "machine-learning"]
 author: "Naga Siva Poluri"
 ---

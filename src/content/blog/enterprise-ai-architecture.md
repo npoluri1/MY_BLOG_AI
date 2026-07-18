@@ -1,4 +1,5 @@
 ---
+heroImage: "/images/linkedin/1764649806368.jpg"
 title: "Building Enterprise AI Architecture: The 6-Layer Stack"
 description: "A complete reference architecture for enterprise AI systems. The 6-layer stack from data to observability, with design patterns, technology choices, and implementation guidance."
 pubDate: 2025-06-25

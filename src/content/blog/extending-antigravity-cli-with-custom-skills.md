@@ -2,7 +2,7 @@
 title: "Extending Antigravity CLI: Building Custom Skills and Project Rules"
 description: "Supercharge Google Antigravity CLI with custom agent skills, project-scoped rules, and automation scripts."
 pubDate: 2026-06-21
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1764941218445.jpg"
 category: ["ai", "agentic", "google"]
 author: "Naga Siva Poluri"
 ---

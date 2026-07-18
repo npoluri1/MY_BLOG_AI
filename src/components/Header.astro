@@ -3,8 +3,6 @@ const pathname = Astro.url.pathname;
 const navLinks = [
   { href: '/', label: 'HOME' },
   { href: '/blog', label: 'BLOG' },
-  { href: '/resources', label: 'RESOURCES' },
-  { href: '/gallery', label: 'GALLERY' },
   { href: '/portfolio', label: 'PORTFOLIO' },
   { href: '/about', label: 'ABOUT' },
   { href: '/contact', label: 'CONTACT' },
@@ -14,6 +12,7 @@ const navLinks = [
 <header>
   <div class="container header-inner">
     <a href="/" class="logo">
+      <div class="logo-img-placeholder">NSP</div>
       <span class="logo-text">NAGA SIVA POLURI</span>
     </a>
     <nav class="desktop-nav">
@@ -92,6 +91,19 @@ const navLinks = [
     align-items: center;
     gap: 0.75rem;
     text-decoration: none;
+  }
+
+  .logo-img-placeholder {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: white;
   }
 
   .logo-text {

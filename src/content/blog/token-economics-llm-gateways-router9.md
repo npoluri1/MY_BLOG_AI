@@ -2,7 +2,7 @@
 title: "Token Economics, LLM Gateways, and Router9"
 description: "Understand the financial side of LLM serving. Calculate cost-per-token, setup open-source LLM gateways, and implement intelligent routers like Router9."
 pubDate: 2026-07-18
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1773233167982.jpg"
 category: ["ai", "machine-learning"]
 author: "Naga Siva Poluri"
 ---

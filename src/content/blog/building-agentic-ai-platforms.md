@@ -1,4 +1,5 @@
 ---
+heroImage: "/images/linkedin/weave_intelligence_coderpdf_thumb.jpg"
 title: "Building Agentic AI Platforms: Architecture Patterns for Autonomous Systems"
 description: "Explore the architecture patterns behind production agentic AI platforms. Learn how to design multi-agent coordination, tool orchestration, and memory systems for autonomous AI systems."
 pubDate: 2025-07-15

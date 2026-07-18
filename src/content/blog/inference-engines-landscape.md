@@ -2,7 +2,7 @@
 title: "The Landscape of LLM Inference Engines: Open Source vs. Enterprise"
 description: "A comprehensive developer guide comparing vLLM, TensorRT-LLM, TGI, SGLang, and llama.cpp. Learn about PagedAttention, RadixAttention, and GGUF."
 pubDate: 2026-07-12
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1766739951533.jpg"
 category: ["ai", "machine-learning"]
 author: "Naga Siva Poluri"
 ---

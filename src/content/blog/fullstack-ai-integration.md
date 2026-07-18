@@ -1,4 +1,5 @@
 ---
+heroImage: "/images/linkedin/1765097139660.jpg"
 title: "Full Stack AI Integration: Connecting LLMs to Enterprise Applications"
 description: "A practical guide to integrating LLMs into existing enterprise applications. API design, streaming, error handling, cost management, and security considerations."
 pubDate: 2025-06-20

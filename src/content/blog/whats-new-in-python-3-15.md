@@ -2,7 +2,7 @@
 title: "Python 3.15: A First Look at the Coolest New Features"
 description: "Deep dive into Python 3.15's exciting features: lazy imports, frozendict, sentinels, unpacking, and Tachyon profiler."
 pubDate: 2026-06-19
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1774023969261.jpg"
 category: ["ai", "python", "tutorial"]
 author: "Naga Siva Poluri"
 ---

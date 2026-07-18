@@ -2,7 +2,7 @@
 title: "How to find a linux machine is a VM (Virtual Machine) or a Bare Metal"
 description: "Commands to determine if a Linux machine is a VM or bare metal"
 pubDate: 2023-11-07
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1765094917834.jpg"
 category: ["linux", "virtualization", "tutorial"]
 author: "Naga Siva Poluri"
 ---

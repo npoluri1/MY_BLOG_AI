@@ -2,7 +2,7 @@
 title: "LLMs, Agents, and Harnesses: Demystifying Claude Code"
 description: "A deep dive into the architecture of modern agentic coding tools—from LLMs to Autonomous Agents and Execution Harnesses."
 pubDate: 2026-06-27
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1767082848760.jpg"
 category: ["ai", "agentic", "claude-code"]
 author: "Naga Siva Poluri"
 ---

@@ -2,7 +2,7 @@
 title: "Adding Google Analytics to NuxtJS app"
 description: "Adding Google Analytics GA4 property to NuxtJS App"
 pubDate: 2021-09-02
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1766144567724.jpg"
 category: ["analytics", "nuxtjs", "webdev"]
 author: "Naga Siva Poluri"
 ---

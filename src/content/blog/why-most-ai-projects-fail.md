@@ -1,4 +1,5 @@
 ---
+heroImage: "/images/linkedin/MIT-report-AI-readiness-for-C-suite-leaderspdf_thumb.jpg"
 title: "Why Most AI Projects Fail: Lessons from the Trenches"
 description: "Hard-won lessons from building production AI systems in enterprise environments. Why most AI projects fail and how to make yours succeed."
 pubDate: 2025-07-20

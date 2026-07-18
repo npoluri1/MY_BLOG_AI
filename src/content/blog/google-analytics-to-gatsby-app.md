@@ -2,7 +2,7 @@
 title: "Adding Google Analytics to personal website"
 description: "How I added google analytics to my personal website written in Gatsby"
 pubDate: 2020-10-07
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/1766325956660.jpg"
 category: ["analytics", "gatsby", "webdev"]
 author: "Naga Siva Poluri"
 ---

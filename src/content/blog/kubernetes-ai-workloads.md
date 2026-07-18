@@ -1,4 +1,5 @@
 ---
+heroImage: "/images/linkedin/1767083071852.jpg"
 title: "Running AI Workloads on Kubernetes: GPU Orchestration Best Practices"
 description: "Learn how to configure Kubernetes for AI/ML workloads. GPU scheduling, node affinity, resource quotas, and monitoring for GPU clusters."
 pubDate: 2025-06-28

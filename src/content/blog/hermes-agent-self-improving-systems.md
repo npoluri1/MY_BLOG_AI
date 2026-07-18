@@ -2,7 +2,7 @@
 title: "Nous Research's Hermes Agent: Under the Hood"
 description: "Deep-dive into the configuration, CLI commands, and skill architecture of Nous Research's Hermes Agent. Learn to manage tool gateways and design custom skills."
 pubDate: 2026-07-14
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/linkedin/SOSA-4png.jpeg"
 category: ["ai", "machine-learning"]
 author: "Naga Siva Poluri"
 ---
