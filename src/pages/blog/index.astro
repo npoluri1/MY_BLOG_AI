@@ -10,75 +10,106 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 ---
 
 <BaseLayout title="Blog | Naga Siva Poluri" description="Thoughts on AI, enterprise engineering, and building intelligent systems.">
-  <div class="page-header">
-    <div class="container">
-      <h1>My Blog</h1>
-      <p class="subtitle">Reflections on software engineering, pipeline automation, graphics, and system reliability.</p>
+  <div class="blog-index-page">
+    <div class="page-header">
+      <div class="container">
+        <h1>My Blog</h1>
+        <p class="subtitle">Reflections on AI, enterprise engineering, and building intelligent systems.</p>
+      </div>
     </div>
-  </div>
 
-  <section class="blog-section">
-    <div class="container">
-      <div class="blog-controls">
-        <div class="filter-group">
-          <label>Filter by Date:</label>
-          <div class="filter-selects">
-            <select id="year-filter">
-              <option value="all">All Years</option>
-              {years.map(y => <option value={y}>{y}</option>)}
-            </select>
-            <select id="month-filter">
-              <option value="all">All Months</option>
-              {months.map((m, i) => <option value={i}>{m}</option>)}
-            </select>
+    <div class="container blog-list-container">
+      <div id="archiveData" data-archive={JSON.stringify(years.map(y => ({ year: y, months: [...new Set(posts.filter(p => p.data.pubDate.getFullYear() === y).map(p => p.data.pubDate.getMonth()))] })))} style="display: none;"></div>
+
+      <div class="calendar-filter-wrapper">
+        <div class="calendar-filter-container">
+          <span class="calendar-label">Filter by Date:</span>
+          <div class="date-selectors">
+            <div class="select-wrapper">
+              <select id="yearFilter" class="filter-select" aria-label="Filter by Year">
+                <option value="all">All Years</option>
+                {years.map(y => <option value={y}>{y}</option>)}
+              </select>
+            </div>
+            <div class="select-wrapper">
+              <select id="monthFilter" class="filter-select" disabled aria-label="Filter by Month">
+                <option value="all">All Months</option>
+                {months.map((m, i) => <option value={i}>{m}</option>)}
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="active-filters" id="active-filters" style="display:none;">
-          <span>Active Filters:</span>
-          <button id="clear-filters">Clear All</button>
         </div>
       </div>
 
-      <div class="posts-list" id="posts-list">
+      <div class="filter-status" id="filterStatus" style="display: none;">
+        <span class="filter-text">Active Filters:</span>
+        <div id="activeFiltersList" class="active-filters-list"></div>
+        <button id="clearFilterBtn" class="clear-all-btn">Clear All</button>
+      </div>
+
+      <div class="pagination-container pagination-top" id="paginationContainerTop" style="display: none;">
+        <button id="prevPageBtnTop" class="pagination-btn" aria-label="Previous Page">&larr; Previous</button>
+        <div id="pageNumbersContainerTop" class="page-numbers"></div>
+        <button id="nextPageBtnTop" class="pagination-btn" aria-label="Next Page">Next &rarr;</button>
+      </div>
+
+      <div class="blog-grid" id="blogGrid">
         {posts.map(post => (
-          <a
-            href={`/blog/${post.id}`}
-            class="post-card"
-            data-year={post.data.pubDate.getFullYear()}
-            data-month={post.data.pubDate.getMonth()}
+          <article
+            class="card blog-list-card"
             data-tags={(post.data.category || post.data.tags || []).join(',')}
-            data-title={post.data.title.toLowerCase()}
+            data-date={post.data.pubDate.toISOString()}
           >
-            <div class="post-content">
-              <div class="post-meta">
-                <span class="post-date">{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-              </div>
-              <div class="post-tags">
-                {(post.data.category || post.data.tags || []).slice(0, 3).map(tag => (
-                  <span class="tag">{tag}</span>
-                ))}
-              </div>
-              <h2 class="post-title">{post.data.title}</h2>
-              <p class="post-desc">{post.data.description}</p>
-              <span class="post-link">Read Article →</span>
+            <div class="card-thumbnail">
+              <a href={`/blog/${post.id}`}>
+                {post.data.heroImage ? (
+                  <img src={post.data.heroImage} alt={post.data.title} loading="lazy" decoding="async" width="1200" height="675" class="thumbnail-img" />
+                ) : (
+                  <img src={`https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop`} alt={post.data.title} loading="lazy" decoding="async" width="600" height="400" class="thumbnail-img" />
+                )}
+              </a>
             </div>
-          </a>
+            <div class="card-content">
+              <div class="card-meta">
+                <span class="card-date">{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                <div class="card-badges">
+                  {(post.data.category || post.data.tags || []).slice(0, 4).map(tag => (
+                    <button class="card-badge tag-button" data-tag={tag}>{tag}</button>
+                  ))}
+                </div>
+              </div>
+              <h2>
+                <a href={`/blog/${post.id}`}>{post.data.title}</a>
+              </h2>
+              <p class="card-description">{post.data.description}</p>
+              <div class="card-footer">
+                <a href={`/blog/${post.id}`} class="read-more">Read Article &rarr;</a>
+              </div>
+            </div>
+          </article>
         ))}
       </div>
 
-      <div class="no-results" id="no-results" style="display:none;">
+      <div class="no-results" id="noResults" style="display: none;">
         <p>No posts found matching your filters.</p>
       </div>
 
-      <!-- Pagination -->
-      <div class="pagination" id="pagination"></div>
+      <div class="pagination-container pagination-bottom" id="paginationContainerBottom" style="display: none;">
+        <button id="prevPageBtnBottom" class="pagination-btn" aria-label="Previous Page">&larr; Previous</button>
+        <div id="pageNumbersContainerBottom" class="page-numbers"></div>
+        <button id="nextPageBtnBottom" class="pagination-btn" aria-label="Next Page">Next &rarr;</button>
+      </div>
     </div>
-  </section>
+  </div>
 </BaseLayout>
 
 <style>
+  .blog-index-page {
+    padding-top: var(--header-height);
+  }
+
   .page-header {
-    padding: 8rem 0 3rem;
+    padding: 4rem 0 3rem;
     text-align: center;
   }
 
@@ -94,39 +125,41 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
     margin: 0 auto;
   }
 
-  .blog-section { padding: 2rem 0 6rem; }
-
-  .blog-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border);
-    flex-wrap: wrap;
-    gap: 1rem;
+  .blog-list-container {
+    padding: 0 0 6rem;
   }
 
-  .filter-group {
+  .calendar-filter-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .calendar-filter-container {
     display: flex;
     align-items: center;
     gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
   }
 
-  .filter-group label {
+  .calendar-label {
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--text-secondary);
+    white-space: nowrap;
   }
 
-  .filter-selects {
+  .date-selectors {
     display: flex;
     gap: 0.5rem;
   }
 
-  .filter-selects select {
+  .select-wrapper select {
     padding: 0.5rem 1rem;
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     color: var(--text-primary);
@@ -134,21 +167,65 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
     font-size: 0.85rem;
     cursor: pointer;
     outline: none;
+    transition: border-color 0.2s;
   }
 
-  .filter-selects select:focus {
+  .select-wrapper select:focus {
     border-color: var(--accent);
   }
 
-  .active-filters {
+  .select-wrapper select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .filter-status {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(139, 92, 246, 0.05);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    border-radius: var(--radius-sm);
     font-size: 0.85rem;
-    color: var(--text-muted);
+    flex-wrap: wrap;
   }
 
-  #clear-filters {
+  .filter-text {
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .active-filters-list {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+  }
+
+  .active-filters-list .filter-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(139, 92, 246, 0.15);
+    border-radius: var(--radius-sm);
+    color: var(--accent-light);
+    font-size: 0.78rem;
+  }
+
+  .active-filters-list .filter-tag .remove-tag {
+    cursor: pointer;
+    opacity: 0.7;
+    font-size: 0.9rem;
+    line-height: 1;
+  }
+
+  .active-filters-list .filter-tag .remove-tag:hover {
+    opacity: 1;
+  }
+
+  .clear-all-btn {
     padding: 0.3rem 0.75rem;
     background: rgba(139, 92, 246, 0.15);
     border: 1px solid rgba(139, 92, 246, 0.3);
@@ -159,80 +236,137 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
     font-family: var(--font-sans);
   }
 
-  .posts-list {
-    display: flex;
-    flex-direction: column;
+  .clear-all-btn:hover {
+    background: rgba(139, 92, 246, 0.25);
   }
 
-  .post-card {
-    display: block;
+  .blog-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .blog-list-card {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 1.5rem;
     padding: 1.5rem 0;
     border-bottom: 1px solid var(--border);
     text-decoration: none;
     color: inherit;
-    transition: var(--transition-fast);
+    transition: all 0.2s ease;
   }
 
-  .post-card:hover {
+  .blog-list-card:hover {
     padding-left: 0.5rem;
   }
 
-  .post-content {
+  .blog-list-card:hover .thumbnail-img {
+    transform: scale(1.03);
+  }
+
+  .card-thumbnail {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    aspect-ratio: 16 / 9;
+  }
+
+  .card-thumbnail a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .thumbnail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .card-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
-  .post-meta {
+  .card-meta {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
   }
 
-  .post-date {
+  .card-date {
     font-size: 0.82rem;
     color: var(--text-muted);
-  }
-
-  .post-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .tag {
-    font-size: 0.72rem;
-    padding: 0.15rem 0.5rem;
-    border-radius: var(--radius-sm);
-    background: rgba(139, 92, 246, 0.1);
-    color: var(--accent-light);
     font-weight: 500;
   }
 
-  .post-title {
-    font-size: 1.1rem;
-    margin-bottom: 0.4rem;
-    line-height: 1.4;
-    color: var(--text-primary);
+  .card-badges {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
   }
 
-  .post-card:hover .post-title {
+  .card-badge {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: var(--radius-sm);
     color: var(--accent-light);
+    font-size: 0.72rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-sans);
   }
 
-  .post-desc {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    line-height: 1.6;
+  .card-badge:hover {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.4);
+  }
+
+  .card-content h2 {
+    font-size: 1.15rem;
+    line-height: 1.4;
     margin-bottom: 0.5rem;
   }
 
-  .post-link {
+  .card-content h2 a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .card-content h2 a:hover {
+    color: var(--accent-light);
+  }
+
+  .card-description {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-footer {
+    margin-top: auto;
+  }
+
+  .read-more {
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--accent-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .read-more:hover {
+    color: var(--teal-light);
   }
 
   .no-results {
@@ -242,18 +376,17 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
     font-size: 1.1rem;
   }
 
-  /* Pagination */
-  .pagination {
+  .pagination-container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    margin-top: 3rem;
-    padding-top: 2rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
     border-top: 1px solid var(--border);
   }
 
-  .pagination button {
+  .pagination-btn {
     padding: 0.5rem 1rem;
     background: var(--bg-secondary);
     border: 1px solid var(--border);
@@ -262,50 +395,72 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
     font-family: var(--font-sans);
     font-size: 0.85rem;
     cursor: pointer;
-    transition: var(--transition-fast);
+    transition: all 0.2s;
   }
 
-  .pagination button:hover:not(:disabled) {
+  .pagination-btn:hover:not(:disabled) {
     background: rgba(139, 92, 246, 0.15);
-    border-color: var(--border-accent);
+    border-color: var(--accent);
     color: var(--accent-light);
   }
 
-  .pagination button:disabled {
+  .pagination-btn:disabled {
     opacity: 0.4;
     cursor: not-allowed;
   }
 
-  .pagination button.active {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: white;
-  }
-
-  .pagination .page-numbers {
+  .page-numbers {
     display: flex;
     gap: 0.25rem;
   }
 
-  .pagination .page-btn {
+  .page-numbers button {
     min-width: 36px;
     height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
   }
 
-  .pagination .nav-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
+  .page-numbers button:hover:not(.active) {
+    background: rgba(139, 92, 246, 0.15);
+    border-color: var(--accent);
+    color: var(--accent-light);
+  }
+
+  .page-numbers button.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
   }
 
   @media (max-width: 768px) {
-    .blog-controls { flex-direction: column; align-items: flex-start; }
-    .filter-group { flex-direction: column; align-items: flex-start; }
-    .pagination { flex-wrap: wrap; }
+    .blog-list-card {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .card-thumbnail {
+      aspect-ratio: 16 / 9;
+    }
+
+    .calendar-filter-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .pagination-container {
+      flex-wrap: wrap;
+    }
   }
 </style>
 
@@ -313,116 +468,172 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
   document.addEventListener('DOMContentLoaded', () => {
     const POSTS_PER_PAGE = 10;
     let currentPage = 1;
-    let filteredPosts = [];
+    let filteredCards = [];
 
-    const postsList = document.getElementById('posts-list');
-    const noResults = document.getElementById('no-results');
-    const pagination = document.getElementById('pagination');
-    const yearFilter = document.getElementById('year-filter');
-    const monthFilter = document.getElementById('month-filter');
-    const clearBtn = document.getElementById('clear-filters');
-    const activeFilters = document.getElementById('active-filters');
+    const blogGrid = document.getElementById('blogGrid');
+    const noResults = document.getElementById('noResults');
+    const yearFilter = document.getElementById('yearFilter');
+    const monthFilter = document.getElementById('monthFilter');
+    const clearFilterBtn = document.getElementById('clearFilterBtn');
+    const filterStatus = document.getElementById('filterStatus');
+    const activeFiltersList = document.getElementById('activeFiltersList');
 
-    const allPosts = Array.from(postsList.querySelectorAll('.post-card'));
+    const allCards = Array.from(blogGrid.querySelectorAll('.blog-list-card'));
 
-    function getVisiblePosts() {
-      return allPosts.filter(item => {
-        return item.style.display !== 'none';
+    const archiveData = JSON.parse(document.getElementById('archiveData').dataset.archive || '[]');
+
+    yearFilter.addEventListener('change', () => {
+      const selectedYear = yearFilter.value;
+      monthFilter.disabled = selectedYear === 'all';
+      if (selectedYear !== 'all') {
+        const yearData = archiveData.find(d => d.year === parseInt(selectedYear));
+        const availableMonths = yearData ? yearData.months : [];
+        Array.from(monthFilter.options).forEach(opt => {
+          if (opt.value === 'all') return;
+          opt.disabled = !availableMonths.includes(parseInt(opt.value));
+        });
+      } else {
+        Array.from(monthFilter.options).forEach(opt => opt.disabled = false);
+      }
+      monthFilter.value = 'all';
+      applyFilters();
+    });
+
+    monthFilter.addEventListener('change', applyFilters);
+
+    clearFilterBtn.addEventListener('click', () => {
+      yearFilter.value = 'all';
+      monthFilter.value = 'all';
+      monthFilter.disabled = true;
+      applyFilters();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('tag-button')) {
+        const tag = e.target.dataset.tag;
+        filterByTag(tag);
+      }
+      if (e.target.classList.contains('remove-tag')) {
+        clearAllTagFilters();
+      }
+    });
+
+    function filterByTag(tag) {
+      allCards.forEach(card => {
+        const tags = card.dataset.tags.split(',').map(t => t.trim().toLowerCase());
+        card.style.display = tags.includes(tag.toLowerCase()) ? '' : 'none';
       });
+      showActiveTagFilter(tag);
+      currentPage = 1;
+      paginateCards();
     }
 
-    function renderPagination() {
-      filteredPosts = getVisiblePosts();
-      const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+    function showActiveTagFilter(tag) {
+      filterStatus.style.display = 'flex';
+      activeFiltersList.innerHTML = `<span class="filter-tag">${tag} <span class="remove-tag">&times;</span></span>`;
+    }
 
-      if (currentPage > totalPages) currentPage = totalPages;
-      if (currentPage < 1) currentPage = 1;
+    function clearAllTagFilters() {
+      allCards.forEach(card => card.style.display = '');
+      filterStatus.style.display = 'none';
+      activeFiltersList.innerHTML = '';
+      currentPage = 1;
+      paginateCards();
+    }
 
-      // Hide/show posts based on current page
-      filteredPosts.forEach((post, index) => {
-        const start = (currentPage - 1) * POSTS_PER_PAGE;
-        const end = start + POSTS_PER_PAGE;
-        if (index >= start && index < end) {
-          post.style.display = '';
-        } else {
-          post.style.display = 'none';
-        }
+    function applyFilters() {
+      const selectedYear = yearFilter.value;
+      const selectedMonth = monthFilter.value;
+
+      allCards.forEach(card => {
+        const date = new Date(card.dataset.date);
+        const matchYear = selectedYear === 'all' || date.getFullYear() === parseInt(selectedYear);
+        const matchMonth = selectedMonth === 'all' || date.getMonth() === parseInt(selectedMonth);
+        card.style.display = (matchYear && matchMonth) ? '' : 'none';
       });
 
-      // Show/hide no results
-      noResults.style.display = filteredPosts.length === 0 ? 'block' : 'none';
-
-      // Render pagination controls
-      if (totalPages <= 1) {
-        pagination.innerHTML = '';
-        return;
+      filterStatus.style.display = (selectedYear !== 'all' || selectedMonth !== 'all') ? 'flex' : 'none';
+      if (selectedYear !== 'all' || selectedMonth !== 'all') {
+        const filters = [];
+        if (selectedYear !== 'all') filters.push(selectedYear);
+        if (selectedMonth !== 'all') filters.push(monthFilter.options[monthFilter.selectedIndex].text);
+        activeFiltersList.innerHTML = `<span class="filter-tag">${filters.join(' / ')} <span class="remove-tag">&times;</span></span>`;
       }
 
+      currentPage = 1;
+      paginateCards();
+    }
+
+    function paginateCards() {
+      filteredCards = allCards.filter(card => card.style.display !== 'none');
+      const totalPages = Math.ceil(filteredCards.length / POSTS_PER_PAGE);
+
+      if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
+
+      filteredCards.forEach((card, index) => {
+        const start = (currentPage - 1) * POSTS_PER_PAGE;
+        const end = start + POSTS_PER_PAGE;
+        card.style.display = (index >= start && index < end) ? '' : 'none';
+      });
+
+      noResults.style.display = filteredCards.length === 0 ? 'block' : 'none';
+
+      const showPagination = totalPages > 1;
+      document.getElementById('paginationContainerTop').style.display = showPagination ? 'flex' : 'none';
+      document.getElementById('paginationContainerBottom').style.display = showPagination ? 'flex' : 'none';
+
+      if (!showPagination) return;
+
+      renderPaginationControls('pageNumbersContainerTop', 'prevPageBtnTop', 'nextPageBtnTop', currentPage, totalPages);
+      renderPaginationControls('pageNumbersContainerBottom', 'prevPageBtnBottom', 'nextPageBtnBottom', currentPage, totalPages);
+    }
+
+    function renderPaginationControls(numbersId, prevId, nextId, current, total) {
+      const container = document.getElementById(numbersId);
+      const prevBtn = document.getElementById(prevId);
+      const nextBtn = document.getElementById(nextId);
+
+      prevBtn.disabled = current === 1;
+      nextBtn.disabled = current === total;
+
       let html = '';
-
-      // Previous button
-      html += `<button class="nav-btn" ${currentPage === 1 ? 'disabled' : ''} data-page="${currentPage - 1}">← Previous</button>`;
-
-      // Page numbers
-      html += '<div class="page-numbers">';
-      for (let i = 1; i <= totalPages; i++) {
-        if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2)) {
-          html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
-        } else if (i === currentPage - 3 || i === currentPage + 3) {
+      for (let i = 1; i <= total; i++) {
+        if (i === 1 || i === total || (i >= current - 2 && i <= current + 2)) {
+          html += `<button class="${i === current ? 'active' : ''}" data-page="${i}">${i}</button>`;
+        } else if (i === current - 3 || i === current + 3) {
           html += '<span style="color: var(--text-muted); padding: 0 0.25rem;">...</span>';
         }
       }
-      html += '</div>';
+      container.innerHTML = html;
 
-      // Next button
-      html += `<button class="nav-btn" ${currentPage === totalPages ? 'disabled' : ''} data-page="${currentPage + 1}">Next →</button>`;
-
-      pagination.innerHTML = html;
-
-      // Add click handlers
-      pagination.querySelectorAll('button').forEach(btn => {
+      container.querySelectorAll('button').forEach(btn => {
         btn.addEventListener('click', () => {
           const page = parseInt(btn.dataset.page);
-          if (page && page !== currentPage) {
+          if (page && page !== current) {
             currentPage = page;
-            renderPagination();
-            window.scrollTo({ top: postsList.offsetTop - 100, behavior: 'smooth' });
+            paginateCards();
+            window.scrollTo({ top: blogGrid.offsetTop - 100, behavior: 'smooth' });
           }
         });
       });
-    }
 
-    function filterPosts() {
-      const year = yearFilter.value;
-      const month = monthFilter.value;
-
-      allPosts.forEach(item => {
-        const matchYear = year === 'all' || item.dataset.year === year;
-        const matchMonth = month === 'all' || item.dataset.month === month;
-
-        if (matchYear && matchMonth) {
-          item.style.display = '';
-        } else {
-          item.style.display = 'none';
+      prevBtn.onclick = () => {
+        if (currentPage > 1) {
+          currentPage--;
+          paginateCards();
+          window.scrollTo({ top: blogGrid.offsetTop - 100, behavior: 'smooth' });
         }
-      });
+      };
 
-      currentPage = 1;
-      const hasFilters = year !== 'all' || month !== 'all';
-      activeFilters.style.display = hasFilters ? 'flex' : 'none';
-
-      renderPagination();
+      nextBtn.onclick = () => {
+        if (currentPage < total) {
+          currentPage++;
+          paginateCards();
+          window.scrollTo({ top: blogGrid.offsetTop - 100, behavior: 'smooth' });
+        }
+      };
     }
 
-    yearFilter.addEventListener('change', filterPosts);
-    monthFilter.addEventListener('change', filterPosts);
-    clearBtn.addEventListener('click', () => {
-      yearFilter.value = 'all';
-      monthFilter.value = 'all';
-      filterPosts();
-    });
-
-    // Initial render
-    renderPagination();
+    paginateCards();
   });
 </script>
