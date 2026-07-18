@@ -16,8 +16,10 @@ const experience = [
       'Building enterprise RAG platforms for knowledge management and decision support',
       'Integrating LLMs into existing enterprise workflows and data pipelines',
       'Leading agentic AI initiatives for automated system monitoring and response',
+      'Architecting MCP (Model Context Protocol) servers for tool connectivity',
+      'Designing multi-agent systems for autonomous operations',
     ],
-    tags: ['AI/ML', 'RAG', 'Enterprise Integration', 'Python'],
+    tags: ['AI/ML', 'RAG', 'Enterprise Integration', 'Python', 'MCP', 'Agentic AI'],
   },
   {
     company: 'Bank of Singapore',
@@ -30,8 +32,10 @@ const experience = [
       'Designed LLM integration architecture for document analysis and summarization',
       'Implemented vector search capabilities across 10M+ financial documents',
       'Created automated compliance checking system using AI agents',
+      'Developed hybrid dense-sparse retrieval with reranking for financial queries',
+      'Built evaluation frameworks for RAG accuracy and hallucination detection',
     ],
-    tags: ['RAG', 'LLMs', 'Vector Search', 'Compliance AI'],
+    tags: ['RAG', 'LLMs', 'Vector Search', 'Compliance AI', 'Pinecone', 'LangChain'],
   },
   {
     company: 'UOB',
@@ -43,8 +47,10 @@ const experience = [
       'Designed real-time transaction processing pipelines',
       'Mentored team of 8 engineers across multiple product squads',
       'Implemented CI/CD pipelines reducing deployment time by 60%',
+      'Architected event-driven systems using Kafka for real-time processing',
+      'Built high-availability services handling millions of daily transactions',
     ],
-    tags: ['Microservices', 'Java', 'Event-Driven', 'DevOps'],
+    tags: ['Microservices', 'Java', 'Event-Driven', 'DevOps', 'Kafka', 'Kubernetes'],
   },
   {
     company: 'SingLife',
@@ -55,8 +61,9 @@ const experience = [
       'Led technical design for digital insurance platform features',
       'Built real-time claims processing system using event-driven architecture',
       'Implemented API gateway handling 10K+ requests per second',
+      'Designed fault-tolerant messaging patterns for insurance workflows',
     ],
-    tags: ['InsurTech', 'Event-Driven', 'API Design', 'Real-Time'],
+    tags: ['InsurTech', 'Event-Driven', 'API Design', 'Real-Time', 'Node.js'],
   },
   {
     company: 'OCBC Bank',
@@ -67,8 +74,9 @@ const experience = [
       'Developed customer-facing digital banking features',
       'Built React-based dashboards for portfolio management',
       'Implemented real-time notification system using WebSocket',
+      'Optimized frontend performance reducing load times by 40%',
     ],
-    tags: ['React', 'Node.js', 'FinTech', 'WebSocket'],
+    tags: ['React', 'Node.js', 'FinTech', 'WebSocket', 'TypeScript'],
   },
   {
     company: 'NTUC Income',
@@ -79,8 +87,9 @@ const experience = [
       'Developed policy management system serving 2M+ customers',
       'Built automated underwriting engine using rule-based AI',
       'Optimized database queries reducing response time by 40%',
+      'Implemented micro-frontend architecture for modular UI',
     ],
-    tags: ['Java', 'PostgreSQL', 'Automation', 'Performance'],
+    tags: ['Java', 'PostgreSQL', 'Automation', 'Performance', 'Micro-Frontends'],
   },
   {
     company: 'NCS / LTA ERP2',
@@ -92,8 +101,10 @@ const experience = [
       'Built high-throughput tolling transaction processing backend',
       'Implemented GNSS-based location services integration',
       'Designed fault-tolerant messaging system using IBM MQ',
+      'Processed millions of daily tolling transactions with 99.99% uptime',
+      'Built real-time location tracking for ERP2 GNSS system',
     ],
-    tags: ['Java', 'IBM MQ', 'GNSS', 'High-Availability'],
+    tags: ['Java', 'IBM MQ', 'GNSS', 'High-Availability', 'PostgreSQL', 'REST APIs'],
   },
 ];
 
@@ -107,6 +118,9 @@ const aiSkills = [
   { name: 'OpenAI / Claude API', color: 'teal' },
   { name: 'Hugging Face', color: 'coral' },
   { name: 'ML Ops', color: 'blue' },
+  { name: 'MCP (Model Context Protocol)', color: 'accent' },
+  { name: 'Multi-Agent Systems', color: 'teal' },
+  { name: 'RAG Evaluation', color: 'coral' },
 ];
 
 const coreSkills = [
@@ -122,6 +136,20 @@ const coreSkills = [
   { name: 'REST / GraphQL APIs', color: 'coral' },
   { name: 'Microservices', color: 'accent' },
   { name: 'Event-Driven Architecture', color: 'teal' },
+  { name: 'Redis / Caching', color: 'blue' },
+  { name: 'IBM MQ', color: 'pink' },
+  { name: 'GNSS / Location Services', color: 'coral' },
+];
+
+const domainKnowledge = [
+  { name: 'Government Transport Systems', color: 'accent' },
+  { name: 'Banking & Finance', color: 'teal' },
+  { name: 'Insurance (InsurTech)', color: 'blue' },
+  { name: 'Digital Payments', color: 'pink' },
+  { name: 'Tolling Systems (ERP)', color: 'coral' },
+  { name: 'Fare Settlement', color: 'accent' },
+  { name: 'Compliance & Audit', color: 'teal' },
+  { name: 'High-Availability Systems', color: 'blue' },
 ];
 ---
 
@@ -140,7 +168,7 @@ const coreSkills = [
       <div class="summary-card card-3d reveal">
         <span class="section-eyebrow">PROFESSIONAL SUMMARY</span>
         <p class="summary-text">
-          Forward-thinking AI Integration Engineer, Data Engineer & Full Stack Developer with 15+ years of enterprise solution delivery across Singapore's top-tier Government, Banking, Insurance, Transport, and Fintech sectors. Specializing in AI integration, RAG platforms, and agentic architectures with a track record of delivering high-impact solutions at LTA, Bank of Singapore, UOB, and OCBC.
+          Forward-thinking AI Integration Engineer, Data Engineer & Full Stack Developer with 15+ years of enterprise solution delivery across Singapore's top-tier Government, Banking, Insurance, Transport, and Fintech sectors. Specializing in AI integration, RAG platforms, agentic architectures, and MCP (Model Context Protocol) implementations with a track record of delivering high-impact solutions at LTA, Bank of Singapore, UOB, and OCBC.
         </p>
       </div>
 
@@ -194,6 +222,20 @@ const coreSkills = [
         </div>
       </div>
 
+      <!-- Domain Knowledge -->
+      <div class="skills-section">
+        <SectionHeader
+          eyebrow="DOMAIN EXPERTISE"
+          title="Industry Knowledge"
+          desc="Deep understanding of enterprise domains and regulatory requirements."
+        />
+        <div class="skills-grid reveal">
+          {domainKnowledge.map(skill => (
+            <SkillBadge name={skill.name} color={skill.color} />
+          ))}
+        </div>
+      </div>
+
       <!-- Education -->
       <div class="education-section">
         <SectionHeader
@@ -205,11 +247,39 @@ const coreSkills = [
             <h3>MBA</h3>
             <p class="edu-school">SMU Hyderabad</p>
             <p class="edu-detail">Master of Business Administration</p>
+            <p class="edu-focus">Focus: Technology Management & Strategy</p>
           </div>
           <div class="education-card card-3d reveal stagger-2">
             <h3>B.E. EEE</h3>
             <p class="edu-school">Anna University</p>
             <p class="edu-detail">Bachelor of Engineering in Electrical & Electronics</p>
+            <p class="edu-focus">Focus: Embedded Systems & Signal Processing</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Achievements -->
+      <div class="achievements-section">
+        <SectionHeader
+          eyebrow="KEY ACHIEVEMENTS"
+          title="Impact & Results"
+        />
+        <div class="achievements-grid">
+          <div class="achievement-card reveal stagger-1">
+            <span class="achievement-number">10M+</span>
+            <span class="achievement-label">Documents indexed in RAG platform</span>
+          </div>
+          <div class="achievement-card reveal stagger-2">
+            <span class="achievement-number">99.99%</span>
+            <span class="achievement-label">Uptime for ERP2 tolling system</span>
+          </div>
+          <div class="achievement-card reveal stagger-3">
+            <span class="achievement-number">60%</span>
+            <span class="achievement-label">Reduction in deployment time</span>
+          </div>
+          <div class="achievement-card reveal stagger-4">
+            <span class="achievement-number">10K+</span>
+            <span class="achievement-label">API requests per second handled</span>
           </div>
         </div>
       </div>
@@ -278,6 +348,43 @@ const coreSkills = [
   .education-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
   .edu-school { color: var(--accent-light); font-weight: 600; margin-bottom: 0.25rem; }
   .edu-detail { color: var(--text-muted); font-size: 0.9rem; margin: 0; }
+  .edu-focus { color: var(--text-muted); font-size: 0.85rem; margin: 0.5rem 0 0; font-style: italic; }
+
+  .achievements-section { margin-bottom: 4rem; }
+
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .achievement-card {
+    padding: 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    text-align: center;
+    transition: var(--transition-fast);
+  }
+
+  .achievement-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+  }
+
+  .achievement-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .achievement-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
 
   .resume-cta {
     text-align: center;
@@ -291,6 +398,7 @@ const coreSkills = [
   @media (max-width: 768px) {
     .timeline { padding-left: 2rem; }
     .education-grid { grid-template-columns: 1fr; }
+    .achievements-grid { grid-template-columns: repeat(2, 1fr); }
     .resume-cta { flex-direction: column; align-items: center; }
   }
 </style>

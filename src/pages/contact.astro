@@ -5,13 +5,39 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout title="Contact | Naga Siva Poluri" description="Get in touch with Naga Siva Poluri - AI Integration Engineer, Data Engineer, Full Stack Developer.">
   <div class="page-header">
     <div class="container">
-      <h1>Contact Me</h1>
+      <span class="section-eyebrow">CONTACT</span>
+      <h1>Get In Touch</h1>
       <p class="subtitle">Have a project, a job opportunity, or just want to connect? Let's get in touch.</p>
     </div>
   </div>
 
   <section class="contact-section">
     <div class="container">
+      <!-- Availability Status -->
+      <div class="availability-banner reveal">
+        <div class="availability-content">
+          <span class="availability-dot"></span>
+          <div>
+            <h3>Available for Consulting</h3>
+            <p>Currently accepting new projects for AI integration, enterprise architecture, and full-stack development.</p>
+          </div>
+        </div>
+        <div class="availability-details">
+          <div class="detail-item">
+            <span class="detail-label">Response Time</span>
+            <span class="detail-value">Within 24 hours</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Timezone</span>
+            <span class="detail-value">SGT (UTC+8)</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Languages</span>
+            <span class="detail-value">English, Hindi, Telugu</span>
+          </div>
+        </div>
+      </div>
+
       <div class="contact-grid">
         <!-- Contact Form -->
         <div class="contact-form-card">
@@ -26,8 +52,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <input type="email" id="email" name="email" required placeholder="your@email.com" />
             </div>
             <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject" required>
+                <option value="">Select a topic</option>
+                <option value="consulting">AI Integration Consulting</option>
+                <option value="architecture">Enterprise Architecture</option>
+                <option value="fullstack">Full-Stack Development</option>
+                <option value="speaking">Speaking / Training</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" required placeholder="Your message..."></textarea>
+              <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project or question..."></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Send Message</button>
           </form>
@@ -55,7 +92,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <a href="https://twitter.com/nagasivapoluri" target="_blank" rel="noopener noreferrer" class="social-item">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
               <div>
-                <h3>Twitter</h3>
+                <h3>Twitter / X</h3>
                 <p>Follow me for quick tech discussions and thoughts</p>
               </div>
             </a>
@@ -66,6 +103,41 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <p>Send me a direct message</p>
               </div>
             </a>
+          </div>
+
+          <!-- Services -->
+          <div class="services-card">
+            <h3>Services I Offer</h3>
+            <ul class="services-list">
+              <li>
+                <span class="service-icon">🤖</span>
+                <div>
+                  <h4>AI Integration Consulting</h4>
+                  <p>RAG systems, agentic AI, LLM integration, MCP implementation</p>
+                </div>
+              </li>
+              <li>
+                <span class="service-icon">🏗️</span>
+                <div>
+                  <h4>Enterprise Architecture</h4>
+                  <p>Microservices, event-driven systems, cloud-native design</p>
+                </div>
+              </li>
+              <li>
+                <span class="service-icon">💻</span>
+                <div>
+                  <h4>Full-Stack Development</h4>
+                  <p>Java, Python, React, Next.js, end-to-end applications</p>
+                </div>
+              </li>
+              <li>
+                <span class="service-icon">🎤</span>
+                <div>
+                  <h4>Speaking & Training</h4>
+                  <p>AI workshops, technical talks, team training</p>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -92,6 +164,75 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .contact-section { padding: 2rem 0 6rem; }
+
+  .availability-banner {
+    padding: 2rem;
+    background: rgba(20, 184, 166, 0.05);
+    border: 1px solid rgba(20, 184, 166, 0.2);
+    border-radius: var(--radius-lg);
+    margin-bottom: 3rem;
+  }
+
+  .availability-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .availability-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--teal);
+    animation: pulse 2s infinite;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .availability-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+    color: var(--teal-light);
+  }
+
+  .availability-content p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .availability-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(20, 184, 166, 0.2);
+  }
+
+  .detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .detail-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  .detail-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
 
   .contact-grid {
     display: grid;
@@ -120,7 +261,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .form-group input,
-  .form-group textarea {
+  .form-group textarea,
+  .form-group select {
     width: 100%;
     padding: 0.75rem 1rem;
     background: var(--bg-secondary);
@@ -134,7 +276,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .form-group input:focus,
-  .form-group textarea:focus {
+  .form-group textarea:focus,
+  .form-group select:focus {
     border-color: var(--accent);
     box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
   }
@@ -147,6 +290,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .form-group textarea {
     resize: vertical;
     min-height: 120px;
+  }
+
+  .form-group select {
+    cursor: pointer;
   }
 
   .connect-desc {
@@ -199,8 +346,57 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     line-height: 1.5;
   }
 
+  .services-card {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+  }
+
+  .services-card h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+  }
+
+  .services-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .services-list li {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .services-list li:last-child {
+    border-bottom: none;
+  }
+
+  .service-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .services-list h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.15rem;
+    color: var(--text-primary);
+  }
+
+  .services-list p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.4;
+  }
+
   @media (max-width: 768px) {
     .contact-grid { grid-template-columns: 1fr; }
+    .availability-details { grid-template-columns: 1fr; }
   }
 </style>
 
@@ -212,8 +408,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         e.preventDefault();
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
         const message = document.getElementById('message').value;
-        const mailtoLink = `mailto:npoluri1@gmail.com?subject=Contact from ${encodeURIComponent(name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
+        const subjectText = document.getElementById('subject').options[document.getElementById('subject').selectedIndex].text;
+        const mailtoLink = `mailto:npoluri1@gmail.com?subject=${encodeURIComponent(subjectText + ' - ' + name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nSubject: ${subjectText}\n\n${message}`)}`;
         window.location.href = mailtoLink;
       });
     }

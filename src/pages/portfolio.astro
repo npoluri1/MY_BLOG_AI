@@ -7,13 +7,21 @@ const projects = [
     title: 'Enterprise RAG Platform',
     category: 'AI / RAG',
     categoryColor: 'teal',
-    description: 'Built a production-grade Retrieval Augmented Generation platform serving internal wealth management teams. Implemented vector search across 10M+ financial documents with hybrid dense-sparse retrieval and reranking.',
+    description: 'Built a production-grade Retrieval Augmented Generation platform serving internal wealth management teams. Implemented vector search across 10M+ financial documents with hybrid dense-sparse retrieval, reranking, and compliance-aware architectures.',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
     tech: [
       { name: 'Python', color: 'teal' },
       { name: 'LangChain', color: 'accent' },
       { name: 'Pinecone', color: 'blue' },
       { name: 'FastAPI', color: 'coral' },
+      { name: 'OpenAI', color: 'teal' },
+      { name: 'Redis', color: 'coral' },
+    ],
+    highlights: [
+      '10M+ documents indexed and searchable',
+      'Hybrid dense-sparse retrieval with reranking',
+      'Sub-second query response times',
+      '99.9% uptime in production',
     ],
     link: '#',
   },
@@ -28,6 +36,14 @@ const projects = [
       { name: 'TypeScript', color: 'blue' },
       { name: 'Redis', color: 'coral' },
       { name: 'Docker', color: 'teal' },
+      { name: 'MCP', color: 'accent' },
+      { name: 'PostgreSQL', color: 'blue' },
+    ],
+    highlights: [
+      'Multi-agent orchestration framework',
+      'Tool use with safety guardrails',
+      'Memory management for long-running agents',
+      'Real-time monitoring and alerting',
     ],
     link: '#',
   },
@@ -42,6 +58,14 @@ const projects = [
       { name: 'IBM MQ', color: 'accent' },
       { name: 'GNSS', color: 'teal' },
       { name: 'PostgreSQL', color: 'blue' },
+      { name: 'REST APIs', color: 'pink' },
+      { name: 'High-Availability', color: 'coral' },
+    ],
+    highlights: [
+      '99.99% uptime for mission-critical system',
+      'Millions of daily transactions',
+      'Real-time GNSS location tracking',
+      'Fault-tolerant messaging architecture',
     ],
     link: '#',
   },
@@ -56,6 +80,14 @@ const projects = [
       { name: 'Kubernetes', color: 'accent' },
       { name: 'Kafka', color: 'teal' },
       { name: 'React', color: 'blue' },
+      { name: 'Spring Boot', color: 'teal' },
+      { name: 'CI/CD', color: 'pink' },
+    ],
+    highlights: [
+      '60% reduction in deployment time',
+      'Real-time transaction processing',
+      'Team of 8 engineers mentored',
+      'Event-driven architecture',
     ],
     link: '#',
   },
@@ -70,6 +102,80 @@ const projects = [
       { name: 'Event-Driven', color: 'accent' },
       { name: 'WebSocket', color: 'blue' },
       { name: 'MongoDB', color: 'coral' },
+      { name: 'API Gateway', color: 'pink' },
+      { name: 'Real-Time', color: 'teal' },
+    ],
+    highlights: [
+      '10K+ requests per second',
+      'Real-time claims processing',
+      'Automated underwriting engine',
+      'Fault-tolerant architecture',
+    ],
+    link: '#',
+  },
+  {
+    title: 'MCP Server Framework',
+    category: 'AI / TOOLS',
+    categoryColor: 'accent',
+    description: 'Built a reusable Model Context Protocol (MCP) server framework for enterprise tool connectivity. Standardized integration between LLMs and enterprise systems.',
+    image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=400&fit=crop',
+    tech: [
+      { name: 'TypeScript', color: 'blue' },
+      { name: 'MCP Protocol', color: 'accent' },
+      { name: 'Claude API', color: 'teal' },
+      { name: 'REST APIs', color: 'coral' },
+      { name: 'WebSocket', color: 'pink' },
+      { name: 'Docker', color: 'teal' },
+    ],
+    highlights: [
+      'Standardized tool connectivity',
+      'Reusable enterprise framework',
+      'Multi-model support',
+      'Production-ready deployment',
+    ],
+    link: '#',
+  },
+  {
+    title: 'Government Data Platform',
+    category: 'GOV TECH',
+    categoryColor: 'teal',
+    description: 'Designed and built data integration platform for Singapore government agencies, connecting disparate systems into cohesive data-driven architecture.',
+    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&h=400&fit=crop',
+    tech: [
+      { name: 'Python', color: 'teal' },
+      { name: 'Apache Spark', color: 'coral' },
+      { name: 'PostgreSQL', color: 'blue' },
+      { name: 'AWS', color: 'accent' },
+      { name: 'Docker', color: 'teal' },
+      { name: 'ETL', color: 'pink' },
+    ],
+    highlights: [
+      'Multi-agency data integration',
+      'Real-time data pipelines',
+      'Compliance-aware architecture',
+      'Scalable cloud infrastructure',
+    ],
+    link: '#',
+  },
+  {
+    title: 'AI-Powered Document Processing',
+    category: 'AI / AUTOMATION',
+    categoryColor: 'coral',
+    description: 'Built intelligent document processing system using AI for automated extraction, classification, and analysis of financial documents.',
+    image: 'https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&h=400&fit=crop',
+    tech: [
+      { name: 'Python', color: 'teal' },
+      { name: 'OpenAI', color: 'accent' },
+      { name: 'LangChain', color: 'blue' },
+      { name: 'FastAPI', color: 'coral' },
+      { name: 'PostgreSQL', color: 'teal' },
+      { name: 'Redis', color: 'coral' },
+    ],
+    highlights: [
+      'Automated document classification',
+      'Intelligent data extraction',
+      'Compliance checking',
+      '95% accuracy rate',
     ],
     link: '#',
   },
@@ -81,12 +187,32 @@ const projects = [
     <div class="container">
       <span class="section-eyebrow">PORTFOLIO</span>
       <h1>Featured Projects</h1>
-      <p class="subtitle">A selection of enterprise AI and full-stack projects I've delivered.</p>
+      <p class="subtitle">A selection of enterprise AI, full-stack, and government projects I've delivered.</p>
     </div>
   </div>
 
   <section class="portfolio-section">
     <div class="container">
+      <!-- Project Stats -->
+      <div class="project-stats reveal">
+        <div class="stat-item">
+          <span class="stat-number">50+</span>
+          <span class="stat-label">Projects Delivered</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">8</span>
+          <span class="stat-label">Industries Served</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">15+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">99.9%</span>
+          <span class="stat-label">Average Uptime</span>
+        </div>
+      </div>
+
       <div class="project-grid">
         {projects.map((project) => (
           <article class="project-card">
@@ -97,11 +223,22 @@ const projects = [
               <span class={`project-badge badge-${project.categoryColor}`}>{project.category}</span>
               <h3>{project.title}</h3>
               <p>{project.description}</p>
+              
+              <div class="project-highlights">
+                <h4>Key Achievements</h4>
+                <ul>
+                  {project.highlights.map(highlight => (
+                    <li>{highlight}</li>
+                  ))}
+                </ul>
+              </div>
+              
               <div class="project-tech">
                 {project.tech.map((t) => (
                   <SkillBadge name={t.name} color={t.color} />
                 ))}
               </div>
+              
               <a href={project.link} class="project-link">
                 View Project Details
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -109,6 +246,20 @@ const projects = [
             </div>
           </article>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Have a Project in Mind?</h2>
+        <p>I'm available for AI integration consulting, enterprise architecture, and full-stack development projects.</p>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn btn-primary">Get In Touch</a>
+          <a href="/resume" class="btn btn-secondary">View Resume</a>
+        </div>
       </div>
     </div>
   </section>
@@ -133,7 +284,34 @@ const projects = [
   }
 
   .portfolio-section {
-    padding: 0 0 6rem;
+    padding: 0 0 4rem;
+  }
+
+  .project-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent-light);
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
   }
 
   .project-grid {
@@ -159,7 +337,7 @@ const projects = [
 
   .project-image {
     position: relative;
-    min-height: 280px;
+    min-height: 300px;
     overflow: hidden;
   }
 
@@ -199,6 +377,39 @@ const projects = [
     margin-bottom: 1rem;
   }
 
+  .project-highlights {
+    margin-bottom: 1.25rem;
+  }
+
+  .project-highlights h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .project-highlights ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .project-highlights li {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    padding: 0.25rem 0;
+    padding-left: 1.25rem;
+    position: relative;
+  }
+
+  .project-highlights li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--teal-light);
+  }
+
   .project-tech {
     display: flex;
     flex-wrap: wrap;
@@ -220,6 +431,59 @@ const projects = [
     color: var(--teal-light);
   }
 
+  .cta-section {
+    padding: 4rem 0 6rem;
+  }
+
+  .cta-card {
+    text-align: center;
+    padding: 3rem;
+    background: var(--gradient-accent);
+    border-radius: var(--radius-lg);
+  }
+
+  .cta-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  .cta-card p {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-buttons .btn-primary {
+    background: #fff;
+    color: var(--accent);
+  }
+
+  .cta-buttons .btn-primary:hover {
+    background: var(--text-primary);
+    color: #fff;
+  }
+
+  .cta-buttons .btn-secondary {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .cta-buttons .btn-secondary:hover {
+    border-color: #fff;
+  }
+
   @media (max-width: 768px) {
     .project-card {
       grid-template-columns: 1fr;
@@ -231,6 +495,10 @@ const projects = [
 
     .project-body {
       padding: 1.5rem;
+    }
+
+    .project-stats {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 </style>

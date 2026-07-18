@@ -46,7 +46,15 @@ import SectionHeader from '../components/SectionHeader.astro';
                 <dt>Experience</dt>
                 <dd>15+ Years</dd>
               </div>
+              <div class="stat-item">
+                <dt>Languages</dt>
+                <dd>English, Hindi, Telugu, Tamil</dd>
+              </div>
             </dl>
+          </div>
+          <div class="availability-card">
+            <span class="availability-dot"></span>
+            <span>Available for Consulting</span>
           </div>
         </aside>
 
@@ -73,6 +81,53 @@ import SectionHeader from '../components/SectionHeader.astro';
     </div>
   </section>
 
+  <!-- Philosophy Section -->
+  <section class="philosophy-section">
+    <div class="container">
+      <div class="philosophy-grid">
+        <div class="philosophy-text reveal">
+          <span class="section-eyebrow">PHILOSOPHY</span>
+          <h2>Engineering Mindset</h2>
+          <p>I believe in building systems that are not just functional, but intelligent. Every line of code should serve a purpose, every architecture decision should consider scale, and every AI integration should solve a real business problem.</p>
+          <div class="philosophy-principles">
+            <div class="principle">
+              <span class="principle-icon">🎯</span>
+              <div>
+                <h4>Problem-First Approach</h4>
+                <p>Understand the problem deeply before reaching for solutions. Technology is a means, not an end.</p>
+              </div>
+            </div>
+            <div class="principle">
+              <span class="principle-icon">📈</span>
+              <div>
+                <h4>Scalability by Design</h4>
+                <p>Build for tomorrow's scale today. What works for 100 users must work for 100 million.</p>
+              </div>
+            </div>
+            <div class="principle">
+              <span class="principle-icon">🔄</span>
+              <div>
+                <h4>Continuous Iteration</h4>
+                <p>Ship early, measure often, improve constantly. Perfection is a journey, not a destination.</p>
+              </div>
+            </div>
+            <div class="principle">
+              <span class="principle-icon">🤝</span>
+              <div>
+                <h4>Knowledge Sharing</h4>
+                <p>The best way to master something is to teach it. I write, speak, and mentor to solidify my own understanding.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <blockquote class="philosophy-quote reveal stagger-1">
+          <p>"AI is not a tool. It is an operating system layer. The companies that understand this will dominate their markets. The ones that don't will be disrupted."</p>
+          <cite>— Naga Siva Poluri</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
   <section class="pillars-section">
     <div class="container">
       <SectionHeader
@@ -87,6 +142,13 @@ import SectionHeader from '../components/SectionHeader.astro';
           </div>
           <h3>AI, LLMs & Agentic Systems</h3>
           <p>Architecting production RAG platforms, designing agentic pipelines, and integrating LLMs into enterprise workflows. From prompt engineering to full-stack AI applications.</p>
+          <div class="pillar-tech">
+            <span>LangChain</span>
+            <span>OpenAI</span>
+            <span>Claude</span>
+            <span>Vector DBs</span>
+            <span>RAG</span>
+          </div>
         </article>
         <article class="pillar-card reveal stagger-2">
           <div class="pillar-icon teal">
@@ -94,6 +156,13 @@ import SectionHeader from '../components/SectionHeader.astro';
           </div>
           <h3>Full Stack & Cloud Engineering</h3>
           <p>Building end-to-end enterprise solutions with Java, Python, React, and cloud-native architectures. Expertise in microservices, APIs, and distributed systems.</p>
+          <div class="pillar-tech">
+            <span>Java</span>
+            <span>Python</span>
+            <span>React</span>
+            <span>AWS</span>
+            <span>Kubernetes</span>
+          </div>
         </article>
         <article class="pillar-card reveal stagger-3">
           <div class="pillar-icon coral">
@@ -101,7 +170,47 @@ import SectionHeader from '../components/SectionHeader.astro';
           </div>
           <h3>Data Engineering & Integration</h3>
           <p>Designing data pipelines, ETL processes, and real-time streaming architectures. Connecting disparate enterprise systems into cohesive data-driven platforms.</p>
+          <div class="pillar-tech">
+            <span>Kafka</span>
+            <span>PostgreSQL</span>
+            <span>MongoDB</span>
+            <span>Redis</span>
+            <span>Spark</span>
+          </div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="certifications-section">
+    <div class="container">
+      <SectionHeader
+        eyebrow="CERTIFICATIONS"
+        title="Professional Credentials"
+        desc="Continuous learning and validation of expertise across AI, cloud, and enterprise technologies."
+      />
+      <div class="cert-grid">
+        <div class="cert-card reveal stagger-1">
+          <div class="cert-icon">🏅</div>
+          <h4>AWS Certified Solutions Architect</h4>
+          <p>Amazon Web Services</p>
+        </div>
+        <div class="cert-card reveal stagger-2">
+          <div class="cert-icon">🏅</div>
+          <h4>Azure AI Engineer Associate</h4>
+          <p>Microsoft</p>
+        </div>
+        <div class="cert-card reveal stagger-3">
+          <div class="cert-icon">🏅</div>
+          <h4>Google Cloud Professional</h4>
+          <p>Google Cloud</p>
+        </div>
+        <div class="cert-card reveal stagger-4">
+          <div class="cert-icon">🏅</div>
+          <h4>Oracle Certified Professional</h4>
+          <p>Oracle</p>
+        </div>
       </div>
     </div>
   </section>
@@ -116,15 +225,19 @@ import SectionHeader from '../components/SectionHeader.astro';
           <ul class="frontiers-list">
             <li>
               <strong>Multi-Agent Systems</strong>
-              <span>Building autonomous developer platforms that diagnose system states and self-heal.</span>
+              <span>Building autonomous developer platforms that diagnose system states and self-heal. Designing agent orchestration frameworks with tool use, memory, and guardrails.</span>
             </li>
             <li>
               <strong>Enterprise RAG</strong>
-              <span>Designing production retrieval-augmented generation systems for banking and government.</span>
+              <span>Designing production retrieval-augmented generation systems for banking and government. Hybrid dense-sparse retrieval, reranking, and compliance-aware architectures.</span>
             </li>
             <li>
               <strong>Agentic Workflows</strong>
-              <span>Creating AI agents that automate complex enterprise processes end-to-end.</span>
+              <span>Creating AI agents that automate complex enterprise processes end-to-end. From document processing to system monitoring, building agents that actually work in production.</span>
+            </li>
+            <li>
+              <strong>AI-Native Applications</strong>
+              <span>Building applications where AI is not a feature, but the core architecture. Designing systems where every component is AI-aware and AI-optimized.</span>
             </li>
           </ul>
         </div>
@@ -132,6 +245,37 @@ import SectionHeader from '../components/SectionHeader.astro';
           <p>"The boundary between engineering and imagination is shrinking. As AI moves from static models to agentic, autonomous execution, the bottleneck is no longer code — it's the platform architecture that supports it."</p>
           <cite>— Naga Siva Poluri</cite>
         </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Strategy -->
+  <section class="content-section">
+    <div class="container">
+      <SectionHeader
+        eyebrow="KNOWLEDGE SHARING"
+        title="Thought Leadership"
+        desc="Writing, speaking, and sharing insights on AI integration and enterprise architecture."
+      />
+      <div class="content-grid">
+        <div class="content-card reveal stagger-1">
+          <div class="content-icon">📝</div>
+          <h4>Technical Blog</h4>
+          <p>Regular articles on AI integration, RAG systems, agentic architectures, and enterprise engineering best practices.</p>
+          <a href="/blog" class="content-link">Read Posts →</a>
+        </div>
+        <div class="content-card reveal stagger-2">
+          <div class="content-icon">🎤</div>
+          <h4>LinkedIn Posts</h4>
+          <p>Short-form insights on AI trends, career lessons, and engineering philosophy. Building in public.</p>
+          <a href="https://linkedin.com/in/nagasivapoluri" target="_blank" class="content-link">Connect →</a>
+        </div>
+        <div class="content-card reveal stagger-3">
+          <div class="content-icon">📚</div>
+          <h4>Open Source</h4>
+          <p>Contributing to AI/ML tools, sharing code samples, and building developer resources for the community.</p>
+          <a href="https://github.com/nagasivapoluri" target="_blank" class="content-link">View GitHub →</a>
+        </div>
       </div>
     </div>
   </section>
@@ -257,6 +401,33 @@ import SectionHeader from '../components/SectionHeader.astro';
     line-height: 1.5;
   }
 
+  .availability-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    background: rgba(20, 184, 166, 0.08);
+    border: 1px solid rgba(20, 184, 166, 0.2);
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--teal-light);
+  }
+
+  .availability-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--teal);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
   .about-content .section-eyebrow {
     text-align: left;
   }
@@ -322,6 +493,98 @@ import SectionHeader from '../components/SectionHeader.astro';
     color: var(--accent-light);
   }
 
+  /* Philosophy Section */
+  .philosophy-section {
+    padding: 4rem 0;
+    background: var(--bg-secondary);
+    margin: 0 -1rem;
+  }
+
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .philosophy-text h2 {
+    font-size: 1.6rem;
+    margin: 0.5rem 0 1rem;
+  }
+
+  .philosophy-text > p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .philosophy-principles {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .principle {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .principle-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .principle h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .principle p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .philosophy-quote {
+    background: rgba(139, 92, 246, 0.04);
+    border: 1px solid rgba(139, 92, 246, 0.12);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin: 0;
+    position: relative;
+  }
+
+  .philosophy-quote::before {
+    content: '\201C';
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--accent);
+    font-family: Georgia, serif;
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+  }
+
+  .philosophy-quote p {
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    padding-top: 2rem;
+    margin: 0;
+  }
+
+  .philosophy-quote cite {
+    display: block;
+    margin-top: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--accent-light);
+    font-size: 0.85rem;
+  }
+
   .pillars-section {
     padding: 4rem 0;
   }
@@ -380,6 +643,62 @@ import SectionHeader from '../components/SectionHeader.astro';
     font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .pillar-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+  }
+
+  .pillar-tech span {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--accent-light);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Certifications */
+  .certifications-section {
+    padding: 4rem 0;
+  }
+
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cert-card {
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    text-align: center;
+    transition: var(--transition-fast);
+  }
+
+  .cert-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+  }
+
+  .cert-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .cert-card h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .cert-card p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
     margin: 0;
   }
 
@@ -473,6 +792,60 @@ import SectionHeader from '../components/SectionHeader.astro';
     font-size: 0.85rem;
   }
 
+  /* Content Section */
+  .content-section {
+    padding: 4rem 0;
+    background: var(--bg-secondary);
+    margin: 0 -1rem;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .content-card {
+    padding: 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+  }
+
+  .content-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+  }
+
+  .content-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .content-card h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .content-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .content-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-light);
+    text-decoration: none;
+  }
+
+  .content-link:hover {
+    text-decoration: underline;
+  }
+
   @media (max-width: 768px) {
     .about-hero { padding-top: 4rem; }
 
@@ -489,7 +862,19 @@ import SectionHeader from '../components/SectionHeader.astro';
       grid-template-columns: 1fr;
     }
 
+    .philosophy-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cert-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
     .frontiers-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .content-grid {
       grid-template-columns: 1fr;
     }
   }

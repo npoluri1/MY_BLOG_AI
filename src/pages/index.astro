@@ -7,21 +7,61 @@ const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
+const techStack = [
+  { name: 'Python', icon: '🐍', category: 'core' },
+  { name: 'Java', icon: '☕', category: 'core' },
+  { name: 'TypeScript', icon: '📘', category: 'core' },
+  { name: 'React', icon: '⚛️', category: 'frontend' },
+  { name: 'Next.js', icon: '▲', category: 'frontend' },
+  { name: 'Astro', icon: '🚀', category: 'frontend' },
+  { name: 'FastAPI', icon: '⚡', category: 'backend' },
+  { name: 'Spring Boot', icon: '🍃', category: 'backend' },
+  { name: 'PostgreSQL', icon: '🐘', category: 'database' },
+  { name: 'MongoDB', icon: '🍃', category: 'database' },
+  { name: 'Redis', icon: '🔴', category: 'cache' },
+  { name: 'Docker', icon: '🐳', category: 'devops' },
+  { name: 'Kubernetes', icon: '☸️', category: 'devops' },
+  { name: 'AWS', icon: '☁️', category: 'cloud' },
+  { name: 'Azure', icon: '🔷', category: 'cloud' },
+  { name: 'LangChain', icon: '🔗', category: 'ai' },
+  { name: 'OpenAI', icon: '🤖', category: 'ai' },
+  { name: 'Claude', icon: '🧠', category: 'ai' },
+  { name: 'Vector DB', icon: '📊', category: 'ai' },
+  { name: 'RAG', icon: '🔍', category: 'ai' },
+];
+
+const achievements = [
+  { number: '15+', label: 'Years Experience', icon: '📅' },
+  { number: '50+', label: 'Enterprise Projects', icon: '🚀' },
+  { number: '10M+', label: 'Documents Processed', icon: '📄' },
+  { number: '99.9%', label: 'System Uptime', icon: '✅' },
+];
+
 const projects = [
   {
     title: 'Enterprise RAG Platform',
-    description: 'Built a production-grade Retrieval Augmented Generation platform serving internal wealth management teams. Implemented vector search across 10M+ financial documents.',
+    description: 'Built a production-grade Retrieval Augmented Generation platform serving internal wealth management teams. Implemented vector search across 10M+ financial documents with hybrid dense-sparse retrieval.',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
     href: '/portfolio',
-    tag: 'AI / RAG'
+    tag: 'AI / RAG',
+    tech: ['Python', 'LangChain', 'Pinecone', 'FastAPI']
   },
   {
     title: 'Agentic AI Platform',
-    description: 'Designed and built a multi-agent AI platform for autonomous system monitoring and self-healing with tool orchestration and guardrails.',
+    description: 'Designed and built a multi-agent AI platform for autonomous system monitoring and self-healing with tool orchestration, memory management, and guardrails.',
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
     href: '/portfolio',
-    tag: 'AGENTIC AI'
-  }
+    tag: 'AGENTIC AI',
+    tech: ['Claude API', 'TypeScript', 'Redis', 'Docker']
+  },
+  {
+    title: 'Singapore ERP2 System',
+    description: 'Core developer on Singapore\'s next-gen Electronic Road Pricing. Built high-throughput tolling with GNSS location services and IBM MQ messaging.',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop',
+    href: '/portfolio',
+    tag: 'TRANSPORT',
+    tech: ['Java', 'IBM MQ', 'GNSS', 'PostgreSQL']
+  },
 ];
 ---
 
@@ -29,15 +69,49 @@ const projects = [
   <!-- Hero Section -->
   <section class="hero">
     <div class="container">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Available for AI Integration Consulting
+      </div>
       <h1 class="hero-name">NAGA SIVA POLURI</h1>
       <p class="hero-tagline">AI INTEGRATION ENGINEER &bull; DATA ENGINEER &bull; FULL STACK DEVELOPER &bull; AGENTIC AI SPECIALIST</p>
       <p class="hero-desc">
-        A software engineer with a balanced left and right brain, specializing in AI integration, RAG systems, agentic architectures, and full-stack enterprise applications.
+        Software engineer with 15+ years of enterprise experience, specializing in AI integration, RAG systems, agentic architectures, and full-stack applications. Building intelligent systems that power Singapore's transport infrastructure and financial services.
       </p>
       <div class="hero-ctas">
         <a href="/blog" class="btn btn-primary">Read My Blog</a>
         <a href="/portfolio" class="btn btn-secondary">View Portfolio</a>
         <a href="/resume" class="btn btn-outline">Resume</a>
+        <a href="/contact" class="btn btn-outline">Contact Me</a>
+      </div>
+      
+      <!-- Key Metrics -->
+      <div class="metrics-grid">
+        {achievements.map(achievement => (
+          <div class="metric-card">
+            <span class="metric-icon">{achievement.icon}</span>
+            <span class="metric-number">{achievement.number}</span>
+            <span class="metric-label">{achievement.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack Showcase -->
+  <section class="section tech-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Tech Stack</h2>
+        <a href="/about" class="section-link">Full Skills →</a>
+      </div>
+      <div class="tech-grid">
+        {techStack.map(tech => (
+          <div class="tech-item">
+            <span class="tech-icon">{tech.icon}</span>
+            <span class="tech-name">{tech.name}</span>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -54,8 +128,14 @@ const projects = [
           <a href={project.href} class="project-card">
             <img src={project.image} alt={project.title} class="project-image" loading="lazy" />
             <div class="project-content">
+              <span class="project-tag">{project.tag}</span>
               <h3>{project.title}</h3>
               <p>{project.description}</p>
+              <div class="project-tech">
+                {project.tech.map(t => (
+                  <span class="tech-badge">{t}</span>
+                ))}
+              </div>
               <span class="project-link">Details →</span>
             </div>
           </a>
@@ -76,12 +156,63 @@ const projects = [
           <a href={`/blog/${post.id}`} class="post-card">
             <div class="post-meta">
               <span class="post-date">{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+              {post.data.readingTime && <span class="post-reading-time">• {post.data.readingTime}</span>}
             </div>
             <h3 class="post-title">{post.data.title}</h3>
             <p class="post-desc">{post.data.description}</p>
+            <div class="post-tags">
+              {post.data.tags?.slice(0, 3).map(tag => (
+                <span class="post-tag">{tag}</span>
+              ))}
+            </div>
             <span class="post-link">Read Post →</span>
           </a>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Expertise Areas -->
+  <section class="section expertise-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Core Expertise</h2>
+      </div>
+      <div class="expertise-grid">
+        <div class="expertise-card">
+          <div class="expertise-icon">🤖</div>
+          <h3>AI Integration</h3>
+          <p>Building production RAG platforms, designing agentic pipelines, and integrating LLMs into enterprise workflows.</p>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-icon">🏗️</div>
+          <h3>Enterprise Architecture</h3>
+          <p>Designing scalable microservices, event-driven systems, and cloud-native architectures for high-availability.</p>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-icon">📊</div>
+          <h3>Data Engineering</h3>
+          <p>Building data pipelines, ETL processes, and real-time streaming architectures for enterprise data platforms.</p>
+        </div>
+        <div class="expertise-card">
+          <div class="expertise-icon">🛡️</div>
+          <h3>Government Systems</h3>
+          <p>Building mission-critical systems for Singapore's transport infrastructure and financial services.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Let's Build Something Intelligent</h2>
+        <p>Available for AI integration consulting, enterprise architecture, and full-stack development projects.</p>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn btn-primary">Get In Touch</a>
+          <a href="/resume" class="btn btn-secondary">View Resume</a>
+        </div>
       </div>
     </div>
   </section>
@@ -91,6 +222,33 @@ const projects = [
   .hero {
     padding: 8rem 0 4rem;
     text-align: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    background: rgba(20, 184, 166, 0.08);
+    border: 1px solid rgba(20, 184, 166, 0.2);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--teal-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--teal);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
   }
 
   .hero-name {
@@ -113,7 +271,7 @@ const projects = [
   .hero-desc {
     font-size: 1.05rem;
     color: var(--text-secondary);
-    max-width: 650px;
+    max-width: 700px;
     margin: 0 auto 2rem;
     line-height: 1.7;
   }
@@ -123,6 +281,50 @@ const projects = [
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .metric-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+  }
+
+  .metric-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+  }
+
+  .metric-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .metric-number {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent-light);
+    margin-bottom: 0.25rem;
+  }
+
+  .metric-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .section {
@@ -154,9 +356,53 @@ const projects = [
     text-decoration: underline;
   }
 
+  /* Tech Stack */
+  .tech-section {
+    background: var(--bg-secondary);
+    margin: 0 -1rem;
+    padding: 4rem 1rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1rem;
+  }
+
+  .tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+    text-decoration: none;
+  }
+
+  .tech-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .tech-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .tech-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+
+  /* Projects */
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
   }
 
@@ -187,6 +433,15 @@ const projects = [
     padding: 1.5rem;
   }
 
+  .project-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent-light);
+    margin-bottom: 0.75rem;
+  }
+
   .project-content h3 {
     font-size: 1.15rem;
     margin-bottom: 0.5rem;
@@ -199,12 +454,29 @@ const projects = [
     margin-bottom: 1rem;
   }
 
+  .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .tech-badge {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--accent-light);
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+  }
+
   .project-link {
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--accent-light);
   }
 
+  /* Blog Posts */
   .posts-list {
     display: flex;
     flex-direction: column;
@@ -229,10 +501,18 @@ const projects = [
   }
 
   .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     margin-bottom: 0.5rem;
   }
 
   .post-date {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  .post-reading-time {
     font-size: 0.82rem;
     color: var(--text-muted);
   }
@@ -252,7 +532,22 @@ const projects = [
     font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
     margin-bottom: 0.5rem;
+  }
+
+  .post-tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    background: rgba(20, 184, 166, 0.1);
+    color: var(--teal-light);
+    border-radius: var(--radius-sm);
   }
 
   .post-link {
@@ -261,9 +556,102 @@ const projects = [
     color: var(--accent-light);
   }
 
+  /* Expertise */
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .expertise-card {
+    padding: 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+  }
+
+  .expertise-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+  }
+
+  .expertise-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .expertise-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .expertise-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 4rem 0 6rem;
+  }
+
+  .cta-card {
+    text-align: center;
+    padding: 3rem;
+    background: var(--gradient-accent);
+    border-radius: var(--radius-lg);
+  }
+
+  .cta-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  .cta-card p {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-buttons .btn-primary {
+    background: #fff;
+    color: var(--accent);
+  }
+
+  .cta-buttons .btn-primary:hover {
+    background: var(--text-primary);
+    color: #fff;
+  }
+
+  .cta-buttons .btn-secondary {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .cta-buttons .btn-secondary:hover {
+    border-color: #fff;
+  }
+
   @media (max-width: 768px) {
     .hero { padding: 6rem 0 3rem; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
     .projects-grid { grid-template-columns: 1fr; }
     .section-header { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+    .tech-grid { grid-template-columns: repeat(4, 1fr); }
   }
 </style>
