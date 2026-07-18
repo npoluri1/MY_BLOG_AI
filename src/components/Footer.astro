@@ -9,25 +9,12 @@ const socialLinks = [
 ---
 
 <footer>
-  <div class="footer-glow"></div>
   <div class="container footer-content">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="/" class="footer-logo">NAGA SIVA POLURI</a>
-        <p class="footer-tagline">AI Integration Engineer &bull; Full Stack Developer &bull; Agentic AI Specialist</p>
-      </div>
-      <div class="footer-nav">
-        <a href="/">Home</a>
-        <a href="/blog">Blog</a>
-        <a href="/about">About</a>
-        <a href="/resume">Resume</a>
-        <a href="/contact">Contact</a>
-      </div>
-    </div>
     <div class="footer-social">
       {socialLinks.map(link => (
         <a href={link.url} target="_blank" rel="noopener noreferrer" class="social-link" aria-label={link.name}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d={link.icon}/></svg>
+          <span>{link.name}</span>
         </a>
       ))}
     </div>
@@ -39,104 +26,38 @@ const socialLinks = [
 
 <style>
   footer {
-    margin-top: 6rem;
-    padding: 4rem 0 2rem;
+    margin-top: 4rem;
+    padding: 2rem 0;
     border-top: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
   }
 
-  .footer-glow {
-    position: absolute;
-    top: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 200px;
-    background: radial-gradient(ellipse, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .footer-content { position: relative; z-index: 1; }
-
-  .footer-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .footer-logo {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 1.1rem;
-    letter-spacing: 0.05em;
-    background: var(--gradient-accent);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
-  .footer-tagline {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin: 0;
-  }
-
-  .footer-nav {
-    display: flex;
-    gap: 1.5rem;
-  }
-
-  .footer-nav a {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    font-weight: 500;
-    transition: var(--transition-fast);
-  }
-
-  .footer-nav a:hover { color: var(--text-primary); }
+  .footer-content { text-align: center; }
 
   .footer-social {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
   }
 
   .social-link {
-    width: 44px;
-    height: 44px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
+    gap: 0.5rem;
+    font-size: 0.9rem;
     color: var(--text-muted);
-    transition: var(--transition);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition-fast);
   }
 
   .social-link:hover {
-    background: rgba(139, 92, 246, 0.15);
-    border-color: var(--border-accent);
     color: var(--accent-light);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
   }
 
   .footer-bottom {
-    text-align: center;
     color: var(--text-muted);
-    font-size: 0.85rem;
-  }
-
-  @media (max-width: 768px) {
-    .footer-top { flex-direction: column; gap: 1.5rem; align-items: center; text-align: center; }
-    .footer-nav { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+    font-size: 0.82rem;
   }
 </style>

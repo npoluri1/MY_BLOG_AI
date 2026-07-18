@@ -1,170 +1,181 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionHeader from '../components/SectionHeader.astro';
 import SkillBadge from '../components/SkillBadge.astro';
+
+const projects = [
+  {
+    title: 'Enterprise RAG Platform',
+    category: 'AI / RAG',
+    categoryColor: 'teal',
+    description: 'Built a production-grade Retrieval Augmented Generation platform serving internal wealth management teams. Implemented vector search across 10M+ financial documents with hybrid dense-sparse retrieval and reranking.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+    tech: [
+      { name: 'Python', color: 'teal' },
+      { name: 'LangChain', color: 'accent' },
+      { name: 'Pinecone', color: 'blue' },
+      { name: 'FastAPI', color: 'coral' },
+    ],
+    link: '#',
+  },
+  {
+    title: 'Agentic AI Platform',
+    category: 'AGENTIC AI',
+    categoryColor: 'accent',
+    description: 'Designed and built a multi-agent AI platform for autonomous system monitoring and self-healing. Implemented tool orchestration, memory management, and guardrails for production-safe agent execution.',
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
+    tech: [
+      { name: 'Claude API', color: 'accent' },
+      { name: 'TypeScript', color: 'blue' },
+      { name: 'Redis', color: 'coral' },
+      { name: 'Docker', color: 'teal' },
+    ],
+    link: '#',
+  },
+  {
+    title: 'Singapore ERP2 Tolling System',
+    category: 'TRANSPORT / GNSS',
+    categoryColor: 'coral',
+    description: 'Core developer on Singapore\'s next-generation Electronic Road Pricing system. Built high-throughput tolling transaction processing with GNSS-based location services and fault-tolerant IBM MQ messaging.',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop',
+    tech: [
+      { name: 'Java', color: 'coral' },
+      { name: 'IBM MQ', color: 'accent' },
+      { name: 'GNSS', color: 'teal' },
+      { name: 'PostgreSQL', color: 'blue' },
+    ],
+    link: '#',
+  },
+  {
+    title: 'Digital Banking Microservices',
+    category: 'FINTECH',
+    categoryColor: 'pink',
+    description: 'Led development of core banking microservices architecture at UOB, designing real-time transaction processing pipelines and implementing CI/CD reducing deployment time by 60%.',
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop',
+    tech: [
+      { name: 'Java', color: 'coral' },
+      { name: 'Kubernetes', color: 'accent' },
+      { name: 'Kafka', color: 'teal' },
+      { name: 'React', color: 'blue' },
+    ],
+    link: '#',
+  },
+  {
+    title: 'Smart Claims Processing',
+    category: 'INSURTECH',
+    categoryColor: 'blue',
+    description: 'Built real-time claims processing system at SingLife using event-driven architecture, implementing automated underwriting and API gateway handling 10K+ requests per second.',
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop',
+    tech: [
+      { name: 'Node.js', color: 'teal' },
+      { name: 'Event-Driven', color: 'accent' },
+      { name: 'WebSocket', color: 'blue' },
+      { name: 'MongoDB', color: 'coral' },
+    ],
+    link: '#',
+  },
+];
 ---
 
 <BaseLayout title="Portfolio | Naga Siva Poluri" description="Featured projects and case studies by Naga Siva Poluri.">
   <div class="page-header">
     <div class="container">
-      <span class="section-eyebrow reveal">PORTFOLIO</span>
-      <h1 class="reveal stagger-1">Featured Projects</h1>
-      <p class="subtitle reveal stagger-2">A selection of enterprise AI and full-stack projects I've delivered.</p>
+      <span class="section-eyebrow">PORTFOLIO</span>
+      <h1>Featured Projects</h1>
+      <p class="subtitle">A selection of enterprise AI and full-stack projects I've delivered.</p>
     </div>
   </div>
 
   <section class="portfolio-section">
     <div class="container">
-      <div class="project-card card-3d reveal">
-        <div class="project-layout">
-          <div class="project-visual project-visual-1">
-            <div class="project-visual-icon">
-              <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.95" y2="12"/><line x1="8.5" y1="2" x2="8.5" y2="5.5"/><line x1="15.5" y1="2" x2="15.5" y2="5.5"/><line x1="8.5" y1="18.5" x2="8.5" y2="22"/><line x1="15.5" y1="18.5" x2="15.5" y2="22"/></svg>
+      <div class="project-grid">
+        {projects.map((project) => (
+          <article class="project-card">
+            <div class="project-image">
+              <img src={project.image} alt={project.title} loading="lazy" />
             </div>
-          </div>
-          <div class="project-content">
-            <span class="project-badge badge-teal">AI / RAG</span>
-            <h3>Enterprise RAG Platform</h3>
-            <p>Built a production-grade Retrieval Augmented Generation platform serving internal wealth management teams. Implemented vector search across 10M+ financial documents with hybrid dense-sparse retrieval and reranking.</p>
-            <div class="project-tech">
-              <SkillBadge name="Python" color="teal" />
-              <SkillBadge name="LangChain" color="accent" />
-              <SkillBadge name="Pinecone" color="blue" />
-              <SkillBadge name="FastAPI" color="coral" />
+            <div class="project-body">
+              <span class={`project-badge badge-${project.categoryColor}`}>{project.category}</span>
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+              <div class="project-tech">
+                {project.tech.map((t) => (
+                  <SkillBadge name={t.name} color={t.color} />
+                ))}
+              </div>
+              <a href={project.link} class="project-link">
+                View Project Details
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card card-3d reveal">
-        <div class="project-layout project-layout-reverse">
-          <div class="project-visual project-visual-2">
-            <div class="project-visual-icon">
-              <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-            </div>
-          </div>
-          <div class="project-content">
-            <span class="project-badge badge-accent">AGENTIC AI</span>
-            <h3>Agentic AI Platform</h3>
-            <p>Designed and built a multi-agent AI platform for autonomous system monitoring and self-healing. Implemented tool orchestration, memory management, and guardrails for production-safe agent execution.</p>
-            <div class="project-tech">
-              <SkillBadge name="Claude API" color="accent" />
-              <SkillBadge name="TypeScript" color="blue" />
-              <SkillBadge name="Redis" color="coral" />
-              <SkillBadge name="Docker" color="teal" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card card-3d reveal">
-        <div class="project-layout">
-          <div class="project-visual project-visual-3">
-            <div class="project-visual-icon">
-              <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-            </div>
-          </div>
-          <div class="project-content">
-            <span class="project-badge badge-coral">TRANSPORT / GNSS</span>
-            <h3>Singapore ERP2 Tolling System</h3>
-            <p>Core developer on Singapore's next-generation Electronic Road Pricing system. Built high-throughput tolling transaction processing with GNSS-based location services and fault-tolerant IBM MQ messaging.</p>
-            <div class="project-tech">
-              <SkillBadge name="Java" color="coral" />
-              <SkillBadge name="IBM MQ" color="accent" />
-              <SkillBadge name="GNSS" color="teal" />
-              <SkillBadge name="PostgreSQL" color="blue" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card card-3d reveal">
-        <div class="project-layout project-layout-reverse">
-          <div class="project-visual project-visual-4">
-            <div class="project-visual-icon">
-              <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
-            </div>
-          </div>
-          <div class="project-content">
-            <span class="project-badge badge-pink">FINTECH</span>
-            <h3>Digital Banking Microservices</h3>
-            <p>Led development of core banking microservices architecture at UOB, designing real-time transaction processing pipelines and implementing CI/CD reducing deployment time by 60%.</p>
-            <div class="project-tech">
-              <SkillBadge name="Java" color="coral" />
-              <SkillBadge name="Kubernetes" color="accent" />
-              <SkillBadge name="Kafka" color="teal" />
-              <SkillBadge name="React" color="blue" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card card-3d reveal">
-        <div class="project-layout">
-          <div class="project-visual project-visual-5">
-            <div class="project-visual-icon">
-              <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-          </div>
-          <div class="project-content">
-            <span class="project-badge badge-blue">INSURTECH</span>
-            <h3>Smart Claims Processing</h3>
-            <p>Built real-time claims processing system at SingLife using event-driven architecture, implementing automated underwriting and API gateway handling 10K+ requests per second.</p>
-            <div class="project-tech">
-              <SkillBadge name="Node.js" color="teal" />
-              <SkillBadge name="Event-Driven" color="accent" />
-              <SkillBadge name="WebSocket" color="blue" />
-              <SkillBadge name="MongoDB" color="coral" />
-            </div>
-          </div>
-        </div>
+          </article>
+        ))}
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .portfolio-section { padding: 2rem 0 6rem; }
+  .page-header {
+    padding: 8rem 0 3rem;
+    text-align: center;
+  }
 
-  .portfolio-section .container {
-    display: flex;
-    flex-direction: column;
+  .page-header h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .portfolio-section {
+    padding: 0 0 6rem;
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 2rem;
   }
 
-  .project-card { padding: 0; overflow: hidden; }
-
-  .project-layout {
+  .project-card {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    min-height: 350px;
+    grid-template-columns: 1fr 1.4fr;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .project-layout-reverse { direction: rtl; }
-  .project-layout-reverse > * { direction: ltr; }
+  .project-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-md);
+  }
 
-  .project-visual {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .project-image {
     position: relative;
+    min-height: 280px;
     overflow: hidden;
   }
 
-  .project-visual-1 { background: linear-gradient(135deg, rgba(20, 184, 166, 0.15), rgba(59, 130, 246, 0.1)); }
-  .project-visual-2 { background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.1)); }
-  .project-visual-3 { background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(236, 72, 153, 0.1)); }
-  .project-visual-4 { background: linear-gradient(135deg, rgba(236, 72, 153, 0.15), rgba(139, 92, 246, 0.1)); }
-  .project-visual-5 { background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(20, 184, 166, 0.1)); }
-
-  .project-visual-icon {
-    color: var(--text-muted);
-    opacity: 0.5;
-    animation: float 6s ease-in-out infinite;
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
   }
 
-  .project-content {
-    padding: 2.5rem;
+  .project-card:hover .project-image img {
+    transform: scale(1.04);
+  }
+
+  .project-body {
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -173,104 +184,53 @@ import SkillBadge from '../components/SkillBadge.astro';
   .project-badge {
     display: inline-block;
     width: fit-content;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
 
-  .project-content h3 {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
+  .project-body h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.75rem;
   }
 
-  .project-content p {
-    font-size: 0.95rem;
+  .project-body p {
+    font-size: 0.92rem;
     color: var(--text-muted);
     line-height: 1.7;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
   }
 
   .project-tech {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--accent-light);
+    transition: color 0.2s ease;
+  }
+
+  .project-link:hover {
+    color: var(--teal-light);
   }
 
   @media (max-width: 768px) {
-    .project-layout, .project-layout-reverse {
+    .project-card {
       grid-template-columns: 1fr;
-      direction: ltr;
     }
-    .project-visual { min-height: 150px; }
+
+    .project-image {
+      min-height: 200px;
+    }
+
+    .project-body {
+      padding: 1.5rem;
+    }
   }
 </style>
-
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Enhanced 3D tilt for project cards
-    const projectCards = document.querySelectorAll('.project-card');
-
-    projectCards.forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / centerY * -6;
-        const rotateY = (x - centerX) / centerX * 6;
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
-      });
-
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
-        card.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)';
-      });
-
-      card.addEventListener('mouseenter', () => {
-        card.style.transition = 'transform 0.15s ease';
-      });
-    });
-
-    // Parallax scroll effect for project visuals
-    const projectVisuals = document.querySelectorAll('.project-visual');
-    let ticking = false;
-
-    function onScroll() {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          projectVisuals.forEach((visual, i) => {
-            const rect = visual.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-              const progress = (window.innerHeight - rect.top) / window.innerHeight;
-              const icon = visual.querySelector('.project-visual-icon');
-              if (icon) {
-                icon.style.transform = `translateY(${(progress - 0.5) * 30}px) rotate(${progress * 10}deg)`;
-              }
-            }
-          });
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    // Staggered entrance animation
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0) perspective(1000px) rotateX(0)';
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    projectCards.forEach((card, i) => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(40px) perspective(1000px) rotateX(5deg)';
-      card.style.transition = `opacity 0.6s ease ${i * 0.15}s, transform 0.6s cubic-bezier(0.23, 1, 0.32, 1) ${i * 0.15}s`;
-      observer.observe(card);
-    });
-  });
-</script>

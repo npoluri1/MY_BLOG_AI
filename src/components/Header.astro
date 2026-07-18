@@ -3,8 +3,8 @@ const pathname = Astro.url.pathname;
 const navLinks = [
   { href: '/', label: 'HOME' },
   { href: '/blog', label: 'BLOG' },
+  { href: '/portfolio', label: 'PORTFOLIO' },
   { href: '/about', label: 'ABOUT' },
-  { href: '/resume', label: 'RESUME' },
   { href: '/contact', label: 'CONTACT' },
 ];
 ---
@@ -67,16 +67,15 @@ const navLinks = [
     right: 0;
     z-index: 1000;
     height: var(--header-height);
-    background: rgba(6, 6, 14, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(6, 6, 14, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
     transition: var(--transition);
   }
 
   header.scrolled {
-    background: rgba(6, 6, 14, 0.9);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    background: rgba(6, 6, 14, 0.95);
   }
 
   .header-inner {
@@ -96,12 +95,9 @@ const navLinks = [
   .logo-text {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     letter-spacing: 0.05em;
-    background: var(--gradient-accent);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--text-primary);
   }
 
   .desktop-nav {
@@ -112,39 +108,21 @@ const navLinks = [
   .nav-link {
     font-family: var(--font-display);
     font-weight: 500;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     letter-spacing: 0.08em;
     color: var(--text-muted);
     padding: 0.5rem 1rem;
     border-radius: var(--radius-sm);
     transition: var(--transition-fast);
-    position: relative;
-  }
-
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 2px;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: var(--gradient-accent);
-    border-radius: 1px;
-    transition: var(--transition);
-    transform: translateX(-50%);
+    text-decoration: none;
   }
 
   .nav-link:hover {
     color: var(--text-primary);
   }
 
-  .nav-link:hover::after,
-  .nav-link.active::after {
-    width: 60%;
-  }
-
   .nav-link.active {
-    color: var(--text-primary);
+    color: var(--accent-light);
   }
 
   .mobile-toggle {
@@ -208,15 +186,15 @@ const navLinks = [
   .mobile-nav-link {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 2rem;
+    font-size: 1.8rem;
     letter-spacing: 0.08em;
     color: var(--text-muted);
     transition: var(--transition);
+    text-decoration: none;
   }
 
   .mobile-nav-link:hover, .mobile-nav-link.active {
     color: var(--text-primary);
-    text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
   }
 
   @media (max-width: 768px) {

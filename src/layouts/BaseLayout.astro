@@ -35,20 +35,6 @@ const canonicalURL = `https://nagasivapoluri.com${Astro.url.pathname}`;
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     {image && <meta property="twitter:image" content={image} />}
-    <script is:inline>
-      (function() {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-            }
-          });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        document.addEventListener('DOMContentLoaded', () => {
-          document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => observer.observe(el));
-        });
-      })();
-    </script>
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
@@ -59,22 +45,6 @@ const canonicalURL = `https://nagasivapoluri.com${Astro.url.pathname}`;
     <Footer />
     <script is:inline>
       document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.card-3d').forEach(card => {
-          card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const rotateX = (y - centerY) / 20;
-            const rotateY = (centerX - x) / 20;
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
-          });
-          card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
-          });
-        });
-
         const header = document.querySelector('header');
         if (header) {
           window.addEventListener('scroll', () => {
@@ -85,32 +55,6 @@ const canonicalURL = `https://nagasivapoluri.com${Astro.url.pathname}`;
             }
           });
         }
-
-        const backToTop = document.getElementById('back-to-top');
-        if (backToTop) {
-          window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-              backToTop.classList.add('visible');
-            } else {
-              backToTop.classList.remove('visible');
-            }
-          });
-          backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          });
-        }
-
-        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
-          const obs = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                obs.unobserve(entry.target);
-              }
-            });
-          }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-          obs.observe(el);
-        });
       });
     </script>
   </body>
@@ -129,38 +73,4 @@ const canonicalURL = `https://nagasivapoluri.com${Astro.url.pathname}`;
     font-weight: 600;
   }
   .skip-link:focus { top: 0; }
-
-  #back-to-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: var(--gradient-accent);
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    z-index: 90;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: var(--transition);
-    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
-  }
-  #back-to-top.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  #back-to-top:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.5);
-  }
 </style>
-
-<button id="back-to-top" aria-label="Back to top">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-</button>
