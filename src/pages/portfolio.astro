@@ -202,3 +202,75 @@ import SkillBadge from '../components/SkillBadge.astro';
     .project-visual { min-height: 150px; }
   }
 </style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Enhanced 3D tilt for project cards
+    const projectCards = document.querySelectorAll('.project-card');
+
+    projectCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / centerY * -6;
+        const rotateY = (x - centerX) / centerX * 6;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+        card.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)';
+      });
+
+      card.addEventListener('mouseenter', () => {
+        card.style.transition = 'transform 0.15s ease';
+      });
+    });
+
+    // Parallax scroll effect for project visuals
+    const projectVisuals = document.querySelectorAll('.project-visual');
+    let ticking = false;
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          projectVisuals.forEach((visual, i) => {
+            const rect = visual.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              const progress = (window.innerHeight - rect.top) / window.innerHeight;
+              const icon = visual.querySelector('.project-visual-icon');
+              if (icon) {
+                icon.style.transform = `translateY(${(progress - 0.5) * 30}px) rotate(${progress * 10}deg)`;
+              }
+            }
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Staggered entrance animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0) perspective(1000px) rotateX(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    projectCards.forEach((card, i) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(40px) perspective(1000px) rotateX(5deg)';
+      card.style.transition = `opacity 0.6s ease ${i * 0.15}s, transform 0.6s cubic-bezier(0.23, 1, 0.32, 1) ${i * 0.15}s`;
+      observer.observe(card);
+    });
+  });
+</script>

@@ -319,3 +319,77 @@ import SkillBadge from '../components/SkillBadge.astro';
     .exploration-layout { grid-template-columns: 1fr; }
   }
 </style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Parallax effect for about page
+    const aboutMain = document.querySelector('.about-main');
+    const pillarCards = document.querySelectorAll('.pillar-card');
+    const explorationCard = document.querySelector('.exploration-card');
+    const avatar = document.querySelector('.avatar-placeholder');
+
+    let ticking = false;
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          // About main card parallax
+          if (aboutMain) {
+            const rect = aboutMain.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              const progress = (window.innerHeight - rect.top) / window.innerHeight;
+              aboutMain.style.transform = `perspective(1000px) rotateX(${(progress - 0.5) * 2}deg)`;
+            }
+          }
+
+          // Pillar cards staggered entrance with depth
+          pillarCards.forEach((card, i) => {
+            const rect = card.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              const progress = 1 - (rect.top / window.innerHeight);
+              card.style.transform = `translateY(${-(progress * 20 + i * 5)}px) perspective(1000px) rotateX(${progress * 3}deg)`;
+            }
+          });
+
+          // Exploration card parallax
+          if (explorationCard) {
+            const rect = explorationCard.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              const progress = 1 - (rect.top / window.innerHeight);
+              explorationCard.style.transform = `perspective(1000px) rotateY(${(progress - 0.5) * 4}deg)`;
+            }
+          }
+
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    // Avatar 3D tilt effect
+    if (avatar) {
+      avatar.addEventListener('mousemove', (e) => {
+        const rect = avatar.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / centerY * -15;
+        const rotateY = (x - centerX) / centerX * 15;
+        avatar.style.transform = `perspective(500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+      });
+
+      avatar.addEventListener('mouseleave', () => {
+        avatar.style.transform = 'perspective(500px) rotateX(0) rotateY(0) scale(1)';
+        avatar.style.transition = 'transform 0.5s ease';
+      });
+
+      avatar.addEventListener('mouseenter', () => {
+        avatar.style.transition = 'transform 0.1s ease';
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  });
+</script>

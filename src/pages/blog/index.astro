@@ -182,5 +182,46 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags))];
         filterPosts();
       });
     }
+
+    // 3D parallax effect for blog cards
+    const blogItems = document.querySelectorAll('.blog-grid-item');
+    let ticking = false;
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          blogItems.forEach((item, i) => {
+            const rect = item.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              const progress = 1 - (rect.top / window.innerHeight);
+              const depth = (i % 3) * 0.5 + 0.5;
+              item.style.transform = `translateY(${-(progress * 15 * depth)}px) perspective(1000px) rotateX(${progress * 2 * depth}deg)`;
+            }
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    // Staggered entrance animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0) perspective(1000px) rotateX(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05 });
+
+    blogItems.forEach((item, i) => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(30px) perspective(1000px) rotateX(4deg)';
+      item.style.transition = `opacity 0.5s ease ${(i % 6) * 0.08}s, transform 0.5s cubic-bezier(0.23, 1, 0.32, 1) ${(i % 6) * 0.08}s`;
+      observer.observe(item);
+    });
+
+    window.addEventListener('scroll', onScroll, { passive: true });
   });
 </script>

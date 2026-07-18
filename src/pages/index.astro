@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import BlogCard from '../components/BlogCard.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import SkillBadge from '../components/SkillBadge.astro';
+import ThreeHero from '../components/ThreeHero.astro';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog'))
@@ -29,7 +30,7 @@ const skills = [
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-bg">
-      <canvas id="hero-canvas"></canvas>
+      <ThreeHero />
       <div class="hero-orb hero-orb-1"></div>
       <div class="hero-orb hero-orb-2"></div>
       <div class="hero-orb hero-orb-3"></div>
@@ -198,13 +199,6 @@ const skills = [
     position: absolute;
     inset: 0;
     z-index: 0;
-  }
-
-  #hero-canvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
   }
 
   .hero-orb {
@@ -519,82 +513,85 @@ const skills = [
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('hero-canvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    let mouse = { x: 0, y: 0 };
-    let animFrame;
+    // Parallax scroll effect for hero content
+    const heroContent = document.querySelector('.hero-content');
+    const heroOrbs = document.querySelectorAll('.hero-orb');
+    const sections = document.querySelectorAll('.section');
+    const blogCards = document.querySelectorAll('.blog-grid .blog-card-wrapper');
+    const aboutCard = document.querySelector('.about-visual-card');
+    const ctaCard = document.querySelector('.cta-card');
 
-    function resize() {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    }
+    let scrollY = 0;
+    let ticking = false;
 
-    function createParticles() {
-      particles = [];
-      const count = Math.min(80, Math.floor(canvas.width * canvas.height / 15000));
-      for (let i = 0; i < count; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          size: Math.random() * 2 + 1,
-          opacity: Math.random() * 0.5 + 0.1,
+    function onScroll() {
+      scrollY = window.scrollY;
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          // Hero parallax - content moves slower than scroll
+          if (heroContent) {
+            const heroOffset = scrollY * 0.3;
+            heroContent.style.transform = `translateY(${heroOffset}px)`;
+            heroContent.style.opacity = Math.max(0, 1 - scrollY / 600);
+          }
+
+          // Orb parallax - orbs move at different rates
+          heroOrbs.forEach((orb, i) => {
+            const rate = 0.1 + i * 0.05;
+            orb.style.transform = `translateY(${scrollY * rate}px)`;
+          });
+
+          // Blog cards staggered parallax
+          blogCards.forEach((card, i) => {
+            const rect = card.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              const offset = (window.innerHeight - rect.top) * 0.02 * (i + 1);
+              card.style.transform = `translateY(${-offset}px)`;
+            }
+          });
+
+          // About card parallax
+          if (aboutCard) {
+            const rect = aboutCard.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              const offset = (window.innerHeight - rect.top) * 0.03;
+              aboutCard.style.transform = `perspective(1000px) rotateY(${offset * 0.1}deg) translateY(${-offset * 0.5}px)`;
+            }
+          }
+
+          // CTA card parallax
+          if (ctaCard) {
+            const rect = ctaCard.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              const progress = 1 - (rect.top / window.innerHeight);
+              ctaCard.style.transform = `scale(${0.95 + progress * 0.05})`;
+            }
+          }
+
+          ticking = false;
         });
+        ticking = true;
       }
     }
 
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    window.addEventListener('scroll', onScroll, { passive: true });
 
-      particles.forEach((p, i) => {
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-        const dx = mouse.x - p.x;
-        const dy = mouse.y - p.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 150) {
-          p.x -= dx * 0.01;
-          p.y -= dy * 0.01;
-        }
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(139, 92, 246, ${p.opacity})`;
-        ctx.fill();
-
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const d = Math.sqrt((p.x - p2.x) ** 2 + (p.y - p2.y) ** 2);
-          if (d < 120) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(139, 92, 246, ${0.1 * (1 - d / 120)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
+    // Enhanced 3D tilt for cards on mouse move
+    document.querySelectorAll('.card-3d').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / centerY * -8;
+        const rotateY = (x - centerX) / centerX * 8;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
       });
 
-      animFrame = requestAnimationFrame(draw);
-    }
-
-    canvas.addEventListener('mousemove', (e) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+      });
     });
-
-    resize();
-    createParticles();
-    draw();
-    window.addEventListener('resize', () => { resize(); createParticles(); });
   });
 </script>

@@ -246,5 +246,71 @@ const allPosts = (await getCollection('blog'))
         });
       });
     }
+
+    // 3D parallax effect on post hero
+    const postHero = document.querySelector('.post-hero');
+    const postTitle = document.querySelector('.post-title');
+    let ticking = false;
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          if (postHero) {
+            const scrollY = window.scrollY;
+            const heroHeight = postHero.offsetHeight;
+            if (scrollY < heroHeight) {
+              const progress = scrollY / heroHeight;
+              postHero.style.transform = `translateY(${scrollY * 0.2}px)`;
+              postHero.style.opacity = 1 - progress * 0.8;
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    // Enhanced 3D tilt for related cards
+    document.querySelectorAll('.related-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / centerY * -8;
+        const rotateY = (x - centerX) / centerX * 8;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px) scale(1.02)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+        card.style.transition = 'transform 0.4s cubic-bezier(0.23, 1, 0.32, 1)';
+      });
+
+      card.addEventListener('mouseenter', () => {
+        card.style.transition = 'transform 0.1s ease';
+      });
+    });
+
+    // Staggered entrance for related cards
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.related-card').forEach((card, i) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = `opacity 0.5s ease ${i * 0.1}s, transform 0.5s cubic-bezier(0.23, 1, 0.32, 1) ${i * 0.1}s`;
+      observer.observe(card);
+    });
+
+    window.addEventListener('scroll', onScroll, { passive: true });
   });
 </script>

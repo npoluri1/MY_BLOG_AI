@@ -1,0 +1,203 @@
+---
+---
+
+<div id="three-hero-container" class="three-hero-container"></div>
+
+<script is:inline src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById("three-hero-container");
+    if (!container || typeof THREE === "undefined") return;
+
+    // --- Setup ---
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x06060e, 0.06);
+
+    const camera = new THREE.PerspectiveCamera(
+      60,
+      container.clientWidth / container.clientHeight,
+      0.1,
+      100
+    );
+    camera.position.z = 12;
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x06060e, 1);
+    container.appendChild(renderer.domElement);
+
+    // --- Colors ---
+    const COLORS = {
+      purple: new THREE.Color(0x8b5cf6),
+      teal: new THREE.Color(0x14b8a6),
+      blue: new THREE.Color(0x3b82f6),
+    };
+    const colorArray = [COLORS.purple, COLORS.teal, COLORS.blue];
+
+    // --- Shapes ---
+    const shapes = [];
+    const geometries = [
+      () => new THREE.BoxGeometry(1, 1, 1),
+      () => new THREE.IcosahedronGeometry(0.7, 0),
+      () => new THREE.TorusKnotGeometry(0.5, 0.15, 64, 8),
+      () => new THREE.OctahedronGeometry(0.7, 0),
+      () => new THREE.TetrahedronGeometry(0.8, 0),
+    ];
+
+    for (let i = 0; i < 12; i++) {
+      const geoFn = geometries[i % geometries.length];
+      const color = colorArray[i % colorArray.length];
+      const mat = new THREE.MeshBasicMaterial({
+        color,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.35 + Math.random() * 0.3,
+      });
+      const mesh = new THREE.Mesh(geoFn(), mat);
+
+      const spread = 10;
+      mesh.position.set(
+        (Math.random() - 0.5) * spread * 2,
+        (Math.random() - 0.5) * spread * 1.2,
+        (Math.random() - 0.5) * spread * 0.6
+      );
+
+      const scale = 0.5 + Math.random() * 1.0;
+      mesh.scale.set(scale, scale, scale);
+
+      shapes.push({
+        mesh,
+        rotSpeed: {
+          x: (Math.random() - 0.5) * 0.01,
+          y: (Math.random() - 0.5) * 0.01,
+          z: (Math.random() - 0.5) * 0.005,
+        },
+        floatSpeed: 0.3 + Math.random() * 0.7,
+        floatAmp: 0.2 + Math.random() * 0.4,
+        baseY: mesh.position.y,
+      });
+
+      scene.add(mesh);
+    }
+
+    // --- Particles ---
+    const PARTICLE_COUNT = 600;
+    const particleGeo = new THREE.BufferGeometry();
+    const positions = new Float32Array(PARTICLE_COUNT * 3);
+    const pColors = new Float32Array(PARTICLE_COUNT * 3);
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      const i3 = i * 3;
+      positions[i3] = (Math.random() - 0.5) * 30;
+      positions[i3 + 1] = (Math.random() - 0.5) * 20;
+      positions[i3 + 2] = (Math.random() - 0.5) * 20 - 5;
+
+      const c = colorArray[Math.floor(Math.random() * colorArray.length)];
+      pColors[i3] = c.r;
+      pColors[i3 + 1] = c.g;
+      pColors[i3 + 2] = c.b;
+    }
+
+    particleGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    particleGeo.setAttribute("color", new THREE.BufferAttribute(pColors, 3));
+
+    const particleMat = new THREE.PointsMaterial({
+      size: 0.03,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.7,
+      sizeAttenuation: true,
+    });
+    const particles = new THREE.Points(particleGeo, particleMat);
+    scene.add(particles);
+
+    // --- Mouse tracking ---
+    const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
+
+    function onMouseMove(e) {
+      mouse.targetX = (e.clientX / window.innerWidth) * 2 - 1;
+      mouse.targetY = -(e.clientY / window.innerHeight) * 2 + 1;
+    }
+
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+
+    // --- Resize ---
+    function onResize() {
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    }
+
+    window.addEventListener("resize", onResize);
+
+    // --- Animate ---
+    let animId;
+    const clock = new THREE.Clock();
+
+    function animate() {
+      animId = requestAnimationFrame(animate);
+      const elapsed = clock.getElapsedTime();
+
+      mouse.x += (mouse.targetX - mouse.x) * 0.04;
+      mouse.y += (mouse.targetY - mouse.y) * 0.04;
+
+      camera.position.x = mouse.x * 1.5;
+      camera.position.y = mouse.y * 1.0;
+      camera.lookAt(scene.position);
+
+      for (const s of shapes) {
+        s.mesh.rotation.x += s.rotSpeed.x;
+        s.mesh.rotation.y += s.rotSpeed.y;
+        s.mesh.rotation.z += s.rotSpeed.z;
+        s.mesh.position.y =
+          s.baseY + Math.sin(elapsed * s.floatSpeed) * s.floatAmp;
+      }
+
+      particles.rotation.y = elapsed * 0.02;
+      particles.rotation.x = elapsed * 0.01;
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // --- Cleanup ---
+    function cleanup() {
+      cancelAnimationFrame(animId);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("resize", onResize);
+      renderer.dispose();
+      for (const s of shapes) {
+        s.mesh.geometry.dispose();
+        s.mesh.material.dispose();
+      }
+      particleGeo.dispose();
+      particleMat.dispose();
+    }
+
+    if (typeof document !== "undefined") {
+      document.addEventListener("astro:before-swap", () => cleanup());
+    }
+  });
+</script>
+
+<style>
+  .three-hero-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .three-hero-container :global(canvas) {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+  }
+</style>
