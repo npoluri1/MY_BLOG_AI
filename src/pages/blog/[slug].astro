@@ -24,7 +24,7 @@ const allPosts = (await getCollection('blog'))
   .slice(0, 3);
 ---
 
-<BaseLayout title={`${post.data.title} | Naga Siva Poluri`} description={post.data.description} image={post.data.image}>
+<BaseLayout title={`${post.data.title} | Naga Siva Poluri`} description={post.data.description} image={post.data.image || post.data.heroImage}>
   <!-- Reading Progress -->
   <div class="reading-progress" id="reading-progress"></div>
 
@@ -38,18 +38,14 @@ const allPosts = (await getCollection('blog'))
       <div class="post-meta reveal stagger-1">
         <span class="post-date">{post.data.pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
         <span class="post-reading">{readingTime} min read</span>
-        {post.data.category && (
-          <div class="post-categories">
-            {post.data.category.map(cat => (
-              <span class="category-tag">{cat}</span>
-            ))}
-          </div>
-        )}
+        {post.data.author && <span class="post-author">by {post.data.author}</span>}
       </div>
       <h1 class="post-title reveal stagger-2">{post.data.title}</h1>
       <p class="post-desc reveal stagger-3">{post.data.description}</p>
       <div class="post-tags reveal stagger-4">
-        {post.data.tags.map(tag => <span class="badge">{tag}</span>)}
+        {(post.data.category || post.data.tags || []).map(tag => (
+          <span class="badge">{tag}</span>
+        ))}
       </div>
     </div>
   </div>

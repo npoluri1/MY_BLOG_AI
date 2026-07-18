@@ -56,7 +56,9 @@ function getReadingTime(content: string): number {
             data-title={post.data.title.toLowerCase()}
           >
             <div class="post-image-wrapper">
-              {post.data.image && <img src={post.data.image} alt={post.data.title} class="post-image" loading="lazy" />}
+              {(post.data.image || post.data.heroImage) && (
+                <img src={post.data.image || post.data.heroImage} alt={post.data.title} class="post-image" loading="lazy" />
+              )}
             </div>
             <div class="post-content">
               <div class="post-meta">
