@@ -1,0 +1,442 @@
+{
+  "metadata": {
+    "source": "https://narenvadapalli.com/blog",
+    "total_articles": 54,
+    "date_range": "2020-01-02 to 2026-07-18",
+    "fetched_date": "2026-07-18"
+  },
+  "articles": [
+    {
+      "slug": "token-economics-llm-gateways-router9",
+      "title": "Token Economics, LLM Gateways, and Router9",
+      "date": "2026-07-18",
+      "category": ["ai", "architecture", "finops", "software-engineering"],
+      "cover_image": "https://narenvadapalli.com/_astro/cover_image.kBD3yv5z.jpg",
+      "url": "https://narenvadapalli.com/blog/token-economics-llm-gateways-router9"
+    },
+    {
+      "slug": "inference-optimizations-prefill-decode",
+      "title": "Inference Optimizations: Speeding up Prefill and Decode",
+      "date": "2026-07-17",
+      "category": ["ai", "machine-learning", "performance", "infrastructure"],
+      "cover_image": "https://narenvadapalli.com/_astro/cover_image.Bc_iGmNd.jpg",
+      "url": "https://narenvadapalli.com/blog/inference-optimizations-prefill-decode"
+    },
+    {
+      "slug": "openclaw-whatsapp-workflows",
+      "title": "OpenClaw in Action: Connecting WhatsApp to Automated Workflows",
+      "date": "2026-07-16",
+      "category": ["ai", "agents", "openclaw", "whatsapp", "notion", "automation"],
+      "cover_image": "https://narenvadapalli.com/_astro/cover_image.DqSOv5-I.jpg",
+      "url": "https://narenvadapalli.com/blog/openclaw-whatsapp-workflows"
+    },
+    {
+      "slug": "openclaw-self-hosted-ai-butler",
+      "title": "The Self-Hosted AI Butler: Modular Assistance with OpenClaw",
+      "date": "2026-07-15",
+      "category": ["ai", "agents", "openclaw", "productivity", "self-hosted"],
+      "cover_image": "https://narenvadapalli.com/_astro/cover_image.CbM3Lm2a.jpg",
+      "url": "https://narenvadapalli.com/blog/openclaw-self-hosted-ai-butler"
+    },
+    {
+      "slug": "hermes-agent-self-improving-systems",
+      "title": "Nous Research's Hermes Agent: Under the Hood",
+      "date": "2026-07-14",
+      "category": ["ai", "agents", "hermes-agent", "software-engineering"],
+      "cover_image": "https://narenvadapalli.com/_astro/cover_image.B1wasRxu.jpg",
+      "url": "https://narenvadapalli.com/blog/hermes-agent-self-improving-systems"
+    },
+    {
+      "slug": "landscape-of-agentic-ai",
+      "title": "The Landscape of Agentic AI: From Single-Agent Scripts to Multi-Agent Networks",
+      "date": "2026-07-13",
+      "category": ["ai", "agents", "software-engineering", "architecture"],
+      "cover_image": "https://narenvadapalli.com/_astro/cover_image.ByutnYk6.jpg",
+      "url": "https://narenvadapalli.com/blog/landscape-of-agentic-ai"
+    },
+    {
+      "slug": "inference-engines-landscape",
+      "title": "The Landscape of LLM Inference Engines: Open Source vs. Enterprise",
+      "date": "2026-07-12",
+      "category": ["ai", "machine-learning", "cloud-computing", "infrastructure"],
+      "cover_image": "https://narenvadapalli.com/_astro/cover_image.ZhbPczL6.jpg",
+      "url": "https://narenvadapalli.com/blog/inference-engines-landscape"
+    },
+    {
+      "slug": "understanding-kv-cache",
+      "title": "Understanding the KV Cache: The VRAM Bottleneck of LLM Serving",
+      "date": "2026-07-11",
+      "category": ["ai", "machine-learning", "performance", "infrastructure"],
+      "cover_image": "https://narenvadapalli.com/_astro/cover_image.ACMxvTm6.jpg",
+      "url": "https://narenvadapalli.com/blog/understanding-kv-cache"
+    },
+    {
+      "slug": "prefill-vs-decode",
+      "title": "The Two Pillars of LLM Inference: Prefill vs. Decode",
+      "date": "2026-07-10",
+      "category": ["ai", "machine-learning", "systems-engineering", "performance"],
+      "cover_image": "https://narenvadapalli.com/_astro/cover_image.CCuJ7q6X.jpg",
+      "url": "https://narenvadapalli.com/blog/prefill-vs-decode"
+    },
+    {
+      "slug": "basics-of-ai-inference",
+      "title": "Basics of AI Inference: Demystifying Latency, Throughput, and Serving",
+      "date": "2026-07-09",
+      "category": ["ai", "machine-learning", "engineering", "architecture"],
+      "cover_image": "https://narenvadapalli.com/_astro/cover_image.Cn2UqXZt.jpg",
+      "url": "https://narenvadapalli.com/blog/basics-of-ai-inference"
+    },
+    {
+      "slug": "model-taxonomy",
+      "title": "The Model Taxonomy: LLMs, Vision Models, VLAs, and Diffusion",
+      "date": "2026-07-08",
+      "category": ["ai", "machine-learning", "architecture", "deep-learning"],
+      "cover_image": "https://narenvadapalli.com/_astro/cover_image.D-mQ7BGc.jpg",
+      "url": "https://narenvadapalli.com/blog/model-taxonomy"
+    },
+    {
+      "slug": "training-vs-inference-lifecycle",
+      "title": "Training vs. Inference Lifecycle: A Developer's Guide to Weights, Backpropagation, and Serving",
+      "date": "2026-07-07",
+      "category": ["ai", "machine-learning", "engineering", "architecture"],
+      "cover_image": "https://narenvadapalli.com/_astro/training_vs_inference.D8PwFX1S.jpg",
+      "url": "https://narenvadapalli.com/blog/training-vs-inference-lifecycle"
+    },
+    {
+      "slug": "what-is-a-model-weight",
+      "title": "What is a Model Weight? Demystifying Tensors, Matrices, and File Formats",
+      "date": "2026-07-06",
+      "category": ["ai", "machine-learning", "engineering", "basics"],
+      "cover_image": "https://narenvadapalli.com/_astro/model_weights_demystified.BiNL9Vmg.jpg",
+      "url": "https://narenvadapalli.com/blog/what-is-a-model-weight"
+    },
+    {
+      "slug": "claude-code-custom-plugin-marketplace",
+      "title": "Claude Code Custom Plugins: Build and Host Your Own Marketplace",
+      "date": "2026-07-05",
+      "category": ["ai", "agentic", "claude", "claude-code", "customization"],
+      "cover_image": "https://narenvadapalli.com/_astro/claude_code_custom_plugin_marketplace.DwxqdwUx.jpg",
+      "url": "https://narenvadapalli.com/blog/claude-code-custom-plugin-marketplace"
+    },
+    {
+      "slug": "running-local-llms-ollama-vllm",
+      "title": "Running Local LLMs: Ollama vs. vLLM",
+      "date": "2026-07-04",
+      "category": ["ai", "llm", "local-inference", "ollama", "vllm"],
+      "cover_image": "https://narenvadapalli.com/_astro/running_local_llms_ollama_vllm.gBvdbRmH.jpg",
+      "url": "https://narenvadapalli.com/blog/running-local-llms-ollama-vllm"
+    },
+    {
+      "slug": "claude-models-comparison-guide",
+      "title": "Anthropic's Claude Model Family: Specs, Pros, Cons, and Use Cases",
+      "date": "2026-07-03",
+      "category": ["ai", "agentic", "claude", "llm"],
+      "cover_image": "https://narenvadapalli.com/_astro/claude_models_comparison_guide.8QgjJMHc.jpg",
+      "url": "https://narenvadapalli.com/blog/claude-models-comparison-guide"
+    },
+    {
+      "slug": "claude-sonnet-5-science-workbench-fable-redeployed",
+      "title": "Anthropic's Mid-2026 Wave: Claude Sonnet 5, Claude Science, and Fable 5 Redeployment",
+      "date": "2026-07-02",
+      "category": ["ai", "agentic", "claude", "announcement"],
+      "cover_image": "https://narenvadapalli.com/_astro/claude_announcements_mid_2026.B7rantyf.jpg",
+      "url": "https://narenvadapalli.com/blog/claude-sonnet-5-science-workbench-fable-redeployed"
+    },
+    {
+      "slug": "claude-code-custom-skills",
+      "title": "Claude Code Custom Skills: Design Methodology and Workspace Personas",
+      "date": "2026-07-01",
+      "category": ["ai", "agentic", "claude", "claude-code", "customization"],
+      "cover_image": "https://narenvadapalli.com/_astro/claude_code_custom_skills.q6BWyN4O.jpg",
+      "url": "https://narenvadapalli.com/blog/claude-code-custom-skills"
+    },
+    {
+      "slug": "claude-code-commands-agents-memory",
+      "title": "Claude Code Basics: Commands, Subagents, and Memory Layers",
+      "date": "2026-06-30",
+      "category": ["ai", "agentic", "claude", "claude-code", "customization"],
+      "cover_image": "https://narenvadapalli.com/_astro/claude_code_commands_agents_memory.PGpgZIaD.jpg",
+      "url": "https://narenvadapalli.com/blog/claude-code-commands-agents-memory"
+    },
+    {
+      "slug": "claude-code-special-files",
+      "title": "Claude Code Customization: CLAUDE.md, AGENTS.md, and SKILLS.md",
+      "date": "2026-06-29",
+      "category": ["ai", "agentic", "claude", "claude-code", "customization"],
+      "cover_image": "https://narenvadapalli.com/_astro/claude_code_special_files.D7DcpwlH.jpg",
+      "url": "https://narenvadapalli.com/blog/claude-code-special-files"
+    },
+    {
+      "slug": "setting-up-claude-code",
+      "title": "Setting up Claude Code: The Ultimate Terminal AI Pair Programmer",
+      "date": "2026-06-28",
+      "category": ["ai", "agentic", "claude", "claude-code"],
+      "cover_image": "https://narenvadapalli.com/_astro/claude_code_setup.CLoAZwlM.jpg",
+      "url": "https://narenvadapalli.com/blog/setting-up-claude-code"
+    },
+    {
+      "slug": "intro-to-claude-code",
+      "title": "LLMs, Agents, and Harnesses: Demystifying Claude Code",
+      "date": "2026-06-27",
+      "category": ["ai", "agentic", "claude", "claude-code"],
+      "cover_image": "https://narenvadapalli.com/_astro/agent_architecture.CoYArLJY.jpg",
+      "url": "https://narenvadapalli.com/blog/intro-to-claude-code"
+    },
+    {
+      "slug": "antigravity-cli-custom-endpoints",
+      "title": "Custom Model Endpoints: Hooking up Local & Enterprise Models with Antigravity CLI",
+      "date": "2026-06-24",
+      "category": ["ai", "agentic", "antigravity"],
+      "cover_image": "https://narenvadapalli.com/_astro/agy_custom_endpoints.Dq6trFUV.jpg",
+      "url": "https://narenvadapalli.com/blog/antigravity-cli-custom-endpoints"
+    },
+    {
+      "slug": "antigravity-cli-background-tasks",
+      "title": "Going Async: Background Tasks, Timers, and Scheduling in Antigravity CLI",
+      "date": "2026-06-23",
+      "category": ["ai", "agentic", "antigravity"],
+      "cover_image": "https://narenvadapalli.com/_astro/agy_background_tasks.jQXRdpjB.jpg",
+      "url": "https://narenvadapalli.com/blog/antigravity-cli-background-tasks"
+    },
+    {
+      "slug": "extending-antigravity-cli-with-custom-skills",
+      "title": "Extending Antigravity CLI: Building Custom Skills and Project Rules",
+      "date": "2026-06-21",
+      "category": ["ai", "agentic", "antigravity"],
+      "cover_image": "https://narenvadapalli.com/_astro/agy_custom_skills.BWHePL44.jpg",
+      "url": "https://narenvadapalli.com/blog/extending-antigravity-cli-with-custom-skills"
+    },
+    {
+      "slug": "setting-up-antigravity-cli",
+      "title": "Setting up Google Antigravity CLI: The AI-First Terminal Assistant",
+      "date": "2026-06-20",
+      "category": ["ai", "agentic", "antigravity"],
+      "cover_image": "https://narenvadapalli.com/_astro/setting_up_agy.CAci6_WF.jpg",
+      "url": "https://narenvadapalli.com/blog/setting-up-antigravity-cli"
+    },
+    {
+      "slug": "whats-new-in-python-3-15",
+      "title": "Python 3.15: A First Look at the Coolest New Features",
+      "date": "2026-06-19",
+      "category": ["python", "programming", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/whats_new_python_3_15.BiEaXR1o.jpg",
+      "url": "https://narenvadapalli.com/blog/whats-new-in-python-3-15"
+    },
+    {
+      "slug": "slurm-on-aws-ubuntu-ec2",
+      "title": "SLURM Demo on AWS Ubuntu EC2 instance",
+      "date": "2024-05-29",
+      "category": ["hpc", "slurm", "aws", "ubuntu", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.BZ5zDas_.jpg",
+      "url": "https://narenvadapalli.com/blog/slurm-on-aws-ubuntu-ec2"
+    },
+    {
+      "slug": "slurm-on-wsl",
+      "title": "SLURM on WSL",
+      "date": "2024-05-27",
+      "category": ["hpc", "slurm", "wsl", "windows", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.xq2W5gEx.jpg",
+      "url": "https://narenvadapalli.com/blog/slurm-on-wsl"
+    },
+    {
+      "slug": "slurm-intro",
+      "title": "Introduction to SLURM",
+      "date": "2024-05-26",
+      "category": ["hpc", "slurm", "linux", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.BZ5zDas_.jpg",
+      "url": "https://narenvadapalli.com/blog/slurm-intro"
+    },
+    {
+      "slug": "finding-linux-machine-vm-or-baremetal",
+      "title": "How to find a linux machine is a VM (Virtual Machine) or a Bare Metal",
+      "date": "2023-11-07",
+      "category": ["linux", "vm", "sysadmin", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.BdKgOd9h.jpg",
+      "url": "https://narenvadapalli.com/blog/finding-linux-machine-vm-or-baremetal"
+    },
+    {
+      "slug": "github-credentials-store-with-access-token",
+      "title": "Storing Github access token in git credential store",
+      "date": "2023-04-04",
+      "category": ["github", "git", "security", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.Do6MYHeq.jpg",
+      "url": "https://narenvadapalli.com/blog/github-credentials-store-with-access-token"
+    },
+    {
+      "slug": "generating-token-for-github-runner-registration",
+      "title": "Token generation for Registering Self Hosted Github Runner via REST API",
+      "date": "2023-03-21",
+      "category": ["github", "ci/cd", "devops", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.15AmksPC.jpg",
+      "url": "https://narenvadapalli.com/blog/generating-token-for-github-runner-registration"
+    },
+    {
+      "slug": "self-hosted-github-runner-registration-process",
+      "title": "Setting up a Self Hosted Github Runner",
+      "date": "2023-03-20",
+      "category": ["github", "ci/cd", "devops", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.IKxvHA4c.jpg",
+      "url": "https://narenvadapalli.com/blog/self-hosted-github-runner-registration-process"
+    },
+    {
+      "slug": "node-version-manager-nvm",
+      "title": "Managing the NodeJS versions on Windows",
+      "date": "2022-11-13",
+      "category": ["nodejs", "nvm", "javascript", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.B-dFSb-l.png",
+      "url": "https://narenvadapalli.com/blog/node-version-manager-nvm"
+    },
+    {
+      "slug": "customizing-powershell-terminal-oh-my-posh",
+      "title": "Customizing the Powershell terminal with oh-my-posh",
+      "date": "2022-07-07",
+      "category": ["powershell", "terminal", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.Djqnyu-b.png",
+      "url": "https://narenvadapalli.com/blog/customizing-powershell-terminal-oh-my-posh"
+    },
+    {
+      "slug": "chmod-400-windows-powershel",
+      "title": "File permissions on Windows - chmod 400 in Powershell",
+      "date": "2022-06-09",
+      "category": ["windows", "powershell", "security", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image._p8dh6tU.jpg",
+      "url": "https://narenvadapalli.com/blog/chmod-400-windows-powershel"
+    },
+    {
+      "slug": "github-login-using-access-token-via-cmdline",
+      "title": "Github login using access token via command line",
+      "date": "2021-09-29",
+      "category": ["github", "git", "cli", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.CQtjxFee.jpg",
+      "url": "https://narenvadapalli.com/blog/github-login-using-access-token-via-cmdline"
+    },
+    {
+      "slug": "google-analytics-ga4-property-nuxtjs-app",
+      "title": "Adding Google Analytics to NuxtJS app",
+      "date": "2021-09-02",
+      "category": ["nuxtjs", "analytics", "seo", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.DvjkaY0t.jpg",
+      "url": "https://narenvadapalli.com/blog/google-analytics-ga4-property-nuxtjs-app"
+    },
+    {
+      "slug": "important-taskbar-settings-gone-in-win11",
+      "title": "Productive Taskbar Settings missing in Windows 11",
+      "date": "2021-07-06",
+      "category": ["windows", "win11", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.GFGoq_5L.jpg",
+      "url": "https://narenvadapalli.com/blog/important-taskbar-settings-gone-in-win11"
+    },
+    {
+      "slug": "virtualbox-ubuntu-secureboot-issue",
+      "title": "Secureboot + Ubuntu + VirtualBox Signing kernel modules",
+      "date": "2021-05-09",
+      "category": ["virtualbox", "ubuntu", "secureboot", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.ByJiA61v.png",
+      "url": "https://narenvadapalli.com/blog/virtualbox-ubuntu-secureboot-issue"
+    },
+    {
+      "slug": "postfix-error-ubuntu-dpkg",
+      "title": "Fixing the postfix error dpkg",
+      "date": "2021-04-21",
+      "category": ["linux", "ubuntu", "postfix", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.Cqy9ue9V.png",
+      "url": "https://narenvadapalli.com/blog/postfix-error-ubuntu-dpkg"
+    },
+    {
+      "slug": "running-react-app-on-local-k8s-on-windows",
+      "title": "Running a react app on Local Kubernetes cluster on Windows 10",
+      "date": "2021-03-16",
+      "category": ["react", "k8s", "windows", "docker", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.CWEDsy_o.png",
+      "url": "https://narenvadapalli.com/blog/running-react-app-on-local-k8s-on-windows"
+    },
+    {
+      "slug": "gatsby-site-redirecting-to-homepage-aws-amplify",
+      "title": "Gatsby site hosted on AWS Amplify redirecting to homepage always",
+      "date": "2020-11-02",
+      "category": ["gatsby", "aws", "amplify", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.DITOcF3C.png",
+      "url": "https://narenvadapalli.com/blog/gatsby-site-redirecting-to-homepage-aws-amplify"
+    },
+    {
+      "slug": "connecting-aws-amplify-for-deployment",
+      "title": "Connecting AWS Amplify for deployment of website",
+      "date": "2020-11-01",
+      "category": ["aws", "amplify", "deployment", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.iNX04_ou.jpg",
+      "url": "https://narenvadapalli.com/blog/connecting-aws-amplify-for-deployment"
+    },
+    {
+      "slug": "evolution-of-this-website",
+      "title": "Evolution of this website",
+      "date": "2020-10-31",
+      "category": ["webdev", "website", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.D3XSZiGw.jpg",
+      "url": "https://narenvadapalli.com/blog/evolution-of-this-website"
+    },
+    {
+      "slug": "making-of-tree-story",
+      "title": "Making of \"Tree Story\" Animated Short",
+      "date": "2020-10-21",
+      "category": ["cg", "art", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.BJnlQP0j.jpg",
+      "url": "https://narenvadapalli.com/blog/making-of-tree-story"
+    },
+    {
+      "slug": "profiling-visualization-tools-in-python-part-1",
+      "title": "Profiling & Visualization Tools in Python - Part 1",
+      "date": "2020-10-19",
+      "category": ["python", "profiling", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.DanUmoOn.png",
+      "url": "https://narenvadapalli.com/blog/profiling-visualization-tools-in-python-part-1"
+    },
+    {
+      "slug": "missing-permissions-linking-google-analytics-adsense",
+      "title": "Missing permissions issue linking google analytics and adsense",
+      "date": "2020-10-16",
+      "category": ["analytics", "adsense", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.C_mLVDsX.png",
+      "url": "https://narenvadapalli.com/blog/missing-permissions-linking-google-analytics-adsense"
+    },
+    {
+      "slug": "google-analytics-to-gatsby-app",
+      "title": "Adding Google Analytics to personal website",
+      "date": "2020-10-07",
+      "category": ["gatsby", "analytics", "seo", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.DwcjGV9I.png",
+      "url": "https://narenvadapalli.com/blog/google-analytics-to-gatsby-app"
+    },
+    {
+      "slug": "chrome-remote-desktop-on-fedora",
+      "title": "Chrome Remote Desktop on Fedora",
+      "date": "2020-03-27",
+      "category": ["linux", "fedora", "remote-desktop", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/chrome_deb_download_button.Mek1GzyU.jpg",
+      "url": "https://narenvadapalli.com/blog/chrome-remote-desktop-on-fedora"
+    },
+    {
+      "slug": "building-grpc-whl-with-maya-2019-on-win64",
+      "title": "Building grpc whl with Maya 2019 on Windows",
+      "date": "2020-03-06",
+      "category": ["maya", "grpc", "c++", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.DHOwHHEg.jpg",
+      "url": "https://narenvadapalli.com/blog/building-grpc-whl-with-maya-2019-on-win64"
+    },
+    {
+      "slug": "tech-stack-of-the-website",
+      "title": "Tech Stack of the website",
+      "date": "2020-01-08",
+      "category": ["webdev", "website", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.q6aqBikE.jpg",
+      "url": "https://narenvadapalli.com/blog/tech-stack-of-the-website"
+    },
+    {
+      "slug": "deleting-linux-from-dual-boot",
+      "title": "Deleting linux from dual boot",
+      "date": "2020-01-02",
+      "category": ["linux", "windows", "dual-boot", "tech"],
+      "cover_image": "https://narenvadapalli.com/_astro/image.DNRrFRts.jpg",
+      "url": "https://narenvadapalli.com/blog/deleting-linux-from-dual-boot"
+    }
+  ]
+}
