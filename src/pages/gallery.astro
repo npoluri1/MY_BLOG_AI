@@ -1,14 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const images = [];
-for (let i = 0; i < 50; i++) {
+const jpegImages = [];
+const jpgImages = [];
+
+// First 30 are .jpeg, next 20 are .jpg
+for (let i = 0; i < 30; i++) {
   const num = i.toString().padStart(3, '0');
-  images.push({
+  jpegImages.push({
+    src: `/images/linkedin/gallery_${num}.jpeg`,
+    alt: `AI & Tech Content ${i + 1}`
+  });
+}
+for (let i = 30; i < 50; i++) {
+  const num = i.toString().padStart(3, '0');
+  jpgImages.push({
     src: `/images/linkedin/gallery_${num}.jpg`,
     alt: `AI & Tech Content ${i + 1}`
   });
 }
+const images = [...jpegImages, ...jpgImages];
 ---
 
 <BaseLayout title="Gallery - Naga Siva Poluri" description="Visual content from LinkedIn posts on AI, technology, and engineering.">
