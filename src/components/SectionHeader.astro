@@ -1,0 +1,32 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  desc?: string;
+  align?: 'left' | 'center';
+}
+
+const { eyebrow, title, desc, align = 'center' } = Astro.props;
+---
+
+<div class:list={['sh-wrapper', `sh-${align}`]}>
+  {eyebrow && <span class="section-eyebrow">{eyebrow}</span>}
+  <h2 class="section-title">{title}</h2>
+  {desc && <p class="section-desc">{desc}</p>}
+  <div class="sh-line"></div>
+</div>
+
+<style>
+  .sh-wrapper { margin-bottom: 3rem; }
+  .sh-center { text-align: center; }
+  .sh-center .section-desc { margin-left: auto; margin-right: auto; }
+  .sh-left { text-align: left; }
+  .sh-line {
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-accent);
+    border-radius: 2px;
+    margin-top: 1.25rem;
+  }
+  .sh-center .sh-line { margin-left: auto; margin-right: auto; }
+</style>

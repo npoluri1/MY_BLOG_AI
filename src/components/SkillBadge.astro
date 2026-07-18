@@ -1,0 +1,53 @@
+---
+interface Props {
+  name: string;
+  icon?: string;
+  color?: string;
+}
+
+const { name, icon, color = 'accent' } = Astro.props;
+---
+
+<div class:list={['skill-badge', `skill-${color}`]}>
+  {icon && <span class="skill-icon">{icon}</span>}
+  <span class="skill-name">{name}</span>
+</div>
+
+<style>
+  .skill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    transition: var(--transition);
+    cursor: default;
+  }
+
+  .skill-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+
+  .skill-accent { border-color: rgba(139,92,246,0.2); }
+  .skill-accent:hover { border-color: rgba(139,92,246,0.4); background: rgba(139,92,246,0.1); color: var(--accent-light); }
+
+  .skill-teal { border-color: rgba(20,184,166,0.2); }
+  .skill-teal:hover { border-color: rgba(20,184,166,0.4); background: rgba(20,184,166,0.1); color: var(--teal-light); }
+
+  .skill-coral { border-color: rgba(249,115,22,0.2); }
+  .skill-coral:hover { border-color: rgba(249,115,22,0.4); background: rgba(249,115,22,0.1); color: var(--coral); }
+
+  .skill-pink { border-color: rgba(236,72,153,0.2); }
+  .skill-pink:hover { border-color: rgba(236,72,153,0.4); background: rgba(236,72,153,0.1); color: var(--pink); }
+
+  .skill-blue { border-color: rgba(59,130,246,0.2); }
+  .skill-blue:hover { border-color: rgba(59,130,246,0.4); background: rgba(59,130,246,0.1); color: var(--blue); }
+
+  .skill-icon { font-size: 1rem; }
+</style>

@@ -1,0 +1,131 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href?: string;
+  image?: string;
+  tags?: string[];
+  date?: string;
+  readingTime?: string;
+}
+
+const { title, description, href, image, tags = [], date, readingTime } = Astro.props;
+---
+
+<article class="card-3d blog-card reveal">
+  {image && (
+    <a href={href || '#'} class="card-thumb">
+      <img src={image} alt={title} loading="lazy" />
+      <div class="card-thumb-overlay"></div>
+    </a>
+  )}
+  <div class="card-body">
+    <div class="card-meta">
+      {date && <span class="card-date">{date}</span>}
+      {readingTime && <span class="card-reading">{readingTime}</span>}
+    </div>
+    {tags.length > 0 && (
+      <div class="card-tags">
+        {tags.map(tag => <span class="badge">{tag}</span>)}
+      </div>
+    )}
+    <h3 class="card-title">
+      {href ? <a href={href}>{title}</a> : title}
+    </h3>
+    <p class="card-desc">{description}</p>
+    {href && (
+      <a href={href} class="card-link">
+        Read Article
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    )}
+  </div>
+</article>
+
+<style>
+  .blog-card {
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-thumb {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    display: block;
+  }
+
+  .card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-out);
+  }
+
+  .blog-card:hover .card-thumb img { transform: scale(1.08); }
+
+  .card-thumb-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(6,6,14,0.8) 100%);
+    pointer-events: none;
+  }
+
+  .card-body {
+    padding: 1.5rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  .card-date { font-weight: 500; }
+  .card-reading { opacity: 0.7; }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.35;
+  }
+
+  .card-title a { color: var(--text-primary); }
+  .card-title a:hover { color: var(--accent-light); }
+
+  .card-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    flex: 1;
+    margin-bottom: 1.25rem;
+  }
+
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--accent-light);
+    transition: var(--transition-fast);
+  }
+
+  .card-link:hover { gap: 0.7rem; color: var(--teal-light); }
+</style>

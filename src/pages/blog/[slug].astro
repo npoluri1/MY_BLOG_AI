@@ -1,0 +1,250 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const allPosts = (await getCollection('blog'))
+  .filter(p => p.id !== post.id)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout title={`${post.data.title} | Naga Siva Poluri`} description={post.data.description} image={post.data.image}>
+  <!-- Reading Progress -->
+  <div class="reading-progress" id="reading-progress"></div>
+
+  <!-- Post Hero -->
+  <div class="post-hero">
+    <div class="container">
+      <a href="/blog" class="back-link reveal">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to Blog
+      </a>
+      <div class="post-meta reveal stagger-1">
+        <span class="post-date">{post.data.pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+        {post.data.readingTime && <span class="post-reading">{post.data.readingTime}</span>}
+      </div>
+      <h1 class="post-title reveal stagger-2">{post.data.title}</h1>
+      <p class="post-desc reveal stagger-3">{post.data.description}</p>
+      <div class="post-tags reveal stagger-4">
+        {post.data.tags.map(tag => <span class="badge">{tag}</span>)}
+      </div>
+    </div>
+  </div>
+
+  <!-- Post Content -->
+  <article class="post-content">
+    <div class="container-narrow">
+      <div class="prose reveal">
+        <Content />
+      </div>
+    </div>
+  </article>
+
+  <!-- Share -->
+  <div class="post-share">
+    <div class="container-narrow">
+      <div class="share-bar reveal">
+        <span class="share-label">Share this post:</span>
+        <div class="share-links">
+          <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.data.title)}&url=${encodeURIComponent(Astro.url.href)}`} target="_blank" rel="noopener" class="share-link">Twitter</a>
+          <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(Astro.url.href)}`} target="_blank" rel="noopener" class="share-link">LinkedIn</a>
+          <button class="share-link" id="copy-link">Copy Link</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Posts -->
+  {allPosts.length > 0 && (
+    <section class="related-section">
+      <div class="container">
+        <h2 class="related-title reveal">More Articles</h2>
+        <div class="related-grid">
+          {allPosts.map(p => (
+            <a href={`/blog/${p.id}`} class="related-card card-3d reveal">
+              <span class="related-date">{p.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+              <h3 class="related-card-title">{p.data.title}</h3>
+              <p class="related-card-desc">{p.data.description.slice(0, 120)}...</p>
+              <span class="related-link">Read Post →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: var(--gradient-accent);
+    z-index: 1001;
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+
+  .post-hero {
+    padding: 10rem 0 4rem;
+    position: relative;
+  }
+
+  .post-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center top, rgba(139, 92, 246, 0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+  .back-link:hover { color: var(--accent-light); gap: 0.7rem; }
+
+  .post-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .post-title {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    margin-bottom: 1.25rem;
+    line-height: 1.15;
+  }
+
+  .post-desc {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  .post-content { padding: 3rem 0 4rem; }
+
+  .post-share { padding: 2rem 0; border-top: 1px solid var(--border); }
+
+  .share-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .share-label { font-weight: 600; color: var(--text-primary); font-size: 0.95rem; }
+
+  .share-links { display: flex; gap: 0.75rem; }
+
+  .share-link {
+    padding: 0.5rem 1.25rem;
+    border-radius: var(--radius-sm);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    font-family: var(--font-sans);
+  }
+  .share-link:hover { background: rgba(139, 92, 246, 0.15); border-color: var(--border-accent); color: var(--accent-light); }
+
+  .related-section { padding: 4rem 0; border-top: 1px solid var(--border); }
+
+  .related-title {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .related-card {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+  }
+
+  .related-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .related-card-title {
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.35;
+    color: var(--text-primary);
+  }
+
+  .related-card-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+
+  .related-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-light);
+  }
+
+  @media (max-width: 768px) {
+    .post-hero { padding-top: 8rem; }
+    .related-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const bar = document.getElementById('reading-progress');
+    if (bar) {
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (scrollTop / docHeight * 100) + '%';
+      });
+    }
+
+    const copyBtn = document.getElementById('copy-link');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+          copyBtn.textContent = 'Copied!';
+          setTimeout(() => { copyBtn.textContent = 'Copy Link'; }, 2000);
+        });
+      });
+    }
+  });
+</script>
