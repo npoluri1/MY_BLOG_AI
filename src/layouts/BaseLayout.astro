@@ -43,6 +43,14 @@ const canonicalURL = `https://nagasivapoluri.netlify.app${Astro.url.pathname}`;
       <slot />
     </main>
     <Footer />
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 15l-6-6-6 6"/>
+      </svg>
+    </button>
+
     <script is:inline>
       document.addEventListener('DOMContentLoaded', () => {
         const header = document.querySelector('header');
@@ -53,6 +61,21 @@ const canonicalURL = `https://nagasivapoluri.netlify.app${Astro.url.pathname}`;
             } else {
               header.classList.remove('scrolled');
             }
+          });
+        }
+
+        // Back to top button
+        const backToTop = document.getElementById('back-to-top');
+        if (backToTop) {
+          window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+              backToTop.classList.add('visible');
+            } else {
+              backToTop.classList.remove('visible');
+            }
+          });
+          backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           });
         }
       });
@@ -73,4 +96,46 @@ const canonicalURL = `https://nagasivapoluri.netlify.app${Astro.url.pathname}`;
     font-weight: 600;
   }
   .skip-link:focus { top: 0; }
+
+  .back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s var(--ease-out);
+    z-index: 999;
+    box-shadow: var(--shadow-md);
+  }
+
+  .back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .back-to-top:hover {
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .back-to-top {
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 44px;
+      height: 44px;
+    }
+  }
 </style>

@@ -7,6 +7,12 @@ const posts = (await getCollection('blog'))
 
 const years = [...new Set(posts.map(p => p.data.pubDate.getFullYear()))].sort((a, b) => b - a);
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+// Calculate reading time for each post
+function getReadingTime(content: string): number {
+  const wordCount = content.split(/\s+/).length;
+  return Math.max(1, Math.ceil(wordCount / 200));
+}
 ---
 
 <BaseLayout title="Blog | Naga Siva Poluri" description="Thoughts on AI, enterprise engineering, and building intelligent systems.">
@@ -46,7 +52,7 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
             class="post-card"
             data-year={post.data.pubDate.getFullYear()}
             data-month={post.data.pubDate.getMonth()}
-            data-tags={post.data.tags.join(',')}
+            data-tags={(post.data.category || post.data.tags || []).join(',')}
             data-title={post.data.title.toLowerCase()}
           >
             <div class="post-image-wrapper">
@@ -55,9 +61,12 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
             <div class="post-content">
               <div class="post-meta">
                 <span class="post-date">{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                <span class="reading-time">{getReadingTime(post.body || '')} min read</span>
               </div>
               <div class="post-tags">
-                {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+                {(post.data.category || post.data.tags || []).slice(0, 3).map(tag => (
+                  <span class="tag">{tag}</span>
+                ))}
               </div>
               <h2 class="post-title">{post.data.title}</h2>
               <p class="post-desc">{post.data.description}</p>
@@ -199,12 +208,23 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
   }
 
   .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     margin-bottom: 0.4rem;
   }
 
   .post-date {
     font-size: 0.82rem;
     color: var(--text-muted);
+  }
+
+  .reading-time {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.5rem;
+    background: rgba(139, 92, 246, 0.1);
+    border-radius: var(--radius-full);
+    color: var(--accent-light);
   }
 
   .post-tags {

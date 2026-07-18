@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const resources = [
+  {
+    category: "AI Strategy & Leadership",
+    items: [
+      {
+        title: "MIT AI Readiness for C-Suite Leaders",
+        filename: "MIT-report-AI-readiness-for-C-suite-leaderspdf.pdf",
+        description: "Comprehensive report on AI readiness assessment for enterprise leaders",
+        type: "PDF"
+      },
+      {
+        title: "Agentic AI and Organisational Transformation",
+        filename: "IIR_AgenticAIandOrganisationalTransformation_Reports_8pdf.pdf",
+        description: "Research on how agentic AI transforms organizational structures",
+        type: "PDF"
+      },
+      {
+        title: "Capitalizing on AI - Deloitte 2026",
+        filename: "Capitalizing_on_AI_Docusign_Deloitte_2026pdf.pdf",
+        description: "Strategic framework for AI capitalization in enterprise",
+        type: "PDF"
+      }
+    ]
+  },
+  {
+    category: "AI Engineering & Technical",
+    items: [
+      {
+        title: "Zero to AI Integration Engineer",
+        filename: "Zero_to_AI_Integration_Engineer_Book.docx",
+        description: "Complete guide to becoming an AI Integration Engineer",
+        type: "DOCX"
+      },
+      {
+        title: "AI Engineering Guidebook",
+        filename: "AI Engineering Guidebook.pdf",
+        description: "Comprehensive guide to AI engineering practices",
+        type: "PDF"
+      },
+      {
+        title: "MCP Research Report",
+        filename: "MCP_Research_Report.docx",
+        description: "Model Context Protocol research and implementation guide",
+        type: "DOCX"
+      },
+      {
+        title: "Vector Databases and Semantic Search",
+        filename: "Vector_Databases_and_Semantic_Search.docx",
+        description: "Deep dive into vector databases for AI applications",
+        type: "DOCX"
+      }
+    ]
+  },
+  {
+    category: "Infrastructure & Deployment",
+    items: [
+      {
+        title: "Open Source AI Infrastructure",
+        filename: "Open Source AI Infrastructure Whitepaper.pdf",
+        description: "Whitepaper on building AI infrastructure with open source tools",
+        type: "PDF"
+      },
+      {
+        title: "SME AI Readiness Playbook",
+        filename: "SME_AI_Readiness_Playbookpdf.pdf",
+        description: "Step-by-step guide for SMEs to adopt AI",
+        type: "PDF"
+      },
+      {
+        title: "Generative AI and LLMs for Dummies",
+        filename: "Generative-AI-and-LLMs-for-Dummiespdf.pdf",
+        description: "Beginner-friendly guide to GenAI and LLMs",
+        type: "PDF"
+      }
+    ]
+  },
+  {
+    category: "Research & Analysis",
+    items: [
+      {
+        title: "SOC Developer Survey 2026",
+        filename: "SOCDeveloperSurveyReport2026_Sonarpdf.pdf",
+        description: "Developer survey on AI adoption and practices",
+        type: "PDF"
+      },
+      {
+        title: "Digital Twin Research Report",
+        filename: "Digital_Twin_Research_Report.docx",
+        description: "Research on digital twin technology applications",
+        type: "DOCX"
+      },
+      {
+        title: "AI Engineering 2026",
+        filename: "AgentiAIEnginerrin2026.pdf",
+        description: "State of AI engineering in 2026",
+        type: "PDF"
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout title="Resources - Naga Siva Poluri">
+  <main class="container mx-auto px-4 py-16 max-w-6xl">
+    <div class="mb-12">
+      <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Resources</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400">
+        Research papers, guides, and technical documents on AI, engineering, and technology.
+      </p>
+    </div>
+
+    <div class="space-y-12">
+      {resources.map((section) => (
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
+            {section.category}
+          </h2>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {section.items.map((item) => (
+              <a
+                href={`/resources/docs/${item.filename}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700"
+              >
+                <div class="flex items-start justify-between mb-3">
+                  <span class="px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded">
+                    {item.type}
+                  </span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  {item.title}
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                  {item.description}
+                </p>
+                <div class="mt-4 text-blue-600 dark:text-blue-400 text-sm font-medium">
+                  Download →
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <div class="mt-16 p-8 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-xl">
+      <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Need More Resources?</h2>
+      <p class="text-gray-600 dark:text-gray-400 mb-6">
+        Have questions about AI integration, implementation, or strategy? Let's connect.
+      </p>
+      <a
+        href="/contact"
+        class="inline-block px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+      >
+        Get in Touch
+      </a>
+    </div>
+  </main>
+</BaseLayout>

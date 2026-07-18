@@ -13,6 +13,11 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
+// Calculate reading time (average 200 words per minute)
+const content = post.body || '';
+const wordCount = content.split(/\s+/).length;
+const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
 const allPosts = (await getCollection('blog'))
   .filter(p => p.id !== post.id)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -32,7 +37,14 @@ const allPosts = (await getCollection('blog'))
       </a>
       <div class="post-meta reveal stagger-1">
         <span class="post-date">{post.data.pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
-        {post.data.readingTime && <span class="post-reading">{post.data.readingTime}</span>}
+        <span class="post-reading">{readingTime} min read</span>
+        {post.data.category && (
+          <div class="post-categories">
+            {post.data.category.map(cat => (
+              <span class="category-tag">{cat}</span>
+            ))}
+          </div>
+        )}
       </div>
       <h1 class="post-title reveal stagger-2">{post.data.title}</h1>
       <p class="post-desc reveal stagger-3">{post.data.description}</p>
@@ -98,7 +110,7 @@ const allPosts = (await getCollection('blog'))
   }
 
   .post-hero {
-    padding: 10rem 0 4rem;
+    padding: 10rem 0 3rem;
     position: relative;
   }
 
@@ -123,10 +135,35 @@ const allPosts = (await getCollection('blog'))
 
   .post-meta {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 1rem;
     margin-bottom: 1.25rem;
     font-size: 0.9rem;
     color: var(--text-muted);
+  }
+
+  .post-reading {
+    padding: 0.25rem 0.75rem;
+    background: rgba(139, 92, 246, 0.1);
+    border-radius: var(--radius-full);
+    color: var(--accent-light);
+    font-size: 0.8rem;
+  }
+
+  .post-categories {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .category-tag {
+    padding: 0.25rem 0.75rem;
+    background: rgba(20, 184, 166, 0.1);
+    border-radius: var(--radius-full);
+    color: var(--teal-light);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .post-title {
@@ -144,7 +181,71 @@ const allPosts = (await getCollection('blog'))
 
   .post-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
-  .post-content { padding: 3rem 0 4rem; }
+  .post-content { padding: 2rem 0 4rem; }
+
+  /* Improved blog content typography - single column, 65-75ch */
+  .post-content .prose {
+    max-width: 72ch;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    line-height: 1.85;
+  }
+
+  .post-content .prose h2 {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .post-content .prose h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .post-content .prose p {
+    margin-bottom: 1.5rem;
+  }
+
+  .post-content .prose ul,
+  .post-content .prose ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .post-content .prose li {
+    margin-bottom: 0.75rem;
+  }
+
+  .post-content .prose blockquote {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  .post-content .prose pre {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .post-content .prose img {
+    border-radius: var(--radius-md);
+    margin: 2rem 0;
+  }
+
+  .post-content .prose figure {
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .post-content .prose figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
 
   .post-share { padding: 2rem 0; border-top: 1px solid var(--border); }
 
@@ -223,6 +324,7 @@ const allPosts = (await getCollection('blog'))
   @media (max-width: 768px) {
     .post-hero { padding-top: 8rem; }
     .related-grid { grid-template-columns: 1fr; }
+    .post-content .prose { font-size: 1rem; }
   }
 </style>
 
