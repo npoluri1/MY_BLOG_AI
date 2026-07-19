@@ -12,7 +12,7 @@ primaryCategory: "ai"
 
 Explore the two execution phases of LLM inference: compute-bound prefill vs. memory-bandwidth-bound decode. Understand arithmetic intensity and the role of the KV cache.
 
-![The Two Pillars of LLM Inference: Prefill vs. Decode](/_astro/cover_image.CCuJ7q6X.jpg)
+![The Two Pillars of LLM Inference: Prefill vs. Decode](https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1200&h=675&fit=crop)
 
 *AI Inference Deep-Dive Series: ← [Basics of AI Inference: Demystifying Latency, Throughput, and Serving](/blog/basics-of-ai-inference/) (Previous) | [Understanding the KV Cache: The VRAM Bottleneck of LLM Serving](/blog/understanding-kv-cache/) (Next) →*
 

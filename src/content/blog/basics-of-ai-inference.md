@@ -12,7 +12,7 @@ primaryCategory: "ai"
 
 Start the AI Inference Deep-Dive Series. Learn the fundamentals of inference vs training, key performance metrics, and the systems engineering behind serving.
 
-![Basics of AI Inference: Demystifying Latency, Throughput, and Serving](/_astro/cover_image.Cn2UqXZt.jpg)
+![Basics of AI Inference: Demystifying Latency, Throughput, and Serving](https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=675&fit=crop)
 
 *AI Inference Deep-Dive Series: Part 1 | [The Two Pillars of LLM Inference: Prefill vs. Decode](/blog/prefill-vs-decode/) (Next) →*
 

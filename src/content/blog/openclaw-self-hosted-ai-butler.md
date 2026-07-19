@@ -12,7 +12,7 @@ primaryCategory: "ai"
 
 Learn how to build and host your own AI assistant with OpenClaw. Configure the ClawHub modular skill store, write SKILL.md files, and connect to chat platforms.
 
-![The Self-Hosted AI Butler: Modular Assistance with OpenClaw](/_astro/cover_image.CbM3Lm2a.jpg)
+![The Self-Hosted AI Butler: Modular Assistance with OpenClaw](https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=675&fit=crop)
 
 *Autonomous AI Agents & Frameworks Series: ← [Nous Research's Hermes Agent: Under the Hood](/blog/hermes-agent-self-improving-systems/) (Previous) | [OpenClaw in Action: Connecting WhatsApp to Automated Workflows](/blog/openclaw-whatsapp-workflows/) (Next) →*
 

@@ -12,7 +12,7 @@ primaryCategory: "ai"
 
 Why do LLM serving nodes run out of VRAM? Explore the mechanics, calculations, and capacity bottlenecks of the Key-Value (KV) Cache.
 
-![Understanding the KV Cache: The VRAM Bottleneck of LLM Serving](/_astro/cover_image.ACMxvTm6.jpg)
+![Understanding the KV Cache: The VRAM Bottleneck of LLM Serving](https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=675&fit=crop)
 
 *AI Inference Deep-Dive Series: ← [The Two Pillars of LLM Inference: Prefill vs. Decode](/blog/prefill-vs-decode/) (Previous)*
 

@@ -12,7 +12,7 @@ primaryCategory: "ai"
 
 A developer's guide to the modern AI model taxonomy. Understand the architecture, modalities, and performance profiles of LLMs, ViTs, VLAs, and Diffusion.
 
-![The Model Taxonomy: LLMs, Vision Models, VLAs, and Diffusion](/_astro/cover_image.D-mQ7BGc.jpg)
+![The Model Taxonomy: LLMs, Vision Models, VLAs, and Diffusion](https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=675&fit=crop)
 
 *AI/ML Basics Series: ← [Training vs. Inference Lifecycle: A Developer's Guide to Weights, Backpropagation, and Serving](/blog/training-vs-inference-lifecycle/) (Previous)*
 

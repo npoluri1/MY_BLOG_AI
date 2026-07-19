@@ -12,7 +12,7 @@ primaryCategory: "ai"
 
 Understand the limits of sequential chains and learn how LangGraph represents agents as stateful, cyclic graphs with conditional routing and persistent memory.
 
-![LangChain vs. LangGraph](/_astro/cover_image.DqSOv5-I.jpg)
+![LangChain vs. LangGraph](https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&h=675&fit=crop)
 
 *Autonomous AI Agents & Frameworks Series: ← [OpenClaw in Action: Connecting WhatsApp to Automated Workflows](/blog/openclaw-whatsapp-workflows/) (Previous) | [Token Economics, LLM Gateways, and Router9](/blog/token-economics-llm-gateways-router9/) (Next) →*
 

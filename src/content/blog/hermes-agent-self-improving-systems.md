@@ -12,7 +12,7 @@ primaryCategory: "ai"
 
 Deep-dive into the configuration, CLI commands, and skill architecture of Nous Research's Hermes Agent. Learn to manage tool gateways and design custom skills.
 
-![Nous Research's Hermes Agent: Under the Hood](/_astro/cover_image.B1wasRxu.jpg)
+![Nous Research's Hermes Agent: Under the Hood](https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=675&fit=crop)
 
 *Autonomous AI Agents & Frameworks Series: ← [The Landscape of Agentic AI: From Single-Agent Scripts to Multi-Agent Networks](/blog/landscape-of-agentic-ai/) (Previous) | [The Self-Hosted AI Butler: Modular Assistance with OpenClaw](/blog/openclaw-self-hosted-ai-butler/) (Next) →*
 

@@ -12,7 +12,7 @@ primaryCategory: "ai"
 
 Understand the financial side of LLM serving. Calculate cost-per-token, setup open-source LLM gateways, and implement intelligent routers like Router9.
 
-![Token Economics, LLM Gateways, and Router9](/_astro/cover_image.kBD3yv5z.jpg)
+![Token Economics, LLM Gateways, and Router9](https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&h=675&fit=crop)
 
 *AI Inference Deep-Dive Series: ← [Inference Optimizations: Speeding up Prefill and Decode](/blog/inference-optimizations-prefill-decode/) (Previous) | Part 6*
 

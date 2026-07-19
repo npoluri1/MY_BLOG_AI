@@ -12,7 +12,7 @@ primaryCategory: "ai"
 
 Start the Autonomous AI Agents Series. Learn about the ReAct pattern, single-agent context decay, and multi-agent coordination graph topologies.
 
-![The Landscape of Agentic AI: From Single-Agent Scripts to Multi-Agent Networks](/_astro/cover_image.ByutnYk6.jpg)
+![The Landscape of Agentic AI: From Single-Agent Scripts to Multi-Agent Networks](https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=675&fit=crop)
 
 *Autonomous AI Agents & Frameworks Series: Part 1 | [Nous Research's Hermes Agent: Under the Hood](/blog/hermes-agent-self-improving-systems/) (Next) →*
 

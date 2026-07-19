@@ -12,7 +12,7 @@ primaryCategory: "ai"
 
 A step-by-step developer guide to configuring OpenClaw's WhatsApp gateway, setting up secure session authorization, and building automated task sync skills.
 
-![OpenClaw in Action: Connecting WhatsApp to Automated Workflows](/_astro/cover_image.DqSOv5-I.jpg)
+![OpenClaw in Action: Connecting WhatsApp to Automated Workflows](https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=1200&h=675&fit=crop)
 
 *Autonomous AI Agents & Frameworks Series: ← [The Self-Hosted AI Butler: Modular Assistance with OpenClaw](/blog/openclaw-self-hosted-ai-butler/) (Previous) | [LangChain vs. LangGraph: Moving from Chains to Cyclic State Graphs](/blog/langchain-vs-langgraph-cyclic-state-graphs/) (Next) →*
 

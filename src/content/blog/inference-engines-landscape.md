@@ -12,7 +12,7 @@ primaryCategory: "ai"
 
 A comprehensive developer guide comparing vLLM, TensorRT-LLM, TGI, SGLang, and llama.cpp. Learn about PagedAttention, RadixAttention, and GGUF.
 
-![The Landscape of LLM Inference Engines: Open Source vs. Enterprise](/_astro/cover_image.ZhbPczL6.jpg)
+![The Landscape of LLM Inference Engines: Open Source vs. Enterprise](https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1200&h=675&fit=crop)
 
 *AI Inference Deep-Dive Series: ← [Understanding the KV Cache: The VRAM Bottleneck of LLM Serving](/blog/understanding-kv-cache/) (Previous)*
 
