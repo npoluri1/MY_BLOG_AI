@@ -6,6 +6,8 @@ pubDate: 2025-07-18
 tags: ["ai", "enterprise", "strategy", "architecture", "leadership"]
 image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=675&fit=crop"
 readingTime: "8 min read"
+primaryCategory: "ai"
+author: "Naren Vadapalli"
 ---
 
 Every enterprise is talking about AI integration. But most are doing it wrong. They're treating AI like a tool to bolt on, rather than an operating system layer to build upon.

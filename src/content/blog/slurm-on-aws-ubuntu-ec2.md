@@ -5,6 +5,7 @@ pubDate: 2024-05-29
 heroImage: "/images/linkedin/1771432956311.jpg"
 category: ["hpc", "aws", "linux", "slurm"]
 author: "Naga Siva Poluri"
+primaryCategory: "hpc"
 ---
 
 Demo of slurm usage on a single instance of Ubuntu 24.04 EC2 instances on AWS.

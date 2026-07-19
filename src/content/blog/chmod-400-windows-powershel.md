@@ -5,6 +5,7 @@ pubDate: 2022-06-09
 heroImage: "/images/linkedin/1762242304593.jpg"
 category: ["windows", "powershell", "security", "tutorial"]
 author: "Naga Siva Poluri"
+primaryCategory: "windows"
 ---
 
 Powershell equivalent of chmod 400 for Windows files.

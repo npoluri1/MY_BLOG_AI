@@ -5,6 +5,7 @@ pubDate: 2026-06-24
 heroImage: "/images/linkedin/1760694483650.jpg"
 category: ["ai", "agentic", "google"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 Learn how to configure the Google Antigravity CLI (agy) to run with local LLMs (Ollama, vLLM) or private enterprise endpoints for maximum privacy and cost efficiency.

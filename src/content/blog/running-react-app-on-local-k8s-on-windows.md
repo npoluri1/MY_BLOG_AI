@@ -5,6 +5,7 @@ pubDate: 2021-03-16
 heroImage: "/images/linkedin/1770816401669.jpg"
 category: ["kubernetes", "react", "docker", "windows"]
 author: "Naga Siva Poluri"
+primaryCategory: "kubernetes"
 ---
 
 Process and steps for running react app on local k8s cluster using minikube on windows 10.

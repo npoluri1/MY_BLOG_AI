@@ -5,6 +5,7 @@ pubDate: 2021-07-06
 heroImage: "/images/linkedin/1766573469229.jpg"
 category: ["windows", "productivity"]
 author: "Naga Siva Poluri"
+primaryCategory: "windows"
 ---
 
 Very useful Taskbar Settings goes missing in Windows 11.

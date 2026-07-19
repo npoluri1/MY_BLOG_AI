@@ -5,6 +5,7 @@ pubDate: 2026-07-11
 heroImage: "/images/linkedin/1773814788769.jpeg"
 category: ["ai", "machine-learning"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 # Understanding the KV Cache: The VRAM Bottleneck of LLM Serving

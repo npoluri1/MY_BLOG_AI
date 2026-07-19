@@ -6,6 +6,8 @@ pubDate: 2025-07-01
 tags: ["ai", "agentic", "enterprise", "use-cases", "automation"]
 image: "https://images.unsplash.com/photo-1531746790731-6c087decd6eb?w=1200&h=675&fit=crop"
 readingTime: "15 min read"
+primaryCategory: "ai"
+author: "Naren Vadapalli"
 ---
 
 The shift from reactive AI (answering questions when prompted) to agentic AI (autonomously planning, acting, and observing to achieve goals) represents the most significant change in enterprise automation since the introduction of business process management systems. This post catalogs real implementations running in production today or in active pilot programs across industries.

@@ -6,6 +6,8 @@ pubDate: 2025-07-22
 tags: ["ai", "agentic", "mcp", "enterprise", "architecture"]
 image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=675&fit=crop"
 readingTime: "12 min read"
+primaryCategory: "ai"
+author: "Naren Vadapalli"
 ---
 
 Everyone's talking about agentic AI. Autonomous agents that can reason, plan, and execute complex tasks. But here's the truth: most agentic AI systems never make it to production.

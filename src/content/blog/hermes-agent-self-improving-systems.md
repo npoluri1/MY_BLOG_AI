@@ -5,6 +5,7 @@ pubDate: 2026-07-14
 heroImage: "/images/linkedin/SOSA-4png.jpeg"
 category: ["ai", "machine-learning"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 # Nous Research's Hermes Agent: Under the Hood

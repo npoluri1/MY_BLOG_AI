@@ -5,6 +5,7 @@ pubDate: 2023-04-04
 heroImage: "/images/linkedin/1765098776312.jpg"
 category: ["github", "git", "tutorial"]
 author: "Naga Siva Poluri"
+primaryCategory: "github"
 ---
 
 Using git credentials store the github access token to avoid the re-prompting of username and pwd.

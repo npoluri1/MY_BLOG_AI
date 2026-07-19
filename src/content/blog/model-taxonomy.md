@@ -5,6 +5,7 @@ pubDate: 2026-07-08
 heroImage: "/images/linkedin/1768485647924.jpg"
 category: ["ai", "machine-learning"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 # The Model Taxonomy: LLMs, Vision Models, VLAs, and Diffusion

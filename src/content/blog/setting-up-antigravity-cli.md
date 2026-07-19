@@ -5,6 +5,7 @@ pubDate: 2026-06-20
 heroImage: "/images/linkedin/1770914835114.jpg"
 category: ["ai", "agentic", "google"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 A comprehensive guide on installing and configuring Google Antigravity CLI (agy) on Mac, Windows, and Linux, complete with TUI commands, settings.json customization, and real-world usage examples.

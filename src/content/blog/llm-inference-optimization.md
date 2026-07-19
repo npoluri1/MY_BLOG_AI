@@ -6,6 +6,8 @@ pubDate: 2025-07-05
 tags: ["ai", "machine-learning", "performance", "infrastructure"]
 image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=675&fit=crop"
 readingTime: "18 min read"
+primaryCategory: "ai"
+author: "Naren Vadapalli"
 ---
 
 Running Large Language Models in production requires understanding the微妙 balance between latency, throughput, and cost. This guide covers the key optimization techniques used in modern LLM serving systems.

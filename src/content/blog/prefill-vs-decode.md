@@ -5,6 +5,7 @@ pubDate: 2026-07-10
 heroImage: "/images/linkedin/1769769910926.jpg"
 category: ["ai", "machine-learning"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 # The Two Pillars of LLM Inference: Prefill vs. Decode

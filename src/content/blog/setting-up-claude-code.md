@@ -5,6 +5,7 @@ pubDate: 2026-06-28
 heroImage: "/images/linkedin/1771200450392.jpg"
 category: ["ai", "agentic", "claude-code"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 # Setting up Claude Code: The Ultimate Terminal AI Pair Programmer

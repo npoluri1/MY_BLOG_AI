@@ -6,6 +6,8 @@ pubDate: 2025-06-12
 tags: ["ai", "skills", "enterprise", "code-examples", "agentic"]
 image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=400&fit=crop"
 readingTime: "14 min"
+primaryCategory: "ai"
+author: "Naren Vadapalli"
 ---
 
 # Building with Skills: The Missing Piece in Enterprise AI

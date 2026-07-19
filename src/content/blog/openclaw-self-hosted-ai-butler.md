@@ -5,6 +5,7 @@ pubDate: 2026-07-15
 heroImage: "/images/linkedin/1769091447623.jpg"
 category: ["ai", "machine-learning"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 # The Self-Hosted AI Butler: Modular Assistance with OpenClaw

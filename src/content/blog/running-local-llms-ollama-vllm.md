@@ -5,6 +5,7 @@ pubDate: 2026-07-04
 heroImage: "/images/linkedin/Open Source AI Infrastructure Whitepaper_thumb.jpg"
 category: ["ai", "agentic", "claude-code"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 # Running Local LLMs: Ollama vs. vLLM

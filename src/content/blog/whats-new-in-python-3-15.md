@@ -5,6 +5,7 @@ pubDate: 2026-06-19
 heroImage: "/images/linkedin/1774023969261.jpg"
 category: ["ai", "python", "tutorial"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 A deep dive into the most exciting developer features in the Python 3.15 pre-release, including explicit lazy imports, frozendict, built-in sentinels, unpacking in comprehensions, and the Tachyon profiler.

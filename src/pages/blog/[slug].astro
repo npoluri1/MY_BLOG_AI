@@ -5,7 +5,7 @@ import { getCollection, render } from 'astro:content';
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map(post => ({
-    params: { slug: post.id },
+    params: { slug: post.id.replace(/\.md$/, '') },
     props: { post },
   }));
 }
@@ -13,10 +13,12 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
-// Calculate reading time (average 200 words per minute)
 const content = post.body || '';
 const wordCount = content.split(/\s+/).length;
 const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
+const author = post.data.author || 'Devlin Liles';
+const sourceUrl = post.data.sourceUrl;
 
 const allPosts = (await getCollection('blog'))
   .filter(p => p.id !== post.id)
@@ -24,42 +26,65 @@ const allPosts = (await getCollection('blog'))
   .slice(0, 3);
 ---
 
-<BaseLayout title={`${post.data.title} | Naga Siva Poluri`} description={post.data.description} image={post.data.image || post.data.heroImage}>
-  <!-- Reading Progress -->
+<BaseLayout title={`${post.data.title} — Devlin Liles`} description={post.data.description} image={post.data.image || post.data.heroImage}>
   <div class="reading-progress" id="reading-progress"></div>
 
-  <!-- Post Hero -->
   <div class="post-hero">
     <div class="container">
       <a href="/blog" class="back-link reveal">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        Back to Blog
+        Back to Constellation
       </a>
       <div class="post-meta reveal stagger-1">
         <span class="post-date">{post.data.pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
         <span class="post-reading">{readingTime} min read</span>
-        {post.data.author && <span class="post-author">by {post.data.author}</span>}
+        {post.data.primaryCategory && <span class="post-cat">{post.data.primaryCategory}</span>}
       </div>
       <h1 class="post-title reveal stagger-2">{post.data.title}</h1>
       <p class="post-desc reveal stagger-3">{post.data.description}</p>
       <div class="post-tags reveal stagger-4">
-        {(post.data.category || post.data.tags || []).map(tag => (
+        {(post.data.category || post.data.tags || []).slice(0, 6).map(tag => (
           <span class="badge">{tag}</span>
         ))}
       </div>
     </div>
   </div>
 
-  <!-- Post Content -->
   <article class="post-content">
     <div class="container-narrow">
       <div class="prose">
         <Content />
       </div>
+
+      <aside class="source-citation reveal">
+        <div class="source-citation-inner">
+          <div class="source-mark">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+          </div>
+          <div class="source-body">
+            <p class="source-eyebrow">Original Source & Attribution</p>
+            <p class="source-text">
+              This article is republished from the original archive of <strong>{author}</strong> on
+              <a href="https://www.devlinliles.com/" target="_blank" rel="noopener noreferrer">devlinliles.com</a>.
+              {sourceUrl ? ' Read the original at:' : ' Browse the full archive at devlinliles.com.'}
+            </p>
+            {sourceUrl ? (
+              <a href={sourceUrl} target="_blank" rel="noopener noreferrer" class="source-link">
+                {sourceUrl}
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            ) : (
+              <a href="https://www.devlinliles.com/" target="_blank" rel="noopener noreferrer" class="source-link">
+                https://www.devlinliles.com/
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            )}
+          </div>
+        </div>
+      </aside>
     </div>
   </article>
 
-  <!-- Share -->
   <div class="post-share">
     <div class="container-narrow">
       <div class="share-bar reveal">
@@ -73,14 +98,13 @@ const allPosts = (await getCollection('blog'))
     </div>
   </div>
 
-  <!-- Related Posts -->
   {allPosts.length > 0 && (
     <section class="related-section">
       <div class="container">
         <h2 class="related-title reveal">More Articles</h2>
         <div class="related-grid">
           {allPosts.map(p => (
-            <a href={`/blog/${p.id}`} class="related-card card-3d reveal">
+            <a href={`/blog/${p.id.replace(/\.md$/, '')}`} class="related-card card-3d reveal">
               <span class="related-date">{p.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
               <h3 class="related-card-title">{p.data.title}</h3>
               <p class="related-card-desc">{p.data.description.slice(0, 120)}...</p>
@@ -105,11 +129,7 @@ const allPosts = (await getCollection('blog'))
     transition: width 0.1s linear;
   }
 
-  .post-hero {
-    padding: 10rem 0 3rem;
-    position: relative;
-  }
-
+  .post-hero { padding: 10rem 0 3rem; position: relative; }
   .post-hero::before {
     content: '';
     position: absolute;
@@ -126,6 +146,7 @@ const allPosts = (await getCollection('blog'))
     color: var(--text-muted);
     margin-bottom: 2rem;
     font-weight: 500;
+    text-decoration: none;
   }
   .back-link:hover { color: var(--accent-light); gap: 0.7rem; }
 
@@ -138,7 +159,6 @@ const allPosts = (await getCollection('blog'))
     font-size: 0.9rem;
     color: var(--text-muted);
   }
-
   .post-reading {
     padding: 0.25rem 0.75rem;
     background: rgba(139, 92, 246, 0.1);
@@ -146,13 +166,7 @@ const allPosts = (await getCollection('blog'))
     color: var(--accent-light);
     font-size: 0.8rem;
   }
-
-  .post-categories {
-    display: flex;
-    gap: 0.5rem;
-  }
-
-  .category-tag {
+  .post-cat {
     padding: 0.25rem 0.75rem;
     background: rgba(20, 184, 166, 0.1);
     border-radius: var(--radius-full);
@@ -166,96 +180,70 @@ const allPosts = (await getCollection('blog'))
     font-size: clamp(2rem, 5vw, 3.2rem);
     margin-bottom: 1.25rem;
     line-height: 1.15;
+    letter-spacing: -0.02em;
   }
-
-  .post-desc {
-    font-size: 1.15rem;
-    color: var(--text-secondary);
-    max-width: 700px;
-    margin-bottom: 1.5rem;
-  }
-
+  .post-desc { font-size: 1.15rem; color: var(--text-secondary); max-width: 700px; margin-bottom: 1.5rem; }
   .post-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
-  .post-content { padding: 2rem 0 4rem; }
+  .post-content { padding: 2rem 0 3rem; }
+  .post-content .prose { max-width: 72ch; margin: 0 auto; font-size: 1.05rem; line-height: 1.85; }
+  .post-content .prose h2 { margin-top: 3rem; margin-bottom: 1.5rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+  .post-content .prose h3 { margin-top: 2rem; margin-bottom: 1rem; }
+  .post-content .prose p { margin-bottom: 1.5rem; }
+  .post-content .prose ul, .post-content .prose ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+  .post-content .prose li { margin-bottom: 0.75rem; }
+  .post-content .prose blockquote { margin: 2rem 0; padding: 1.5rem; font-size: 1.1rem; }
+  .post-content .prose pre { margin: 2rem 0; padding: 1.5rem; font-size: 0.9rem; line-height: 1.6; }
+  .post-content .prose img { border-radius: var(--radius-md); margin: 2rem 0; }
 
-  /* Improved blog content typography - single column, 65-75ch */
-  .post-content .prose {
+  .source-citation {
     max-width: 72ch;
-    margin: 0 auto;
-    font-size: 1.05rem;
-    line-height: 1.85;
-  }
-
-  .post-content .prose h2 {
-    margin-top: 3rem;
-    margin-bottom: 1.5rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .post-content .prose h3 {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .post-content .prose p {
-    margin-bottom: 1.5rem;
-  }
-
-  .post-content .prose ul,
-  .post-content .prose ol {
-    margin-bottom: 1.5rem;
-    padding-left: 1.5rem;
-  }
-
-  .post-content .prose li {
-    margin-bottom: 0.75rem;
-  }
-
-  .post-content .prose blockquote {
-    margin: 2rem 0;
+    margin: 3rem auto 0;
     padding: 1.5rem;
-    font-size: 1.1rem;
-  }
-
-  .post-content .prose pre {
-    margin: 2rem 0;
-    padding: 1.5rem;
-    font-size: 0.9rem;
-    line-height: 1.6;
-  }
-
-  .post-content .prose img {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, rgba(20, 184, 166, 0.04) 100%);
+    border: 1px solid rgba(139, 92, 246, 0.2);
     border-radius: var(--radius-md);
-    margin: 2rem 0;
+    position: relative;
   }
-
-  .post-content .prose figure {
-    margin: 2rem 0;
-    text-align: center;
-  }
-
-  .post-content .prose figcaption {
-    margin-top: 0.75rem;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    font-style: italic;
-  }
-
-  .post-share { padding: 2rem 0; border-top: 1px solid var(--border); }
-
-  .share-bar {
+  .source-citation-inner { display: flex; gap: 1rem; align-items: flex-start; }
+  .source-mark {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--accent-light);
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
+    justify-content: center;
   }
+  .source-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 0.35rem;
+  }
+  .source-text { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.5rem; }
+  .source-text a { color: var(--accent-light); font-weight: 600; text-decoration: none; }
+  .source-text a:hover { text-decoration: underline; }
+  .source-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
+    color: var(--teal-light);
+    word-break: break-all;
+    text-decoration: none;
+  }
+  .source-link:hover { color: var(--accent-light); }
 
+  .post-share { padding: 2rem 0; border-top: 1px solid var(--border); }
+  .share-bar { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; max-width: 72ch; margin: 0 auto; }
   .share-label { font-weight: 600; color: var(--text-primary); font-size: 0.95rem; }
-
   .share-links { display: flex; gap: 0.75rem; }
-
   .share-link {
     padding: 0.5rem 1.25rem;
     border-radius: var(--radius-sm);
@@ -265,68 +253,31 @@ const allPosts = (await getCollection('blog'))
     font-size: 0.85rem;
     font-weight: 500;
     cursor: pointer;
-    transition: var(--transition-fast);
     font-family: var(--font-sans);
+    transition: var(--transition-fast);
+    text-decoration: none;
   }
   .share-link:hover { background: rgba(139, 92, 246, 0.15); border-color: var(--border-accent); color: var(--accent-light); }
 
   .related-section { padding: 4rem 0; border-top: 1px solid var(--border); }
-
-  .related-title {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .related-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-
-  .related-card {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-  }
-
-  .related-date {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    margin-bottom: 0.75rem;
-  }
-
-  .related-card-title {
-    font-size: 1.05rem;
-    margin-bottom: 0.75rem;
-    line-height: 1.35;
-    color: var(--text-primary);
-  }
-
-  .related-card-desc {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-    flex: 1;
-    margin-bottom: 1rem;
-  }
-
-  .related-link {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--accent-light);
-  }
+  .related-title { font-size: 1.5rem; margin-bottom: 2rem; text-align: center; }
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .related-card { padding: 1.5rem; display: flex; flex-direction: column; text-decoration: none; }
+  .related-date { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .related-card-title { font-size: 1.05rem; margin-bottom: 0.75rem; line-height: 1.35; color: var(--text-primary); }
+  .related-card-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; flex: 1; margin-bottom: 1rem; }
+  .related-link { font-size: 0.85rem; font-weight: 600; color: var(--accent-light); }
 
   @media (max-width: 768px) {
     .post-hero { padding-top: 8rem; }
     .related-grid { grid-template-columns: 1fr; }
     .post-content .prose { font-size: 1rem; }
+    .source-citation-inner { flex-direction: column; }
   }
 </style>
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
-    // Reveal animations
     const revealElements = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -338,7 +289,6 @@ const allPosts = (await getCollection('blog'))
     }, { threshold: 0.1 });
     revealElements.forEach(el => observer.observe(el));
 
-    // Reading progress
     const bar = document.getElementById('reading-progress');
     if (bar) {
       window.addEventListener('scroll', () => {
@@ -348,7 +298,6 @@ const allPosts = (await getCollection('blog'))
       });
     }
 
-    // Copy link
     const copyBtn = document.getElementById('copy-link');
     if (copyBtn) {
       copyBtn.addEventListener('click', () => {

@@ -5,6 +5,7 @@ pubDate: 2026-07-12
 heroImage: "/images/linkedin/1766739951533.jpg"
 category: ["ai", "machine-learning"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 # The Landscape of LLM Inference Engines: Open Source vs. Enterprise

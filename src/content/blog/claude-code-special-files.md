@@ -5,6 +5,7 @@ pubDate: 2026-06-29
 heroImage: "/images/linkedin/1763455365474.jpg"
 category: ["ai", "agentic", "claude-code"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 # Claude Code Customization: CLAUDE.md, AGENTS.md, and SKILLS.md

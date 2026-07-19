@@ -5,6 +5,7 @@ pubDate: 2023-11-07
 heroImage: "/images/linkedin/1765094917834.jpg"
 category: ["linux", "virtualization", "tutorial"]
 author: "Naga Siva Poluri"
+primaryCategory: "linux"
 ---
 
 If you can SSH into a linux machine and want to find out if its baremetal or a virtual machine.

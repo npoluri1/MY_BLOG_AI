@@ -5,6 +5,7 @@ pubDate: 2023-03-21
 heroImage: "/images/linkedin/1765098421838.jpg"
 category: ["github", "ci-cd", "devops"]
 author: "Naga Siva Poluri"
+primaryCategory: "github"
 ---
 
 Explains how to generate a token using github API to be used in turn with Github self hosted runner registration.

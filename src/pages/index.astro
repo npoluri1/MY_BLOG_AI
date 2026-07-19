@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ThreeHero from '../components/ThreeHero.astro';
 import BlogCard from '../components/BlogCard.astro';
 import { getCollection } from 'astro:content';
 
@@ -66,9 +67,10 @@ const projects = [
 ---
 
 <BaseLayout title="Naga Siva Poluri | AI Integration Engineer & Full Stack Developer">
-  <!-- Hero Section -->
+  <!-- Hero Section with 3D Background -->
   <section class="hero">
-    <div class="container">
+    <ThreeHero />
+    <div class="container hero-content">
       <div class="hero-badge">
         <span class="badge-dot"></span>
         Available for AI Integration Consulting
@@ -150,10 +152,9 @@ const projects = [
       <div class="section-header">
         <h2>Latest Blog Posts</h2>
         <a href="/blog" class="section-link">Read All Posts →</a>
-      </div>
-      <div class="posts-list">
+      </div>        <div class="posts-list">
         {posts.map(post => (
-          <a href={`/blog/${post.id}`} class="post-card">
+          <a href={`/blog/${post.id.replace(/\.md$/, '')}`} class="post-card">
             <div class="post-meta">
               <span class="post-date">{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
               {post.data.readingTime && <span class="post-reading-time">• {post.data.readingTime}</span>}
@@ -220,8 +221,17 @@ const projects = [
 
 <style>
   .hero {
+    position: relative;
     padding: 8rem 0 4rem;
     text-align: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
   }
 
   .hero-badge {

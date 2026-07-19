@@ -5,6 +5,7 @@ pubDate: 2026-07-18
 heroImage: "/images/linkedin/1773233167982.jpg"
 category: ["ai", "machine-learning"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 # Token Economics, LLM Gateways, and Router9

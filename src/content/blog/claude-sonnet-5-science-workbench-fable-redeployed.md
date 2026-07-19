@@ -5,6 +5,7 @@ pubDate: 2026-07-02
 heroImage: "/images/linkedin/1764147173174.jpg"
 category: ["ai", "agentic", "claude-code"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 # Anthropic's Mid-2026 Wave: Claude Sonnet 5, Claude Science, and Fable 5 Redeployment

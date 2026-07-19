@@ -6,6 +6,8 @@ pubDate: 2025-06-18
 tags: ["ai", "deployment", "government", "case-study", "singapore"]
 image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop"
 readingTime: "16 min"
+primaryCategory: "ai"
+author: "Naren Vadapalli"
 ---
 
 # Production AI Deployment Patterns: Lessons from Singapore Government

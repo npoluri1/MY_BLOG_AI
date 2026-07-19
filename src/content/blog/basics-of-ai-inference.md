@@ -5,6 +5,7 @@ pubDate: 2026-07-09
 heroImage: "/images/linkedin/1761026282017.jpg"
 category: ["ai", "machine-learning"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 # Basics of AI Inference: Demystifying Latency, Throughput, and Serving

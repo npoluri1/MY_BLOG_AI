@@ -5,6 +5,7 @@ pubDate: 2021-09-02
 heroImage: "/images/linkedin/1766144567724.jpg"
 category: ["analytics", "nuxtjs", "webdev"]
 author: "Naga Siva Poluri"
+primaryCategory: "analytics"
 ---
 
 Adding Google Analytics GA4 property to NuxtJS App.

@@ -5,6 +5,7 @@ pubDate: 2020-01-02
 heroImage: "/images/linkedin/1764565070017.jpg"
 category: ["linux", "windows", "tutorial"]
 author: "Naga Siva Poluri"
+primaryCategory: "linux"
 ---
 
 Steps for safely removing linux from dual boot.

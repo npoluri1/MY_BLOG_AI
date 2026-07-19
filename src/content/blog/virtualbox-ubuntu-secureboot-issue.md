@@ -5,6 +5,7 @@ pubDate: 2021-05-09
 heroImage: "/images/linkedin/1773892471050.jpeg"
 category: ["linux", "ubuntu", "virtualbox", "devops"]
 author: "Naga Siva Poluri"
+primaryCategory: "linux"
 ---
 
 Set of steps required for dealing with secureboot on Ubuntu where VirutalBox service has issues.

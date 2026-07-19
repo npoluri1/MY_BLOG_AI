@@ -5,6 +5,7 @@ pubDate: 2021-04-21
 heroImage: "/images/linkedin/1769696459740.jpg"
 category: ["linux", "ubuntu", "tutorial"]
 author: "Naga Siva Poluri"
+primaryCategory: "linux"
 ---
 
 Steps to fix the postfix error happening during apt upgrade ubuntu.

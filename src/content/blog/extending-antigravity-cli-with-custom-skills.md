@@ -5,6 +5,7 @@ pubDate: 2026-06-21
 heroImage: "/images/linkedin/1764941218445.jpg"
 category: ["ai", "agentic", "google"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 Learn how to supercharge the Google Antigravity CLI (agy) by building custom agent skills, project-scoped rules, and custom scripts to automate repository-specific workflows.

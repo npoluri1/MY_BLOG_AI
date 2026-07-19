@@ -5,6 +5,7 @@ pubDate: 2026-07-06
 heroImage: "/images/linkedin/1773983859706.jpeg"
 category: ["ai", "agentic", "claude-code"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 # What is a Model Weight? Demystifying Tensors, Matrices, and File Formats

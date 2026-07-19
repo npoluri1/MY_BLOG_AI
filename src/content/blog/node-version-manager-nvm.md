@@ -5,6 +5,7 @@ pubDate: 2022-11-13
 heroImage: "/images/linkedin/1768914156377.jpg"
 category: ["nodejs", "windows", "tutorial"]
 author: "Naga Siva Poluri"
+primaryCategory: "nodejs"
 ---
 
 Node Version Manager (nvm) helps in managing multiple NodeJS versions.

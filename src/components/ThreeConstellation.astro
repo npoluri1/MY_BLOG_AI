@@ -1,0 +1,703 @@
+---
+// Receives posts as a JSON-serialized data attribute on the host element.
+interface Props {
+  posts: Array<{ slug: string; title: string; tags: string[]; primaryCategory?: string; pubDate: string; }>;
+}
+const { posts } = Astro.props;
+const postsJson = JSON.stringify(posts);
+---
+
+<div class="constellation-stage" data-posts={postsJson}>
+  <div id="constellation-canvas-host" class="constellation-canvas-host"></div>
+
+  <div id="constellation-labels" class="constellation-labels" aria-hidden="true"></div>
+
+  <div id="constellation-tooltip" class="constellation-tooltip" aria-hidden="true"></div>
+
+  <div id="constellation-overlay" class="constellation-overlay">
+    <div class="overlay-inner">
+      <span class="overlay-eyebrow">EXPLORE THE UNIVERSE</span>
+      <h2 class="overlay-title">A 3D Constellation of Ideas</h2>
+      <p class="overlay-desc">Drag to rotate. Scroll to zoom. Click any node to read the article. Hover a cluster label to dim others.</p>
+      <button id="constellation-enter" class="overlay-btn">Enter the Constellation</button>
+    </div>
+  </div>
+
+  <div id="constellation-hud" class="constellation-hud" aria-hidden="true">
+    <div class="hud-row">
+      <span class="hud-count" id="constellation-count">— nodes</span>
+      <span class="hud-hint">drag · scroll · click</span>
+    </div>
+    <div class="hud-row hud-legend" id="constellation-legend"></div>
+  </div>
+
+  <button id="constellation-reset" class="constellation-reset" aria-label="Reset camera">⟲ Reset</button>
+</div>
+
+<script is:inline src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof THREE === 'undefined') return;
+    const host = document.getElementById('constellation-canvas-host');
+    const labels = document.getElementById('constellation-labels');
+    const tooltip = document.getElementById('constellation-tooltip');
+    const overlay = document.getElementById('constellation-overlay');
+    const enterBtn = document.getElementById('constellation-enter');
+    const hudCount = document.getElementById('constellation-count');
+    const hudLegend = document.getElementById('constellation-legend');
+    const resetBtn = document.getElementById('constellation-reset');
+    if (!host || !labels) return;
+
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (isMobile) {
+      host.style.display = 'none';
+      labels.style.display = 'none';
+      tooltip.style.display = 'none';
+      const overlayEl = document.getElementById('constellation-overlay');
+      if (overlayEl) overlayEl.style.display = 'none';
+      const hudEl = document.getElementById('constellation-hud');
+      if (hudEl) hudEl.style.display = 'none';
+      const resetEl = document.getElementById('constellation-reset');
+      if (resetEl) resetEl.style.display = 'none';
+      return;
+    }
+
+    const COLORS = [0x8b5cf6, 0x14b8a6, 0x3b82f6, 0xf97316, 0xec4899, 0x22c55e, 0xeab308, 0x06b6d4];
+    const PALETTE_HEX = ['#a78bfa', '#2dd4bf', '#60a5fa', '#fb923c', '#f472b6', '#4ade80', '#facc15', '#22d3ee'];
+
+    const posts = (() => { try { return JSON.parse(host.parentElement?.dataset?.posts || host.dataset?.posts || '[]'); } catch { return []; } })();
+    if (!posts.length) return;
+
+    const tagBuckets = new Map();
+    for (const p of posts) {
+      const t = (p.primaryCategory || (p.tags && p.tags[0]) || 'misc').toLowerCase();
+      if (!tagBuckets.has(t)) tagBuckets.set(t, []);
+      tagBuckets.get(t).push(p);
+    }
+    const sortedTags = [...tagBuckets.entries()]
+      .sort((a, b) => b[1].length - a[1].length)
+      .slice(0, 10)
+      .map(([name, items]) => ({ name, items }));
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x06060e, 0.012);
+    scene.background = new THREE.Color(0x06060e);
+
+    const camera = new THREE.PerspectiveCamera(55, host.clientWidth / host.clientHeight, 0.1, 500);
+    camera.position.set(0, 14, 62);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+    renderer.setSize(host.clientWidth, host.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    host.appendChild(renderer.domElement);
+
+    const ambient = new THREE.AmbientLight(0xffffff, 0.55);
+    scene.add(ambient);
+    const dir = new THREE.DirectionalLight(0xa78bfa, 0.7);
+    dir.position.set(20, 30, 20);
+    scene.add(dir);
+    const dir2 = new THREE.DirectionalLight(0x2dd4bf, 0.4);
+    dir2.position.set(-20, -10, -20);
+    scene.add(dir2);
+
+    const starCount = 1400;
+    const starGeo = new THREE.BufferGeometry();
+    const starPos = new Float32Array(starCount * 3);
+    const starCol = new Float32Array(starCount * 3);
+    for (let i = 0; i < starCount; i++) {
+      const r = 120 + Math.random() * 80;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      starPos[i*3]   = r * Math.sin(phi) * Math.cos(theta);
+      starPos[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
+      starPos[i*3+2] = r * Math.cos(phi);
+      const tint = new THREE.Color(COLORS[i % COLORS.length]);
+      starCol[i*3]   = tint.r * (0.5 + Math.random() * 0.5);
+      starCol[i*3+1] = tint.g * (0.5 + Math.random() * 0.5);
+      starCol[i*3+2] = tint.b * (0.5 + Math.random() * 0.5);
+    }
+    starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+    starGeo.setAttribute('color', new THREE.BufferAttribute(starCol, 3));
+    const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ size: 0.55, vertexColors: true, transparent: true, opacity: 0.95, sizeAttenuation: true }));
+    scene.add(stars);
+
+    const nodeGeo = new THREE.SphereGeometry(0.55, 16, 12);
+    const ringGeo = new THREE.RingGeometry(0.7, 0.95, 32);
+    const linkGeo = new THREE.BufferGeometry();
+
+    const fibonacci = (n, i) => {
+      const phi = Math.acos(1 - 2 * (i + 0.5) / n);
+      const theta = Math.PI * (1 + Math.sqrt(5)) * i;
+      return new THREE.Vector3(
+        Math.sin(phi) * Math.cos(theta),
+        Math.cos(phi) * 0.45,
+        Math.sin(phi) * Math.sin(theta)
+      );
+    };
+
+    const clusters = [];
+    const nodes = [];
+    const links = [];
+
+    const TAG_RADIUS = 24;
+
+    sortedTags.forEach((bucket, idx) => {
+      const colorHex = COLORS[idx % COLORS.length];
+      const center = fibonacci(sortedTags.length, idx).multiplyScalar(TAG_RADIUS);
+
+      const cluster = new THREE.Group();
+      const haloGeo = new THREE.IcosahedronGeometry(TAG_RADIUS * 0.18, 1);
+      const haloMat = new THREE.MeshBasicMaterial({ color: colorHex, wireframe: true, transparent: true, opacity: 0.18 });
+      const halo = new THREE.Mesh(haloGeo, haloMat);
+      cluster.add(halo);
+      cluster.position.copy(center);
+      scene.add(cluster);
+
+      clusters.push({ name: bucket.name, color: colorHex, center, group: cluster, count: bucket.items.length });
+
+      bucket.items.forEach((post, j) => {
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+        const radius = 3 + Math.random() * 5;
+        const offset = new THREE.Vector3(
+          radius * Math.sin(phi) * Math.cos(theta),
+          radius * Math.cos(phi) * 0.6,
+          radius * Math.sin(phi) * Math.sin(theta)
+        );
+
+        const mat = new THREE.MeshStandardMaterial({
+          color: colorHex,
+          emissive: colorHex,
+          emissiveIntensity: 0.9,
+          metalness: 0.2,
+          roughness: 0.35,
+        });
+        const node = new THREE.Mesh(nodeGeo, mat);
+        node.position.copy(center).add(offset);
+        const scale = 0.7 + Math.random() * 0.6;
+        node.scale.setScalar(scale);
+        node.userData = {
+          slug: post.slug,
+          title: post.title,
+          tag: bucket.name,
+          date: post.pubDate,
+          color: colorHex,
+          baseEmissive: 0.9,
+          baseScale: scale,
+          clusterIdx: idx,
+        };
+        scene.add(node);
+        nodes.push(node);
+
+        const ring = new THREE.Mesh(
+          ringGeo,
+          new THREE.MeshBasicMaterial({ color: colorHex, transparent: true, opacity: 0.55, side: THREE.DoubleSide })
+        );
+        ring.position.copy(node.position);
+        ring.lookAt(0, 0, 0);
+        ring.userData = { parent: node };
+        scene.add(ring);
+        node.userData.ring = ring;
+
+        if (j % 3 === 0) {
+          links.push(center.clone(), node.position.clone());
+        }
+      });
+    });
+
+    const linkPositions = new Float32Array(links.length * 3);
+    links.forEach((v, i) => { linkPositions[i*3] = v.x; linkPositions[i*3+1] = v.y; linkPositions[i*3+2] = v.z; });
+    linkGeo.setAttribute('position', new THREE.BufferAttribute(linkPositions, 3));
+    const linkMat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.08 });
+    const lineSegs = new THREE.LineSegments(linkGeo, linkMat);
+    scene.add(lineSegs);
+
+    sortedTags.forEach((c, i) => {
+      const div = document.createElement('div');
+      div.className = 'constellation-label';
+      div.dataset.idx = i;
+      div.innerHTML = `<span class="dot" style="background:${PALETTE_HEX[i % PALETTE_HEX.length]}"></span><span class="name">${c.name}</span><span class="count">${c.count}</span>`;
+      labels.appendChild(div);
+
+      div.addEventListener('mouseenter', () => {
+        nodes.forEach(n => {
+          if (n.userData.clusterIdx !== i) {
+            n.material.emissiveIntensity = 0.15;
+            n.material.opacity = 0.45;
+            n.material.transparent = true;
+            n.userData.ring.material.opacity = 0.1;
+          } else {
+            n.material.emissiveIntensity = 1.6;
+            n.userData.ring.material.opacity = 0.85;
+          }
+        });
+      });
+      div.addEventListener('mouseleave', () => {
+        nodes.forEach(n => {
+          n.material.emissiveIntensity = n.userData.baseEmissive;
+          n.material.opacity = 1;
+          n.userData.ring.material.opacity = 0.55;
+        });
+      });
+
+      div.addEventListener('click', () => {
+        flyTo(c.center.clone().multiplyScalar(1.1), 1200);
+      });
+    });
+
+    hudCount.textContent = `${posts.length} nodes · ${sortedTags.length} clusters`;
+
+    const legendHtml = sortedTags.map((c, i) =>
+      `<span class="legend-pill" style="--c:${PALETTE_HEX[i % PALETTE_HEX.length]}">${c.name} <em>${c.count}</em></span>`
+    ).join('');
+    hudLegend.innerHTML = legendHtml;
+
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2(-10, -10);
+    let hovered = null;
+    let isDragging = false;
+    let dragStart = { x: 0, y: 0 };
+    let cameraTheta = Math.atan2(camera.position.x, camera.position.z);
+    let cameraPhi = Math.asin(camera.position.y / camera.position.length());
+    let cameraRadius = camera.position.length();
+    let targetTheta = cameraTheta;
+    let targetPhi = cameraPhi;
+    let targetRadius = cameraRadius;
+    const PAN_LIMIT_PHI = Math.PI / 2 - 0.2;
+
+    function updateCamera() {
+      cameraTheta += (targetTheta - cameraTheta) * 0.08;
+      cameraPhi += (targetPhi - cameraPhi) * 0.08;
+      cameraRadius += (targetRadius - cameraRadius) * 0.08;
+      const r = cameraRadius;
+      const sinPhi = Math.sin(cameraPhi);
+      camera.position.set(
+        r * sinPhi * Math.cos(cameraTheta),
+        r * Math.cos(cameraPhi),
+        r * sinPhi * Math.sin(cameraTheta)
+      );
+      camera.lookAt(0, 0, 0);
+    }
+
+    function flyTo(targetVec, duration = 1000) {
+      const desiredR = targetVec.length() * 1.4;
+      const desiredTheta = Math.atan2(targetVec.x, targetVec.z);
+      const desiredPhi = Math.asin(targetVec.y / desiredR);
+      const startR = cameraRadius, startT = cameraTheta, startP = cameraPhi;
+      const start = performance.now();
+      function step(now) {
+        const t = Math.min(1, (now - start) / duration);
+        const e = 1 - Math.pow(1 - t, 3);
+        cameraRadius = startR + (desiredR - startR) * e;
+        targetRadius = cameraRadius;
+        cameraTheta = startT + (desiredTheta - startT) * e;
+        targetTheta = cameraTheta;
+        cameraPhi = startP + (desiredPhi - startP) * e;
+        targetPhi = cameraPhi;
+        if (t < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    function onPointerDown(e) {
+      isDragging = false;
+      dragStart.x = e.clientX;
+      dragStart.y = e.clientY;
+      window.addEventListener('pointermove', onPointerMove);
+      window.addEventListener('pointerup', onPointerUp);
+    }
+    function onPointerMove(e) {
+      const dx = e.clientX - dragStart.x;
+      const dy = e.clientY - dragStart.y;
+      if (Math.hypot(e.clientX - dragStart.x, e.clientY - dragStart.y) > 4) isDragging = true;
+      if (isDragging) {
+        targetTheta -= dx * 0.005;
+        targetPhi = Math.max(-PAN_LIMIT_PHI, Math.min(PAN_LIMIT_PHI, targetPhi + dy * 0.005));
+        dragStart.x = e.clientX;
+        dragStart.y = e.clientY;
+        pointer.x = -10; pointer.y = -10;
+        tooltip.style.display = 'none';
+      } else {
+        const rect = renderer.domElement.getBoundingClientRect();
+        pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      }
+    }
+    function onPointerUp(e) {
+      window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('pointerup', onPointerUp);
+      renderer.domElement.style.cursor = 'grab';
+      if (!isDragging && hovered) {
+        window.location.href = `/blog/${hovered.userData.slug}`;
+      }
+    }
+
+    renderer.domElement.addEventListener('pointerdown', onPointerDown);
+
+    function onWheel(e) {
+      e.preventDefault();
+      targetRadius = Math.max(18, Math.min(120, targetRadius + e.deltaY * 0.04));
+    }
+    renderer.domElement.addEventListener('wheel', onWheel, { passive: false });
+
+    function onResize() {
+      const w = host.clientWidth;
+      const h = host.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    }
+    window.addEventListener('resize', onResize);
+
+    function onReset() {
+      targetTheta = Math.atan2(0, 62);
+      targetPhi = Math.asin(14 / 62);
+      targetRadius = 62;
+    }
+    resetBtn?.addEventListener('click', onReset);
+
+    if (enterBtn) {
+      enterBtn.addEventListener('click', () => {
+        overlay.classList.add('dismissed');
+        onReset();
+      });
+    }
+    if (overlay && !sessionStorage.getItem('constellationSeen')) {
+      overlay.classList.add('visible');
+      sessionStorage.setItem('constellationSeen', '1');
+    } else if (overlay) {
+      overlay.classList.add('dismissed');
+    }
+
+    const clock = new THREE.Clock();
+    let animId;
+    function animate() {
+      animId = requestAnimationFrame(animate);
+      const elapsed = clock.getElapsedTime();
+
+      stars.rotation.y = elapsed * 0.015;
+      stars.rotation.x = Math.sin(elapsed * 0.05) * 0.1;
+
+      for (const c of clusters) {
+        c.group.rotation.y = elapsed * 0.04 * (c.group.position.y > 0 ? 1 : -1);
+      }
+      for (const n of nodes) {
+        if (n !== hovered) {
+          n.material.emissiveIntensity = n.userData.baseEmissive + Math.sin(elapsed * 1.5 + n.userData.clusterIdx) * 0.15;
+        }
+        n.userData.ring.rotation.z = elapsed * 0.6 + n.userData.clusterIdx;
+        n.userData.ring.lookAt(camera.position);
+        const pulse = 1 + Math.sin(elapsed * 1.8 + n.position.x) * 0.08;
+        n.scale.setScalar(n.userData.baseScale * pulse);
+      }
+
+      if (pointer.x > -2 && !isDragging) {
+        raycaster.setFromCamera(pointer, camera);
+        const hits = raycaster.intersectObjects(nodes, false);
+        const newHover = hits.length ? hits[0].object : null;
+        if (newHover !== hovered) {
+          if (hovered) {
+            hovered.material.emissiveIntensity = hovered.userData.baseEmissive;
+            hovered.scale.setScalar(hovered.userData.baseScale);
+            hovered.userData.ring.material.opacity = 0.55;
+          }
+          hovered = newHover;
+          if (hovered) {
+            hovered.material.emissiveIntensity = 2.2;
+            hovered.userData.ring.material.opacity = 1;
+            renderer.domElement.style.cursor = 'pointer';
+            tooltip.innerHTML = `<strong>${hovered.userData.title}</strong><span>${hovered.userData.tag}</span><em>${hovered.userData.date}</em>`;
+            tooltip.style.display = 'block';
+            const rect = renderer.domElement.getBoundingClientRect();
+            const tx = (pointer.x * 0.5 + 0.5) * rect.width + rect.left;
+            const ty = (-pointer.y * 0.5 + 0.5) * rect.height + rect.top;
+            tooltip.style.left = (tx + 14) + 'px';
+            tooltip.style.top = (ty - 30) + 'px';
+          } else {
+            renderer.domElement.style.cursor = 'grab';
+            tooltip.style.display = 'none';
+          }
+        } else if (hovered) {
+          const rect = renderer.domElement.getBoundingClientRect();
+          const tx = (pointer.x * 0.5 + 0.5) * rect.width + rect.left;
+          const ty = (-pointer.y * 0.5 + 0.5) * rect.height + rect.top;
+          tooltip.style.left = (tx + 14) + 'px';
+          tooltip.style.top = (ty - 30) + 'px';
+        }
+      } else if (hovered) {
+        hovered.material.emissiveIntensity = hovered.userData.baseEmissive;
+        hovered.scale.setScalar(hovered.userData.baseScale);
+        hovered.userData.ring.material.opacity = 0.55;
+        hovered = null;
+        tooltip.style.display = 'none';
+        renderer.domElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+      }
+
+      updateCamera();
+      renderer.render(scene, camera);
+
+      const labelDivs = labels.querySelectorAll('.constellation-label');
+      const v = new THREE.Vector3();
+      labelDivs.forEach((d, i) => {
+        v.copy(clusters[i].center).project(camera);
+        const x = (v.x * 0.5 + 0.5) * host.clientWidth;
+        const y = (-v.y * 0.5 + 0.5) * host.clientHeight;
+        d.style.transform = `translate(-50%, -50%) translate3d(${x}px, ${y}px, 0)`;
+        const onScreen = v.z < 1 && v.z > -1 && camera.position.distanceTo(clusters[i].center) < 90;
+        d.style.opacity = onScreen ? '1' : '0';
+      });
+    }
+    renderer.domElement.style.cursor = 'grab';
+    animate();
+
+    function cleanup() {
+      cancelAnimationFrame(animId);
+      renderer.domElement.removeEventListener('pointerdown', onPointerDown);
+      renderer.domElement.removeEventListener('wheel', onWheel);
+      window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('pointerup', onPointerUp);
+      window.removeEventListener('resize', onResize);
+      window.removeEventListener('mousemove', onMouseMove);
+      resetBtn?.removeEventListener('click', onReset);
+      renderer.dispose();
+      nodeGeo.dispose();
+      ringGeo.dispose();
+      linkGeo.dispose();
+      starGeo.dispose();
+      for (const n of nodes) {
+        n.material.dispose();
+        n.userData.ring.material.dispose();
+      }
+      for (const c of clusters) {
+        c.group.children.forEach(ch => { if (ch.material) ch.material.dispose(); if (ch.geometry) ch.geometry.dispose(); });
+      }
+    }
+    document.addEventListener('astro:before-swap', cleanup);
+  });
+</script>
+
+<style>
+  .constellation-stage {
+    position: relative;
+    width: 100%;
+    height: clamp(560px, 78vh, 920px);
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 40%, rgba(139, 92, 246, 0.10) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(20, 184, 166, 0.06) 0%, transparent 60%),
+                var(--bg-primary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+  }
+
+  .constellation-canvas-host {
+    position: absolute;
+    inset: 0;
+    cursor: grab;
+  }
+
+  .constellation-canvas-host :global(canvas) {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .constellation-labels {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .constellation-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.4rem 0.85rem;
+    background: rgba(6, 6, 14, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-full);
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: transform 0.25s var(--ease-out), border-color 0.25s;
+    will-change: transform, opacity;
+  }
+  .constellation-label:hover {
+    border-color: var(--accent-light);
+    transform-origin: center;
+  }
+  .constellation-label .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .constellation-label .name {
+    text-transform: uppercase;
+  }
+  .constellation-label .count {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    padding: 0.05rem 0.4rem;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-full);
+  }
+
+  .constellation-tooltip {
+    position: fixed;
+    z-index: 1002;
+    display: none;
+    pointer-events: none;
+    background: rgba(6, 6, 14, 0.92);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-hover);
+    border-radius: var(--radius-md);
+    padding: 0.85rem 1rem;
+    color: var(--text-primary);
+    max-width: 280px;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  }
+  .constellation-tooltip strong {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.35rem;
+  }
+  .constellation-tooltip span {
+    display: inline-block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent-light);
+    margin-bottom: 0.3rem;
+  }
+  .constellation-tooltip em {
+    display: block;
+    font-style: normal;
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    margin-top: 0.2rem;
+  }
+
+  .constellation-hud {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    z-index: 5;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .hud-row { display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap; }
+  .hud-hint { opacity: 0.6; }
+  .hud-legend { gap: 0.5rem; }
+  .legend-pill {
+    padding: 0.18rem 0.6rem;
+    border: 1px solid color-mix(in oklab, var(--c) 45%, transparent);
+    background: color-mix(in oklab, var(--c) 12%, transparent);
+    border-radius: var(--radius-full);
+    color: var(--text-secondary);
+  }
+  .legend-pill em { font-style: normal; opacity: 0.7; margin-left: 0.35rem; }
+
+  .constellation-reset {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 5;
+    padding: 0.45rem 0.85rem;
+    background: rgba(6, 6, 14, 0.7);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: var(--transition-fast);
+  }
+  .constellation-reset:hover { border-color: var(--accent); color: var(--accent-light); }
+
+  .constellation-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(6, 6, 14, 0.85) 0%, rgba(6, 6, 14, 0.65) 60%, rgba(6, 6, 14, 0.85) 100%);
+    backdrop-filter: blur(6px);
+    pointer-events: auto;
+    opacity: 0;
+    transition: opacity 0.5s var(--ease-out);
+  }
+  .constellation-overlay.visible { display: flex; opacity: 1; }
+  .constellation-overlay.dismissed { display: none; }
+  .overlay-inner { text-align: center; max-width: 520px; padding: 2rem; }
+  .overlay-eyebrow {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    color: var(--accent-light);
+    margin-bottom: 0.5rem;
+  }
+  .overlay-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+  }
+  .overlay-desc {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+  }
+  .overlay-btn {
+    padding: 0.75rem 1.75rem;
+    background: var(--gradient-accent);
+    background-size: 200% 200%;
+    animation: gradient-shift 4s ease infinite;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: var(--transition-fast);
+  }
+  .overlay-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(139, 92, 246, 0.45); }
+
+  @media (max-width: 768px) {
+    .constellation-stage { display: none; }
+  }
+</style>

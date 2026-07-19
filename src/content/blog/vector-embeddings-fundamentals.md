@@ -6,6 +6,8 @@ pubDate: 2025-06-15
 tags: ["ai", "machine-learning", "embeddings", "fundamentals"]
 image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&h=675&fit=crop"
 readingTime: "13 min read"
+primaryCategory: "ai"
+author: "Naren Vadapalli"
 ---
 
 Vector embeddings have become the universal building block of modern AI applications. Understanding how they work is essential for anyone building semantic search, recommendation, or RAG systems.

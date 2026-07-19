@@ -5,6 +5,7 @@ pubDate: 2026-07-07
 heroImage: "/images/linkedin/1773400769859.jpg"
 category: ["ai", "agentic", "claude-code"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 # Training vs. Inference Lifecycle: A Developer's Guide to Weights, Backpropagation, and Serving

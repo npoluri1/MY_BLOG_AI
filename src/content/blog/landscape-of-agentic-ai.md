@@ -5,6 +5,7 @@ pubDate: 2026-07-13
 heroImage: "/images/linkedin/Untitled4pdf_thumb.jpg"
 category: ["ai", "machine-learning"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 # The Landscape of Agentic AI: From Single-Agent Scripts to Multi-Agent Networks

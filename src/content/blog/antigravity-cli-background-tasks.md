@@ -5,6 +5,7 @@ pubDate: 2026-06-23
 heroImage: "/images/linkedin/1760586449121.jpg"
 category: ["ai", "agentic", "google"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 A deep dive into managing long-running tasks, using asynchronous tools, setting timers, and configuring recurring jobs with the Google Antigravity CLI.

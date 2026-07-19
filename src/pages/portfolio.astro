@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SkillBadge from '../components/SkillBadge.astro';
+import SectionHeader from '../components/SectionHeader.astro';
 
 const projects = [
   {
@@ -180,6 +181,93 @@ const projects = [
     link: '#',
   },
 ];
+
+// ---------- GitHub Open Source ----------
+// Build-time fetch of all public repos. Falls back gracefully on rate limit / network error
+// so the page never fails to build.
+const GITHUB_USER = 'narenandu';
+const GH_API = `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`;
+
+// Language → dot color (GitHub palette)
+const GH_LANG_COLORS = {
+  JavaScript: '#f1e05a',
+  TypeScript: '#3178c6',
+  Python: '#3572A5',
+  Vue: '#41b883',
+  Go: '#00ADD8',
+  Astro: '#FF5D01',
+  Java: '#b07219',
+  'C++': '#f34b7d',
+  C: '#555555',
+  PHP: '#4F5D95',
+  Ruby: '#701516',
+  HCL: '#623fff',
+  Shell: '#89e051',
+  HTML: '#e34c26',
+  Puppet: '#302B6D',
+  Dockerfile: '#384d54',
+};
+
+function ghLangColor(lang) {
+  return GH_LANG_COLORS[lang] || 'var(--accent)';
+}
+
+// Lightweight relative time at build time (no library).
+function timeAgo(dateStr) {
+  if (!dateStr) return '';
+  const then = new Date(dateStr);
+  if (isNaN(then.getTime())) return '';
+  const now = new Date();
+  const diffSec = Math.floor((now - then) / 1000);
+  if (diffSec < 0) return 'just now';
+  if (diffSec < 60) return 'just now';
+  if (diffSec < 3600) return `${Math.floor(diffSec / 60)}m ago`;
+  if (diffSec < 86400) return `${Math.floor(diffSec / 3600)}h ago`;
+  if (diffSec < 604800) return `${Math.floor(diffSec / 86400)}d ago`;
+  if (diffSec < 2592000) return `${Math.floor(diffSec / 604800)}w ago`;
+  if (diffSec < 31536000) return `${Math.floor(diffSec / 2592000)}mo ago`;
+  return `${Math.floor(diffSec / 31536000)}y ago`;
+}
+
+let githubRepos = [];
+let githubSummary = { total: 0, stars: 0, forks: 0, languages: 0 };
+let githubFetchFailed = false;
+
+try {
+  const res = await fetch(GH_API, { headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'my-blog-ai-build' } });
+  if (res.ok) {
+    const data = await res.json();
+    if (Array.isArray(data)) {
+      // Sort: own+active by stars then updated, then forks, then archived
+      const active = data.filter(r => !r.fork && !r.archived)
+        .sort((a, b) => (b.stargazers_count - a.stargazers_count) || (new Date(b.updated_at) - new Date(a.updated_at)));
+      const forks = data.filter(r => r.fork && !r.archived)
+        .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+      const archived = data.filter(r => r.archived)
+        .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+      githubRepos = [...active, ...forks, archived].slice(0, 60);
+
+      const langs = new Set();
+      for (const r of githubRepos) {
+        if (r.language) langs.add(r.language);
+        githubSummary.stars += r.stargazers_count || 0;
+        githubSummary.forks += r.forks_count || 0;
+      }
+      githubSummary.total = githubRepos.length;
+      githubSummary.languages = langs.size;
+    } else {
+      githubFetchFailed = true;
+    }
+  } else {
+    githubFetchFailed = true;
+    console.warn(`[portfolio] GitHub API non-OK: ${res.status} ${res.statusText}`);
+  }
+} catch (err) {
+  githubFetchFailed = true;
+  console.warn('[portfolio] GitHub fetch error:', err?.message || err);
+}
+
+const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
 ---
 
 <BaseLayout title="Portfolio | Naga Siva Poluri" description="Featured projects and case studies by Naga Siva Poluri.">
@@ -247,6 +335,90 @@ const projects = [
           </article>
         ))}
       </div>
+    </div>
+  </section>
+
+  <!-- GitHub Open Source Section -->
+  <section class="os-section reveal">
+    <div class="container">
+      <SectionHeader
+        eyebrow="OPEN SOURCE"
+        title="GitHub Contributions"
+        desc={"A live mirror of all repositories on github.com/" + GITHUB_USER + " — fetched at build time. " + githubSummary.total + " repos across " + githubSummary.languages + " languages, " + githubSummary.stars + " stars total."}
+      />
+
+      {githubRepos.length === 0 ? (
+        <div class="os-empty">
+          <p>The GitHub API was unreachable from the build environment (rate limit or network).</p>
+          <a href={githubProfileUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            View all repos on GitHub →
+          </a>
+        </div>
+      ) : (
+        <>
+          <div class="os-toolbar">
+            <div class="os-summary">
+              <span class="os-stat"><strong>{githubSummary.total}</strong> repos</span>
+              <span class="os-stat"><strong>{githubSummary.languages}</strong> languages</span>
+              <span class="os-stat"><strong>{githubSummary.stars}</strong> ★</span>
+              <span class="os-stat"><strong>{githubSummary.forks}</strong> ⑂</span>
+            </div>
+            <a href={githubProfileUrl} target="_blank" rel="noopener noreferrer" class="os-profile-link">
+              github.com/{GITHUB_USER} ↗
+            </a>
+          </div>
+
+          <ol class="os-grid" aria-label="GitHub repositories list">
+            {githubRepos.map((repo, idx) => (
+              <li class="os-card reveal stagger-{(idx % 8) + 1}">
+                <a
+                  href={repo.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="os-link"
+                  aria-label={"View " + repo.name + " on GitHub. " + repo.stargazers_count + " stars."}
+                >
+                  {(repo.fork || repo.archived) && (
+                    <span class="os-tag" data-kind={repo.archived ? 'archived' : 'fork'}>
+                      {repo.archived ? 'archived' : 'fork'}
+                    </span>
+                  )}
+                  <header class="os-card-header">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="os-icon">
+                      <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.25.25 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z" />
+                    </svg>
+                    <h3 class="os-title">{repo.name}</h3>
+                  </header>
+                  <p class="os-desc">{repo.description || '—'}</p>
+                  {repo.topics && repo.topics.length > 0 && (
+                    <div class="os-topics">
+                      {repo.topics.slice(0, 3).map((topic) => (
+                        <span class="os-topic">{topic}</span>
+                      ))}
+                    </div>
+                  )}
+                  <footer class="os-meta">
+                    {repo.language && (
+                      <span class="os-lang">
+                        <span class="os-lang-dot" style={`background:${ghLangColor(repo.language)}`}></span>
+                        {repo.language}
+                      </span>
+                    )}
+                    <span class="os-meta-item" title={`${repo.stargazers_count} stars`}>★ {repo.stargazers_count}</span>
+                    <span class="os-meta-item" title={`${repo.forks_count} forks`}>⑂ {repo.forks_count}</span>
+                    <span class="os-meta-time">{timeAgo(repo.updated_at)}</span>
+                  </footer>
+                </a>
+              </li>
+            ))}
+          </ol>
+
+          <p class="os-foot">
+            Showing {githubRepos.length} public repos.
+            <a href={githubProfileUrl + '?tab=repositories'} target="_blank" rel="noopener noreferrer">View the full archive on GitHub →</a>
+          </p>
+        </>
+      )}
     </div>
   </section>
 
@@ -501,4 +673,216 @@ const projects = [
       grid-template-columns: repeat(2, 1fr);
     }
   }
+
+  /* ---------- GitHub Open Source Section ---------- */
+  .os-section {
+    padding: 5rem 0 6rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .os-empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: var(--bg-card);
+    border: 1px dashed var(--border-hover);
+    border-radius: var(--radius-lg);
+  }
+  .os-empty p { color: var(--text-muted); margin-bottom: 1.25rem; }
+
+  .os-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    margin-bottom: 2rem;
+  }
+  .os-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+  .os-summary strong { color: var(--accent-light); font-weight: 700; margin-right: 0.25rem; }
+  .os-profile-link {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--teal-light);
+    text-decoration: none;
+    transition: var(--transition-fast);
+  }
+  .os-profile-link:hover { color: var(--accent-light); }
+
+  .os-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+  @media (max-width: 1024px) { .os-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 640px)  { .os-grid { grid-template-columns: 1fr; } }
+
+  .os-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    backdrop-filter: blur(var(--glass-blur));
+    transition: var(--transition);
+    height: 100%;
+    overflow: hidden;
+  }
+  .os-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-md);
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(139,92,246,0.25), transparent 40%, transparent 60%, rgba(20,184,166,0.22));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .os-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-hover);
+    background: var(--bg-card-hover);
+    box-shadow: var(--shadow-md);
+  }
+  .os-card:hover::before { opacity: 1; }
+
+  .os-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.25rem 1.25rem 1rem;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .os-tag {
+    position: absolute;
+    top: 0.85rem;
+    right: 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-full);
+    background: rgba(96, 96, 160, 0.18);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    z-index: 1;
+  }
+  .os-tag[data-kind='archived'] {
+    background: rgba(249, 115, 22, 0.12);
+    color: var(--coral);
+    border-color: rgba(249, 115, 22, 0.25);
+  }
+  .os-tag[data-kind='fork'] {
+    background: rgba(96, 96, 160, 0.22);
+    color: var(--text-secondary);
+  }
+
+  .os-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .os-icon {
+    color: var(--text-muted);
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+  .os-card:hover .os-icon { color: var(--accent-light); opacity: 1; }
+  .os-title {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.2s;
+  }
+  .os-card:hover .os-title { color: var(--accent-light); }
+
+  .os-desc {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.65em;
+  }
+
+  .os-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  .os-topic {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent-light);
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.18);
+    padding: 0.1rem 0.5rem;
+    border-radius: var(--radius-full);
+  }
+
+  .os-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-top: auto;
+    padding-top: 0.6rem;
+    border-top: 1px dashed var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    flex-wrap: wrap;
+  }
+  .os-lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .os-lang-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 6px currentColor;
+  }
+  .os-meta-item { white-space: nowrap; }
+  .os-meta-time {
+    margin-left: auto;
+    font-family: var(--font-sans);
+    font-style: italic;
+  }
+
+  .os-foot {
+    margin-top: 2rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+  }
+  .os-foot a { color: var(--accent-light); }
+  .os-foot a:hover { color: var(--teal-light); }
 </style>

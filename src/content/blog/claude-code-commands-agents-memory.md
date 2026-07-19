@@ -5,6 +5,7 @@ pubDate: 2026-06-30
 heroImage: "/images/linkedin/1762423882550.jpg"
 category: ["ai", "agentic", "claude-code"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 # Claude Code Basics: Commands, Subagents, and Memory Layers

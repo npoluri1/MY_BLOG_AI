@@ -5,6 +5,7 @@ pubDate: 2020-10-19
 heroImage: "/images/linkedin/1770134683244.jpg"
 category: ["python", "profiling", "tutorial"]
 author: "Naga Siva Poluri"
+primaryCategory: "python"
 ---
 
 Profiling & Visualization Tools in Python using cProfile.

@@ -6,6 +6,8 @@ pubDate: 2025-06-28
 tags: ["ai", "kubernetes", "devops", "infrastructure"]
 image: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=1200&h=675&fit=crop"
 readingTime: "14 min read"
+primaryCategory: "ai"
+author: "Naren Vadapalli"
 ---
 
 Kubernetes has become the de facto platform for orchestrating AI workloads, but running GPU-intensive applications requires careful configuration beyond the default scheduler settings.

@@ -5,6 +5,7 @@ pubDate: 2026-07-17
 heroImage: "/images/linkedin/1769171391352.jpg"
 category: ["ai", "machine-learning"]
 author: "Naga Siva Poluri"
+primaryCategory: "ai"
 ---
 
 # LangChain vs. LangGraph: Moving from Chains to Cyclic State Graphs

@@ -1,639 +1,532 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ThreeConstellation from '../../components/ThreeConstellation.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog'))
+const allPosts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const years = [...new Set(posts.map(p => p.data.pubDate.getFullYear()))].sort((a, b) => b - a);
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const constellationPosts = allPosts.map(p => ({
+  slug: p.id.replace(/\.md$/, ''),
+  title: p.data.title,
+  tags: p.data.tags || p.data.category || [],
+  primaryCategory: p.data.primaryCategory || (p.data.tags && p.data.tags[0]) || (p.data.category && p.data.category[0]) || 'uncategorized',
+  pubDate: p.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+}));
+
+const totalCount = allPosts.length;
+const tagCounts = {};
+for (const p of allPosts) {
+  const t = p.data.primaryCategory || (p.data.tags && p.data.tags[0]) || (p.data.category && p.data.category[0]) || 'uncategorized';
+  tagCounts[t] = (tagCounts[t] || 0) + 1;
+}
+const topTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]).slice(0, 8);
+
+// Flatten post data for client-side filtering (search + tag). Each item exposes a `data-*` corpus
+// the JS handler uses for fast text matching and category-based filtering without innerHTML.
+function excerptSearchable(post) {
+  const t = (post.data.title || '').toLowerCase();
+  const d = (post.data.description || '').toLowerCase();
+  const c = (post.data.primaryCategory || '').toLowerCase();
+  const tags = (post.data.tags || []).join(' ').toLowerCase();
+  return t + ' ' + d + ' ' + c + ' ' + tags;
+}
+
+const archiveItems = allPosts.map(post => ({
+  slug: post.id.replace(/\.md$/, ''),
+  title: post.data.title,
+  description: post.data.description || '',
+  pubDateIso: post.data.pubDate.toISOString(),
+  pubDateLabel: post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
+  primaryCategory: post.data.primaryCategory || (post.data.tags && post.data.tags[0]) || (post.data.category && post.data.category[0]) || 'Essay',
+  searchable: excerptSearchable(post),
+}));
 ---
 
-<BaseLayout title="Blog | Naga Siva Poluri" description="Thoughts on AI, enterprise engineering, and building intelligent systems.">
+<BaseLayout title="Constellation | Devlin Liles Archive" description="An unconventional 3D universe of Devlin Liles' writings on AI, agentic systems, agile, and the engineering mind.">
   <div class="blog-index-page">
     <div class="page-header">
       <div class="container">
-        <h1>My Blog</h1>
-        <p class="subtitle">Reflections on AI, enterprise engineering, and building intelligent systems.</p>
+        <span class="section-eyebrow reveal">THE EMPTYING THE CUP ARCHIVE</span>
+        <h1 class="reveal stagger-1">A Constellation of Ideas</h1>
+        <p class="subtitle reveal stagger-2">
+          {totalCount} essays on AI, agentic systems, agile, governance, and the engineer's evolution — curated from Devlin Liles' archive
+          and arranged as a navigable 3D universe.
+        </p>
       </div>
     </div>
 
-    <div class="container blog-list-container">
-      <div id="archiveData" data-archive={JSON.stringify(years.map(y => ({ year: y, months: [...new Set(posts.filter(p => p.data.pubDate.getFullYear() === y).map(p => p.data.pubDate.getMonth()))] })))} style="display: none;"></div>
+    <section class="constellation-wrap reveal stagger-3">
+      <div class="container container-wide">
+        <ThreeConstellation posts={constellationPosts} />
+      </div>
+    </section>
 
-      <div class="calendar-filter-wrapper">
-        <div class="calendar-filter-container">
-          <span class="calendar-label">Filter by Date:</span>
-          <div class="date-selectors">
-            <div class="select-wrapper">
-              <select id="yearFilter" class="filter-select" aria-label="Filter by Year">
-                <option value="all">All Years</option>
-                {years.map(y => <option value={y}>{y}</option>)}
-              </select>
-            </div>
-            <div class="select-wrapper">
-              <select id="monthFilter" class="filter-select" disabled aria-label="Filter by Month">
-                <option value="all">All Months</option>
-                {months.map((m, i) => <option value={i}>{m}</option>)}
-              </select>
-            </div>
+    <section class="archive-section">
+      <div class="container">
+        <div class="archive-header">
+          <h2>The Written Archive</h2>
+          <p>Prefer the classic list view? Browse every post chronologically below.</p>
+        </div>
+
+        <div class="archive-search-row">
+          <div class="archive-search-input-wrap">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input id="archiveSearch" type="search" placeholder="Search {totalCount}+ articles by title or topic..." autocomplete="off" aria-label="Search articles" />
+            <button id="archiveSearchClear" class="archive-search-clear" type="button" aria-label="Clear search">x</button>
           </div>
+          <div class="archive-result-count" id="archiveResultCount">{totalCount} articles</div>
+        </div>
+
+        <div class="archive-tag-row">
+          {topTags.map(([t, c]) => (
+            <a href={`#tag-${t.replace(/\s+/g, '-')}`} class="archive-tag">
+              <span class="archive-tag-name">{t}</span>
+              <span class="archive-tag-count">{c}</span>
+            </a>
+          ))}
+        </div>
+
+        <ol class="archive-list">
+          {archiveItems.map(item => (
+            <li class="archive-item" data-archive-item data-cat={item.primaryCategory.toLowerCase().replace(/\s+/g, '-')} data-search={item.searchable}>
+              <a href={`/blog/${item.slug}`} class="archive-link">
+                <div class="archive-meta">
+                  <time datetime={item.pubDateIso}>{item.pubDateLabel}</time>
+                  <span class="archive-cat">{item.primaryCategory}</span>
+                </div>
+                <h3 class="archive-title">{item.title}</h3>
+                <p class="archive-desc">{item.description}</p>
+                <span class="archive-arrow">Read →</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+
+        <div id="archiveEmptyState" class="archive-empty-state" hidden>
+          <p>No articles match the current filters.</p>
+          <button type="button" id="archiveEmptyReset" class="archive-empty-reset">Reset filters</button>
         </div>
       </div>
-
-      <div class="filter-status" id="filterStatus" style="display: none;">
-        <span class="filter-text">Active Filters:</span>
-        <div id="activeFiltersList" class="active-filters-list"></div>
-        <button id="clearFilterBtn" class="clear-all-btn">Clear All</button>
-      </div>
-
-      <div class="pagination-container pagination-top" id="paginationContainerTop" style="display: none;">
-        <button id="prevPageBtnTop" class="pagination-btn" aria-label="Previous Page">&larr; Previous</button>
-        <div id="pageNumbersContainerTop" class="page-numbers"></div>
-        <button id="nextPageBtnTop" class="pagination-btn" aria-label="Next Page">Next &rarr;</button>
-      </div>
-
-      <div class="blog-grid" id="blogGrid">
-        {posts.map(post => (
-          <article
-            class="card blog-list-card"
-            data-tags={(post.data.category || post.data.tags || []).join(',')}
-            data-date={post.data.pubDate.toISOString()}
-          >
-            <div class="card-thumbnail">
-              <a href={`/blog/${post.id}`}>
-                {post.data.heroImage ? (
-                  <img src={post.data.heroImage} alt={post.data.title} loading="lazy" decoding="async" width="1200" height="675" class="thumbnail-img" />
-                ) : (
-                  <img src={`https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop`} alt={post.data.title} loading="lazy" decoding="async" width="600" height="400" class="thumbnail-img" />
-                )}
-              </a>
-            </div>
-            <div class="card-content">
-              <div class="card-meta">
-                <span class="card-date">{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                <div class="card-badges">
-                  {(post.data.category || post.data.tags || []).slice(0, 4).map(tag => (
-                    <button class="card-badge tag-button" data-tag={tag}>{tag}</button>
-                  ))}
-                </div>
-              </div>
-              <h2>
-                <a href={`/blog/${post.id}`}>{post.data.title}</a>
-              </h2>
-              <p class="card-description">{post.data.description}</p>
-              <div class="card-footer">
-                <a href={`/blog/${post.id}`} class="read-more">Read Article &rarr;</a>
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
-
-      <div class="no-results" id="noResults" style="display: none;">
-        <p>No posts found matching your filters.</p>
-      </div>
-
-      <div class="pagination-container pagination-bottom" id="paginationContainerBottom" style="display: none;">
-        <button id="prevPageBtnBottom" class="pagination-btn" aria-label="Previous Page">&larr; Previous</button>
-        <div id="pageNumbersContainerBottom" class="page-numbers"></div>
-        <button id="nextPageBtnBottom" class="pagination-btn" aria-label="Next Page">Next &rarr;</button>
-      </div>
-    </div>
+    </section>
   </div>
 </BaseLayout>
 
+<script is:inline>
+  // Archive list filtering (text search + tag pill filter, AND-combined).
+  // Strategy: cache original text once, filter visibility classes, XSS-safe highlighting via DOM API only.
+  (function () {
+    if (typeof document === 'undefined') return;
+
+    function ready(fn) {
+      if (document.readyState !== 'loading') fn();
+      else document.addEventListener('DOMContentLoaded', fn);
+    }
+
+    ready(function () {
+      const items = Array.from(document.querySelectorAll('[data-archive-item]'));
+      const searchInput = document.getElementById('archiveSearch');
+      const clearBtn = document.getElementById('archiveSearchClear');
+      const countEl = document.getElementById('archiveResultCount');
+      const emptyState = document.getElementById('archiveEmptyState');
+      const emptyReset = document.getElementById('archiveEmptyReset');
+      const total = items.length;
+
+      if (!items.length) return;
+
+      // Cache original text + searchable corpus.
+      const cache = items.map(function (li) {
+        const titleEl = li.querySelector('.archive-title');
+        const descEl = li.querySelector('.archive-desc');
+        const cat = (li.dataset.cat || '').toLowerCase();
+        const search = li.dataset.search || '';
+        return {
+          el: li,
+          titleEl: titleEl,
+          descEl: descEl,
+          cat: cat,
+          titleText: titleEl ? titleEl.textContent : '',
+          descText: descEl ? descEl.textContent : '',
+          search: search,
+        };
+      });
+
+      let query = '';
+      let activeTags = new Set();
+
+      function normalizeTag(t) {
+        return (t || '').toLowerCase().replace(/\s+/g, '-');
+      }
+
+      function resetHighlight(el, original) {
+        if (el) el.textContent = original;
+      }
+
+      function highlight(el, original, q) {
+        if (!el) return;
+        if (!q) { el.textContent = original; return; }
+        el.textContent = '';
+        const lower = original.toLowerCase();
+        const ql = q.toLowerCase();
+        let last = 0;
+        let idx = lower.indexOf(ql, last);
+        while (idx !== -1) {
+          if (idx > last) el.appendChild(document.createTextNode(original.slice(last, idx)));
+          const mark = document.createElement('mark');
+          mark.className = 'archive-mark';
+          mark.textContent = original.slice(idx, idx + q.length);
+          el.appendChild(mark);
+          last = idx + q.length;
+          idx = lower.indexOf(ql, last);
+        }
+        if (last < original.length) el.appendChild(document.createTextNode(original.slice(last)));
+      }
+
+      function applyFilters() {
+        const qlow = query.toLowerCase();
+        let visible = 0;
+        for (let i = 0; i < cache.length; i++) {
+          const d = cache[i];
+          const matchesSearch = !qlow || d.search.indexOf(qlow) !== -1;
+          const matchesTag = activeTags.size === 0 || activeTags.has(d.cat);
+          const show = matchesSearch && matchesTag;
+          d.el.classList.toggle('archive-item-hidden', !show);
+          if (show) {
+            visible += 1;
+            highlight(d.titleEl, d.titleText, query);
+            highlight(d.descEl, d.descText, query);
+          } else {
+            resetHighlight(d.titleEl, d.titleText);
+            resetHighlight(d.descEl, d.descText);
+          }
+        }
+        if (countEl) {
+          countEl.textContent = visible + ' of ' + total + ' article' + (total === 1 ? '' : 's');
+        }
+        if (emptyState) emptyState.hidden = visible !== 0;
+        if (clearBtn) clearBtn.classList.toggle('hidden', !query);
+
+        const pills = document.querySelectorAll('.archive-tag');
+        pills.forEach(function (p) {
+          const href = p.getAttribute('href') || '';
+          const m = href.replace('#tag-', '').toLowerCase();
+          p.classList.toggle('archive-tag-active', activeTags.has(m));
+        });
+      }
+
+      function readHash() {
+        const raw = (location.hash || '').replace(/^#tag-/, '');
+        if (!raw || raw === 'clear' || raw === 'all') return new Set();
+        return new Set(raw.split(',').map(normalizeTag).filter(Boolean));
+      }
+
+      function writeHash() {
+        let h = '';
+        if (activeTags.size > 0) h = '#tag-' + Array.from(activeTags).join(',');
+        history.replaceState(null, '', h || location.pathname + location.search);
+      }
+
+      let debounceTimer = 0;
+      if (searchInput) {
+        searchInput.addEventListener('input', function (e) {
+          const value = e.target.value || '';
+          clearTimeout(debounceTimer);
+          debounceTimer = window.setTimeout(function () {
+            query = value;
+            applyFilters();
+          }, 150);
+        });
+      }
+
+      if (clearBtn) {
+        clearBtn.addEventListener('click', function () {
+          if (searchInput) searchInput.value = '';
+          query = '';
+          applyFilters();
+          if (searchInput) searchInput.focus();
+        });
+      }
+
+      if (emptyReset) {
+        emptyReset.addEventListener('click', function () {
+          if (searchInput) searchInput.value = '';
+          query = '';
+          activeTags = new Set();
+          writeHash();
+          applyFilters();
+          if (searchInput) searchInput.focus();
+        });
+      }
+
+      // Tag pill click => toggle membership, then pushState so hashchange-firing browser handlers don't double-fire.
+      const pills = document.querySelectorAll('.archive-tag');
+      pills.forEach(function (p) {
+        p.addEventListener('click', function (e) {
+          e.preventDefault();
+          const href = p.getAttribute('href') || '';
+          const t = normalizeTag(href.replace('#tag-', ''));
+          if (!t) return;
+          if (activeTags.has(t)) activeTags.delete(t);
+          else activeTags.add(t);
+          writeHash();
+          applyFilters();
+        });
+      });
+
+      // hashchange handles deep-link entry + browser back / forward for tag-only state.
+      window.addEventListener('hashchange', function () {
+        activeTags = readHash();
+        applyFilters();
+      });
+
+      // Initial fetch of state from URL on page load.
+      activeTags = readHash();
+      applyFilters();
+    });
+  })();
+</script>
+
 <style>
-  .blog-index-page {
-    padding-top: var(--header-height);
-  }
+  .blog-index-page { padding-top: var(--header-height); }
 
   .page-header {
-    padding: 4rem 0 3rem;
+    padding: 6rem 0 2rem;
     text-align: center;
   }
-
   .page-header h1 {
-    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
     margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
   }
-
   .subtitle {
     font-size: 1.05rem;
     color: var(--text-muted);
-    max-width: 600px;
+    max-width: 640px;
     margin: 0 auto;
+    line-height: 1.7;
   }
 
-  .blog-list-container {
-    padding: 0 0 6rem;
+  .container-wide {
+    max-width: 1320px;
   }
 
-  .calendar-filter-wrapper {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1.5rem;
+  .constellation-wrap {
+    padding: 1rem 0 3rem;
   }
 
-  .calendar-filter-container {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 1.5rem;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-  }
-
-  .calendar-label {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-    white-space: nowrap;
-  }
-
-  .date-selectors {
-    display: flex;
-    gap: 0.5rem;
-  }
-
-  .select-wrapper select {
-    padding: 0.5rem 1rem;
-    background: var(--bg-primary);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    color: var(--text-primary);
-    font-family: var(--font-sans);
-    font-size: 0.85rem;
-    cursor: pointer;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
-  .select-wrapper select:focus {
-    border-color: var(--accent);
-  }
-
-  .select-wrapper select:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  .filter-status {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
-    padding: 0.75rem 1rem;
-    background: rgba(139, 92, 246, 0.05);
-    border: 1px solid rgba(139, 92, 246, 0.15);
-    border-radius: var(--radius-sm);
-    font-size: 0.85rem;
-    flex-wrap: wrap;
-  }
-
-  .filter-text {
-    color: var(--text-muted);
-    font-weight: 600;
-  }
-
-  .active-filters-list {
-    display: flex;
-    gap: 0.35rem;
-    flex-wrap: wrap;
-  }
-
-  .active-filters-list .filter-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    padding: 0.2rem 0.6rem;
-    background: rgba(139, 92, 246, 0.15);
-    border-radius: var(--radius-sm);
-    color: var(--accent-light);
-    font-size: 0.78rem;
-  }
-
-  .active-filters-list .filter-tag .remove-tag {
-    cursor: pointer;
-    opacity: 0.7;
-    font-size: 0.9rem;
-    line-height: 1;
-  }
-
-  .active-filters-list .filter-tag .remove-tag:hover {
-    opacity: 1;
-  }
-
-  .clear-all-btn {
-    padding: 0.3rem 0.75rem;
-    background: rgba(139, 92, 246, 0.15);
-    border: 1px solid rgba(139, 92, 246, 0.3);
-    border-radius: var(--radius-sm);
-    color: var(--accent-light);
-    font-size: 0.8rem;
-    cursor: pointer;
-    font-family: var(--font-sans);
-  }
-
-  .clear-all-btn:hover {
-    background: rgba(139, 92, 246, 0.25);
-  }
-
-  .blog-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .blog-list-card {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 1.5rem;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--border);
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.2s ease;
-  }
-
-  .blog-list-card:hover {
-    padding-left: 0.5rem;
-  }
-
-  .blog-list-card:hover .thumbnail-img {
-    transform: scale(1.03);
-  }
-
-  .card-thumbnail {
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--radius-md);
-    aspect-ratio: 16 / 9;
-  }
-
-  .card-thumbnail a {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  .thumbnail-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-  }
-
-  .card-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .card-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .card-date {
-    font-size: 0.82rem;
-    color: var(--text-muted);
-    font-weight: 500;
-  }
-
-  .card-badges {
-    display: flex;
-    gap: 0.35rem;
-    flex-wrap: wrap;
-  }
-
-  .card-badge {
-    display: inline-block;
-    padding: 0.15rem 0.55rem;
-    background: rgba(139, 92, 246, 0.1);
-    border: 1px solid rgba(139, 92, 246, 0.2);
-    border-radius: var(--radius-sm);
-    color: var(--accent-light);
-    font-size: 0.72rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: var(--font-sans);
-  }
-
-  .card-badge:hover {
-    background: rgba(139, 92, 246, 0.2);
-    border-color: rgba(139, 92, 246, 0.4);
-  }
-
-  .card-content h2 {
-    font-size: 1.15rem;
-    line-height: 1.4;
-    margin-bottom: 0.5rem;
-  }
-
-  .card-content h2 a {
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .card-content h2 a:hover {
-    color: var(--accent-light);
-  }
-
-  .card-description {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 0.75rem;
-  }
-
-  .card-footer {
-    margin-top: auto;
-  }
-
-  .read-more {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--accent-light);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .read-more:hover {
-    color: var(--teal-light);
-  }
-
-  .no-results {
-    text-align: center;
-    padding: 4rem 0;
-    color: var(--text-muted);
-    font-size: 1.1rem;
-  }
-
-  .pagination-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 2rem;
-    padding-top: 1.5rem;
+  .archive-section {
+    padding: 3rem 0 6rem;
     border-top: 1px solid var(--border);
   }
-
-  .pagination-btn {
-    padding: 0.5rem 1rem;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    color: var(--text-secondary);
-    font-family: var(--font-sans);
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: all 0.2s;
+  .archive-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .archive-header h2 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    margin-bottom: 0.4rem;
+  }
+  .archive-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
   }
 
-  .pagination-btn:hover:not(:disabled) {
-    background: rgba(139, 92, 246, 0.15);
-    border-color: var(--accent);
-    color: var(--accent-light);
-  }
-
-  .pagination-btn:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
-
-  .page-numbers {
+  .archive-search-row {
     display: flex;
-    gap: 0.25rem;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 auto 1.5rem;
+    max-width: 640px;
+    flex-wrap: wrap;
   }
-
-  .page-numbers button {
-    min-width: 36px;
-    height: 36px;
+  .archive-search-input-wrap {
+    position: relative;
+    flex: 1 1 320px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 0;
-    background: var(--bg-secondary);
+    background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    color: var(--text-secondary);
+    border-radius: var(--radius-full);
+    padding: 0.4rem 0.4rem 0.4rem 0.95rem;
+    transition: var(--transition-fast);
+  }
+  .archive-search-input-wrap:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.12);
+  }
+  .archive-search-input-wrap svg { color: var(--text-muted); flex-shrink: 0; }
+  .archive-search-input-wrap input {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text-primary);
     font-family: var(--font-sans);
-    font-size: 0.85rem;
+    font-size: 0.95rem;
+    padding: 0.5rem 0.75rem;
+    outline: none;
+    min-width: 0;
+  }
+  .archive-search-input-wrap input::placeholder { color: var(--text-muted); }
+  .archive-search-clear {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
     cursor: pointer;
-    transition: all 0.2s;
+    font-size: 1rem;
+    transition: var(--transition-fast);
+  }
+  .archive-search-clear:hover { background: rgba(255,255,255,0.08); color: var(--accent-light); }
+  .archive-search-clear.hidden { display: none; }
+  .archive-result-count {
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 600;
   }
 
-  .page-numbers button:hover:not(.active) {
-    background: rgba(139, 92, 246, 0.15);
+  .archive-tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .archive-list .archive-item-hidden { display: none; }
+  .archive-list mark.archive-mark {
+    background: rgba(139, 92, 246, 0.18);
+    color: var(--accent-light);
+    padding: 0 0.15rem;
+    border-radius: 0.15rem;
+  }
+  .archive-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.85rem;
+    background: rgba(139, 92, 246, 0.06);
+    border: 1px solid rgba(139, 92, 246, 0.18);
+    border-radius: var(--radius-full);
+    color: var(--text-secondary);
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: var(--transition-fast);
+  }
+  .archive-tag:hover {
     border-color: var(--accent);
+    background: rgba(139, 92, 246, 0.14);
     color: var(--accent-light);
   }
+  .archive-tag-count {
+    font-size: 0.65rem;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-full);
+    padding: 0.05rem 0.45rem;
+    color: var(--text-muted);
+  }
 
-  .page-numbers button.active {
+  .archive-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .archive-item {
+    border-bottom: 1px solid var(--border);
+  }
+  .archive-link {
+    display: grid;
+    grid-template-columns: 200px 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.5rem 0;
+    text-decoration: none;
+    color: inherit;
+    transition: padding-left 0.3s var(--ease-out);
+  }
+  .archive-link:hover {
+    padding-left: 0.5rem;
+  }
+  .archive-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.78rem;
+  }
+  .archive-meta time { color: var(--accent-light); font-weight: 600; }
+  .archive-cat {
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.7rem;
+  }
+  .archive-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.35;
+    transition: color 0.2s;
+  }
+  .archive-link:hover .archive-title { color: var(--accent-light); }
+  .archive-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-top: 0.3rem;
+  }
+  .archive-arrow {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-light);
+    opacity: 0.5;
+    transition: var(--transition-fast);
+  }
+  .archive-link:hover .archive-arrow {
+    opacity: 1;
+    transform: translateX(4px);
+  }
+
+  .archive-empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-muted);
+  }
+  .archive-empty-state p { margin-bottom: 1rem; }
+  .archive-empty-reset {
     background: var(--accent);
-    border-color: var(--accent);
     color: white;
+    border: none;
+    padding: 0.6rem 1.25rem;
+    border-radius: var(--radius-full);
+    font-family: var(--font-display);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+  }
+  .archive-empty-reset:hover {
+    background: var(--accent-light);
+    transform: translateY(-1px);
+  }
+  .archive-tag-active {
+    background: rgba(139, 92, 246, 0.18) !important;
+    border-color: var(--accent) !important;
+    color: var(--accent-light) !important;
   }
 
   @media (max-width: 768px) {
-    .blog-list-card {
+    .archive-link {
       grid-template-columns: 1fr;
-      gap: 1rem;
+      gap: 0.4rem;
     }
-
-    .card-thumbnail {
-      aspect-ratio: 16 / 9;
-    }
-
-    .calendar-filter-container {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .pagination-container {
-      flex-wrap: wrap;
-    }
+    .archive-arrow { display: none; }
   }
 </style>
-
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
-    const POSTS_PER_PAGE = 10;
-    let currentPage = 1;
-    let filteredCards = [];
-
-    const blogGrid = document.getElementById('blogGrid');
-    const noResults = document.getElementById('noResults');
-    const yearFilter = document.getElementById('yearFilter');
-    const monthFilter = document.getElementById('monthFilter');
-    const clearFilterBtn = document.getElementById('clearFilterBtn');
-    const filterStatus = document.getElementById('filterStatus');
-    const activeFiltersList = document.getElementById('activeFiltersList');
-
-    const allCards = Array.from(blogGrid.querySelectorAll('.blog-list-card'));
-
-    const archiveData = JSON.parse(document.getElementById('archiveData').dataset.archive || '[]');
-
-    yearFilter.addEventListener('change', () => {
-      const selectedYear = yearFilter.value;
-      monthFilter.disabled = selectedYear === 'all';
-      if (selectedYear !== 'all') {
-        const yearData = archiveData.find(d => d.year === parseInt(selectedYear));
-        const availableMonths = yearData ? yearData.months : [];
-        Array.from(monthFilter.options).forEach(opt => {
-          if (opt.value === 'all') return;
-          opt.disabled = !availableMonths.includes(parseInt(opt.value));
-        });
-      } else {
-        Array.from(monthFilter.options).forEach(opt => opt.disabled = false);
-      }
-      monthFilter.value = 'all';
-      applyFilters();
-    });
-
-    monthFilter.addEventListener('change', applyFilters);
-
-    clearFilterBtn.addEventListener('click', () => {
-      yearFilter.value = 'all';
-      monthFilter.value = 'all';
-      monthFilter.disabled = true;
-      applyFilters();
-    });
-
-    document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('tag-button')) {
-        const tag = e.target.dataset.tag;
-        filterByTag(tag);
-      }
-      if (e.target.classList.contains('remove-tag')) {
-        clearAllTagFilters();
-      }
-    });
-
-    function filterByTag(tag) {
-      allCards.forEach(card => {
-        const tags = card.dataset.tags.split(',').map(t => t.trim().toLowerCase());
-        card.style.display = tags.includes(tag.toLowerCase()) ? '' : 'none';
-      });
-      showActiveTagFilter(tag);
-      currentPage = 1;
-      paginateCards();
-    }
-
-    function showActiveTagFilter(tag) {
-      filterStatus.style.display = 'flex';
-      activeFiltersList.innerHTML = `<span class="filter-tag">${tag} <span class="remove-tag">&times;</span></span>`;
-    }
-
-    function clearAllTagFilters() {
-      allCards.forEach(card => card.style.display = '');
-      filterStatus.style.display = 'none';
-      activeFiltersList.innerHTML = '';
-      currentPage = 1;
-      paginateCards();
-    }
-
-    function applyFilters() {
-      const selectedYear = yearFilter.value;
-      const selectedMonth = monthFilter.value;
-
-      allCards.forEach(card => {
-        const date = new Date(card.dataset.date);
-        const matchYear = selectedYear === 'all' || date.getFullYear() === parseInt(selectedYear);
-        const matchMonth = selectedMonth === 'all' || date.getMonth() === parseInt(selectedMonth);
-        card.style.display = (matchYear && matchMonth) ? '' : 'none';
-      });
-
-      filterStatus.style.display = (selectedYear !== 'all' || selectedMonth !== 'all') ? 'flex' : 'none';
-      if (selectedYear !== 'all' || selectedMonth !== 'all') {
-        const filters = [];
-        if (selectedYear !== 'all') filters.push(selectedYear);
-        if (selectedMonth !== 'all') filters.push(monthFilter.options[monthFilter.selectedIndex].text);
-        activeFiltersList.innerHTML = `<span class="filter-tag">${filters.join(' / ')} <span class="remove-tag">&times;</span></span>`;
-      }
-
-      currentPage = 1;
-      paginateCards();
-    }
-
-    function paginateCards() {
-      filteredCards = allCards.filter(card => card.style.display !== 'none');
-      const totalPages = Math.ceil(filteredCards.length / POSTS_PER_PAGE);
-
-      if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
-
-      filteredCards.forEach((card, index) => {
-        const start = (currentPage - 1) * POSTS_PER_PAGE;
-        const end = start + POSTS_PER_PAGE;
-        card.style.display = (index >= start && index < end) ? '' : 'none';
-      });
-
-      noResults.style.display = filteredCards.length === 0 ? 'block' : 'none';
-
-      const showPagination = totalPages > 1;
-      document.getElementById('paginationContainerTop').style.display = showPagination ? 'flex' : 'none';
-      document.getElementById('paginationContainerBottom').style.display = showPagination ? 'flex' : 'none';
-
-      if (!showPagination) return;
-
-      renderPaginationControls('pageNumbersContainerTop', 'prevPageBtnTop', 'nextPageBtnTop', currentPage, totalPages);
-      renderPaginationControls('pageNumbersContainerBottom', 'prevPageBtnBottom', 'nextPageBtnBottom', currentPage, totalPages);
-    }
-
-    function renderPaginationControls(numbersId, prevId, nextId, current, total) {
-      const container = document.getElementById(numbersId);
-      const prevBtn = document.getElementById(prevId);
-      const nextBtn = document.getElementById(nextId);
-
-      prevBtn.disabled = current === 1;
-      nextBtn.disabled = current === total;
-
-      let html = '';
-      for (let i = 1; i <= total; i++) {
-        if (i === 1 || i === total || (i >= current - 2 && i <= current + 2)) {
-          html += `<button class="${i === current ? 'active' : ''}" data-page="${i}">${i}</button>`;
-        } else if (i === current - 3 || i === current + 3) {
-          html += '<span style="color: var(--text-muted); padding: 0 0.25rem;">...</span>';
-        }
-      }
-      container.innerHTML = html;
-
-      container.querySelectorAll('button').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const page = parseInt(btn.dataset.page);
-          if (page && page !== current) {
-            currentPage = page;
-            paginateCards();
-            window.scrollTo({ top: blogGrid.offsetTop - 100, behavior: 'smooth' });
-          }
-        });
-      });
-
-      prevBtn.onclick = () => {
-        if (currentPage > 1) {
-          currentPage--;
-          paginateCards();
-          window.scrollTo({ top: blogGrid.offsetTop - 100, behavior: 'smooth' });
-        }
-      };
-
-      nextBtn.onclick = () => {
-        if (currentPage < total) {
-          currentPage++;
-          paginateCards();
-          window.scrollTo({ top: blogGrid.offsetTop - 100, behavior: 'smooth' });
-        }
-      };
-    }
-
-    paginateCards();
-  });
-</script>
