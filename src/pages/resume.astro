@@ -6,159 +6,222 @@ import SkillBadge from '../components/SkillBadge.astro';
 
 const experience = [
   {
-    company: 'LTA Singapore',
-    role: 'AI Integration Engineer',
+    company: 'LTA (Land Transport Authority) via NCS Group',
+    role: 'Full Stack Developer | Agentic AI, RAG & GenAI Engineer',
     period: 'Nov 2025 - Present',
     location: 'Singapore',
     highlight: true,
     description: [
-      'Designing and implementing AI-powered solutions for Singapore transport infrastructure',
-      'Building enterprise RAG platforms for knowledge management and decision support',
-      'Integrating LLMs into existing enterprise workflows and data pipelines',
-      'Leading agentic AI initiatives for automated system monitoring and response',
-      'Architecting MCP (Model Context Protocol) servers for tool connectivity',
-      'Designing multi-agent systems for autonomous operations',
+      'Led end-to-end architecture of a multi-model Enterprise RAG Platform serving 5,000+ LTA staff across five business units, integrating OpenAI, Google Gemini, and AWS Bedrock with a unified plugin-based connector framework',
+      'Engineered production-grade Retrieval-Augmented Generation pipelines with OpenAI Embedding Models, Hybrid Dense/Sparse Retrieval with Cross-Encoder Reranking, and Graph RAG, reducing retrieval latency by 40% and increasing answer accuracy by 25% across 10M+ documents',
+      'Integrated the Model Context Protocol (MCP) as a universal connector standard, enabling AI agents to dynamically invoke 15+ internal tools and enterprise systems, including HCM, Document Management, and ERP applications',
+      'Developed a low-code Enterprise Workflow Orchestrator using n8n with a React UI, automating cross-system tasks and integrating seamlessly with LLMs for intelligent task execution, reducing manual intervention by 60%',
+      'Engineered advanced RAG strategies including Agentic RAG with dynamic routing, Adaptive RAG for automatic strategy selection, and Self-RAG with evaluation nodes, increasing response relevance by 35%',
+      'Implemented enterprise-wide AI guardrails including content moderation, sensitive data masking, prompt injection protection, and hallucination monitoring, ensuring responsible and compliant LLM usage across all business units',
+      'Deployed production systems via AWS EKS with blue/green deployments and Canary releases, enabling zero-downtime updates for LLM-backed services',
     ],
-    tags: ['AI/ML', 'RAG', 'Enterprise Integration', 'Python', 'MCP', 'Agentic AI'],
+    tags: ['Enterprise RAG', 'MCP', 'Multi-Model Orchestration', 'Agentic AI', 'AWS', 'n8n', 'React'],
   },
   {
-    company: 'Bank of Singapore',
-    role: 'AI Integration Engineer',
-    period: 'Sep 2024 - Jul 2025',
+    company: 'DBS Bank',
+    role: 'Lead Developer | AI Integration & Cloud Engineering',
+    period: 'Sep 2024 - Aug 2025',
     location: 'Singapore',
     highlight: true,
     description: [
-      'Built production RAG platform serving internal wealth management teams',
-      'Designed LLM integration architecture for document analysis and summarization',
-      'Implemented vector search capabilities across 10M+ financial documents',
-      'Created automated compliance checking system using AI agents',
-      'Developed hybrid dense-sparse retrieval with reranking for financial queries',
-      'Built evaluation frameworks for RAG accuracy and hallucination detection',
+      'Architected and delivered an AI-powered Personalization Engine using Java Microservices, achieving a 25% uplift in user engagement through real-time recommendations and dynamic content delivery',
+      'Integrated OpenAI GPT models with enterprise Java backend systems via secure API gateways, enabling natural language interfaces for internal banking operations',
+      'Implemented Advanced SQL AI Features including Natural Language to SQL conversion, enabling business users to query complex datasets using plain language',
+      'Designed a Hybrid Search Framework combining Vector Search, Keyword Search, and Knowledge Graphs, providing comprehensive data retrieval across structured and unstructured banking data',
+      'Engineered a real-time Fraud Detection Engine using Python ML pipelines deployed to production on GCP, processing 50K+ transactions per second with sub-second latency',
+      'Built a Semantic Search Engine for regulatory compliance using Pinecone Vector DB, reducing document retrieval time by 70% across 10M+ compliance documents',
     ],
-    tags: ['RAG', 'LLMs', 'Vector Search', 'Compliance AI', 'Pinecone', 'LangChain'],
+    tags: ['Java', 'GPT Integration', 'Hybrid Search', 'Vector DB', 'GCP', 'Microservices', 'ML Pipeline'],
   },
   {
     company: 'UOB',
-    role: 'Senior Lead Engineer',
-    period: 'Jan 2023 - Sep 2024',
+    role: 'Senior Technical Lead | Payments & Integration Architecture',
+    period: 'Apr 2022 - Jul 2024',
     location: 'Singapore',
     description: [
-      'Led development of core banking microservices architecture',
-      'Designed real-time transaction processing pipelines',
-      'Mentored team of 8 engineers across multiple product squads',
-      'Implemented CI/CD pipelines reducing deployment time by 60%',
-      'Architected event-driven systems using Kafka for real-time processing',
-      'Built high-availability services handling millions of daily transactions',
+      'Spearheaded development of the Instapay Payment Gateway, enabling seamless digital transactions for 4M+ customers across Southeast Asia with 99.99% uptime',
+      'Led the Singapore PayNow Integration initiative, building real-time interbank fund transfer capabilities using ISO 20022 messaging standards',
+      'Architected core REST Microservices backend systems using Java Spring Boot, supporting 50+ API endpoints with 99.9% availability SLA',
+      'Engineered Open Banking APIs compliant with Singapore MAS TRM guidelines, enabling secure third-party financial data sharing',
+      'Implemented Kafka Event-Driven Architecture for real-time payment notifications, processing 1M+ events daily with zero data loss',
+      'Designed and deployed API Integration Middleware layer enabling seamless connectivity between legacy core banking systems and modern digital channels',
     ],
-    tags: ['Microservices', 'Java', 'Event-Driven', 'DevOps', 'Kafka', 'Kubernetes'],
+    tags: ['Payment Gateway', 'ISO 20022', 'Kafka', 'Open Banking', 'Java Spring Boot', 'MAS Compliance'],
   },
   {
-    company: 'SingLife',
-    role: 'Technical Lead',
-    period: 'Aug 2022 - Jan 2023',
+    company: 'Gxs Bank (Digital Bank JV: Grab + SingTel)',
+    role: 'Lead Developer | Core Banking & Data Engineering',
+    period: 'Jan 2021 - Mar 2022',
     location: 'Singapore',
     description: [
-      'Led technical design for digital insurance platform features',
-      'Built real-time claims processing system using event-driven architecture',
-      'Implemented API gateway handling 10K+ requests per second',
-      'Designed fault-tolerant messaging patterns for insurance workflows',
+      'Led a team of 6 developers in building the core banking infrastructure for Singapore\'s first digital bank from inception to launch',
+      'Developed Kafka Data Pipelines for real-time transaction processing, ingesting 5M+ daily banking events with exactly-once semantics',
+      'Built Data Integration Frameworks connecting 10+ external financial APIs including payment networks, credit bureaus, and identity verification services',
+      'Architected Fraud Detection Systems using Stream Processing (Flink) with ML models trained on historical transaction patterns, reducing fraud by 45%',
+      'Implemented Enterprise Data Lake architecture on GCP BigQuery, consolidating data from 15+ sources into a unified analytics platform',
     ],
-    tags: ['InsurTech', 'Event-Driven', 'API Design', 'Real-Time', 'Node.js'],
-  },
-  {
-    company: 'OCBC Bank',
-    role: 'Full Stack Developer',
-    period: 'Aug 2021 - Aug 2022',
-    location: 'Singapore',
-    description: [
-      'Developed customer-facing digital banking features',
-      'Built React-based dashboards for portfolio management',
-      'Implemented real-time notification system using WebSocket',
-      'Optimized frontend performance reducing load times by 40%',
-    ],
-    tags: ['React', 'Node.js', 'FinTech', 'WebSocket', 'TypeScript'],
+    tags: ['Core Banking', 'Kafka', 'GCP BigQuery', 'Flink', 'Data Pipelines', 'Fraud Detection'],
   },
   {
     company: 'NTUC Income',
-    role: 'Full Stack Developer',
-    period: 'Sep 2020 - Aug 2021',
+    role: 'Full Stack Developer | InsurTech Solutions',
+    period: 'Aug 2020 - Jan 2021',
     location: 'Singapore',
     description: [
-      'Developed policy management system serving 2M+ customers',
-      'Built automated underwriting engine using rule-based AI',
-      'Optimized database queries reducing response time by 40%',
-      'Implemented micro-frontend architecture for modular UI',
+      'Led the development of a Next-Gen Policy Administration System supporting all insurance product lines across Health, Life, and General insurance',
+      'Engineered Automated Underwriting Engine using Java and Drools Rule Engine, reducing policy approval time from 3 days to 15 minutes',
+      'Built Claims Management Portal with React.js and Node.js, digitizing the entire claims lifecycle for 2M+ active policyholders',
+      'Implemented Integration Middleware for seamless connectivity with Reinsurers, Banks, and Government systems including CPF and IRAS',
+      'Designed RESTful APIs serving 10K+ requests per second for mobile app and web portal integrations',
     ],
-    tags: ['Java', 'PostgreSQL', 'Automation', 'Performance', 'Micro-Frontends'],
+    tags: ['Next-Gen PAS', 'Drools', 'Claims Digitization', 'Reinsurance Integration', 'React.js'],
   },
   {
-    company: 'NCS / LTA ERP2',
-    role: 'Senior Java Developer',
-    period: 'Aug 2017 - Aug 2020',
+    company: 'NCS Group / LTA (Land Transport Authority)',
+    role: 'ERP2 Technical Lead & Solution Architect',
+    period: 'Jun 2017 - Jul 2020',
     location: 'Singapore',
     description: [
-      'Core developer on Singapore ERP2 (Electronic Road Pricing) system',
-      'Built high-throughput tolling transaction processing backend',
-      'Implemented GNSS-based location services integration',
-      'Designed fault-tolerant messaging system using IBM MQ',
-      'Processed millions of daily tolling transactions with 99.99% uptime',
-      'Built real-time location tracking for ERP2 GNSS system',
+      'Led ERP2 On-Board Unit (OBU) Application development, a critical GNSS-based Electronic Road Pricing system for Singapore\'s transport network',
+      'Architected OBU Device Management Platform with OTA Update Capabilities, managing 900K+ in-vehicle devices with 99.99% reliability',
+      'Engineered real-time GNSS-based Tolling Engine processing 500K+ daily transactions with sub-meter location accuracy using Kalman Filtering',
+      'Built High-Availability Systems achieving 99.99% uptime with active-active multi-zone deployment architecture on AWS',
+      'Developed Integration Middleware for ERP Backend Systems including Banks, Vehicle Registration, and Telecommunication providers',
+      'Implemented Solace IBM MQ Messaging backbone for inter-system communication with guaranteed message delivery',
+      'Integrated Telecommunication Providers for OBU connectivity using dual-SIM architecture with automatic failover',
+      'Architected ERP Backend Integration Layer connecting with 15+ external systems including Banks, LTA, and Government databases',
     ],
-    tags: ['Java', 'IBM MQ', 'GNSS', 'High-Availability', 'PostgreSQL', 'REST APIs'],
+    tags: ['OBU', 'GNSS', 'Kalman Filtering', 'Solace IBM MQ', 'OTA', 'Multi-Zone AWS'],
+  },
+  {
+    company: 'Cognizant (Client: Caterpillar Inc)',
+    role: 'Full Stack Developer | Enterprise Solutions',
+    period: 'Feb 2013 - May 2017',
+    location: 'Pune, India',
+    description: [
+      'Led the development of Enterprise Product Lifecycle Management Portal serving 100K+ users across 190 countries',
+      'Architected IoT Data Visualization Dashboards integrating real-time machine telemetry data from 500K+ connected assets using AngularJS',
+      'Engineered High-Performance Java Backend Services using Spring Boot, handling 100K+ concurrent users during peak operations',
+      'Built Predictive Analytics Dashboard using Python and Apache Spark, processing 5TB+ daily machine data for predictive maintenance',
+      'Implemented Dealer Management System Integration connecting 2,500+ global dealers with centralized product and order management',
+    ],
+    tags: ['AngularJS', 'Spring Boot', 'IoT', 'Apache Spark', 'Predictive Analytics', 'Global Scale'],
+  },
+  {
+    company: 'Cognizant (Client: British Telecom)',
+    role: 'Technical Lead | Cloud & DevOps Engineering',
+    period: 'Aug 2010 - Jan 2013',
+    location: 'Pune, India',
+    description: [
+      'Led migration of legacy monolithic applications to Cloud-Native Microservices Architecture on AWS, reducing infrastructure costs by 40%',
+      'Architected CI/CD Pipeline using Jenkins, Docker, and Ansible, reducing deployment cycles from 2 weeks to 2 hours',
+      'Built Automated Testing Framework using Selenium and JUnit achieving 90%+ code coverage across all critical services',
+      'Implemented AWS CloudWatch and ELK Stack monitoring across 50+ microservices, reducing mean-time-to-resolution by 60%',
+    ],
+    tags: ['Cloud Migration', 'Docker', 'CI/CD', 'AWS', 'Microservices', 'DevOps'],
+  },
+  {
+    company: 'Infosys (Client: Royal Bank of Scotland)',
+    role: 'Java Developer | Enterprise Integration',
+    period: 'Jun 2008 - Jul 2010',
+    location: 'Pune, India',
+    description: [
+      'Developed Core Banking Microservices using Java and IBM WebSphere for RBS\'s UK retail banking operations',
+      'Implemented ISO 8583 Messaging for card payment processing across ATM and POS networks',
+      'Built RESTful APIs for Mobile Banking Application serving 5M+ UK retail banking customers',
+      'Designed Integration Layer connecting Core Banking with Cards, Loans, and Mortgage systems using IBM MQ',
+    ],
+    tags: ['IBM WebSphere', 'ISO 8583', 'REST APIs', 'Core Banking', 'IBM MQ'],
   },
 ];
 
 const aiSkills = [
-  { name: 'LLM Integration', color: 'accent' },
-  { name: 'RAG Systems', color: 'teal' },
-  { name: 'Agentic AI', color: 'coral' },
-  { name: 'Vector Databases', color: 'blue' },
-  { name: 'Prompt Engineering', color: 'pink' },
-  { name: 'LangChain / LlamaIndex', color: 'accent' },
-  { name: 'OpenAI / Claude API', color: 'teal' },
-  { name: 'Hugging Face', color: 'coral' },
-  { name: 'ML Ops', color: 'blue' },
-  { name: 'MCP (Model Context Protocol)', color: 'accent' },
-  { name: 'Multi-Agent Systems', color: 'teal' },
-  { name: 'RAG Evaluation', color: 'coral' },
+  { name: 'Multi-Model Enterprise RAG Platforms', color: 'accent' },
+  { name: 'LangChain / LlamaIndex', color: 'teal' },
+  { name: 'Advanced RAG (Agentic, Adaptive, Self-RAG)', color: 'coral' },
+  { name: 'Hybrid Dense/Sparse Retrieval + Cross-Encoder Reranking', color: 'blue' },
+  { name: 'Vector DBs (Pinecone, Milvus, Weaviate, ChromaDB, FAISS)', color: 'pink' },
+  { name: 'Graph RAG + Knowledge Graph Integration', color: 'accent' },
+  { name: 'Enterprise LLM Orchestration (Multi-Model)', color: 'teal' },
+  { name: 'MCP (Model Context Protocol)', color: 'coral' },
+  { name: 'Production AI Guardrails (PII Detection, Injection Protection, Hallucination Monitoring)', color: 'blue' },
+  { name: 'Model Context Protocol (MCP) Engineering', color: 'accent' },
+  { name: 'Multi-Agent RAG Systems', color: 'teal' },
+  { name: 'AI Workflow Automation (n8n, LangGraph, CrewAI)', color: 'coral' },
 ];
 
 const coreSkills = [
-  { name: 'Java / Spring Boot', color: 'accent' },
-  { name: 'Python', color: 'teal' },
-  { name: 'TypeScript / Node.js', color: 'blue' },
-  { name: 'React / Next.js', color: 'pink' },
-  { name: 'PostgreSQL / MongoDB', color: 'coral' },
-  { name: 'AWS / Azure', color: 'accent' },
-  { name: 'Docker / Kubernetes', color: 'teal' },
-  { name: 'Kafka / RabbitMQ', color: 'blue' },
-  { name: 'Git / CI/CD', color: 'pink' },
-  { name: 'REST / GraphQL APIs', color: 'coral' },
-  { name: 'Microservices', color: 'accent' },
-  { name: 'Event-Driven Architecture', color: 'teal' },
-  { name: 'Redis / Caching', color: 'blue' },
-  { name: 'IBM MQ', color: 'pink' },
-  { name: 'GNSS / Location Services', color: 'coral' },
+  { name: 'Java (Spring Boot, Maven, J2EE)', color: 'accent' },
+  { name: 'Python (FastAPI, Pandas, NumPy, Scikit-learn, TensorFlow)', color: 'teal' },
+  { name: 'TypeScript / Node.js (NestJS)', color: 'blue' },
+  { name: 'React.js / Next.js', color: 'pink' },
+  { name: 'AngularJS / Vue.js', color: 'coral' },
+  { name: 'PostgreSQL / MySQL / Oracle', color: 'accent' },
+  { name: 'MongoDB / DynamoDB', color: 'teal' },
+  { name: 'AWS (EKS, Lambda, S3, SageMaker)', color: 'blue' },
+  { name: 'GCP (BigQuery, Vertex AI, Dataflow)', color: 'pink' },
+  { name: 'Azure (OpenAI Service, Cognitive Search)', color: 'coral' },
+  { name: 'Docker / Kubernetes', color: 'accent' },
+  { name: 'Kafka / Solace IBM MQ / RabbitMQ', color: 'teal' },
+  { name: 'Terraform / Ansible / CloudFormation', color: 'blue' },
+  { name: 'Prometheus / Grafana / ELK Stack', color: 'pink' },
+  { name: 'REST APIs / Microservices / Event-Driven Architecture', color: 'coral' },
+  { name: 'Git / Jenkins / CI/CD Pipelines', color: 'accent' },
+  { name: 'Redis / EJB / SOAP', color: 'teal' },
 ];
 
 const domainKnowledge = [
-  { name: 'Government Transport Systems', color: 'accent' },
-  { name: 'Banking & Finance', color: 'teal' },
-  { name: 'Insurance (InsurTech)', color: 'blue' },
-  { name: 'Digital Payments', color: 'pink' },
-  { name: 'Tolling Systems (ERP)', color: 'coral' },
-  { name: 'Fare Settlement', color: 'accent' },
-  { name: 'Compliance & Audit', color: 'teal' },
-  { name: 'High-Availability Systems', color: 'blue' },
+  { name: 'Smart Mobility & GNSS Tolling', color: 'accent' },
+  { name: 'Government Transport Systems', color: 'teal' },
+  { name: 'Banking & Finance', color: 'blue' },
+  { name: 'Digital Payments & PayNow', color: 'pink' },
+  { name: 'Insurance & InsurTech', color: 'coral' },
+  { name: 'Telecom & IoT Integration', color: 'accent' },
+  { name: 'OBU Device Management & OTA Updates', color: 'teal' },
+  { name: 'Enterprise Data Pipelines & ETL', color: 'blue' },
+  { name: 'ISO 20022 / ISO 8583 Standards', color: 'pink' },
+  { name: 'High-Availability & Disaster Recovery', color: 'coral' },
+];
+
+const projects = [
+  {
+    name: 'Enterprise AI RAG Platform',
+    description: 'Multi-model RAG platform with hybrid retrieval, Graph RAG, and MCP integration serving 5,000+ users across 5 business units.',
+    tags: ['OpenAI', 'Gemini', 'AWS Bedrock', 'Pinecone', 'MCP', 'n8n'],
+    color: 'accent',
+  },
+  {
+    name: 'ERP2 OBU System',
+    description: 'GNSS-based tolling platform for Singapore\'s Land Transport Authority. OBU device management with 900K+ connected devices and 99.99% uptime.',
+    tags: ['GNSS', 'Kalman Filter', 'Solace IBM MQ', 'OTA', 'AWS Multi-Zone'],
+    color: 'teal',
+  },
+  {
+    name: 'Instapay Payment Gateway',
+    description: 'UOB\'s digital payment gateway enabling PayNow interbank transfers for 4M+ customers across Southeast Asia.',
+    tags: ['ISO 20022', 'Kafka', 'Java Spring Boot', 'Open Banking', 'MAS Compliance'],
+    color: 'blue',
+  },
+  {
+    name: 'Gxs Bank Core Banking',
+    description: 'Core banking infrastructure for Singapore\'s first digital bank (Grab + SingTel JV). Real-time fraud detection processing 5M+ daily events.',
+    tags: ['Kafka', 'Flink', 'GCP BigQuery', 'ML Fraud Detection', 'Data Lake'],
+    color: 'coral',
+  },
 ];
 ---
 
-<BaseLayout title="Resume | Naga Siva Poluri" description="Professional experience and technical skills of Naga Siva Poluri.">
+<BaseLayout title="Resume | Naga Siva Poluri" description="AI Integration Engineer, Data Engineer & Full Stack Developer with 15+ years across Government, Banking, Insurance, and Transport. Specializing in Agentic AI, Enterprise RAG, MCP, and multi-model LLM orchestration.">
   <div class="page-header">
     <div class="container">
       <span class="section-eyebrow reveal">EXPERIENCE</span>
       <h1 class="reveal stagger-1">Professional Resume</h1>
-      <p class="subtitle reveal stagger-2">15+ years of enterprise solution delivery across Government, Banking, Insurance, and FinTech.</p>
+      <p class="subtitle reveal stagger-2">15+ years of enterprise solution delivery across Government, Banking, Insurance, Transport, and FinTech — specializing in Agentic AI, Enterprise RAG, and Full Stack Engineering.</p>
     </div>
   </div>
 
@@ -168,7 +231,7 @@ const domainKnowledge = [
       <div class="summary-card card-3d reveal">
         <span class="section-eyebrow">PROFESSIONAL SUMMARY</span>
         <p class="summary-text">
-          Forward-thinking AI Integration Engineer, Data Engineer & Full Stack Developer with 15+ years of enterprise solution delivery across Singapore's top-tier Government, Banking, Insurance, Transport, and Fintech sectors. Specializing in AI integration, RAG platforms, agentic architectures, and MCP (Model Context Protocol) implementations with a track record of delivering high-impact solutions at LTA, Bank of Singapore, UOB, and OCBC.
+          AI Integration Engineer, Data Engineer & Full Stack Developer with 15+ years of enterprise solution delivery across Singapore's top-tier Government, Banking, Insurance, Transport, and Fintech sectors. Specializing in Agentic AI, Enterprise RAG Platforms, MCP implementations, and multi-model LLM orchestration with a proven track record of delivering mission-critical systems at LTA, DBS Bank, UOB, Gxs Bank, and NTUC Income.
         </p>
       </div>
 
@@ -194,11 +257,33 @@ const domainKnowledge = [
         </div>
       </div>
 
+      <!-- Key Projects -->
+      <div class="skills-section">
+        <SectionHeader
+          eyebrow="KEY PROJECTS"
+          title="Signature Contributions"
+          desc="High-impact systems I've built and led."
+        />
+        <div class="projects-grid reveal">
+          {projects.map(proj => (
+            <div class={`project-card project-card--${proj.color}`}>
+              <h4 class="project-name">{proj.name}</h4>
+              <p class="project-desc">{proj.description}</p>
+              <div class="project-tags">
+                {proj.tags.map(tag => (
+                  <span class="project-tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <!-- AI Skills -->
       <div class="skills-section">
         <SectionHeader
           eyebrow="AI & INTELLIGENCE"
-          title="AI Integration Tech Stack"
+          title="AI Engineering & RAG"
           desc="Cutting-edge AI technologies I work with daily."
         />
         <div class="skills-grid reveal">
@@ -245,13 +330,13 @@ const domainKnowledge = [
         <div class="education-grid">
           <div class="education-card card-3d reveal stagger-1">
             <h3>MBA</h3>
-            <p class="edu-school">SMU Hyderabad</p>
+            <p class="edu-school">Symbiosis International University</p>
             <p class="edu-detail">Master of Business Administration</p>
             <p class="edu-focus">Focus: Technology Management & Strategy</p>
           </div>
           <div class="education-card card-3d reveal stagger-2">
             <h3>B.E. EEE</h3>
-            <p class="edu-school">Anna University</p>
+            <p class="edu-school">JNTUH (Jawaharlal Nehru Technological University)</p>
             <p class="edu-detail">Bachelor of Engineering in Electrical & Electronics</p>
             <p class="edu-focus">Focus: Embedded Systems & Signal Processing</p>
           </div>
@@ -266,20 +351,28 @@ const domainKnowledge = [
         />
         <div class="achievements-grid">
           <div class="achievement-card reveal stagger-1">
-            <span class="achievement-number">10M+</span>
-            <span class="achievement-label">Documents indexed in RAG platform</span>
+            <span class="achievement-number">15+</span>
+            <span class="achievement-label">Years enterprise solution delivery</span>
           </div>
           <div class="achievement-card reveal stagger-2">
+            <span class="achievement-number">10M+</span>
+            <span class="achievement-label">Documents indexed in RAG platforms</span>
+          </div>
+          <div class="achievement-card reveal stagger-3">
             <span class="achievement-number">99.99%</span>
             <span class="achievement-label">Uptime for ERP2 tolling system</span>
           </div>
-          <div class="achievement-card reveal stagger-3">
-            <span class="achievement-number">60%</span>
-            <span class="achievement-label">Reduction in deployment time</span>
-          </div>
           <div class="achievement-card reveal stagger-4">
-            <span class="achievement-number">10K+</span>
-            <span class="achievement-label">API requests per second handled</span>
+            <span class="achievement-number">900K+</span>
+            <span class="achievement-label">OBU devices managed in production</span>
+          </div>
+          <div class="achievement-card reveal stagger-5">
+            <span class="achievement-number">5K+</span>
+            <span class="achievement-label">LTA staff served by RAG platform</span>
+          </div>
+          <div class="achievement-card reveal stagger-6">
+            <span class="achievement-number">5M+</span>
+            <span class="achievement-label">Daily banking events processed</span>
           </div>
         </div>
       </div>
@@ -352,6 +445,59 @@ const domainKnowledge = [
 
   .achievements-section { margin-bottom: 4rem; }
 
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    padding: 1.75rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+  }
+
+  .project-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-3px);
+  }
+
+  .project-card--accent { border-left: 3px solid var(--accent); }
+  .project-card--teal { border-left: 3px solid var(--teal); }
+  .project-card--blue { border-left: 3px solid var(--blue); }
+  .project-card--coral { border-left: 3px solid var(--coral); }
+
+  .project-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .project-tag {
+    padding: 0.2rem 0.6rem;
+    background: rgba(var(--accent-rgb), 0.1);
+    border: 1px solid rgba(var(--accent-rgb), 0.2);
+    border-radius: 99px;
+    font-size: 0.75rem;
+    color: var(--accent-light);
+  }
+
   .achievements-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -399,6 +545,7 @@ const domainKnowledge = [
     .timeline { padding-left: 2rem; }
     .education-grid { grid-template-columns: 1fr; }
     .achievements-grid { grid-template-columns: repeat(2, 1fr); }
+    .projects-grid { grid-template-columns: 1fr; }
     .resume-cta { flex-direction: column; align-items: center; }
   }
 </style>
