@@ -32,14 +32,17 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Node
+        # NOTE: intentionally no `cache: 'npm'` here — we use a dedicated
+        # actions/cache@v4 step below with proper lock-file-aware keying
+        # and restore-keys fallback. Using both would race.
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
 
-      # Cross-run cache for the netlify-cli install + Astro node_modules.
+      # Cross-run cache for netlify-cli + Astro node_modules.
       # Uses ~/.npm and is keyed on package-lock.json so a deps change
-      # triggers a rebuild. Cuts ~30-45 s off every successful deploy.
+      # triggers a rebuild. The restore-keys fallback handles the
+      # cache-miss case (e.g. first deploy after a runner scale-up).
       - name: Cache npm
         uses: actions/cache@v4
         with:
