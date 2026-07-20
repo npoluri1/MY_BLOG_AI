@@ -7,8 +7,6 @@ tags:
   - "framework"
 category: ["POST", "framework"]
 primaryCategory: "ai-economics"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/p-o-s-t-four-dimensions-of-ai-native-delivery/"
 readingTime: "6 min read"
 ---
 # P.O.S.T.: four dimensions of AI-native delivery

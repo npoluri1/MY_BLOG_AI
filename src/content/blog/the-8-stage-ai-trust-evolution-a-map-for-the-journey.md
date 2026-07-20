@@ -6,8 +6,6 @@ tags:
   - "trust"
 category: ["trust"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-8-stage-ai-trust-evolution-a-map-for-the-journey/"
 readingTime: "6 min read"
 ---
 # The 8-stage AI trust evolution

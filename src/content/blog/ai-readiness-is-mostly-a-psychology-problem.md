@@ -7,8 +7,6 @@ tags:
   - "change-management"
 category: ["ai", "change-management"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/ai-readiness-is-mostly-a-psychology-problem/"
 readingTime: "6 min read"
 ---
 # AI readiness is mostly a psychology problem

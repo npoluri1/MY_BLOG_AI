@@ -7,8 +7,6 @@ tags:
   - "architecture"
 category: ["ai", "architecture"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/before-you-architect-anything-agree-on-what-the-ai-actually-does/"
 readingTime: "6 min read"
 ---
 # Before you architect anything, agree on what the AI actually does

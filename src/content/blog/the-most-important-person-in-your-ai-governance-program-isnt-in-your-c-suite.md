@@ -7,8 +7,6 @@ tags:
   - "governance"
 category: ["ai", "governance"]
 primaryCategory: "ai-governance"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-most-important-person-in-your-ai-governance-program-isnt-in-your-c-suite/"
 readingTime: "6 min read"
 ---
 # The most important person in your AI governance program isn't in your C-suite

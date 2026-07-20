@@ -6,8 +6,6 @@ tags:
   - "leveling"
 category: ["leveling"]
 primaryCategory: "ai-economics"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-skill-leveling-effect-what-happens-when-ai-helps-everyone-equally/"
 readingTime: "6 min read"
 ---
 # The skill leveling effect

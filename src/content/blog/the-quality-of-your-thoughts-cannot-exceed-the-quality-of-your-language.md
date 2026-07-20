@@ -6,8 +6,6 @@ tags:
   - "vocabulary"
 category: ["vocabulary"]
 primaryCategory: "vocabulary"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-quality-of-your-thoughts-cannot-exceed-the-quality-of-your-language/"
 readingTime: "6 min read"
 ---
 # Quality of thoughts cannot exceed quality of language

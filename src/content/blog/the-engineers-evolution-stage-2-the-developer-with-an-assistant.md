@@ -7,8 +7,6 @@ tags:
   - "assistant"
 category: ["engineer", "assistant"]
 primaryCategory: "engineering-evolution"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-engineers-evolution-stage-2-the-developer-with-an-assistant/"
 readingTime: "6 min read"
 ---
 # The engineer evolution: stage 2 (developer with an assistant)

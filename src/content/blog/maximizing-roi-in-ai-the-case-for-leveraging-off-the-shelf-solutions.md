@@ -8,8 +8,6 @@ tags:
   - "build-vs-buy"
 category: ["ai", "economics"]
 primaryCategory: "ai-economics"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/maximizing-roi-in-ai-the-case-for-leveraging-off-the-shelf-solutions/"
 readingTime: "6 min read"
 ---
 # Maximizing ROI in AI: the case for leveraging off-the-shelf solutions

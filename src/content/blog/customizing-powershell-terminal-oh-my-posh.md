@@ -4,7 +4,6 @@ description: "Instructions on customizing the terminal in powershell with oh-my-
 pubDate: 2022-07-07
 heroImage: "/images/linkedin/1764337015045.jpg"
 category: ["windows", "powershell", "tutorial"]
-author: "Naga Siva Poluri"
 primaryCategory: "windows"
 ---
 

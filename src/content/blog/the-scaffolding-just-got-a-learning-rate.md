@@ -7,8 +7,6 @@ tags:
   - "learning"
 category: ["agents", "learning"]
 primaryCategory: "agentic-architecture"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-scaffolding-just-got-a-learning-rate/"
 readingTime: "6 min read"
 ---
 # The scaffolding just got a learning rate

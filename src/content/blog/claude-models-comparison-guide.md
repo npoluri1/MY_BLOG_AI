@@ -4,7 +4,6 @@ description: "Compare Anthropic's Claude models—Fable 5, Opus 4.8, Sonnet 5, H
 pubDate: 2026-07-03
 heroImage: "/images/linkedin/1763635713299.jpg"
 category: ["ai", "agentic", "claude-code"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

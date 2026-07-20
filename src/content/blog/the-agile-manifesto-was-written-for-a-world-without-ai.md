@@ -6,8 +6,6 @@ tags:
   - "agile"
 category: ["agile"]
 primaryCategory: "agile"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-agile-manifesto-was-written-for-a-world-without-ai/"
 readingTime: "6 min read"
 ---
 # The Agile Manifesto was written for a world without AI

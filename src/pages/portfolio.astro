@@ -5,187 +5,194 @@ import SectionHeader from '../components/SectionHeader.astro';
 
 const projects = [
   {
-    title: 'Enterprise RAG Platform',
-    category: 'AI / RAG',
+    title: 'Agentic AI Personal / Enterprise Assistant Platform',
+    period: '2025 — 2026',
+    category: 'AGENTIC AI',
+    categoryColor: 'accent',
+    description: 'Self-built production-grade, message-driven multi-agent platform inspired by OpenClaw. Telegram & WhatsApp ingest → LangGraph orchestration → MCP-discoverable tools → persistent memory (Redis + ChromaDB + pgvector) → WebSocket streaming responses → Guardrails AI security → LangSmith observability.',
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
+    tech: [
+      { name: 'Python', color: 'teal' },
+      { name: 'LangGraph', color: 'accent' },
+      { name: 'CrewAI', color: 'accent' },
+      { name: 'Claude API', color: 'accent' },
+      { name: 'MCP', color: 'accent' },
+      { name: 'OpenAI Agents SDK', color: 'teal' },
+      { name: 'Telegram Bot', color: 'blue' },
+      { name: 'WhatsApp', color: 'green' },
+      { name: 'pgvector', color: 'blue' },
+      { name: 'ChromaDB', color: 'pink' },
+      { name: 'Redis', color: 'coral' },
+      { name: 'Playwright', color: 'blue' },
+      { name: 'Guardrails AI', color: 'accent' },
+      { name: 'LangSmith', color: 'teal' },
+      { name: 'Docker', color: 'blue' },
+      { name: 'AWS Bedrock', color: 'coral' },
+    ],
+    highlights: [
+      'AGENTIC CORE: LangGraph orchestration — Researcher / Executor / Validator / Summarizer roles, mirroring OpenClaw\'s 4-tier architecture',
+      'MCP INTEGRATION: Tools (calendar, email, FS, shell) exposed as discoverable agent capabilities, no hardcoded logic',
+      'PERSISTENT MEMORY: Redis short-term session + ChromaDB semantic recall + pgvector structured retrieval',
+      'REAL-TIME STREAMING: WebSocket reasoning + step progress visible in Telegram/WhatsApp',
+      'AI SECURITY: Guardrails AI prompt-injection defense, role-based tool permission enforcement, human-in-the-loop gates',
+      'LANG-SMITH: Full agent trace logging, tool-call audit, latency tracking, token-cost dashboards',
+      'RESULT: End-to-end agent workflow in < 8 seconds; 200+ concurrent sessions on a 2-vCPU EC2',
+    ],
+    link: '#',
+  },
+  {
+    title: 'Enterprise RAG Intelligence Platform — Financial & Legal Document AI',
+    period: '2025',
+    category: 'RAG / LLM',
     categoryColor: 'teal',
-    description: 'Built a production-grade Retrieval Augmented Generation platform serving internal wealth management teams. Implemented vector search across 10M+ financial documents with hybrid dense-sparse retrieval, reranking, and compliance-aware architectures.',
+    description: 'Production-grade RAG purpose-built for Singapore\'s financial and legal sectors — PDPA policies, MAS circulars, loan agreements, annual reports. Cited AI answers with stateful multi-turn reasoning.',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
     tech: [
       { name: 'Python', color: 'teal' },
       { name: 'LangChain', color: 'accent' },
+      { name: 'LangGraph', color: 'accent' },
+      { name: 'AWS Bedrock', color: 'coral' },
+      { name: 'Claude Sonnet 3.7', color: 'accent' },
+      { name: 'OpenAI GPT-4o', color: 'teal' },
       { name: 'Pinecone', color: 'blue' },
-      { name: 'FastAPI', color: 'coral' },
-      { name: 'OpenAI', color: 'teal' },
-      { name: 'Redis', color: 'coral' },
-    ],
-    highlights: [
-      '10M+ documents indexed and searchable',
-      'Hybrid dense-sparse retrieval with reranking',
-      'Sub-second query response times',
-      '99.9% uptime in production',
-    ],
-    link: '#',
-  },
-  {
-    title: 'Agentic AI Platform',
-    category: 'AGENTIC AI',
-    categoryColor: 'accent',
-    description: 'Designed and built a multi-agent AI platform for autonomous system monitoring and self-healing. Implemented tool orchestration, memory management, and guardrails for production-safe agent execution.',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
-    tech: [
-      { name: 'Claude API', color: 'accent' },
-      { name: 'TypeScript', color: 'blue' },
-      { name: 'Redis', color: 'coral' },
-      { name: 'Docker', color: 'teal' },
-      { name: 'MCP', color: 'accent' },
+      { name: 'pgvector', color: 'blue' },
+      { name: 'HuggingFace', color: 'pink' },
+      { name: 'Spring AI (Java)', color: 'coral' },
+      { name: 'FastAPI', color: 'teal' },
       { name: 'PostgreSQL', color: 'blue' },
+      { name: 'Redis', color: 'coral' },
+      { name: 'Kubernetes', color: 'accent' },
+      { name: 'MLflow', color: 'teal' },
+      { name: 'LangSmith', color: 'accent' },
+      { name: 'Weights & Biases', color: 'pink' },
+      { name: 'Terraform', color: 'blue' },
     ],
     highlights: [
-      'Multi-agent orchestration framework',
-      'Tool use with safety guardrails',
-      'Memory management for long-running agents',
-      'Real-time monitoring and alerting',
+      'HYBRID RAG: Pinecone dense + BM25 keyword + Cohere rerank — 94% relevancy vs 71% naive baseline',
+      'LANGGRAPH REASONING: Query intent classification → retrieve-or-decompose → multi-hop sub-queries → cited synthesis',
+      'MULTI-DOC COMPARISON: Two contracts/policies → clause-level diff → risk areas → MAS/PDPA compliance flags',
+      'AWS BEDROCK MODEL ROUTING: Claude for hard reasoning, GPT-4o-mini for fast summarization — 38% API cost reduction',
+      'SPRING AI MICROSERVICE: Java enterprise systems can call RAG analytics via standard REST/gRPC',
+      'LoRA-TUNED EMBEDDINGS: HuggingFace fine-tuned on MAS/SGX corpus — +22% precision on domain terms',
+      'RESULT: 10K+ document pages, 1,200+ daily queries, sub-3-second answers, 99.95% uptime on EKS',
     ],
     link: '#',
   },
   {
-    title: 'Singapore ERP2 Tolling System',
-    category: 'TRANSPORT / GNSS',
+    title: 'LTA Transport Payments & AI Integration',
+    period: 'Nov 2025 — Present',
+    category: 'AI / TRANSPORT',
     categoryColor: 'coral',
-    description: 'Core developer on Singapore\'s next-generation Electronic Road Pricing system. Built high-throughput tolling transaction processing with GNSS-based location services and fault-tolerant IBM MQ messaging.',
+    description: 'End-to-end AI integration across LTA\'s transport payments — FDMS, TAPS, ABT, Fare Display — for millions of daily MRT/LRT/Bus commuters. RAG-powered inquiry management automates 60% of fare disputes without human intervention.',
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop',
     tech: [
       { name: 'Java', color: 'coral' },
-      { name: 'IBM MQ', color: 'accent' },
-      { name: 'GNSS', color: 'teal' },
+      { name: 'Spring Boot', color: 'teal' },
+      { name: 'Python', color: 'teal' },
+      { name: 'Kafka', color: 'blue' },
+      { name: 'AWS Bedrock', color: 'coral' },
+      { name: 'LangChain', color: 'accent' },
       { name: 'PostgreSQL', color: 'blue' },
-      { name: 'REST APIs', color: 'pink' },
-      { name: 'High-Availability', color: 'coral' },
+      { name: 'Oracle', color: 'coral' },
+      { name: 'OpenShift', color: 'accent' },
+      { name: 'PySpark', color: 'teal' },
+      { name: 'Power BI', color: 'pink' },
     ],
     highlights: [
-      '99.99% uptime for mission-critical system',
-      'Millions of daily transactions',
-      'Real-time GNSS location tracking',
-      'Fault-tolerant messaging architecture',
+      'AI-ENHANCED PAYMENTS: SimplyGo (ABT), EZ-Link, NETS, contactless bank card processing + ML anomaly detection',
+      'FDMS: Microservices-based fare management with AI-assisted fare-rule validation — 50% fewer config errors',
+      'TAPS: Kafka-streamed settlement reconciliation for 10M+ daily transit transactions',
+      'RAG INQUIRY MANAGEMENT: NLP intent detection + LangChain — 60% of fare disputes closed without human handoff',
+      'ABT REFUND: Rule-based + ML-assisted eligibility — refund processing cut from 5 days to < 4 hours',
+      'Leading cross-functional Agile team of 14; MLflow governance aligned with GovTech data standards',
     ],
     link: '#',
   },
   {
-    title: 'Digital Banking Microservices',
-    category: 'FINTECH',
+    title: 'AI-Powered Loan Processing — Bank of Singapore',
+    period: 'Sep 2024 — Jul 2025',
+    category: 'BANKING / AI',
     categoryColor: 'pink',
-    description: 'Led development of core banking microservices architecture at UOB, designing real-time transaction processing pipelines and implementing CI/CD reducing deployment time by 60%.',
+    description: 'LLM-based document analysis, automated KYC, real-time fraud detection, and credit risk scoring on AWS Bedrock &amp; LangChain for private banking. XGBoost credit scoring achieved 0.87 AUC vs 0.74 baseline on 10M+ historical loan records.',
     image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop',
     tech: [
-      { name: 'Java', color: 'coral' },
-      { name: 'Kubernetes', color: 'accent' },
-      { name: 'Kafka', color: 'teal' },
-      { name: 'React', color: 'blue' },
+      { name: 'AWS Bedrock', color: 'coral' },
+      { name: 'LangChain', color: 'accent' },
+      { name: 'Python', color: 'teal' },
+      { name: 'XGBoost', color: 'accent' },
+      { name: 'LightGBM', color: 'green' },
+      { name: 'Scikit-learn', color: 'teal' },
+      { name: 'PySpark', color: 'teal' },
+      { name: 'SageMaker', color: 'coral' },
+      { name: 'MLflow', color: 'teal' },
       { name: 'Spring Boot', color: 'teal' },
-      { name: 'CI/CD', color: 'pink' },
+      { name: 'Kafka', color: 'blue' },
     ],
     highlights: [
-      '60% reduction in deployment time',
-      'Real-time transaction processing',
-      'Team of 8 engineers mentored',
-      'Event-driven architecture',
+      'RAG over banking policy &amp; loan KBs — 40% reduction in manual review time',
+      'Amazon Lex conversational AI handling 5,000+ daily loan interactions',
+      'CREDIT RISK: XGBoost 0.87 AUC vs 0.74 baseline on PySpark-engineered features over 10M+ records',
+      'FRAUD ML: Isolation Forest + LightGBM ensemble — 35% fewer false positives, higher fraud catch rate',
+      'Customer segmentation (K-Means) + churn models for private banking retention campaigns',
     ],
     link: '#',
   },
   {
-    title: 'Smart Claims Processing',
-    category: 'INSURTECH',
+    title: 'UOB Wealth &amp; Open Banking Data Platform',
+    period: 'Jan 2023 — Sep 2024',
+    category: 'DATA ENGINEERING',
     categoryColor: 'blue',
-    description: 'Built real-time claims processing system at SingLife using event-driven architecture, implementing automated underwriting and API gateway handling 10K+ requests per second.',
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop',
-    tech: [
-      { name: 'Node.js', color: 'teal' },
-      { name: 'Event-Driven', color: 'accent' },
-      { name: 'WebSocket', color: 'blue' },
-      { name: 'MongoDB', color: 'coral' },
-      { name: 'API Gateway', color: 'pink' },
-      { name: 'Real-Time', color: 'teal' },
-    ],
-    highlights: [
-      '10K+ requests per second',
-      'Real-time claims processing',
-      'Automated underwriting engine',
-      'Fault-tolerant architecture',
-    ],
-    link: '#',
-  },
-  {
-    title: 'MCP Server Framework',
-    category: 'AI / TOOLS',
-    categoryColor: 'accent',
-    description: 'Built a reusable Model Context Protocol (MCP) server framework for enterprise tool connectivity. Standardized integration between LLMs and enterprise systems.',
-    image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=400&fit=crop',
-    tech: [
-      { name: 'TypeScript', color: 'blue' },
-      { name: 'MCP Protocol', color: 'accent' },
-      { name: 'Claude API', color: 'teal' },
-      { name: 'REST APIs', color: 'coral' },
-      { name: 'WebSocket', color: 'pink' },
-      { name: 'Docker', color: 'teal' },
-    ],
-    highlights: [
-      'Standardized tool connectivity',
-      'Reusable enterprise framework',
-      'Multi-model support',
-      'Production-ready deployment',
-    ],
-    link: '#',
-  },
-  {
-    title: 'Government Data Platform',
-    category: 'GOV TECH',
-    categoryColor: 'teal',
-    description: 'Designed and built data integration platform for Singapore government agencies, connecting disparate systems into cohesive data-driven architecture.',
+    description: 'Led Agile delivery of Wealth Management &amp; Open Banking platforms for UOB TMRW digital bank. Built 50M+ daily transaction ETL pipeline with Spark, Glue, Airflow, Kafka, Snowflake, dbt; AML/CDD and IFRS regulatory compliance.',
     image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&h=400&fit=crop',
     tech: [
-      { name: 'Python', color: 'teal' },
       { name: 'Apache Spark', color: 'coral' },
-      { name: 'PostgreSQL', color: 'blue' },
-      { name: 'AWS', color: 'accent' },
-      { name: 'Docker', color: 'teal' },
-      { name: 'ETL', color: 'pink' },
+      { name: 'PySpark', color: 'teal' },
+      { name: 'AWS Glue', color: 'coral' },
+      { name: 'Apache Airflow', color: 'accent' },
+      { name: 'Snowflake', color: 'blue' },
+      { name: 'dbt', color: 'pink' },
+      { name: 'Apache Kafka', color: 'blue' },
+      { name: 'Debezium CDC', color: 'teal' },
+      { name: 'Redshift', color: 'coral' },
+      { name: 'Spring Boot', color: 'teal' },
+      { name: 'ReactJS / React Native', color: 'blue' },
     ],
     highlights: [
-      'Multi-agency data integration',
-      'Real-time data pipelines',
-      'Compliance-aware architecture',
-      'Scalable cloud infrastructure',
+      'ETL PIPELINE: Apache Spark on 50M+ daily wealth-management transactions; batch processing cut from 6 hours → < 90 minutes via partitioning &amp; broadcast-join tuning',
+      'REAL-TIME STREAMING: Kafka platform for Open Banking APIs &amp; UOB TMRW; Debezium CDC Oracle → Snowflake replication; schema registry &amp; data contracts for downstream governance',
+      'DATA WAREHOUSE: Star-schema dimensional models on Snowflake; 80+ dbt transformations for daily reconciliation, AUM tracking, IFRS-9 compliance reporting; Great Expectations for data quality &amp; lineage',
     ],
     link: '#',
   },
   {
-    title: 'AI-Powered Document Processing',
-    category: 'AI / AUTOMATION',
-    categoryColor: 'coral',
-    description: 'Built intelligent document processing system using AI for automated extraction, classification, and analysis of financial documents.',
+    title: 'ERP2 — Next-Generation Electronic Road Pricing, Singapore',
+    period: 'Aug 2017 — Aug 2020',
+    category: 'GOVTECH / TRANSPORT',
+    categoryColor: 'teal',
+    description: 'NCS client work for LTA Singapore — built the next-gen Electronic Road Pricing (ERP2) system using satellite tech for dynamic road pricing, real-time vehicle tracking, and automated enforcement across the road network.',
     image: 'https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&h=400&fit=crop',
     tech: [
-      { name: 'Python', color: 'teal' },
-      { name: 'OpenAI', color: 'accent' },
-      { name: 'LangChain', color: 'blue' },
-      { name: 'FastAPI', color: 'coral' },
-      { name: 'PostgreSQL', color: 'teal' },
-      { name: 'Redis', color: 'coral' },
+      { name: 'Java', color: 'coral' },
+      { name: 'Spring Boot', color: 'teal' },
+      { name: 'Angular 4', color: 'accent' },
+      { name: 'Scala', color: 'coral' },
+      { name: 'Go', color: 'blue' },
+      { name: 'Oracle', color: 'coral' },
+      { name: 'AWS', color: 'accent' },
+      { name: 'Solace', color: 'teal' },
     ],
     highlights: [
-      'Automated document classification',
-      'Intelligent data extraction',
-      'Compliance checking',
-      '95% accuracy rate',
+      'Satellite-based dynamic road pricing &amp; real-time vehicle tracking',
+      'Automated enforcement across the Singapore road network',
+      'Led Agile/Scrum squad through delivery',
     ],
     link: '#',
   },
 ];
 
 // ---------- GitHub Open Source ----------
-// Build-time fetch of all public repos. Falls back gracefully on rate limit / network error
-// so the page never fails to build.
-const GITHUB_USER = 'narenandu';
+// Placeholder username. Replace with the actual GitHub handle of Naga Siva Poluri when known.
+const GITHUB_USER = 'nagasivapoluri';
 const GH_API = `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`;
 
 // Language → dot color (GitHub palette)
@@ -212,7 +219,6 @@ function ghLangColor(lang) {
   return GH_LANG_COLORS[lang] || 'var(--accent)';
 }
 
-// Lightweight relative time at build time (no library).
 function timeAgo(dateStr) {
   if (!dateStr) return '';
   const then = new Date(dateStr);
@@ -238,7 +244,6 @@ try {
   if (res.ok) {
     const data = await res.json();
     if (Array.isArray(data)) {
-      // Sort: own+active by stars then updated, then forks, then archived
       const active = data.filter(r => !r.fork && !r.archived)
         .sort((a, b) => (b.stargazers_count - a.stargazers_count) || (new Date(b.updated_at) - new Date(a.updated_at)));
       const forks = data.filter(r => r.fork && !r.archived)
@@ -260,44 +265,44 @@ try {
     }
   } else {
     githubFetchFailed = true;
-    console.warn(`[portfolio] GitHub API non-OK: ${res.status} ${res.statusText}`);
   }
 } catch (err) {
   githubFetchFailed = true;
-  console.warn('[portfolio] GitHub fetch error:', err?.message || err);
 }
 
 const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
 ---
 
-<BaseLayout title="Portfolio | Naga Siva Poluri" description="Featured projects and case studies by Naga Siva Poluri.">
+<BaseLayout
+  title="Portfolio | Naga Siva Poluri"
+  description="Featured projects: Agentic AI platform, Enterprise RAG intelligence, LTA transport AI, Bank of Singapore loan AI, UOB data platform."
+>
   <div class="page-header">
     <div class="container">
       <span class="section-eyebrow">PORTFOLIO</span>
-      <h1>Featured Projects</h1>
-      <p class="subtitle">A selection of enterprise AI, full-stack, and government projects I've delivered.</p>
+      <h1>Featured Work</h1>
+      <p class="subtitle">Self-built AI platforms plus 15 years of enterprise delivery across Singapore's Government, Banking, Insurance &amp; Fintech sectors.</p>
     </div>
   </div>
 
   <section class="portfolio-section">
     <div class="container">
-      <!-- Project Stats -->
       <div class="project-stats reveal">
         <div class="stat-item">
-          <span class="stat-number">50+</span>
-          <span class="stat-label">Projects Delivered</span>
+          <span class="stat-number">2</span>
+          <span class="stat-label">Self-built AI Platforms</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">15+</span>
+          <span class="stat-label">Years Enterprise Delivery</span>
         </div>
         <div class="stat-item">
           <span class="stat-number">8</span>
           <span class="stat-label">Industries Served</span>
         </div>
         <div class="stat-item">
-          <span class="stat-number">15+</span>
-          <span class="stat-label">Years Experience</span>
-        </div>
-        <div class="stat-item">
           <span class="stat-number">99.9%</span>
-          <span class="stat-label">Average Uptime</span>
+          <span class="stat-label">Production Uptime</span>
         </div>
       </div>
 
@@ -308,10 +313,13 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
               <img src={project.image} alt={project.title} loading="lazy" />
             </div>
             <div class="project-body">
-              <span class={`project-badge badge-${project.categoryColor}`}>{project.category}</span>
+              <div class="project-badge-row">
+                <span class={`project-badge badge-${project.categoryColor}`}>{project.category}</span>
+                <span class="project-period">{project.period}</span>
+              </div>
               <h3>{project.title}</h3>
               <p>{project.description}</p>
-              
+
               <div class="project-highlights">
                 <h4>Key Achievements</h4>
                 <ul>
@@ -320,17 +328,12 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
                   ))}
                 </ul>
               </div>
-              
+
               <div class="project-tech">
                 {project.tech.map((t) => (
                   <SkillBadge name={t.name} color={t.color} />
                 ))}
               </div>
-              
-              <a href={project.link} class="project-link">
-                View Project Details
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </a>
             </div>
           </article>
         ))}
@@ -344,14 +347,15 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
       <SectionHeader
         eyebrow="OPEN SOURCE"
         title="GitHub Contributions"
-        desc={"A live mirror of all repositories on github.com/" + GITHUB_USER + " — fetched at build time. " + githubSummary.total + " repos across " + githubSummary.languages + " languages, " + githubSummary.stars + " stars total."}
+        desc={`A live mirror of all repositories on github.com/${GITHUB_USER} — fetched at build time.`}
       />
 
       {githubRepos.length === 0 ? (
         <div class="os-empty">
-          <p>The GitHub API was unreachable from the build environment (rate limit or network).</p>
+          <p>The GitHub API was unreachable from the build environment, or no public repositories are available under this handle.</p>
+          <p class="os-hint">Default placeholder handle: <code>{GITHUB_USER}</code>. Update in <code>src/pages/portfolio.astro</code> to your own GitHub username.</p>
           <a href={githubProfileUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-            View all repos on GitHub →
+            View profile on GitHub →
           </a>
         </div>
       ) : (
@@ -376,7 +380,7 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
                   target="_blank"
                   rel="noopener noreferrer"
                   class="os-link"
-                  aria-label={"View " + repo.name + " on GitHub. " + repo.stargazers_count + " stars."}
+                  aria-label={`View ${repo.name} on GitHub. ${repo.stargazers_count} stars.`}
                 >
                   {(repo.fork || repo.archived) && (
                     <span class="os-tag" data-kind={repo.archived ? 'archived' : 'fork'}>
@@ -422,7 +426,6 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
     </div>
   </section>
 
-  <!-- CTA Section -->
   <section class="cta-section">
     <div class="container">
       <div class="cta-card">
@@ -442,22 +445,18 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
     padding: 8rem 0 3rem;
     text-align: center;
   }
-
   .page-header h1 {
     font-size: clamp(2rem, 4vw, 2.8rem);
     margin-bottom: 0.75rem;
   }
-
   .subtitle {
     font-size: 1.05rem;
     color: var(--text-muted);
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
   }
 
-  .portfolio-section {
-    padding: 0 0 4rem;
-  }
+  .portfolio-section { padding: 0 0 4rem; }
 
   .project-stats {
     display: grid;
@@ -468,11 +467,7 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
     background: var(--bg-secondary);
     border-radius: var(--radius-lg);
   }
-
-  .stat-item {
-    text-align: center;
-  }
-
+  .stat-item { text-align: center; }
   .stat-number {
     display: block;
     font-size: 2rem;
@@ -480,7 +475,6 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
     color: var(--accent-light);
     margin-bottom: 0.25rem;
   }
-
   .stat-label {
     font-size: 0.85rem;
     color: var(--text-muted);
@@ -501,7 +495,6 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
     overflow: hidden;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
-
   .project-card:hover {
     border-color: var(--border-hover);
     box-shadow: var(--shadow-md);
@@ -509,50 +502,50 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
 
   .project-image {
     position: relative;
-    min-height: 300px;
+    min-height: 320px;
     overflow: hidden;
   }
-
   .project-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
   }
+  .project-card:hover .project-image img { transform: scale(1.04); }
 
-  .project-card:hover .project-image img {
-    transform: scale(1.04);
-  }
-
-  .project-body {
-    padding: 2rem;
+  .project-body { padding: 2rem; display: flex; flex-direction: column; }
+  .project-badge-row {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
   }
-
   .project-badge {
     display: inline-block;
     width: fit-content;
-    margin-bottom: 0.75rem;
   }
-
+  .project-period {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--accent-light);
+    background: rgba(139, 92, 246, 0.1);
+    padding: 0.2rem 0.65rem;
+    border-radius: var(--radius-full);
+  }
   .project-body h3 {
     font-size: 1.35rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.6rem;
   }
-
   .project-body p {
     font-size: 0.92rem;
     color: var(--text-muted);
     line-height: 1.7;
     margin-bottom: 1rem;
   }
-
-  .project-highlights {
-    margin-bottom: 1.25rem;
-  }
-
+  .project-highlights { margin-bottom: 1.25rem; }
   .project-highlights h4 {
     font-size: 0.85rem;
     text-transform: uppercase;
@@ -560,13 +553,7 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
     color: var(--text-muted);
     margin-bottom: 0.5rem;
   }
-
-  .project-highlights ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
+  .project-highlights ul { list-style: none; padding: 0; margin: 0; }
   .project-highlights li {
     font-size: 0.85rem;
     color: var(--text-secondary);
@@ -574,52 +561,63 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
     padding-left: 1.25rem;
     position: relative;
   }
-
   .project-highlights li::before {
     content: '→';
     position: absolute;
     left: 0;
     color: var(--teal-light);
   }
-
   .project-tech {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
-    margin-bottom: 1.25rem;
+    margin-top: auto;
   }
 
-  .project-link {
+  .btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    font-size: 0.88rem;
-    font-weight: 500;
+    padding: 0.7rem 1.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--gradient-accent);
+    color: #fff;
+    border: none;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.35);
+    color: #fff;
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover {
+    border-color: var(--accent);
     color: var(--accent-light);
-    transition: color 0.2s ease;
   }
 
-  .project-link:hover {
-    color: var(--teal-light);
-  }
-
-  .cta-section {
-    padding: 4rem 0 6rem;
-  }
-
+  .cta-section { padding: 4rem 0 6rem; }
   .cta-card {
     text-align: center;
     padding: 3rem;
     background: var(--gradient-accent);
     border-radius: var(--radius-lg);
   }
-
   .cta-card h2 {
     font-size: 1.8rem;
     margin-bottom: 1rem;
     color: #fff;
   }
-
   .cta-card p {
     font-size: 1.05rem;
     color: rgba(255, 255, 255, 0.9);
@@ -628,58 +626,32 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
     margin-left: auto;
     margin-right: auto;
   }
-
   .cta-buttons {
     display: flex;
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
   }
-
   .cta-buttons .btn-primary {
     background: #fff;
     color: var(--accent);
   }
-
   .cta-buttons .btn-primary:hover {
     background: var(--text-primary);
     color: #fff;
   }
-
   .cta-buttons .btn-secondary {
     background: transparent;
     color: #fff;
     border-color: rgba(255, 255, 255, 0.3);
   }
+  .cta-buttons .btn-secondary:hover { border-color: #fff; }
 
-  .cta-buttons .btn-secondary:hover {
-    border-color: #fff;
-  }
-
-  @media (max-width: 768px) {
-    .project-card {
-      grid-template-columns: 1fr;
-    }
-
-    .project-image {
-      min-height: 200px;
-    }
-
-    .project-body {
-      padding: 1.5rem;
-    }
-
-    .project-stats {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  /* ---------- GitHub Open Source Section ---------- */
+  /* GitHub Section */
   .os-section {
     padding: 5rem 0 6rem;
     border-top: 1px solid var(--border);
   }
-
   .os-empty {
     text-align: center;
     padding: 3rem 1rem;
@@ -687,8 +659,19 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
     border: 1px dashed var(--border-hover);
     border-radius: var(--radius-lg);
   }
-  .os-empty p { color: var(--text-muted); margin-bottom: 1.25rem; }
-
+  .os-empty > p { color: var(--text-muted); margin-bottom: 0.6rem; }
+  .os-hint {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+  }
+  .os-hint code {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.15rem 0.4rem;
+    border-radius: var(--radius-xs);
+    font-family: var(--font-mono);
+    color: var(--accent-light);
+  }
   .os-toolbar {
     display: flex;
     justify-content: space-between;
@@ -718,7 +701,6 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
     transition: var(--transition-fast);
   }
   .os-profile-link:hover { color: var(--accent-light); }
-
   .os-grid {
     list-style: none;
     padding: 0;
@@ -740,28 +722,12 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
     height: 100%;
     overflow: hidden;
   }
-  .os-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: var(--radius-md);
-    padding: 1px;
-    background: linear-gradient(135deg, rgba(139,92,246,0.25), transparent 40%, transparent 60%, rgba(20,184,166,0.22));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-            mask-composite: exclude;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.4s;
-  }
   .os-card:hover {
     transform: translateY(-4px);
     border-color: var(--border-hover);
     background: var(--bg-card-hover);
     box-shadow: var(--shadow-md);
   }
-  .os-card:hover::before { opacity: 1; }
-
   .os-link {
     display: flex;
     flex-direction: column;
@@ -771,7 +737,6 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
     text-decoration: none;
     color: inherit;
   }
-
   .os-tag {
     position: absolute;
     top: 0.85rem;
@@ -787,26 +752,11 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
     border: 1px solid var(--border);
     z-index: 1;
   }
-  .os-tag[data-kind='archived'] {
-    background: rgba(249, 115, 22, 0.12);
-    color: var(--coral);
-    border-color: rgba(249, 115, 22, 0.25);
-  }
-  .os-tag[data-kind='fork'] {
-    background: rgba(96, 96, 160, 0.22);
-    color: var(--text-secondary);
-  }
+  .os-tag[data-kind='archived'] { background: rgba(249, 115, 22, 0.12); color: var(--coral); border-color: rgba(249, 115, 22, 0.25); }
+  .os-tag[data-kind='fork'] { background: rgba(96, 96, 160, 0.22); color: var(--text-secondary); }
 
-  .os-card-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .os-icon {
-    color: var(--text-muted);
-    flex-shrink: 0;
-    opacity: 0.7;
-  }
+  .os-card-header { display: flex; align-items: center; gap: 0.5rem; }
+  .os-icon { color: var(--text-muted); flex-shrink: 0; opacity: 0.7; }
   .os-card:hover .os-icon { color: var(--accent-light); opacity: 1; }
   .os-title {
     font-family: var(--font-mono);
@@ -819,7 +769,6 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
     transition: color 0.2s;
   }
   .os-card:hover .os-title { color: var(--accent-light); }
-
   .os-desc {
     font-size: 0.85rem;
     line-height: 1.55;
@@ -830,12 +779,7 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
     overflow: hidden;
     min-height: 2.65em;
   }
-
-  .os-topics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3rem;
-  }
+  .os-topics { display: flex; flex-wrap: wrap; gap: 0.3rem; }
   .os-topic {
     font-family: var(--font-mono);
     font-size: 0.7rem;
@@ -845,7 +789,6 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
     padding: 0.1rem 0.5rem;
     border-radius: var(--radius-full);
   }
-
   .os-meta {
     display: flex;
     align-items: center;
@@ -858,11 +801,7 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
     color: var(--text-muted);
     flex-wrap: wrap;
   }
-  .os-lang {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
+  .os-lang { display: inline-flex; align-items: center; gap: 0.4rem; }
   .os-lang-dot {
     width: 10px;
     height: 10px;
@@ -871,11 +810,7 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
     box-shadow: 0 0 6px currentColor;
   }
   .os-meta-item { white-space: nowrap; }
-  .os-meta-time {
-    margin-left: auto;
-    font-family: var(--font-sans);
-    font-style: italic;
-  }
+  .os-meta-time { margin-left: auto; font-family: var(--font-sans); font-style: italic; }
 
   .os-foot {
     margin-top: 2rem;
@@ -885,4 +820,11 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
   }
   .os-foot a { color: var(--accent-light); }
   .os-foot a:hover { color: var(--teal-light); }
+
+  @media (max-width: 768px) {
+    .project-card { grid-template-columns: 1fr; }
+    .project-image { min-height: 200px; }
+    .project-body { padding: 1.5rem; }
+    .project-stats { grid-template-columns: repeat(2, 1fr); }
+  }
 </style>

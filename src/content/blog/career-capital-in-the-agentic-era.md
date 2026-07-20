@@ -6,8 +6,6 @@ tags:
   - "career"
 category: ["career"]
 primaryCategory: "career"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/career-capital-in-the-agentic-era/"
 readingTime: "6 min read"
 ---
 # Career capital in the agentic era

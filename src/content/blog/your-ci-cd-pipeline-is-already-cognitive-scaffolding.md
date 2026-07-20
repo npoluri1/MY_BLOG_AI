@@ -7,8 +7,6 @@ tags:
   - "ai"
 category: ["ci-cd", "ai"]
 primaryCategory: "agentic-architecture"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/your-ci-cd-pipeline-is-already-cognitive-scaffolding/"
 readingTime: "6 min read"
 ---
 # Your CI/CD pipeline is already cognitive scaffolding

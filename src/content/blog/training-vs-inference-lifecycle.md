@@ -4,7 +4,6 @@ description: "A step-by-step developer's view of the AI model lifecycle—from r
 pubDate: 2026-07-07
 heroImage: "/images/linkedin/1773400769859.jpg"
 category: ["ai", "agentic", "claude-code"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

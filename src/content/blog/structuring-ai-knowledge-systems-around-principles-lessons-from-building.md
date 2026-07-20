@@ -7,8 +7,6 @@ tags:
   - "rag"
 category: ["ai", "rag"]
 primaryCategory: "ai-quality"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/structuring-ai-knowledge-systems-around-principles-lessons-from-building/"
 readingTime: "6 min read"
 ---
 # Structuring AI knowledge around principles

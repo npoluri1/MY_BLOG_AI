@@ -7,8 +7,6 @@ tags:
   - "horizon"
 category: ["career", "horizon"]
 primaryCategory: "career"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/building-career-wealth-in-it-the-time-horizon-model/"
 readingTime: "6 min read"
 ---
 # Building career wealth in IT: the time horizon model

@@ -7,8 +7,6 @@ tags:
   - "encoding"
 category: ["pm", "encoding"]
 primaryCategory: "engineering-evolution"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-project-managers-evolution-stage-3-encoding-the-craft/"
 readingTime: "6 min read"
 ---
 # The project manager evolution: stage 3 (encoding the craft)

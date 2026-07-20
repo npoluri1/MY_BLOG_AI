@@ -6,8 +6,6 @@ tags:
   - "analysis"
 category: ["analysis"]
 primaryCategory: "miscellaneous"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/what-the-housing-numbers-actually-say/"
 readingTime: "6 min read"
 ---
 # What the housing numbers actually say

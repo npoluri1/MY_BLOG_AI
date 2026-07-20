@@ -4,7 +4,6 @@ description: "Learn how to build and host your own AI assistant with OpenClaw. C
 pubDate: 2026-07-15
 heroImage: "/images/linkedin/1769091447623.jpg"
 category: ["ai", "machine-learning"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

@@ -6,8 +6,6 @@ tags:
   - "learning"
 category: ["learning"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/improvingu-what-it-looks-like-to-institutionalize-learning/"
 readingTime: "6 min read"
 ---
 # ImprovingU: institutionalizing learning

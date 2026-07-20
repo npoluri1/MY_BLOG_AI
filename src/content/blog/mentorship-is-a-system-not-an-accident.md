@@ -7,8 +7,6 @@ tags:
   - "process"
 category: ["mentorship", "process"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/mentorship-is-a-system-not-an-accident/"
 readingTime: "6 min read"
 ---
 # Mentorship is a system, not an accident

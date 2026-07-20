@@ -7,8 +7,6 @@ tags:
   - "governance"
 category: ["quality", "governance"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-standards-that-scale-from-code-quality-to-ai-governance/"
 readingTime: "6 min read"
 ---
 # The standards that scale: from code quality to AI governance

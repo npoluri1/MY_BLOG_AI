@@ -6,8 +6,6 @@ tags:
   - "evolution"
 category: ["evolution"]
 primaryCategory: "engineering-evolution"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/from-doing-to-defining-from-coding-to-orchestrating/"
 readingTime: "6 min read"
 ---
 # From doing to defining: from coding to orchestrating

@@ -7,8 +7,6 @@ tags:
   - "trust"
 category: ["devops", "trust"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/devops-was-always-a-trust-problem/"
 readingTime: "6 min read"
 ---
 # DevOps was always a trust problem

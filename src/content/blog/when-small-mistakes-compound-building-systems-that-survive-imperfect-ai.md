@@ -7,8 +7,6 @@ tags:
   - "reliability"
 category: ["ai", "reliability"]
 primaryCategory: "agentic-architecture"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/when-small-mistakes-compound-building-systems-that-survive-imperfect-ai/"
 readingTime: "6 min read"
 ---
 # When small mistakes compound

@@ -6,8 +6,6 @@ tags:
   - "workload"
 category: ["workload"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/not-every-ticket-needs-the-250000-engineer/"
 readingTime: "6 min read"
 ---
 # Not every ticket needs the $250,000 engineer

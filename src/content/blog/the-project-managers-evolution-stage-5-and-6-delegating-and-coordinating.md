@@ -7,8 +7,6 @@ tags:
   - "evolution"
 category: ["pm", "evolution"]
 primaryCategory: "engineering-evolution"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-project-managers-evolution-stage-5-and-6-delegating-and-coordinating/"
 readingTime: "6 min read"
 ---
 # The project manager evolution: stages 5 and 6 (delegating / coordinating)

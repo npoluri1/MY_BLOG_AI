@@ -6,8 +6,6 @@ tags:
   - "inflection"
 category: ["inflection"]
 primaryCategory: "ai-economics"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/why-now-the-capability-cost-inflection-point-that-changes-everything/"
 readingTime: "6 min read"
 ---
 # Why now: the capability-cost inflection point

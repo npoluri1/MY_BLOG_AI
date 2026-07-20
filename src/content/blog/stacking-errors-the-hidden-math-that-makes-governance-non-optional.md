@@ -6,8 +6,6 @@ tags:
   - "math"
 category: ["math"]
 primaryCategory: "ai-governance"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/stacking-errors-the-hidden-math-that-makes-governance-non-optional/"
 readingTime: "6 min read"
 ---
 # Stacking errors: the math that makes governance non-optional

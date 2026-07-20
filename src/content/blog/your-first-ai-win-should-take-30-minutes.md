@@ -6,8 +6,6 @@ tags:
   - "first-win"
 category: ["first-win"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/your-first-ai-win-should-take-30-minutes/"
 readingTime: "6 min read"
 ---
 # Your first AI win should take 30 minutes

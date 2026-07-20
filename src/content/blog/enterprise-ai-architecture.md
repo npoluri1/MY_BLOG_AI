@@ -7,7 +7,6 @@ tags: ["ai", "architecture", "enterprise", "design", "infrastructure"]
 image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=675&fit=crop"
 readingTime: "17 min read"
 primaryCategory: "ai"
-author: "Naren Vadapalli"
 ---
 
 After designing and deploying AI systems across banking, government, and transport sectors, I have learned that the difference between an AI project that ships and one that stalls comes down to architecture. Not model choice, not prompt engineering -- architecture. The systems that work in production are the ones designed with clear layering, proper separation of concerns, and explicit data flows.

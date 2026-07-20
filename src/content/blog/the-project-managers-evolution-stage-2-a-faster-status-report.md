@@ -7,8 +7,6 @@ tags:
   - "status"
 category: ["pm", "status"]
 primaryCategory: "engineering-evolution"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-project-managers-evolution-stage-2-a-faster-status-report/"
 readingTime: "6 min read"
 ---
 # The project manager evolution: stage 2 (a faster status report)

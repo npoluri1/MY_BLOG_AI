@@ -7,8 +7,6 @@ tags:
   - "multi-agent"
 category: ["agents", "multi-agent"]
 primaryCategory: "agentic-architecture"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/biological-coordination-patterns-applied-to-multi-agent-software-delivery/"
 readingTime: "6 min read"
 ---
 # Biological coordination patterns applied to multi-agent delivery

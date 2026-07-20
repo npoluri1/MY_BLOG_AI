@@ -17,9 +17,6 @@ const content = post.body || '';
 const wordCount = content.split(/\s+/).length;
 const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
-const author = post.data.author || 'Devlin Liles';
-const sourceUrl = post.data.sourceUrl;
-
 const allPosts = (await getCollection('blog'))
   .filter(p => p.id !== post.id)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -55,33 +52,6 @@ const allPosts = (await getCollection('blog'))
       <div class="prose">
         <Content />
       </div>
-
-      <aside class="source-citation reveal">
-        <div class="source-citation-inner">
-          <div class="source-mark">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
-          </div>
-          <div class="source-body">
-            <p class="source-eyebrow">Original Source & Attribution</p>
-            <p class="source-text">
-              This article is republished from the original archive of <strong>{author}</strong> on
-              <a href="https://www.devlinliles.com/" target="_blank" rel="noopener noreferrer">devlinliles.com</a>.
-              {sourceUrl ? ' Read the original at:' : ' Browse the full archive at devlinliles.com.'}
-            </p>
-            {sourceUrl ? (
-              <a href={sourceUrl} target="_blank" rel="noopener noreferrer" class="source-link">
-                {sourceUrl}
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
-            ) : (
-              <a href="https://www.devlinliles.com/" target="_blank" rel="noopener noreferrer" class="source-link">
-                https://www.devlinliles.com/
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
-            )}
-          </div>
-        </div>
-      </aside>
     </div>
   </article>
 
@@ -196,50 +166,6 @@ const allPosts = (await getCollection('blog'))
   .post-content .prose pre { margin: 2rem 0; padding: 1.5rem; font-size: 0.9rem; line-height: 1.6; }
   .post-content .prose img { border-radius: var(--radius-md); margin: 2rem 0; }
 
-  .source-citation {
-    max-width: 72ch;
-    margin: 3rem auto 0;
-    padding: 1.5rem;
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, rgba(20, 184, 166, 0.04) 100%);
-    border: 1px solid rgba(139, 92, 246, 0.2);
-    border-radius: var(--radius-md);
-    position: relative;
-  }
-  .source-citation-inner { display: flex; gap: 1rem; align-items: flex-start; }
-  .source-mark {
-    flex-shrink: 0;
-    width: 40px;
-    height: 40px;
-    border-radius: var(--radius-sm);
-    background: rgba(139, 92, 246, 0.15);
-    color: var(--accent-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .source-eyebrow {
-    font-family: var(--font-display);
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent-light);
-    margin-bottom: 0.35rem;
-  }
-  .source-text { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.5rem; }
-  .source-text a { color: var(--accent-light); font-weight: 600; text-decoration: none; }
-  .source-text a:hover { text-decoration: underline; }
-  .source-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.82rem;
-    font-family: var(--font-mono);
-    color: var(--teal-light);
-    word-break: break-all;
-    text-decoration: none;
-  }
-  .source-link:hover { color: var(--accent-light); }
-
   .post-share { padding: 2rem 0; border-top: 1px solid var(--border); }
   .share-bar { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; max-width: 72ch; margin: 0 auto; }
   .share-label { font-weight: 600; color: var(--text-primary); font-size: 0.95rem; }
@@ -272,7 +198,6 @@ const allPosts = (await getCollection('blog'))
     .post-hero { padding-top: 8rem; }
     .related-grid { grid-template-columns: 1fr; }
     .post-content .prose { font-size: 1rem; }
-    .source-citation-inner { flex-direction: column; }
   }
 </style>
 

@@ -4,7 +4,6 @@ description: "A comprehensive developer guide comparing vLLM, TensorRT-LLM, TGI,
 pubDate: 2026-07-12
 heroImage: "/images/linkedin/1766739951533.jpg"
 category: ["ai", "machine-learning"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

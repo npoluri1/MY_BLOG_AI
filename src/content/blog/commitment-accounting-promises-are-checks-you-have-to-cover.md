@@ -6,8 +6,6 @@ tags:
   - "management"
 category: ["management"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/commitment-accounting-promises-are-checks-you-have-to-cover/"
 readingTime: "6 min read"
 ---
 # Commitment accounting: promises are checks you have to cover

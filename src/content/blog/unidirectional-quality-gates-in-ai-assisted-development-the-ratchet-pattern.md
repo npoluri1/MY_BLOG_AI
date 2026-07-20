@@ -6,8 +6,6 @@ tags:
   - "quality"
 category: ["quality"]
 primaryCategory: "ai-quality"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/unidirectional-quality-gates-in-ai-assisted-development-the-ratchet-pattern/"
 readingTime: "6 min read"
 ---
 # Unidirectional quality gates: the ratchet pattern

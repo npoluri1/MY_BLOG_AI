@@ -7,8 +7,6 @@ tags:
   - "rag"
 category: ["ai", "rag"]
 primaryCategory: "ai-quality"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-limits-of-string-matching-in-knowledge-coverage-metrics/"
 readingTime: "6 min read"
 ---
 # The limits of string matching in knowledge coverage

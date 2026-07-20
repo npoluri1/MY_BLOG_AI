@@ -4,7 +4,6 @@ description: "A step-by-step developer guide to configuring OpenClaw's WhatsApp 
 pubDate: 2026-07-16
 heroImage: "/images/linkedin/1769171391352.jpg"
 category: ["ai", "machine-learning"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

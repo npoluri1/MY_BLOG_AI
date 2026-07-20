@@ -4,7 +4,6 @@ description: "Managing long-running tasks, asynchronous tools, timers, and recur
 pubDate: 2026-06-23
 heroImage: "/images/linkedin/1760586449121.jpg"
 category: ["ai", "agentic", "google"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

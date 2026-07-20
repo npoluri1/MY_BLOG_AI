@@ -8,8 +8,6 @@ tags:
   - "evaluation"
 category: ["ai", "agents"]
 primaryCategory: "agentic-architecture"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/two-failure-modes-in-llm-generated-pull-requests/"
 readingTime: "6 min read"
 ---
 # Two failure modes in LLM-generated PRs

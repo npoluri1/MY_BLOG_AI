@@ -6,8 +6,6 @@ tags:
   - "review"
 category: ["review"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-review-bottleneck-nobody-talks-about/"
 readingTime: "6 min read"
 ---
 # The review bottleneck nobody talks about

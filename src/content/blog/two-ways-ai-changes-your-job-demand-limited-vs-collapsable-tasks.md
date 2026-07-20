@@ -6,8 +6,6 @@ tags:
   - "economics"
 category: ["economics"]
 primaryCategory: "ai-economics"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/two-ways-ai-changes-your-job-demand-limited-vs-collapsable-tasks/"
 readingTime: "6 min read"
 ---
 # Two ways AI changes your job

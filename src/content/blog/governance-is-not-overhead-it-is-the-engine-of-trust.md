@@ -7,8 +7,6 @@ tags:
   - "trust"
 category: ["governance", "trust"]
 primaryCategory: "ai-governance"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/governance-is-not-overhead-it-is-the-engine-of-trust/"
 readingTime: "6 min read"
 ---
 # Governance is not overhead: the engine of trust

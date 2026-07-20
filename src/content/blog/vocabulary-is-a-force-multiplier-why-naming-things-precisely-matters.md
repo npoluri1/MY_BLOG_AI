@@ -6,8 +6,6 @@ tags:
   - "vocabulary"
 category: ["vocabulary"]
 primaryCategory: "vocabulary"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/vocabulary-is-a-force-multiplier-why-naming-things-precisely-matters/"
 readingTime: "6 min read"
 ---
 # Vocabulary is a force multiplier: why naming things precisely matters

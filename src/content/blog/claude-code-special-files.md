@@ -4,7 +4,6 @@ description: "Master project-level customization for Anthropic's Claude Code by 
 pubDate: 2026-06-29
 heroImage: "/images/linkedin/1763455365474.jpg"
 category: ["ai", "agentic", "claude-code"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

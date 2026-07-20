@@ -7,7 +7,6 @@ tags: ["ai", "fullstack", "engineering", "enterprise"]
 image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=675&fit=crop"
 readingTime: "11 min read"
 primaryCategory: "ai"
-author: "Naren Vadapalli"
 ---
 
 Integrating LLMs into enterprise applications is fundamentally different from building AI demos. It requires handling streaming responses, managing costs, ensuring security, and designing graceful degradation patterns.

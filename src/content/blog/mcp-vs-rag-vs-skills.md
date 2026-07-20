@@ -7,7 +7,6 @@ tags: ["ai", "mcp", "rag", "skills", "enterprise", "agentic"]
 image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&h=675&fit=crop"
 readingTime: "16 min read"
 primaryCategory: "ai"
-author: "Naren Vadapalli"
 ---
 
 Every enterprise AI integration project eventually converges on three fundamental patterns: Model Context Protocol (MCP) for tool connectivity, Retrieval Augmented Generation (RAG) for knowledge grounding, and Skills for domain-specific capability encapsulation. Understanding when to use each — and how they compose — is the difference between an AI system that demos well and one that runs in production for years.

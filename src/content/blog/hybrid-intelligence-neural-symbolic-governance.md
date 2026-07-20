@@ -6,8 +6,6 @@ tags:
   - "hybrid"
 category: ["hybrid"]
 primaryCategory: "ai-governance"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/hybrid-intelligence-neural-symbolic-governance/"
 readingTime: "6 min read"
 ---
 # Hybrid intelligence: neural + symbolic governance

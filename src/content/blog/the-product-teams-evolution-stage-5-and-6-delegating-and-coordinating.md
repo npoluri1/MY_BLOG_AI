@@ -7,8 +7,6 @@ tags:
   - "evolution"
 category: ["product-team", "evolution"]
 primaryCategory: "engineering-evolution"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-product-teams-evolution-stage-5-and-6-delegating-and-coordinating/"
 readingTime: "6 min read"
 ---
 # The product team evolution: stages 5 and 6 (delegating / coordinating)

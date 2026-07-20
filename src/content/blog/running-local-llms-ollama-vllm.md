@@ -4,7 +4,6 @@ description: "A comprehensive guide to running Large Language Models locally on 
 pubDate: 2026-07-04
 heroImage: "/images/linkedin/Open Source AI Infrastructure Whitepaper_thumb.jpg"
 category: ["ai", "agentic", "claude-code"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

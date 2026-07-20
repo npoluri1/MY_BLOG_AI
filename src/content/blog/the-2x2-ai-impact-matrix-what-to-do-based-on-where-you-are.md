@@ -6,8 +6,6 @@ tags:
   - "matrix"
 category: ["matrix"]
 primaryCategory: "ai-economics"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-2x2-ai-impact-matrix-what-to-do-based-on-where-you-are/"
 readingTime: "6 min read"
 ---
 # The 2x2 AI impact matrix

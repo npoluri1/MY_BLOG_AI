@@ -6,8 +6,6 @@ tags:
   - "automation"
 category: ["automation"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/automation-is-a-professional-obligation-not-an-optimization/"
 readingTime: "6 min read"
 ---
 # Automation is a professional obligation, not an optimization

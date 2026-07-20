@@ -7,8 +7,6 @@ tags:
   - "drift"
 category: ["agents", "drift"]
 primaryCategory: "agentic-architecture"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/architecture-drift-at-ai-speed-when-your-agents-dont-respect-boundaries/"
 readingTime: "6 min read"
 ---
 # Architecture drift at AI speed

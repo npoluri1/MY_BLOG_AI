@@ -7,8 +7,6 @@ tags:
   - "errors"
 category: ["agents", "errors"]
 primaryCategory: "agentic-architecture"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/structured-recovery-orchestration-for-ai-agents-beyond-retry/"
 readingTime: "6 min read"
 ---
 # Structured recovery orchestration for AI agents: beyond retry

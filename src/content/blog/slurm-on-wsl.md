@@ -4,7 +4,6 @@ description: "Setting up SLURM on WSL"
 pubDate: 2024-05-27
 heroImage: "/images/linkedin/1772028894100.jpg"
 category: ["hpc", "wsl", "linux", "slurm"]
-author: "Naga Siva Poluri"
 primaryCategory: "hpc"
 ---
 

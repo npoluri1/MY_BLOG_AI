@@ -4,7 +4,6 @@ description: "Using git credentials store the github access token to avoid re-pr
 pubDate: 2023-04-04
 heroImage: "/images/linkedin/1765098776312.jpg"
 category: ["github", "git", "tutorial"]
-author: "Naga Siva Poluri"
 primaryCategory: "github"
 ---
 

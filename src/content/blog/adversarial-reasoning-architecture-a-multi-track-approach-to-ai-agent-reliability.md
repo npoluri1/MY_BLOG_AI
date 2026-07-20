@@ -7,8 +7,6 @@ tags:
   - "reliability"
 category: ["ai", "reliability"]
 primaryCategory: "agentic-architecture"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/adversarial-reasoning-architecture-a-multi-track-approach-to-ai-agent-reliability/"
 readingTime: "6 min read"
 ---
 # Adversarial reasoning architecture

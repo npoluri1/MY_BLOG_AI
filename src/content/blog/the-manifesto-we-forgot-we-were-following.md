@@ -7,8 +7,6 @@ tags:
   - "manifesto"
 category: ["agile", "manifesto"]
 primaryCategory: "agile"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-manifesto-we-forgot-we-were-following/"
 readingTime: "6 min read"
 ---
 # The manifesto we forgot we were following

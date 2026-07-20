@@ -6,8 +6,6 @@ tags:
   - "evaluation"
 category: ["evaluation"]
 primaryCategory: "ai-quality"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/using-evaluation-data-to-match-model-capability-to-task-requirements/"
 readingTime: "6 min read"
 ---
 # Using evaluation data to match model to task requirements

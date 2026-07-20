@@ -4,7 +4,6 @@ description: "Learn how to design, structure, and implement persistent, context-
 pubDate: 2026-07-01
 heroImage: "/images/linkedin/1763030428112.jpg"
 category: ["ai", "agentic", "claude-code"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

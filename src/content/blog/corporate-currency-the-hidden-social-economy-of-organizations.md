@@ -6,8 +6,6 @@ tags:
   - "culture"
 category: ["culture"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/corporate-currency-the-hidden-social-economy-of-organizations/"
 readingTime: "6 min read"
 ---
 # Corporate currency: the hidden social economy

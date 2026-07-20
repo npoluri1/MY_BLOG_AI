@@ -7,8 +7,6 @@ tags:
   - "reliability"
 category: ["ai", "reliability"]
 primaryCategory: "agentic-architecture"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-compounding-tax-why-small-model-errors-become-large-system-failures/"
 readingTime: "6 min read"
 ---
 # The compounding tax: small model errors become large system failures

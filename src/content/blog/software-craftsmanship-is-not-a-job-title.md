@@ -7,8 +7,6 @@ tags:
   - "process"
 category: ["craft", "process"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/software-craftsmanship-is-not-a-job-title/"
 readingTime: "6 min read"
 ---
 # Software craftsmanship is not a job title

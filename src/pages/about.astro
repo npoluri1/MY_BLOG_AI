@@ -3,12 +3,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 ---
 
-<BaseLayout title="About | Naga Siva Poluri" description="Learn more about Naga Siva Poluri - AI Integration Engineer, Data Engineer, Full Stack Developer & Agentic AI Specialist.">
+<BaseLayout
+  title="About | Naga Siva Poluri"
+  description="AI Integration Engineer, Data Engineer, Full Stack Developer & Agentic AI Specialist. 15+ years across Singapore's Government, Banking, Insurance, Transport, and Fintech sectors. Currently leading AI at LTA Singapore."
+>
   <section class="about-hero">
     <div class="container">
       <span class="section-eyebrow reveal">ABOUT ME</span>
-      <h1 class="reveal stagger-1">Engineering the Future of AI & Infrastructure</h1>
-      <p class="about-subtitle reveal stagger-2">Scaling AI systems, designing agentic platforms, and bridging enterprise engineering with intelligent automation.</p>
+      <h1 class="reveal stagger-1">
+        Engineering the Future of <span class="hero-accent">AI</span> &amp; <span class="hero-accent">Enterprise Systems</span>
+      </h1>
+      <p class="about-subtitle reveal stagger-2">
+        Scaling agentic AI, RAG platforms, and data infrastructure for Singapore's most demanding enterprise environments.
+      </p>
+      <div class="hero-contact reveal stagger-3">
+        <a href="tel:+6581765178" class="contact-pill">📞 +65 81765178</a>
+        <a href="mailto:npoluri1@gmail.com" class="contact-pill">✉ npoluri1@gmail.com</a>
+        <span class="contact-pill contact-pill-static">📍 Singapore</span>
+        <span class="contact-pill contact-pill-static contact-pill-open">Open to Global Opportunities</span>
+      </div>
     </div>
   </section>
 
@@ -21,59 +34,72 @@ import SectionHeader from '../components/SectionHeader.astro';
           </div>
           <div class="avatar-badge">
             <span class="badge-dot"></span>
-            <span>AI & Integration Specialist</span>
+            <span>AI &amp; Integration Specialist</span>
           </div>
+
           <div class="quick-stats">
             <h3>Quick Stats</h3>
             <dl class="stats-list">
               <div class="stat-item">
-                <dt>Focus</dt>
-                <dd>AI/ML Integration, RAG, Agentic AI</dd>
-              </div>
-              <div class="stat-item">
-                <dt>Location</dt>
-                <dd>Singapore</dd>
+                <dt>Experience</dt>
+                <dd>15+ Years Enterprise Delivery</dd>
               </div>
               <div class="stat-item">
                 <dt>Current Role</dt>
-                <dd>AI Integration Engineer @ LTA Singapore</dd>
+                <dd>AI Integration Engineer @ LTA Singapore (via Deziretech)</dd>
+              </div>
+              <div class="stat-item">
+                <dt>Focus</dt>
+                <dd>Agentic AI · RAG · Data Engineering · Microservices</dd>
+              </div>
+              <div class="stat-item">
+                <dt>Location</dt>
+                <dd>Singapore (Singapore EP holder)</dd>
               </div>
               <div class="stat-item">
                 <dt>Education</dt>
-                <dd>MBA (SMU), B.E. EEE (Anna University)</dd>
+                <dd>MBA (SMU, Hyderabad) · B.E. EEE (Anna University)</dd>
               </div>
               <div class="stat-item">
-                <dt>Experience</dt>
-                <dd>15+ Years</dd>
-              </div>
-              <div class="stat-item">
-                <dt>Languages</dt>
-                <dd>English, Hindi, Telugu, Tamil</dd>
+                <dt>Availability</dt>
+                <dd>AI, Banking, FinTech, Cloud roles globally</dd>
               </div>
             </dl>
           </div>
-          <div class="availability-card">
-            <span class="availability-dot"></span>
-            <span>Available for Consulting</span>
-          </div>
+
+          <a href="/resume" class="resume-btn">View Full Resume →</a>
         </aside>
 
         <div class="about-content reveal stagger-1">
-          <span class="section-eyebrow">THE MISSION</span>
+          <span class="section-eyebrow">PROFESSIONAL SUMMARY</span>
           <h2>Bridging Enterprise Systems with Intelligent Automation</h2>
+
           <div class="bio">
             <p>
-              I operate at the intersection of enterprise engineering and artificial intelligence. As an <strong>AI Integration Engineer at LTA Singapore</strong>, I design, build, and optimize intelligent systems that power Singapore's transport infrastructure — from ERP2 tolling systems to fare settlement platforms.
+              I'm a forward-thinking <strong>AI Integration Engineer, Data Engineer</strong> and
+              <strong>Full Stack Developer</strong> with 15+ years of enterprise solution delivery across Singapore's
+              top-tier Government, Banking, Insurance, Transport, and Fintech sectors.
             </p>
             <p>
-              My engineering journey spans over a decade, crossing the boundaries of <strong>Full-Stack Development</strong>, <strong>Data Engineering</strong>, and <strong>Agentic AI</strong>. I've built enterprise RAG platforms for banking, designed AI-powered workflows for government agencies, and led technical transformations across Singapore's financial sector.
+              Currently I lead AI-powered transformation for <strong>Singapore's Land Transport Authority (LTA)</strong> —
+              delivering intelligent Payments, FDMS, TAPS, Data Analytics, and Fare Management systems serving
+              millions of daily commuters.
             </p>
             <p>
-              With an MBA from <strong>SMU Hyderabad</strong> and a B.E. in Electrical & Electronics Engineering from <strong>Anna University</strong>, I bring a rare synthesis of deep technical expertise and business acumen. I don't just write code — I architect intelligent systems that solve real enterprise problems.
+              My technical depth spans <strong>Agentic AI</strong> (LangGraph, CrewAI, MCP, OpenClaw-pattern
+              architectures), RAG pipelines, LLM orchestration (Claude API, OpenAI, AWS Bedrock),
+              <strong>Data Science</strong> (Scikit-learn, XGBoost, MLflow, SageMaker),
+              <strong>Data Engineering</strong> (Apache Spark, PySpark, Airflow, Snowflake, dbt, Kafka),
+              Java, Python, Spring Boot, ReactJS, Microservices, and Cloud (AWS / OpenShift).
+            </p>
+            <p>
+              I bridge cutting-edge AI capabilities with robust, scalable production data engineering —
+              turning research-grade models into systems that survive daily enterprise traffic.
             </p>
           </div>
+
           <div class="about-actions">
-            <a href="/resume" class="btn btn-primary">Explore My Resume</a>
+            <a href="/portfolio" class="btn btn-primary">Featured Projects</a>
             <a href="/contact" class="btn btn-secondary">Discuss a Project →</a>
           </div>
         </div>
@@ -81,200 +107,184 @@ import SectionHeader from '../components/SectionHeader.astro';
     </div>
   </section>
 
-  <!-- Philosophy Section -->
-  <section class="philosophy-section">
+  <!-- Quick role timeline preview -->
+  <section class="role-timeline-section">
     <div class="container">
-      <div class="philosophy-grid">
-        <div class="philosophy-text reveal">
-          <span class="section-eyebrow">PHILOSOPHY</span>
-          <h2>Engineering Mindset</h2>
-          <p>I believe in building systems that are not just functional, but intelligent. Every line of code should serve a purpose, every architecture decision should consider scale, and every AI integration should solve a real business problem.</p>
-          <div class="philosophy-principles">
-            <div class="principle">
-              <span class="principle-icon">🎯</span>
-              <div>
-                <h4>Problem-First Approach</h4>
-                <p>Understand the problem deeply before reaching for solutions. Technology is a means, not an end.</p>
-              </div>
-            </div>
-            <div class="principle">
-              <span class="principle-icon">📈</span>
-              <div>
-                <h4>Scalability by Design</h4>
-                <p>Build for tomorrow's scale today. What works for 100 users must work for 100 million.</p>
-              </div>
-            </div>
-            <div class="principle">
-              <span class="principle-icon">🔄</span>
-              <div>
-                <h4>Continuous Iteration</h4>
-                <p>Ship early, measure often, improve constantly. Perfection is a journey, not a destination.</p>
-              </div>
-            </div>
-            <div class="principle">
-              <span class="principle-icon">🤝</span>
-              <div>
-                <h4>Knowledge Sharing</h4>
-                <p>The best way to master something is to teach it. I write, speak, and mentor to solidify my own understanding.</p>
-              </div>
-            </div>
-          </div>
+      <SectionHeader
+        eyebrow="CAREER TRAJECTORY"
+        title="Where I've Made Impact"
+        desc="Five stops across Singapore's top-tier enterprise environments, with parallel portfolio work in agentic AI and RAG."
+      />
+      <div class="role-timeline">
+        <div class="role-stop reveal stagger-1">
+          <span class="role-when">Nov 2025 — Present</span>
+          <h3>AI Integration Engineer</h3>
+          <p class="role-where">Land Transport Authority (LTA) · via Deziretech</p>
+          <p class="role-summary">Leading end-to-end AI integration across LTA's critical transport payments systems — FDMS, TAPS, ABT, Fare Display — for millions of daily MRT/LRT/Bus commuters.</p>
         </div>
-        <blockquote class="philosophy-quote reveal stagger-1">
-          <p>"AI is not a tool. It is an operating system layer. The companies that understand this will dominate their markets. The ones that don't will be disrupted."</p>
-          <cite>— Naga Siva Poluri</cite>
-        </blockquote>
+        <div class="role-stop reveal stagger-2">
+          <span class="role-when">Sep 2024 — Jul 2025</span>
+          <h3>AI Integration Engineer</h3>
+          <p class="role-where">Bank of Singapore (BOS) · via HCL Technologies</p>
+          <p class="role-summary">Architected AI-powered Loan Processing Platform with LLM document analysis, automated KYC, fraud detection on AWS Bedrock &amp; LangChain for private banking.</p>
+        </div>
+        <div class="role-stop reveal stagger-3">
+          <span class="role-when">Jan 2023 — Sep 2024</span>
+          <h3>Senior Lead Engineer</h3>
+          <p class="role-where">United Overseas Bank (UOB) · via HCL Technologies</p>
+          <p class="role-summary">Led Agile delivery of Wealth Management &amp; Open Banking platforms at UOB TMRW; built 50M+ daily transaction data platform with Spark, Kafka, Snowflake &amp; dbt.</p>
+        </div>
+        <div class="role-stop reveal stagger-4">
+          <span class="role-when">Aug 2022 — Jan 2023</span>
+          <h3>Technical Lead</h3>
+          <p class="role-where">Sing Life (with Aviva) · via Recruit Express</p>
+          <p class="role-summary">Led Payments &amp; Collections microservices with DBS PayNow/eDDA for Singapore's leading digital insurer.</p>
+        </div>
+        <div class="role-stop reveal stagger-5">
+          <span class="role-when">Aug 2021 — Aug 2022</span>
+          <h3>Full Stack Developer — OCBC</h3>
+          <p class="role-where">OCBC Bank · via Recruit Express</p>
+          <p class="role-summary">Migrated legacy .NET banking to Spring Boot microservices; digital banking, payments, fund transfers, tokenization.</p>
+        </div>
+      </div>
+      <div class="timeline-cta">
+        <a href="/resume" class="btn btn-secondary">See the full 15-year trajectory →</a>
       </div>
     </div>
   </section>
 
+  <!-- Pillars / Tech Stacks -->
   <section class="pillars-section">
     <div class="container">
       <SectionHeader
         eyebrow="CORE FOCUS"
         title="My Architectural Pillars"
-        desc="Practical expertise designed for high-availability, compute-heavy, and intelligent applications."
+        desc="Practical expertise considered for high-availability, compute-heavy, and intelligent applications."
       />
       <div class="pillars-grid">
         <article class="pillar-card reveal stagger-1">
           <div class="pillar-icon accent">
-            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.95" y2="12"/><line x1="8.5" y1="2" x2="8.5" y2="5.5"/><line x1="15.5" y1="2" x2="15.5" y2="5.5"/><line x1="8.5" y1="18.5" x2="8.5" y2="22"/><line x1="15.5" y1="18.5" x2="15.5" y2="22"/></svg>
+            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg>
           </div>
-          <h3>AI, LLMs & Agentic Systems</h3>
-          <p>Architecting production RAG platforms, designing agentic pipelines, and integrating LLMs into enterprise workflows. From prompt engineering to full-stack AI applications.</p>
+          <h3>LLMs &amp; Agentic AI</h3>
+          <p>Building production multi-agent platforms, RAG systems, and LLM orchestration. Deep hands-on with LangGraph, CrewAI, MCP, Claude API, OpenAI, AWS Bedrock.</p>
           <div class="pillar-tech">
-            <span>LangChain</span>
-            <span>OpenAI</span>
-            <span>Claude</span>
-            <span>Vector DBs</span>
-            <span>RAG</span>
+            <span>LangGraph</span><span>Claude</span><span>OpenAI</span><span>CrewAI</span><span>MCP</span><span>RAG</span>
           </div>
         </article>
         <article class="pillar-card reveal stagger-2">
           <div class="pillar-icon teal">
-            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/><line x1="20" y1="6" x2="20.01" y2="6"/><line x1="20" y1="18" x2="20.01" y2="18"/></svg>
+            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
           </div>
-          <h3>Full Stack & Cloud Engineering</h3>
-          <p>Building end-to-end enterprise solutions with Java, Python, React, and cloud-native architectures. Expertise in microservices, APIs, and distributed systems.</p>
+          <h3>Data Engineering</h3>
+          <p>Designing pipelines that move billions of records. Spark, Airflow, Snowflake, dbt, Kafka, Glue — built for AML/CDD, IFRS, and high-volume batch + streaming workloads.</p>
           <div class="pillar-tech">
-            <span>Java</span>
-            <span>Python</span>
-            <span>React</span>
-            <span>AWS</span>
-            <span>Kubernetes</span>
+            <span>Spark</span><span>Airflow</span><span>Snowflake</span><span>dbt</span><span>Kafka</span><span>dbt</span>
           </div>
         </article>
         <article class="pillar-card reveal stagger-3">
           <div class="pillar-icon coral">
             <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
           </div>
-          <h3>Data Engineering & Integration</h3>
-          <p>Designing data pipelines, ETL processes, and real-time streaming architectures. Connecting disparate enterprise systems into cohesive data-driven platforms.</p>
+          <h3>ML &amp; Data Science</h3>
+          <p>From credit risk scoring (XGBoost, 0.87 AUC) to fraud detection (Isolation Forest + LightGBM ensembles) — production ML on AWS SageMaker with MLflow lineage.</p>
           <div class="pillar-tech">
-            <span>Kafka</span>
-            <span>PostgreSQL</span>
-            <span>MongoDB</span>
-            <span>Redis</span>
-            <span>Spark</span>
+            <span>Scikit-learn</span><span>XGBoost</span><span>SageMaker</span><span>MLflow</span><span>LightGBM</span>
+          </div>
+        </article>
+        <article class="pillar-card reveal stagger-4">
+          <div class="pillar-icon accent">
+            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3>Backend &amp; Microservices</h3>
+          <p>Java 8/11/17, Spring Boot, Spring Batch, Spring Cloud Gateway, Spring AI, Kafka, OpenShift. Building the rails enterprise systems run on.</p>
+          <div class="pillar-tech">
+            <span>Spring Boot</span><span>Kafka</span><span>OpenShift</span><span>Spring AI</span><span>Java</span><span>Python</span>
+          </div>
+        </article>
+        <article class="pillar-card reveal stagger-5">
+          <div class="pillar-icon teal">
+            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+          </div>
+          <h3>Cloud (AWS)</h3>
+          <p>Bedrock, SageMaker, EC2, S3, Glue, EMR, Lambda, Cognito, Redshift, API Gateway. Production-grade cloud-native architecture for the public sector.</p>
+          <div class="pillar-tech">
+            <span>Bedrock</span><span>SageMaker</span><span>Glue</span><span>Redshift</span><span>Lambda</span>
+          </div>
+        </article>
+        <article class="pillar-card reveal stagger-6">
+          <div class="pillar-icon coral">
+            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3>Frontend &amp; APIs</h3>
+          <p>ReactJS, React Native, Angular v2–16+, TypeScript, REST, gRPC, SOAP. Bridging modern UX into conservative enterprise frameworks.</p>
+          <div class="pillar-tech">
+            <span>React</span><span>Angular</span><span>TypeScript</span><span>REST</span><span>gRPC</span>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Certifications -->
-  <section class="certifications-section">
-    <div class="container">
-      <SectionHeader
-        eyebrow="CERTIFICATIONS"
-        title="Professional Credentials"
-        desc="Continuous learning and validation of expertise across AI, cloud, and enterprise technologies."
-      />
-      <div class="cert-grid">
-        <div class="cert-card reveal stagger-1">
-          <div class="cert-icon">🏅</div>
-          <h4>AWS Certified Solutions Architect</h4>
-          <p>Amazon Web Services</p>
-        </div>
-        <div class="cert-card reveal stagger-2">
-          <div class="cert-icon">🏅</div>
-          <h4>Azure AI Engineer Associate</h4>
-          <p>Microsoft</p>
-        </div>
-        <div class="cert-card reveal stagger-3">
-          <div class="cert-icon">🏅</div>
-          <h4>Google Cloud Professional</h4>
-          <p>Google Cloud</p>
-        </div>
-        <div class="cert-card reveal stagger-4">
-          <div class="cert-icon">🏅</div>
-          <h4>Oracle Certified Professional</h4>
-          <p>Oracle</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <!-- Frontiers -->
   <section class="frontiers-section">
     <div class="container">
       <div class="frontiers-grid">
         <div class="frontiers-text reveal">
           <span class="section-eyebrow">CURRENT FRONTIERS</span>
-          <h2>What I'm Exploring</h2>
-          <p>I believe in constant iteration. These are the domains where I am currently pushing boundaries:</p>
+          <h2>What I'm Building Now</h2>
+          <p>I believe in shipping. These are the systems I have in production or actively building on the side:</p>
           <ul class="frontiers-list">
             <li>
-              <strong>Multi-Agent Systems</strong>
-              <span>Building autonomous developer platforms that diagnose system states and self-heal. Designing agent orchestration frameworks with tool use, memory, and guardrails.</span>
+              <strong>Agentic AI Assistant Platform (2025–2026)</strong>
+              <span>Self-built production-grade, message-driven multi-agent platform. Telegram/WhatsApp ingest, LangGraph orchestration, MCP tool discovery, persistent memory, WebSocket streaming, Guardrails AI for security, LangSmith tracing.</span>
             </li>
             <li>
-              <strong>Enterprise RAG</strong>
-              <span>Designing production retrieval-augmented generation systems for banking and government. Hybrid dense-sparse retrieval, reranking, and compliance-aware architectures.</span>
+              <strong>Enterprise RAG Intelligence Platform (2025)</strong>
+              <span>Hybrid RAG (Pinecone + BM25 + Cohere rerank) for Singapore financial/legal document AI. 94% relevancy vs 71% naive baseline. LoRA fine-tuned embeddings on MAS/SGX corpus.</span>
             </li>
             <li>
-              <strong>Agentic Workflows</strong>
-              <span>Creating AI agents that automate complex enterprise processes end-to-end. From document processing to system monitoring, building agents that actually work in production.</span>
-            </li>
-            <li>
-              <strong>AI-Native Applications</strong>
-              <span>Building applications where AI is not a feature, but the core architecture. Designing systems where every component is AI-aware and AI-optimized.</span>
+              <strong>LTA Transport AI (2025–)</strong>
+              <span>AI-assisted fare validation, ML anomaly detection for payment fraud, RAG-based inquiry layer that automates 60% of fare disputes without human intervention.</span>
             </li>
           </ul>
         </div>
         <blockquote class="frontiers-quote reveal stagger-1">
-          <p>"The boundary between engineering and imagination is shrinking. As AI moves from static models to agentic, autonomous execution, the bottleneck is no longer code — it's the platform architecture that supports it."</p>
+          <p>"AI is no longer a feature you bolt on. It's an operating system layer. The companies that understand this will dominate their markets. The ones that don't will be disrupted."</p>
           <cite>— Naga Siva Poluri</cite>
         </blockquote>
       </div>
     </div>
   </section>
 
-  <!-- Content Strategy -->
-  <section class="content-section">
+  <!-- Languages -->
+  <section class="languages-section">
     <div class="container">
       <SectionHeader
-        eyebrow="KNOWLEDGE SHARING"
-        title="Thought Leadership"
-        desc="Writing, speaking, and sharing insights on AI integration and enterprise architecture."
+        eyebrow="LANGUAGES &amp; CITIZENSHIP"
+        title="Global Mobility"
+        desc="Singapore EP holder. Available for Banking, FinTech, AI &amp; Cloud opportunities globally."
       />
-      <div class="content-grid">
-        <div class="content-card reveal stagger-1">
-          <div class="content-icon">📝</div>
-          <h4>Technical Blog</h4>
-          <p>Regular articles on AI integration, RAG systems, agentic architectures, and enterprise engineering best practices.</p>
-          <a href="/blog" class="content-link">Read Posts →</a>
+      <div class="languages-grid">
+        <div class="lang-card reveal stagger-1">
+          <span class="lang-flag">🇬🇧</span>
+          <h4>English</h4>
+          <p>Professional working proficiency</p>
         </div>
-        <div class="content-card reveal stagger-2">
-          <div class="content-icon">🎤</div>
-          <h4>LinkedIn Posts</h4>
-          <p>Short-form insights on AI trends, career lessons, and engineering philosophy. Building in public.</p>
-          <a href="https://linkedin.com/in/nagasivapoluri" target="_blank" class="content-link">Connect →</a>
+        <div class="lang-card reveal stagger-2">
+          <span class="lang-flag">🇮🇳</span>
+          <h4>Hindi</h4>
+          <p>Native / Business fluent</p>
         </div>
-        <div class="content-card reveal stagger-3">
-          <div class="content-icon">📚</div>
-          <h4>Open Source</h4>
-          <p>Contributing to AI/ML tools, sharing code samples, and building developer resources for the community.</p>
-          <a href="https://github.com/nagasivapoluri" target="_blank" class="content-link">View GitHub →</a>
+        <div class="lang-card reveal stagger-3">
+          <span class="lang-flag">🇮🇳</span>
+          <h4>Telugu</h4>
+          <p>Native</p>
+        </div>
+        <div class="lang-card reveal stagger-4">
+          <span class="lang-flag">🇮🇳</span>
+          <h4>Tamil</h4>
+          <p>Conversational</p>
         </div>
       </div>
     </div>
@@ -285,33 +295,86 @@ import SectionHeader from '../components/SectionHeader.astro';
   .about-hero {
     padding: 6rem 0 2rem;
     text-align: center;
+    position: relative;
   }
+  .about-hero::before {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    max-width: 900px;
+    height: 60%;
+    background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.14) 0%, rgba(20, 184, 166, 0.05) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .about-hero > .container { position: relative; z-index: 1; }
 
+  .about-hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    margin-bottom: 0.85rem;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+  .hero-accent {
+    background: linear-gradient(135deg, var(--accent-light), var(--teal-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
   .about-subtitle {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     color: var(--text-secondary);
-    max-width: 640px;
-    margin: 1rem auto 0;
+    max-width: 720px;
+    margin: 0.5rem auto 1.75rem;
     line-height: 1.7;
   }
-
-  .about-main {
-    padding: 3rem 0 5rem;
+  .hero-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+  }
+  .contact-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.45rem 0.95rem;
+    border-radius: var(--radius-full);
+    background: rgba(139, 92, 246, 0.06);
+    border: 1px solid rgba(139, 92, 246, 0.18);
+    color: var(--text-secondary);
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition-fast);
+  }
+  a.contact-pill:hover {
+    border-color: var(--accent);
+    color: var(--accent-light);
+    transform: translateY(-1px);
+  }
+  .contact-pill-static { cursor: default; }
+  .contact-pill-open {
+    background: rgba(20, 184, 166, 0.08);
+    border-color: rgba(20, 184, 166, 0.25);
+    color: var(--teal-light);
   }
 
+  .about-main { padding: 3rem 0 5rem; }
   .about-grid {
     display: grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 300px 1fr;
     gap: 4rem;
     align-items: start;
   }
-
   .about-sidebar {
     position: sticky;
     top: calc(var(--header-height) + 2rem);
     text-align: center;
   }
-
   .avatar {
     width: 140px;
     height: 140px;
@@ -322,7 +385,6 @@ import SectionHeader from '../components/SectionHeader.astro';
     justify-content: center;
     margin: 0 auto 1rem;
   }
-
   .avatar-initials {
     font-family: var(--font-display);
     font-size: 2.5rem;
@@ -330,7 +392,6 @@ import SectionHeader from '../components/SectionHeader.astro';
     color: #fff;
     letter-spacing: 0.05em;
   }
-
   .avatar-badge {
     display: inline-flex;
     align-items: center;
@@ -344,22 +405,20 @@ import SectionHeader from '../components/SectionHeader.astro';
     color: var(--teal-light);
     margin-bottom: 1.5rem;
   }
-
   .badge-dot {
     width: 7px;
     height: 7px;
     border-radius: 50%;
     background: var(--teal);
   }
-
   .quick-stats {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     padding: 1.5rem;
     text-align: left;
+    margin-bottom: 1rem;
   }
-
   .quick-stats h3 {
     font-size: 0.85rem;
     text-transform: uppercase;
@@ -369,22 +428,16 @@ import SectionHeader from '../components/SectionHeader.astro';
     padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--border);
   }
-
   .stats-list {
     display: flex;
     flex-direction: column;
     gap: 0;
   }
-
   .stat-item {
     padding: 0.6rem 0;
     border-bottom: 1px solid var(--border);
   }
-
-  .stat-item:last-child {
-    border-bottom: none;
-  }
-
+  .stat-item:last-child { border-bottom: none; }
   .stat-item dt {
     font-size: 0.72rem;
     text-transform: uppercase;
@@ -393,70 +446,51 @@ import SectionHeader from '../components/SectionHeader.astro';
     font-weight: 600;
     margin-bottom: 0.2rem;
   }
-
   .stat-item dd {
     font-size: 0.88rem;
     color: var(--text-secondary);
     margin: 0;
     line-height: 1.5;
   }
-
-  .availability-card {
+  .resume-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    margin-top: 1rem;
-    background: rgba(20, 184, 166, 0.08);
-    border: 1px solid rgba(20, 184, 166, 0.2);
-    border-radius: var(--radius-full);
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--teal-light);
+    padding: 0.7rem 1.25rem;
+    margin-top: 0.5rem;
+    background: var(--gradient-accent);
+    color: #fff;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: var(--transition-fast);
+  }
+  .resume-btn:hover {
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.35);
   }
 
-  .availability-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--teal);
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-  }
-
-  .about-content .section-eyebrow {
-    text-align: left;
-  }
-
+  .about-content .section-eyebrow { text-align: left; }
   .about-content h2 {
     font-size: 1.8rem;
     margin: 0.5rem 0 1.5rem;
     line-height: 1.3;
   }
-
   .bio p {
     font-size: 1.05rem;
     line-height: 1.85;
     color: var(--text-secondary);
     margin-bottom: 1.25rem;
   }
-
-  .bio strong {
-    color: var(--text-primary);
-    font-weight: 600;
-  }
-
+  .bio strong { color: var(--text-primary); font-weight: 600; }
   .about-actions {
     display: flex;
     gap: 1rem;
     margin-top: 2rem;
     flex-wrap: wrap;
   }
-
   .btn {
     display: inline-flex;
     align-items: center;
@@ -469,146 +503,101 @@ import SectionHeader from '../components/SectionHeader.astro';
     transition: var(--transition-fast);
     text-decoration: none;
   }
-
   .btn-primary {
     background: var(--gradient-accent);
     color: #fff;
     border: none;
   }
-
   .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(139, 92, 246, 0.35);
     color: #fff;
   }
-
   .btn-secondary {
     background: transparent;
     color: var(--text-secondary);
     border: 1px solid var(--border);
   }
-
   .btn-secondary:hover {
     border-color: var(--accent);
     color: var(--accent-light);
   }
 
-  /* Philosophy Section */
-  .philosophy-section {
+  /* Role Timeline */
+  .role-timeline-section {
     padding: 4rem 0;
-    background: var(--bg-secondary);
-    margin: 0 -1rem;
+    border-top: 1px solid var(--border);
   }
-
-  .philosophy-grid {
+  .role-timeline {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 3rem;
-    align-items: start;
-  }
-
-  .philosophy-text h2 {
-    font-size: 1.6rem;
-    margin: 0.5rem 0 1rem;
-  }
-
-  .philosophy-text > p {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-  }
-
-  .philosophy-principles {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
+    margin-top: 3rem;
   }
-
-  .principle {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
+  .role-stop {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    transition: var(--transition-fast);
   }
-
-  .principle-icon {
-    font-size: 1.5rem;
-    flex-shrink: 0;
+  .role-stop:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
   }
-
-  .principle h4 {
-    font-size: 0.95rem;
-    margin-bottom: 0.25rem;
+  .role-when {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--accent-light);
+    background: rgba(139, 92, 246, 0.1);
+    padding: 0.2rem 0.65rem;
+    border-radius: var(--radius-full);
+    margin-bottom: 0.7rem;
   }
-
-  .principle p {
+  .role-stop h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.35rem;
+    color: var(--text-primary);
+  }
+  .role-where {
+    font-size: 0.85rem;
+    color: var(--teal-light);
+    margin-bottom: 0.7rem;
+    font-weight: 600;
+  }
+  .role-summary {
     font-size: 0.9rem;
     color: var(--text-muted);
-    line-height: 1.6;
+    line-height: 1.65;
     margin: 0;
   }
-
-  .philosophy-quote {
-    background: rgba(139, 92, 246, 0.04);
-    border: 1px solid rgba(139, 92, 246, 0.12);
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-    margin: 0;
-    position: relative;
+  .timeline-cta {
+    text-align: center;
+    margin-top: 2.5rem;
   }
 
-  .philosophy-quote::before {
-    content: '\201C';
-    font-size: 4rem;
-    line-height: 1;
-    color: var(--accent);
-    font-family: Georgia, serif;
-    position: absolute;
-    top: 1rem;
-    left: 1.5rem;
-  }
-
-  .philosophy-quote p {
-    font-style: italic;
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.8;
-    padding-top: 2rem;
-    margin: 0;
-  }
-
-  .philosophy-quote cite {
-    display: block;
-    margin-top: 1rem;
-    font-style: normal;
-    font-weight: 600;
-    color: var(--accent-light);
-    font-size: 0.85rem;
-  }
-
-  .pillars-section {
-    padding: 4rem 0;
-  }
-
+  /* Pillars */
+  .pillars-section { padding: 4rem 0; }
   .pillars-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
+    margin-top: 2rem;
   }
-
   .pillar-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     padding: 2rem;
-    text-align: center;
     transition: var(--transition-fast);
   }
-
   .pillar-card:hover {
     border-color: var(--border-hover);
     background: var(--bg-card-hover);
   }
-
   .pillar-icon {
     width: 56px;
     height: 56px;
@@ -616,43 +605,26 @@ import SectionHeader from '../components/SectionHeader.astro';
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 1.25rem;
+    margin-bottom: 1.25rem;
   }
-
-  .pillar-icon.accent {
-    background: rgba(139, 92, 246, 0.1);
-    color: var(--accent-light);
-  }
-
-  .pillar-icon.teal {
-    background: rgba(20, 184, 166, 0.1);
-    color: var(--teal-light);
-  }
-
-  .pillar-icon.coral {
-    background: rgba(249, 115, 22, 0.1);
-    color: var(--coral);
-  }
-
+  .pillar-icon.accent { background: rgba(139, 92, 246, 0.1); color: var(--accent-light); }
+  .pillar-icon.teal { background: rgba(20, 184, 166, 0.1); color: var(--teal-light); }
+  .pillar-icon.coral { background: rgba(249, 115, 22, 0.1); color: var(--coral); }
   .pillar-card h3 {
     font-size: 1.1rem;
     margin-bottom: 0.75rem;
   }
-
   .pillar-card p {
     font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.7;
     margin-bottom: 1rem;
   }
-
   .pillar-tech {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
-    justify-content: center;
   }
-
   .pillar-tech span {
     font-size: 0.7rem;
     padding: 0.25rem 0.5rem;
@@ -661,99 +633,43 @@ import SectionHeader from '../components/SectionHeader.astro';
     border-radius: var(--radius-sm);
   }
 
-  /* Certifications */
-  .certifications-section {
-    padding: 4rem 0;
-  }
-
-  .cert-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-  }
-
-  .cert-card {
-    padding: 1.5rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    text-align: center;
-    transition: var(--transition-fast);
-  }
-
-  .cert-card:hover {
-    border-color: var(--border-hover);
-    transform: translateY(-2px);
-  }
-
-  .cert-icon {
-    font-size: 2rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .cert-card h4 {
-    font-size: 0.9rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .cert-card p {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    margin: 0;
-  }
-
-  .frontiers-section {
-    padding: 4rem 0 6rem;
-  }
-
+  /* Frontiers */
+  .frontiers-section { padding: 4rem 0 6rem; }
   .frontiers-grid {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     gap: 3rem;
     align-items: start;
   }
-
-  .frontiers-text .section-eyebrow {
-    margin-bottom: 0.5rem;
-  }
-
+  .frontiers-text .section-eyebrow { margin-bottom: 0.5rem; }
   .frontiers-text h2 {
     font-size: 1.6rem;
     margin: 0.5rem 0 1rem;
   }
-
   .frontiers-text > p {
     font-size: 1rem;
     color: var(--text-secondary);
   }
-
   .frontiers-list {
     list-style: none;
     padding: 0;
     margin-top: 1.5rem;
   }
-
   .frontiers-list li {
     padding: 0.85rem 0;
     border-bottom: 1px solid var(--border);
   }
-
-  .frontiers-list li:last-child {
-    border-bottom: none;
-  }
-
+  .frontiers-list li:last-child { border-bottom: none; }
   .frontiers-list li strong {
     display: block;
     font-size: 0.95rem;
     margin-bottom: 0.2rem;
   }
-
   .frontiers-list li span {
     font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.6;
   }
-
   .frontiers-quote {
     background: rgba(139, 92, 246, 0.04);
     border: 1px solid rgba(139, 92, 246, 0.12);
@@ -762,7 +678,6 @@ import SectionHeader from '../components/SectionHeader.astro';
     margin: 0;
     position: relative;
   }
-
   .frontiers-quote::before {
     content: '\201C';
     font-size: 4rem;
@@ -773,7 +688,6 @@ import SectionHeader from '../components/SectionHeader.astro';
     top: 1rem;
     left: 1.5rem;
   }
-
   .frontiers-quote p {
     font-style: italic;
     color: var(--text-secondary);
@@ -782,7 +696,6 @@ import SectionHeader from '../components/SectionHeader.astro';
     padding-top: 2rem;
     margin: 0;
   }
-
   .frontiers-quote cite {
     display: block;
     margin-top: 1rem;
@@ -792,90 +705,47 @@ import SectionHeader from '../components/SectionHeader.astro';
     font-size: 0.85rem;
   }
 
-  /* Content Section */
-  .content-section {
-    padding: 4rem 0;
+  /* Languages */
+  .languages-section {
+    padding: 4rem 0 6rem;
     background: var(--bg-secondary);
     margin: 0 -1rem;
   }
-
-  .content-grid {
+  .languages-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
+    margin-top: 2rem;
   }
-
-  .content-card {
-    padding: 2rem;
+  .lang-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
+    padding: 1.5rem;
+    text-align: center;
     transition: var(--transition-fast);
   }
-
-  .content-card:hover {
+  .lang-card:hover {
     border-color: var(--border-hover);
     transform: translateY(-2px);
   }
-
-  .content-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+  .lang-flag { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
+  .lang-card h4 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
   }
-
-  .content-card h4 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .content-card p {
-    font-size: 0.9rem;
+  .lang-card p {
+    font-size: 0.82rem;
     color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 1rem;
-  }
-
-  .content-link {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--accent-light);
-    text-decoration: none;
-  }
-
-  .content-link:hover {
-    text-decoration: underline;
+    margin: 0;
   }
 
   @media (max-width: 768px) {
-    .about-hero { padding-top: 4rem; }
-
-    .about-grid {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-    }
-
-    .about-sidebar {
-      position: static;
-    }
-
-    .pillars-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .philosophy-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .cert-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .frontiers-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .content-grid {
-      grid-template-columns: 1fr;
-    }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-sidebar { position: static; }
+    .role-timeline { grid-template-columns: 1fr; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .frontiers-grid { grid-template-columns: 1fr; }
+    .languages-grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>

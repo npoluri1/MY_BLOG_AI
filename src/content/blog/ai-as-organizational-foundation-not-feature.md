@@ -7,8 +7,6 @@ tags:
   - "organization"
 category: ["ai", "organization"]
 primaryCategory: "engineering-evolution"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/ai-as-organizational-foundation-not-feature/"
 readingTime: "6 min read"
 ---
 # AI as organizational foundation, not feature

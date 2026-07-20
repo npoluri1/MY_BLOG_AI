@@ -4,7 +4,6 @@ description: "Logging in using github access token (no more passwords)"
 pubDate: 2021-09-29
 heroImage: "/images/linkedin/1766050293745.jpg"
 category: ["github", "git", "tutorial"]
-author: "Naga Siva Poluri"
 primaryCategory: "github"
 ---
 

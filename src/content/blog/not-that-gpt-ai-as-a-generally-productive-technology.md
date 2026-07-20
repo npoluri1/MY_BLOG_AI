@@ -6,8 +6,6 @@ tags:
   - "GPT"
 category: ["GPT"]
 primaryCategory: "ai-economics"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/not-that-gpt-ai-as-a-generally-productive-technology/"
 readingTime: "6 min read"
 ---
 # Not that GPT: AI as a generally productive technology

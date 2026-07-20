@@ -4,7 +4,6 @@ description: "Deep dive into Python 3.15's exciting features: lazy imports, froz
 pubDate: 2026-06-19
 heroImage: "/images/linkedin/1774023969261.jpg"
 category: ["ai", "python", "tutorial"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

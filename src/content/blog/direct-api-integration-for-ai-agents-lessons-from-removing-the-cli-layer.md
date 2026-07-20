@@ -7,8 +7,6 @@ tags:
   - "api"
 category: ["ai", "api"]
 primaryCategory: "agentic-architecture"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/direct-api-integration-for-ai-agents-lessons-from-removing-the-cli-layer/"
 readingTime: "6 min read"
 ---
 # Direct API integration: removing the CLI layer

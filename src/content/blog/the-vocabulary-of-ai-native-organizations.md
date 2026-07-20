@@ -6,8 +6,6 @@ tags:
   - "vocabulary"
 category: ["vocabulary"]
 primaryCategory: "vocabulary"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-vocabulary-of-ai-native-organizations/"
 readingTime: "6 min read"
 ---
 # The vocabulary of AI-native organizations

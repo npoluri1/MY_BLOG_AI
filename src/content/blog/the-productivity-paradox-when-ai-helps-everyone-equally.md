@@ -7,8 +7,6 @@ tags:
   - "productivity"
 category: ["ai", "productivity"]
 primaryCategory: "ai-economics"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-productivity-paradox-when-ai-helps-everyone-equally/"
 readingTime: "6 min read"
 ---
 # The productivity paradox when AI helps everyone equally

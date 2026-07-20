@@ -7,8 +7,6 @@ tags:
   - "dispatcher"
 category: ["agents", "dispatcher"]
 primaryCategory: "agentic-architecture"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/decoupling-ai-agent-logic-from-model-providers-the-dispatcher-pattern/"
 readingTime: "6 min read"
 ---
 # Decoupling AI agent logic from model providers: dispatcher pattern

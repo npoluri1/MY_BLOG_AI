@@ -6,8 +6,6 @@ tags:
   - "requirements"
 category: ["requirements"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/code-without-requirements-is-just-expensive-guessing/"
 readingTime: "6 min read"
 ---
 # Code without requirements is just expensive guessing

@@ -7,8 +7,6 @@ tags:
   - "ai"
 category: ["factory", "ai"]
 primaryCategory: "engineering-evolution"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-intelligent-software-factory/"
 readingTime: "6 min read"
 ---
 # The intelligent software factory

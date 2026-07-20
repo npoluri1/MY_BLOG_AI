@@ -6,8 +6,6 @@ tags:
   - "strategy"
 category: ["strategy"]
 primaryCategory: "agentic-architecture"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-scaffolding-is-the-product-why-ai-in-software-development-is-a-systems/"
 readingTime: "6 min read"
 ---
 # The scaffolding is the product

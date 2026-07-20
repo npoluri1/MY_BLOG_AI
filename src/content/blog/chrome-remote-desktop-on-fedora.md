@@ -4,7 +4,6 @@ description: "How to install Chrome Remote Desktop on Fedora"
 pubDate: 2020-03-27
 heroImage: "/images/linkedin/1762340350095.jpg"
 category: ["linux", "fedora", "tutorial"]
-author: "Naga Siva Poluri"
 primaryCategory: "linux"
 ---
 

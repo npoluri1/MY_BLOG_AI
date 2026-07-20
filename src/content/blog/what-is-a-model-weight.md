@@ -4,7 +4,6 @@ description: "What actually happens when you download a model from Hugging Face?
 pubDate: 2026-07-06
 heroImage: "/images/linkedin/1773983859706.jpeg"
 category: ["ai", "agentic", "claude-code"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

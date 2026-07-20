@@ -7,8 +7,6 @@ tags:
   - "governance"
 category: ["ai", "governance"]
 primaryCategory: "ai-governance"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/your-ai-governance-policy-is-not-governance/"
 readingTime: "6 min read"
 ---
 # Your AI governance policy is not governance

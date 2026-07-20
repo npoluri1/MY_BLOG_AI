@@ -6,8 +6,6 @@ tags:
   - "failure"
 category: ["failure"]
 primaryCategory: "ai-quality"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/lies-lies-and-statistics-the-five-ways-ai-gets-things-wrong/"
 readingTime: "6 min read"
 ---
 # Lies, lies and statistics: the five ways AI gets things wrong

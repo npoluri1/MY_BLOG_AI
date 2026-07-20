@@ -4,7 +4,6 @@ description: "A deep dive into the architecture of modern agentic coding toolsâ€
 pubDate: 2026-06-27
 heroImage: "/images/linkedin/1767082848760.jpg"
 category: ["ai", "agentic", "claude-code"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

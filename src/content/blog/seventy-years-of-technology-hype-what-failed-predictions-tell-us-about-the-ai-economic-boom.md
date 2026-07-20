@@ -6,8 +6,6 @@ tags:
   - "history"
 category: ["history"]
 primaryCategory: "ai-economics"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/seventy-years-of-technology-hype-what-failed-predictions-tell-us-about-the-ai-economic-boom/"
 readingTime: "6 min read"
 ---
 # Seventy years of technology hype

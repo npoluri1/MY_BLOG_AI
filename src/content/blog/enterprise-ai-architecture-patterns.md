@@ -7,7 +7,6 @@ tags: ["ai", "architecture", "enterprise", "microservices", "scalability"]
 image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=675&fit=crop"
 readingTime: "14 min read"
 primaryCategory: "ai"
-author: "Naren Vadapalli"
 ---
 
 Building AI systems that scale requires more than just good models. It requires solid architecture. After building enterprise AI systems for Singapore's government and banking sectors, here are the patterns that actually work.

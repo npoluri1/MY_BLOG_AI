@@ -7,8 +7,6 @@ tags:
   - "ai"
 category: ["data", "ai"]
 primaryCategory: "ai-economics"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/data-is-not-the-goal-the-knowledge-insight-action-chain/"
 readingTime: "6 min read"
 ---
 # Data is not the goal: the knowledge-insight-action chain

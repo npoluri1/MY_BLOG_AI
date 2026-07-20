@@ -7,8 +7,6 @@ tags:
   - "governance"
 category: ["pm", "governance"]
 primaryCategory: "engineering-evolution"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-project-managers-evolution-stage-4-governing-the-delivery-system/"
 readingTime: "6 min read"
 ---
 # The project manager evolution: stage 4 (governing)

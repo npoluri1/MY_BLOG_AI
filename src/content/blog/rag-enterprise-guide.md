@@ -7,7 +7,6 @@ tags: ["ai", "rag", "engineering", "enterprise"]
 image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1200&h=675&fit=crop"
 readingTime: "15 min read"
 primaryCategory: "ai"
-author: "Naren Vadapalli"
 ---
 
 Retrieval Augmented Generation (RAG) has become the standard pattern for grounding LLMs with enterprise data. But most RAG implementations fail in production due to poor retrieval quality, inadequate chunking, and lack of evaluation frameworks.

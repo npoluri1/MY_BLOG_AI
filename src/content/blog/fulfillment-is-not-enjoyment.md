@@ -7,8 +7,6 @@ tags:
   - "career"
 category: ["philosophy", "career"]
 primaryCategory: "career"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/fulfillment-is-not-enjoyment/"
 readingTime: "6 min read"
 ---
 # Fulfillment is not enjoyment

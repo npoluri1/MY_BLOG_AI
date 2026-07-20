@@ -7,8 +7,6 @@ tags:
   - "safety"
 category: ["ai", "safety"]
 primaryCategory: "agentic-architecture"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/execution-safety-architecture-for-ai-generated-outputs-a-layered-approach/"
 readingTime: "6 min read"
 ---
 # Execution safety architecture: a layered approach

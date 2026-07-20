@@ -4,7 +4,6 @@ description: "Generate a token using github API for self hosted runner registrat
 pubDate: 2023-03-21
 heroImage: "/images/linkedin/1765098421838.jpg"
 category: ["github", "ci-cd", "devops"]
-author: "Naga Siva Poluri"
 primaryCategory: "github"
 ---
 

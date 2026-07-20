@@ -7,8 +7,6 @@ tags:
   - "engineering"
 category: ["debt", "engineering"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/technical-debt-is-a-chronic-condition-not-a-single-decision/"
 readingTime: "6 min read"
 ---
 # Technical debt is a chronic condition not a single decision

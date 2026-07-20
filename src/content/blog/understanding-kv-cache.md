@@ -4,7 +4,6 @@ description: "Why do LLM serving nodes run out of VRAM? Explore the mechanics, c
 pubDate: 2026-07-11
 heroImage: "/images/linkedin/1773814788769.jpeg"
 category: ["ai", "machine-learning"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

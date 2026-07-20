@@ -7,8 +7,6 @@ tags:
   - "statistics"
 category: ["ai", "statistics"]
 primaryCategory: "ai-economics"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/classical-statistics-vs-machine-learning-a-practical-distinction/"
 readingTime: "6 min read"
 ---
 # Classical statistics vs ML: a practical distinction

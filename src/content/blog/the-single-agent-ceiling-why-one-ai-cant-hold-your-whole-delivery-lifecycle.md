@@ -6,8 +6,6 @@ tags:
   - "agents"
 category: ["agents"]
 primaryCategory: "agentic-architecture"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-single-agent-ceiling-why-one-ai-cant-hold-your-whole-delivery-lifecycle/"
 readingTime: "6 min read"
 ---
 # The single agent ceiling

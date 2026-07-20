@@ -4,7 +4,6 @@ description: "Supercharge Google Antigravity CLI with custom agent skills, proje
 pubDate: 2026-06-21
 heroImage: "/images/linkedin/1764941218445.jpg"
 category: ["ai", "agentic", "google"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

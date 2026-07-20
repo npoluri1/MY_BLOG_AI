@@ -6,8 +6,6 @@ tags:
   - "metrics"
 category: ["metrics"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-meter-picks-the-winners/"
 readingTime: "6 min read"
 ---
 # The meter picks the winners

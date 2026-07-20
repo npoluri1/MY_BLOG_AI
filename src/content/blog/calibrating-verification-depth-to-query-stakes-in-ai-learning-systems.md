@@ -7,8 +7,6 @@ tags:
   - "risk"
 category: ["ai", "risk"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/calibrating-verification-depth-to-query-stakes-in-ai-learning-systems/"
 readingTime: "6 min read"
 ---
 # Calibrating verification depth to query stakes

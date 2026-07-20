@@ -8,8 +8,6 @@ tags:
   - "measurement"
 category: ["ai", "agents"]
 primaryCategory: "ai-economics"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/finding-the-causal-root-measuring-value-when-no-single-model-owns-the-outcome/"
 readingTime: "6 min read"
 ---
 # Finding the causal root: value when no single model owns the outcome

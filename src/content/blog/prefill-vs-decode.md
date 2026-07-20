@@ -4,7 +4,6 @@ description: "Explore the two execution phases of LLM inference: compute-bound p
 pubDate: 2026-07-10
 heroImage: "/images/linkedin/1769769910926.jpg"
 category: ["ai", "machine-learning"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

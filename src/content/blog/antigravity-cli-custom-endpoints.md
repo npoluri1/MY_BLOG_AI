@@ -4,7 +4,6 @@ description: "Configure Google Antigravity CLI (agy) to run with local LLMs or p
 pubDate: 2026-06-24
 heroImage: "/images/linkedin/1760694483650.jpg"
 category: ["ai", "agentic", "google"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

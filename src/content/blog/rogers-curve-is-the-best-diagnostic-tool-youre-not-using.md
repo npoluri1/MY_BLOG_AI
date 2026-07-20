@@ -6,8 +6,6 @@ tags:
   - "adoption"
 category: ["adoption"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/rogers-curve-is-the-best-diagnostic-tool-youre-not-using/"
 readingTime: "6 min read"
 ---
 # Rogers Curve is the best diagnostic tool you are not using

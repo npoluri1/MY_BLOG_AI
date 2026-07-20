@@ -7,7 +7,6 @@ tags: ["ai", "strategy", "architecture", "leadership", "decisions"]
 image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=675&fit=crop"
 readingTime: "10 min read"
 primaryCategory: "ai"
-author: "Naren Vadapalli"
 ---
 
 Every AI initiative eventually faces the same question: Should we build this ourselves, buy a commercial solution, or partner with a specialist? The answer isn't always obvious, and making the wrong choice can cost millions.

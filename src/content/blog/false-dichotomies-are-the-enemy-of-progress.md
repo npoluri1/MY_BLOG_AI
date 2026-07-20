@@ -6,8 +6,6 @@ tags:
   - "thinking"
 category: ["thinking"]
 primaryCategory: "career"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/false-dichotomies-are-the-enemy-of-progress/"
 readingTime: "6 min read"
 ---
 # False dichotomies are the enemy of progress

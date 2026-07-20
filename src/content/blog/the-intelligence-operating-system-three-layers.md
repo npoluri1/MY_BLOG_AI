@@ -6,8 +6,6 @@ tags:
   - "architecture"
 category: ["architecture"]
 primaryCategory: "agentic-architecture"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-intelligence-operating-system-three-layers/"
 readingTime: "6 min read"
 ---
 # The intelligence operating system: three layers

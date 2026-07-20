@@ -7,8 +7,6 @@ tags:
   - "maturity"
 category: ["ai", "maturity"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/proving-competency-at-every-stage-the-eight-stages-of-ai-maturity/"
 readingTime: "6 min read"
 ---
 # Proving competency: the eight stages of AI maturity

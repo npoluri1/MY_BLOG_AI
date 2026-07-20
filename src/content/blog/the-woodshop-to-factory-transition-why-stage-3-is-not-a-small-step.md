@@ -6,8 +6,6 @@ tags:
   - "factory"
 category: ["factory"]
 primaryCategory: "engineering-evolution"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-woodshop-to-factory-transition-why-stage-3-is-not-a-small-step/"
 readingTime: "6 min read"
 ---
 # Woodshop to factory: stage 3 is not a small step

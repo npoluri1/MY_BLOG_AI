@@ -7,8 +7,6 @@ tags:
   - "habits"
 category: ["engineering", "habits"]
 primaryCategory: "career"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-five-habits-that-actually-make-developers-effective/"
 readingTime: "6 min read"
 ---
 # Five habits that actually make developers effective

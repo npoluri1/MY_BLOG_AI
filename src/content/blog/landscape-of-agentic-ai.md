@@ -4,7 +4,6 @@ description: "Start the Autonomous AI Agents Series. Learn about the ReAct patte
 pubDate: 2026-07-13
 heroImage: "/images/linkedin/Untitled4pdf_thumb.jpg"
 category: ["ai", "machine-learning"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

@@ -7,8 +7,6 @@ tags:
   - "humility"
 category: ["career", "humility"]
 primaryCategory: "career"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-look-at-me-tax-why-self-promotion-carries-a-cost/"
 readingTime: "6 min read"
 ---
 # The Look-at-me tax: why self-promotion carries a cost

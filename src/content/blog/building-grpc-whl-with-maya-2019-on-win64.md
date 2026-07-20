@@ -4,7 +4,6 @@ description: "My struggle with building a grpc python library with Maya 2019 on 
 pubDate: 2020-03-06
 heroImage: "/images/linkedin/1761801051976.jpg"
 category: ["python", "maya", "grpc", "windows"]
-author: "Naga Siva Poluri"
 primaryCategory: "python"
 ---
 

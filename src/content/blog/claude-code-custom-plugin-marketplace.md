@@ -4,7 +4,6 @@ description: "Learn how to build, structure, and host a custom, decentralized Cl
 pubDate: 2026-07-05
 heroImage: "/images/linkedin/1762860525115.jpg"
 category: ["ai", "agentic", "claude-code"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

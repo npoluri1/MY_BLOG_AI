@@ -7,8 +7,6 @@ tags:
   - "leadership"
 category: ["ai", "leadership"]
 primaryCategory: "ai-governance"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-machine-is-learning-to-build-itself-you-still-have-to-decide-what-to-build/"
 readingTime: "6 min read"
 ---
 # The machine is learning to build itself; you still decide what to build

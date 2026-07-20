@@ -7,8 +7,6 @@ tags:
   - "design"
 category: ["product-team", "design"]
 primaryCategory: "engineering-evolution"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-product-teams-evolution-stage-4-designing-the-system-that-decides/"
 readingTime: "6 min read"
 ---
 # The product team evolution: stage 4 (designing the system)

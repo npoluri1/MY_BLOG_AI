@@ -7,8 +7,6 @@ tags:
   - "eval"
 category: ["prompts", "eval"]
 primaryCategory: "ai-quality"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/building-an-evaluation-harness-for-prompt-engineering-moving-beyond-intuition/"
 readingTime: "6 min read"
 ---
 # Building an evaluation harness for prompt engineering

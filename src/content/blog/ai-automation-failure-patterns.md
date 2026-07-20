@@ -7,7 +7,6 @@ tags: ["ai", "automation", "enterprise", "patterns", "engineering"]
 image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=675&fit=crop"
 readingTime: "14 min read"
 primaryCategory: "ai"
-author: "Naren Vadapalli"
 ---
 
 After deploying AI systems across banking, government, and transport sectors for over 15 years, I've seen the same failure patterns repeat across organizations. They're not random — they're predictable, diagnosable, and preventable. Here are the 7 anti-patterns that kill enterprise AI projects, and the engineering fixes that actually work.

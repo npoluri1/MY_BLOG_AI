@@ -4,7 +4,6 @@ description: "A summary of Anthropic's major announcements: Claude Sonnet 5, the
 pubDate: 2026-07-02
 heroImage: "/images/linkedin/1764147173174.jpg"
 category: ["ai", "agentic", "claude-code"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

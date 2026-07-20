@@ -7,8 +7,6 @@ tags:
   - "cost"
 category: ["ai", "cost"]
 primaryCategory: "ai-economics"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/cost-observability-in-ai-assisted-development-understanding-what-your-agents/"
 readingTime: "6 min read"
 ---
 # Cost observability in AI-assisted development

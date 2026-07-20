@@ -8,8 +8,6 @@ tags:
   - "economics"
 category: ["ai", "agents"]
 primaryCategory: "ai-economics"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/cost-adjusted-capacity-when-tokens-stop-converting-to-mergeable-prs/"
 readingTime: "6 min read"
 ---
 # Cost-adjusted capacity when tokens stop converting to mergeable PRs

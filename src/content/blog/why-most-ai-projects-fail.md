@@ -7,7 +7,6 @@ tags: ["ai", "enterprise", "architecture", "leadership", "lessons"]
 image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=675&fit=crop"
 readingTime: "10 min read"
 primaryCategory: "ai"
-author: "Naren Vadapalli"
 ---
 
 After building AI systems for enterprise clients across banking, government, and transport, I've seen a pattern. Most AI projects fail. Not because the technology doesn't work, but because the approach is wrong.

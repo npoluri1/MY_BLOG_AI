@@ -7,8 +7,6 @@ tags:
   - "philosophy"
 category: ["ai", "philosophy"]
 primaryCategory: "ai-governance"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/judgment-was-built-by-proxy/"
 readingTime: "6 min read"
 ---
 # Judgment was built by proxy

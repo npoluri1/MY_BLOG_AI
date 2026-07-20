@@ -4,7 +4,6 @@ description: "How to connect the gatsby website hosted on github to AWS Amplify 
 pubDate: 2020-11-01
 heroImage: "/images/linkedin/1764247072699.jpg"
 category: ["aws", "gatsby", "devops", "webdev"]
-author: "Naga Siva Poluri"
 primaryCategory: "aws"
 ---
 

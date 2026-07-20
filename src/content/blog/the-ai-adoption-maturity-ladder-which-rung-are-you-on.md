@@ -6,8 +6,6 @@ tags:
   - "maturity"
 category: ["maturity"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-ai-adoption-maturity-ladder-which-rung-are-you-on/"
 readingTime: "6 min read"
 ---
 # The AI adoption maturity ladder

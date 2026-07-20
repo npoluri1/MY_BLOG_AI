@@ -4,7 +4,6 @@ description: "Using the rewrites and redirects on AWS Amplify for the deployed p
 pubDate: 2020-11-02
 heroImage: "/images/linkedin/1765098101935.jpg"
 category: ["gatsby", "aws", "webdev"]
-author: "Naga Siva Poluri"
 primaryCategory: "gatsby"
 ---
 

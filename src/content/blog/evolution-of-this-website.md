@@ -4,7 +4,6 @@ description: "Capturing the evolution of my website chronologically (latest firs
 pubDate: 2020-10-31
 heroImage: "/images/linkedin/1764840780436.jpg"
 category: ["webdev", "personal"]
-author: "Naga Siva Poluri"
 primaryCategory: "webdev"
 ---
 

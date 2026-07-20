@@ -4,7 +4,6 @@ description: "Simple Linux Utility for Resource Management (SLURM)"
 pubDate: 2024-05-26
 heroImage: "/images/linkedin/1771249371631.jpg"
 category: ["hpc", "linux", "slurm", "tutorial"]
-author: "Naga Siva Poluri"
 primaryCategory: "hpc"
 ---
 

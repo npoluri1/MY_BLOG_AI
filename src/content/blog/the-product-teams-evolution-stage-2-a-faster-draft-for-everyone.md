@@ -7,8 +7,6 @@ tags:
   - "drafts"
 category: ["product-team", "drafts"]
 primaryCategory: "engineering-evolution"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-product-teams-evolution-stage-2-a-faster-draft-for-everyone/"
 readingTime: "6 min read"
 ---
 # The product team evolution: stage 2 (a faster draft for everyone)

@@ -4,7 +4,6 @@ description: "Problem of linking google analytics and adsense"
 pubDate: 2020-10-16
 heroImage: "/images/linkedin/1768309201420.jpg"
 category: ["analytics", "google", "tutorial"]
-author: "Naga Siva Poluri"
 primaryCategory: "analytics"
 ---
 

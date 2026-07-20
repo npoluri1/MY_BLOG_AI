@@ -7,8 +7,6 @@ tags:
   - "workflow"
 category: ["engineer", "workflow"]
 primaryCategory: "engineering-evolution"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-engineers-evolution-stage-4-designing-and-governing-the-workflow/"
 readingTime: "6 min read"
 ---
 # The engineer evolution: stage 4 (designing and governing)

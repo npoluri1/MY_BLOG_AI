@@ -6,8 +6,6 @@ tags:
   - "POST"
 category: ["POST"]
 primaryCategory: "agile"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-p-o-s-t-ai-world-resetting-the-agile-manifesto-for-the-age-of-agents/"
 readingTime: "6 min read"
 ---
 # The P.O.S.T. AI world: resetting the Agile Manifesto

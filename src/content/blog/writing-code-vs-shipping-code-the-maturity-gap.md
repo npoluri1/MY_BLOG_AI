@@ -7,8 +7,6 @@ tags:
   - "maturity"
 category: ["shipping", "maturity"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/writing-code-vs-shipping-code-the-maturity-gap/"
 readingTime: "6 min read"
 ---
 # Writing code vs shipping code: the maturity gap

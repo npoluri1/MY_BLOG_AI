@@ -4,7 +4,6 @@ description: "Deep-dive into the configuration, CLI commands, and skill architec
 pubDate: 2026-07-14
 heroImage: "/images/linkedin/SOSA-4png.jpeg"
 category: ["ai", "machine-learning"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

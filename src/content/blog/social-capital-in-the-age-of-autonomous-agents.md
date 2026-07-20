@@ -6,8 +6,6 @@ tags:
   - "social-capital"
 category: ["social-capital"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/social-capital-in-the-age-of-autonomous-agents/"
 readingTime: "6 min read"
 ---
 # Social capital in the age of autonomous agents

@@ -4,7 +4,6 @@ description: "Steps required for dealing with secureboot on Ubuntu where Virtual
 pubDate: 2021-05-09
 heroImage: "/images/linkedin/1773892471050.jpeg"
 category: ["linux", "ubuntu", "virtualbox", "devops"]
-author: "Naga Siva Poluri"
 primaryCategory: "linux"
 ---
 

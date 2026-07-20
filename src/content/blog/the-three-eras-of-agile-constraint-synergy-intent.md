@@ -6,8 +6,6 @@ tags:
   - "agile"
 category: ["agile"]
 primaryCategory: "agile"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-three-eras-of-agile-constraint-synergy-intent/"
 readingTime: "6 min read"
 ---
 # The three eras of Agile: Constraint, Synergy, Intent

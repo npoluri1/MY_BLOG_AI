@@ -7,8 +7,6 @@ tags:
   - "architecture"
 category: ["ai", "architecture"]
 primaryCategory: "agentic-architecture"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/from-ci-cd-to-the-intelligence-operating-system/"
 readingTime: "6 min read"
 ---
 # From CI/CD to the Intelligence Operating System

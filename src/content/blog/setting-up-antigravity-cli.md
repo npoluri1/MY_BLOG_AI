@@ -4,7 +4,6 @@ description: "Complete guide to installing and configuring Google Antigravity CL
 pubDate: 2026-06-20
 heroImage: "/images/linkedin/1770914835114.jpg"
 category: ["ai", "agentic", "google"]
-author: "Naga Siva Poluri"
 primaryCategory: "ai"
 ---
 

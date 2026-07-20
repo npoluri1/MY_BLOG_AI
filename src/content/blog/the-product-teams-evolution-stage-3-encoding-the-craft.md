@@ -7,8 +7,6 @@ tags:
   - "encoding"
 category: ["product-team", "encoding"]
 primaryCategory: "engineering-evolution"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/the-product-teams-evolution-stage-3-encoding-the-craft/"
 readingTime: "6 min read"
 ---
 # The product team evolution: stage 3 (encoding the craft)

@@ -6,8 +6,6 @@ tags:
   - "labor"
 category: ["labor"]
 primaryCategory: "ai-economics"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/labor-compression-the-right-economic-frame-for-ai/"
 readingTime: "6 min read"
 ---
 # Labor compression: the right economic frame

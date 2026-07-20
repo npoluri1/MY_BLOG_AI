@@ -8,8 +8,6 @@ tags:
   - "benchmarking"
 category: ["ai", "evaluation"]
 primaryCategory: "ai-economics"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/using-evaluation-data-to-match-model-capability-to-task-requirements-2/"
 readingTime: "6 min read"
 ---
 # Using evaluation data to match model capability to task requirements

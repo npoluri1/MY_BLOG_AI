@@ -11,7 +11,6 @@ part: 5
 prevPost: "The Landscape of LLM Inference Engines: Open Source vs. Enterprise"
 nextPost: "Token Economics, LLM Gateways, and Router9"
 primaryCategory: "ai"
-author: "Naren Vadapalli"
 ---
 
 In local and cloud LLM serving, performance is governed by two main metrics: **Time to First Token (TTFT)** and **Inter-Token Latency (ITL)**.

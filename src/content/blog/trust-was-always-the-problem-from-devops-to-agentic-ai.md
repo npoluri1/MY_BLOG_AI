@@ -7,8 +7,6 @@ tags:
   - "trust"
 category: ["devops", "trust"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/trust-was-always-the-problem-from-devops-to-agentic-ai/"
 readingTime: "6 min read"
 ---
 # Trust was always the problem: from DevOps to agentic AI

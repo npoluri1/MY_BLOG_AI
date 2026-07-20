@@ -7,8 +7,6 @@ tags:
   - "process"
 category: ["ai", "process"]
 primaryCategory: "process-maturity"
-author: "Devlin Liles"
-sourceUrl: "https://www.devlinliles.com/every-stage-of-software-delivery-has-an-ai-dimension/"
 readingTime: "6 min read"
 ---
 # Every stage of software delivery has an AI dimension
