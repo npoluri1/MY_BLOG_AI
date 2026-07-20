@@ -29,13 +29,13 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
       - name: Setup Node
         # NOTE: intentionally no `cache: 'npm'` here — we use a dedicated
         # actions/cache@v4 step below with proper lock-file-aware keying
         # and restore-keys fallback. Using both would race.
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: '22'
 
@@ -44,7 +44,7 @@ jobs:
       # triggers a rebuild. The restore-keys fallback handles the
       # cache-miss case (e.g. first deploy after a runner scale-up).
       - name: Cache npm
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
