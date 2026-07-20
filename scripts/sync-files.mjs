@@ -133,6 +133,20 @@ function uploadedAtFromName(name, fallbackMtimeMs) {
 function main() {
   const startedAt = new Date().toISOString();
   const t0 = Date.now();
+
+  // Cross-platform safety: when run on CI (e.g. Netlify) the default Windows
+  // source path won't exist. Skip cleanly so the build can proceed using the
+  // Git-committed manifest + files. If a user explicitly set SYNC_SOURCE_DIR,
+  // treat the missing directory as a hard error (user mistake).
+  if (!existsSync(SOURCE)) {
+    if (process.env.SYNC_SOURCE_DIR) {
+      console.error(`[sync-files] ERROR: SYNC_SOURCE_DIR does not exist: ${SOURCE}`);
+      process.exit(1);
+    }
+    console.warn(`[sync-files] WARNING: source dir not found (${SOURCE}). Skipping sync; using existing committed manifest + files.`);
+    return;
+  }
+
   const old = loadOldManifest();
 
   let entries;
