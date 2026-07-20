@@ -112,6 +112,24 @@ function shortenFilename(name) {
   return name;
 }
 
+
+function uploadedAtFromName(name, fallbackMtimeMs) {
+  // Most source filenames start with a Unix timestamp (ms or s).
+  // Prefer that over mtime because mtime reflects when the file was saved
+  // to disk here, which is often very recent, while the filename timestamp
+  // records when the original was created/scraped.
+  const m = /^(\d{10,15})/.exec(name || '');
+  if (m) {
+    const n = parseInt(m[1], 10);
+    if (Number.isFinite(n) && n > 1_000_000_000) {
+      const ms = n > 1_000_000_000_000 ? n : n * 1000;
+      const d = new Date(ms);
+      if (!isNaN(d.getTime())) return d.toISOString();
+    }
+  }
+  return new Date(fallbackMtimeMs).toISOString();
+}
+
 function main() {
   const startedAt = new Date().toISOString();
   const t0 = Date.now();
@@ -186,7 +204,7 @@ function main() {
       category: cls.category,
       mime: cls.mime,
       sizeBytes: st.size,
-      uploadedAt: new Date(st.mtimeMs).toISOString(),
+      uploadedAt: uploadedAtFromName(name, st.mtimeMs),
     });
   }
 
