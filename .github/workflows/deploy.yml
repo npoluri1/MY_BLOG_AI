@@ -19,6 +19,14 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    # Optional Slack/Discord webhook for success notifications.
+    # Set this repo secret to enable; leave it unset to skip the step silently.
+    # Slack Incoming Webhook URL format: https://hooks.slack.com/services/...
+    # Discord Webhook URL format:         https://discord.com/api/webhooks/...
+    env:
+      DEPLOY_WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,13 +37,24 @@ jobs:
           node-version: '22'
           cache: 'npm'
 
+      # Cross-run cache for the netlify-cli install + Astro node_modules.
+      # Uses ~/.npm and is keyed on package-lock.json so a deps change
+      # triggers a rebuild. Cuts ~30-45 s off every successful deploy.
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies
+        run: npm ci
+
       # `prebuild` in package.json runs scripts/sync-files.mjs which on CI
       # self-skips cleanly when the default Windows source path is missing,
       # so the build always proceeds using the Git-committed manifest + files
       # in public/files/.
-      - name: Install dependencies
-        run: npm ci
-
       - name: Build (Astro)
         run: npm run build
         env:
@@ -63,3 +82,25 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+      # Optional Slack/Discord notification on successful deploy.
+      # Slack-compat: posts `{"text": "..."}`. For Discord-compat, swap
+      # the JSON body to `{"content": "..."}`. Silently skips when
+      # DEPLOY_WEBHOOK_URL is unset, and never fails the workflow.
+      - name: Notify deployment (optional)
+        if: success()
+        run: |
+          if [ -n "$DEPLOY_WEBHOOK_URL" ]; then
+            MSG="✅ *Deployed* https://my-blog-nagasiva.netlify.app/  \nCommit: \`${GITHUB_SHA}\`  \nBy: \`${GITHUB_ACTOR}\`  \nRun: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            curl -fsS -X POST -H 'Content-Type: application/json' \
+              --data "{\"text\": \"${MSG}\"}" \
+              "$DEPLOY_WEBHOOK_URL" \
+              || echo "::warning::DEPLOY_WEBHOOK_URL post failed (non-blocking)"
+          else
+            echo "::notice::DEPLOY_WEBHOOK_URL not set, skipping notification."
+          fi
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
