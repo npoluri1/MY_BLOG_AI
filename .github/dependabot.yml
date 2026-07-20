@@ -1,0 +1,48 @@
+# Dependabot configuration: weekly PRs to bump pinned GitHub-Action SHAs.
+#
+# Context: .github/workflows/deploy.yml pins actions/checkout, actions/setup-node,
+# and actions/cache to commit SHAs (see the trailing "# v4" comments). A tag is
+# mutable but a SHA is immutable, so when GitHub ships a security or feature
+# patch to those v4 tags, the pinned SHAs will NOT auto-bump. This file
+# restores that auto-bump behavior via Dependabot, which opens weekly PRs
+# that contain the latest SHA for each v4 tag, plus a follow-up maintainer
+# can review/merge.
+#
+# The PRs are grouped into a single "github-actions" PR per week so we don't
+# get ping-spammed. The schedule is Monday 09:00 UTC.
+#
+# Docs: https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions
+
+version: 2
+
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    commit-message:
+      prefix: "ci"
+      prefix-separator: ":"
+    labels:
+      - "dependencies"
+      - "ci"
+    # Open at most 5 grouped PRs per ecosystem per run.
+    open-pull-requests-limit: 5
+    # Group all action bumps into a single weekly PR to avoid spam.
+    # NOTE: we intentionally do NOT configure an "ignore: semver-major" rule
+    # here. For the github-actions ecosystem, Dependabot categorizes SHA
+    # bumps as "digest" updates (not major/minor/patch), so a semver-major
+    # ignore rule would silently no-op. Major-version bumps (e.g. v4 → v5)
+    # get opened as separate PRs and reviewed manually — that's fine and
+    # preferred because those often include breaking input-arg changes.
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+    # Send PRs to the default branch of the upstream repo.
+    target-branch: "main"
+    # Don't rebase too often — reduces churn if PR sits open across a week.
+    rebase-strategy: "disabled"

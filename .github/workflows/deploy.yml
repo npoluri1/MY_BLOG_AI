@@ -22,8 +22,9 @@ jobs:
 
     # Optional Slack/Discord webhook for success notifications.
     # Set this repo secret to enable; leave it unset to skip the step silently.
-    # Slack Incoming Webhook URL format: https://hooks.slack.com/services/...
-    # Discord Webhook URL format:         https://discord.com/api/webhooks/...
+    # The Notify step below auto-detects the platform from the URL:
+    #   * Discord webhooks (URL contains "discord") → posts {"content": "..."}
+    #   * Slack/anything-else webhooks               → posts {"text": "...}
     env:
       DEPLOY_WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL }}
 
@@ -87,18 +88,41 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
       # Optional Slack/Discord notification on successful deploy.
-      # Slack-compat: posts `{"text": "..."}`. For Discord-compat, swap
-      # the JSON body to `{"content": "..."}`. Silently skips when
-      # DEPLOY_WEBHOOK_URL is unset, and never fails the workflow.
+      # Auto-detects the platform from the webhook URL substring and posts
+      # the matching JSON body:
+      #   * URL contains "discord" (case-insensitive) → {"content": "..."}
+      #   * anything else                             → {"text": "..."}    (Slack/Teams/etc)
+      # Silently skips when DEPLOY_WEBHOOK_URL is unset. Curl errors do not
+      # fail the workflow — they're surfaced as ::warning:: annotations.
+      # NOTE: backticks are intentionally NOT used to wrap commit/actor/run-id
+      # values. Backslash-backtick inside JSON is a non-spec escape (Slack
+      # tolerates it, but a strict parser will reject the payload), and using
+      # backticks here would require subtle bash escaping that's easy to get
+      # wrong. Plain text reads cleanly in Slack/Discord regardless.
       - name: Notify deployment (optional)
         if: success()
         run: |
           if [ -n "$DEPLOY_WEBHOOK_URL" ]; then
-            MSG="✅ *Deployed* https://my-blog-nagasiva.netlify.app/  \nCommit: \`${GITHUB_SHA}\`  \nBy: \`${GITHUB_ACTOR}\`  \nRun: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            MSG="✅ *Deployed* https://my-blog-nagasiva.netlify.app/  \\nCommit: ${GITHUB_SHA}  \\nBy: ${GITHUB_ACTOR}  \\nRun: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            # Platform detection: Discord uses {"content"}; Slack and most
+            # other webhook systems use {"text"}. Single-arm case because
+            # only one platform needs a non-default key.
+            case "$DEPLOY_WEBHOOK_URL" in
+              *[Dd]iscord*) JSON_KEY="content" ;;
+              *)            JSON_KEY="text" ;;
+            esac
+            echo "::notice::Posting deploy notification (JSON key: ${JSON_KEY})"
+            # Mask the URL in the log so we don't leak the secret token.
+            case "$DEPLOY_WEBHOOK_URL" in
+              https://hooks.slack.com/*)                    LOG_URL="https://hooks.slack.com/<redacted>" ;;
+              https://discord.com/api/webhooks/*)           LOG_URL="https://discord.com/api/webhooks/<id>/<redacted>" ;;
+              https://discordapp.com/api/webhooks/*)        LOG_URL="https://discordapp.com/api/webhooks/<id>/<redacted>" ;;
+              *)                                           LOG_URL="$DEPLOY_WEBHOOK_URL" ;;
+            esac
             curl -fsS -X POST -H 'Content-Type: application/json' \
-              --data "{\"text\": \"${MSG}\"}" \
+              --data "{\"${JSON_KEY}\": \"${MSG}\"}" \
               "$DEPLOY_WEBHOOK_URL" \
-              || echo "::warning::DEPLOY_WEBHOOK_URL post failed (non-blocking)"
+              || echo "::warning::DEPLOY_WEBHOOK_URL post failed (non-blocking) — endpoint=${LOG_URL}"
           else
             echo "::notice::DEPLOY_WEBHOOK_URL not set, skipping notification."
           fi
