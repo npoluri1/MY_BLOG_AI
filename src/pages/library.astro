@@ -8,11 +8,36 @@
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { readFileSync, existsSync, statSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url));
-const MANIFEST_PATH = join(__dirname, '..', 'public', 'files', 'manifest.json');
+// Resolve manifest path portably across local dev + Netlify CI.
+// Why not `import.meta.url`: under Astro/Vite, the frontmatter
+// `import.meta.url` can be a virtual module URL on Windows + Vite, so
+// `fileURLToPath(new URL('.', import.meta.url))` does NOT resolve to
+// the source file's disk location and the join() math ends up pointing
+// at `src/public/files/manifest.json` (which doesn't exist) — that's
+// why the page shipped with an empty corpus.
+//
+// `process.cwd()` is the project root in BOTH `astro dev` (started
+// from project root) and `astro build` (invoked from project root),
+// and is what scripts/sync-files.mjs uses too. The fallback walk
+// covers edge cases where the script is invoked from a non-root cwd.
+function findProjectRoot() {
+  if (existsSync(join(process.cwd(), 'public', 'files', 'manifest.json'))) {
+    return process.cwd();
+  }
+  let dir = import.meta.dirname;
+  for (let i = 0; i < 6; i++) {
+    if (existsSync(join(dir, 'public', 'files', 'manifest.json'))) return dir;
+    const parent = dirname(dir);
+    if (parent === dir) break;
+    dir = parent;
+  }
+  return process.cwd(); // best-effort fallback
+}
+
+const PROJECT_ROOT = findProjectRoot();
+const MANIFEST_PATH = join(PROJECT_ROOT, 'public', 'files', 'manifest.json');
 
 let manifest = { files: [], counts: { image: 0, docs: 0, video: 0, other: 0 }, total: 0, generatedAt: null, source: '' };
 let manifestError = null;
