@@ -15,7 +15,7 @@ Using git credentials store the github access token to avoid the re-prompting of
 
 ## Prerequisites
 
-Go through the process of generating the github access token as mentioned in [Github login using access token via cmdline blog](https://www.narenvadapalli.com/blog/github-login-using-access-token-via-cmdline/).
+Go through the process of generating the github access token as mentioned in [Github login using access token via cmdline blog](/blog/github-login-using-access-token-via-cmdline/).
 
 ## Solution
 

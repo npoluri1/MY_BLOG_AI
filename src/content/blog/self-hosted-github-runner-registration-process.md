@@ -44,7 +44,7 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem ; [System.IO.Compression
 
 Generate the `<<TOKEN>>` using Github REST API and replace it in the command shown below.
 
-Checkout [generating-token-for-github-runner-registration](https://www.narenvadapalli.com/blog/generating-token-for-github-runner-registration/) for a way to use Github's REST API to generate the token.
+Checkout [generating-token-for-github-runner-registration](/blog/generating-token-for-github-runner-registration/) for a way to use Github's REST API to generate the token.
 
 Otherway would be to pick it up from the webpage as explained the first section under **`Configure`** section after the `--token` argument to `config.cmd`.
 

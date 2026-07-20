@@ -10,18 +10,6 @@ const socialLinks = [
 
 <footer>
   <div class="container footer-content">
-    <div class="footer-attribution reveal">
-      <span class="attribution-label">Constellation Content</span>
-      <p class="attribution-text">
-        Every article in this archive is the original work of
-        <a href="https://www.devlinliles.com/" target="_blank" rel="noopener noreferrer" class="attribution-link">
-          Devlin Liles
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        </a>
-        — curated by <strong>Naga Siva Poluri</strong> with full credit and source links preserved per post.
-      </p>
-    </div>
-
     <div class="footer-social">
       {socialLinks.map(link => (
         <a href={link.url} target="_blank" rel="noopener noreferrer" class="social-link" aria-label={link.name}>
@@ -44,43 +32,6 @@ const socialLinks = [
   }
 
   .footer-content { text-align: center; }
-
-  .footer-attribution {
-    max-width: 720px;
-    margin: 0 auto 2rem;
-    padding: 1.25rem 1.5rem;
-    background: rgba(139, 92, 246, 0.05);
-    border: 1px solid rgba(139, 92, 246, 0.18);
-    border-radius: var(--radius-md);
-  }
-  .attribution-label {
-    display: inline-block;
-    font-family: var(--font-display);
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent-light);
-    margin-bottom: 0.5rem;
-  }
-  .attribution-text {
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
-    margin: 0;
-  }
-  .attribution-link {
-    color: var(--accent-light);
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-  }
-  .attribution-link:hover {
-    color: var(--teal-light);
-    text-decoration: underline;
-  }
-
   .footer-social {
     display: flex;
     justify-content: center;

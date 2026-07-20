@@ -95,7 +95,7 @@ result: /home/<username>/rpmbuild/RPMS/x86_64/chrome-remote-desktop-81.0.4044.60
 #### Finally install the `rpm`
 
 ```bash
-$ sudo yum install /home/narenandu/rpmbuild/RPMS/x86_64/chrome-remote-desktop-81.0.4044.60-2.x86_64.rpm
+$ sudo yum install /home/<username>/rpmbuild/RPMS/x86_64/chrome-remote-desktop-81.0.4044.60-2.x86_64.rpm
 ...
 Complete!
 ```

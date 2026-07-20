@@ -56,4 +56,4 @@ Ordered in the most frequently used or relevant:
 - `salloc` - allocate resources in real time to the jobs. This spawns a shell with allocated resources and `srun` commands with in this shell is used to launch parallel task
 - `sacct` - report job or job step information about active/completed jobs
 
-Recommended exercise to go through SLURM demo on EC2 instance [SLURM demo on AWS Ubuntu 22.04 EC2 instance](https://www.narenvadapalli.com/blog/slurm-on-aws-ubuntu-ec2/)
+Recommended exercise to go through SLURM demo on EC2 instance [SLURM demo on AWS Ubuntu 22.04 EC2 instance](/blog/slurm-on-aws-ubuntu-ec2/)

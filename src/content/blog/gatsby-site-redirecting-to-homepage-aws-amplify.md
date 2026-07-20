@@ -11,7 +11,7 @@ Using the rewrites and redirects on AWS Amplify for the depolyed personal websit
 
 ## Problem Statement
 
-After connecting the app for continuous deployment by attaching the branch on my github repository (For those interested, details here: [Connecting to AWS Amplify for deployment](https://www.narenvadapalli.com/blog/connecting-aws-amplify-for-deployment/)), any specific url provided was always getting redirected to my home page (`./index.html`).
+After connecting the app for continuous deployment by attaching the branch on my github repository (For those interested, details here: [Connecting to AWS Amplify for deployment](/blog/connecting-aws-amplify-for-deployment/)), any specific url provided was always getting redirected to my home page (`./index.html`).
 
 ## Rewrites and Redirects
 
@@ -24,8 +24,8 @@ There were 3 default entries and was suspecting one of them was causing this iss
 ```json
 [
     {
-        "source": "https://narenvadapalli.com",
-        "target": "https://www.narenvadapalli.com",
+        "source": "https://example.com
+        "target": "https://example.com
         "status": "302",
         "condition": null
     },
@@ -70,8 +70,8 @@ So finally the working combination of `Rewrites and Redirects` is:
 ```json
 [
     {
-        "source": "https://narenvadapalli.com",
-        "target": "https://www.narenvadapalli.com",
+        "source": "https://example.com
+        "target": "https://example.com
         "status": "301",
         "condition": null
     },

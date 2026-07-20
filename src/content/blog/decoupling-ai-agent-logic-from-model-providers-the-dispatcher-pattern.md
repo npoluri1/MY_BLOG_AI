@@ -47,7 +47,3 @@ The compounding: as agent output accelerates, the cost of misalignment between i
 This kind of work isnt glamorous. It is also the work that separates teams that accumulate capability over years from teams that churn on a quarterly cadence.
 
 Adopt the framing. Write down the model. Categorise the work. Re-align intent and observation quarterly.
-
----
-
-**Originally published by [Devlin Liles](https://www.devlinliles.com/) on 2025-07-03.** [Read the original on devlinliles.com ->](https://www.devlinliles.com/decoupling-ai-agent-logic-from-model-providers-the-dispatcher-pattern/)

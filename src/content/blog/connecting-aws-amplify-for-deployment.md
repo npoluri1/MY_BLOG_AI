@@ -15,7 +15,7 @@ You Need to sign in to AWS account by clicking on on [https://aws.amazon.com/amp
 
 ## Connecting Github (source code)
 
-Since the code for my website is already hosted on [github](https://github.com/narenandu/narenvadapalli_dot_com), we choose `From your existing code` option as shown and `Github`.
+Since the code for my website is already hosted on [github](https://github.com/<username>/<repo-name>), we choose `From your existing code` option as shown and `Github`.
 
 ### Choose the repo
 
@@ -27,7 +27,7 @@ Select the branch you want to deploy from.
 
 ## Adding in the custom environment variables
 
-Once we hit the `Next` button, there will be App Settings and under `Advanced Settings`, there is a provision to add the custom env vars that we want to secure from exposing them in source code. I have `Google Analytics` connected to my website to track the insights in to the audience. More details here: [Adding Google Analytics to personal website](https://www.narenvadapalli.com/blog/google-analytics-to-personal-website/).
+Once we hit the `Next` button, there will be App Settings and under `Advanced Settings`, there is a provision to add the custom env vars that we want to secure from exposing them in source code. I have `Google Analytics` connected to my website to track the insights in to the audience. More details here: [Adding Google Analytics to personal website](/blog/google-analytics-to-personal-website/).
 
 ## Connecting the deployment to custom domain
 
