@@ -239,16 +239,28 @@ let githubRepos = [];
 let githubSummary = { total: 0, stars: 0, forks: 0, languages: 0 };
 let githubFetchFailed = false;
 
+// Filter horizon: only show repos updated within the last 4 months
+// (so the portfolio stays focused on currently-active work rather than
+// historical noise). Computed once at build time.
+const RECENT_MONTHS = 4;
+const recentCutoff = new Date();
+recentCutoff.setMonth(recentCutoff.getMonth() - RECENT_MONTHS);
+const isRecent = (r) => {
+  if (!r || !r.updated_at) return false;
+  const t = new Date(r.updated_at);
+  return !isNaN(t.getTime()) && t >= recentCutoff;
+};
+
 try {
   const res = await fetch(GH_API, { headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'my-blog-ai-build' } });
   if (res.ok) {
     const data = await res.json();
     if (Array.isArray(data)) {
-      const active = data.filter(r => !r.fork && !r.archived)
+      const active = data.filter(r => !r.fork && !r.archived && isRecent(r))
         .sort((a, b) => (b.stargazers_count - a.stargazers_count) || (new Date(b.updated_at) - new Date(a.updated_at)));
-      const forks = data.filter(r => r.fork && !r.archived)
+      const forks = data.filter(r => r.fork && !r.archived && isRecent(r))
         .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
-      const archived = data.filter(r => r.archived)
+      const archived = data.filter(r => r.archived && isRecent(r))
         .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
       githubRepos = [...active, ...forks, archived].slice(0, 60);
 
