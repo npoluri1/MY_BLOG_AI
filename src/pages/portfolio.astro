@@ -191,8 +191,8 @@ const projects = [
 ];
 
 // ---------- GitHub Open Source ----------
-// Placeholder username. Replace with the actual GitHub handle of Naga Siva Poluri when known.
-const GITHUB_USER = 'nagasivapoluri';
+// GitHub username: live repos are loaded at build time via the GitHub REST API.
+const GITHUB_USER = 'npoluri1';
 const GH_API = `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`;
 
 // Language → dot color (GitHub palette)
@@ -353,7 +353,7 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
       {githubRepos.length === 0 ? (
         <div class="os-empty">
           <p>The GitHub API was unreachable from the build environment, or no public repositories are available under this handle.</p>
-          <p class="os-hint">Default placeholder handle: <code>{GITHUB_USER}</code>. Update in <code>src/pages/portfolio.astro</code> to your own GitHub username.</p>
+          <p class="os-hint">If you forked this template, set <code>GITHUB_USER</code> in <code>src/pages/portfolio.astro</code> to your own GitHub handle.</p>
           <a href={githubProfileUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
             View profile on GitHub →
           </a>
