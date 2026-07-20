@@ -5,12 +5,12 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# Only need read for checkout — the deploy happens via the Netlify Action
+# Only need read for checkout — the deploy happens via the Netlify CLI directly
 # using secrets, not via GitHub Pages / GitHub OIDC.
 permissions:
   contents: read
 
-# Cancel any in-flight deploy if a newer commit lands on main, so we always
+# Cancel any in-flight deploy when a newer commit lands on main, so we always
 # land the latest tip, not a stale mid-flight build.
 concurrency:
   group: netlify-deploy
@@ -30,9 +30,9 @@ jobs:
           cache: 'npm'
 
       # `prebuild` in package.json runs scripts/sync-files.mjs which on CI
-      # self-skips cleanly when SYNC_SOURCE_DIR is missing or empty (no
-      # Windows-only path), so the build always proceeds using the
-      # Git-committed manifest + files in public/files/.
+      # self-skips cleanly when the default Windows source path is missing,
+      # so the build always proceeds using the Git-committed manifest + files
+      # in public/files/.
       - name: Install dependencies
         run: npm ci
 
@@ -41,15 +41,25 @@ jobs:
         env:
           NODE_ENV: production
 
-      # Official Netlify GitHub Action — runs `netlify deploy --prod`
-      # inside this step using NETLIFY_AUTH_TOKEN / NETLIFY_SITE_ID.
+      # Direct Netlify CLI invocation via `npx` — avoids depending on a
+      # specific third-party GitHub Action version. The `netlify-cli` package
+      # is published by Netlify Inc. on npm and resolved at run time.
+      - name: Install Netlify CLI
+        run: npm install --no-save netlify-cli
+
+      # Pre-flight check: print which required secrets are present (without
+      # leaking values) so failure causes are obvious in the log.
+      - name: Verify secrets are wired
+        run: |
+          if [ -z "$NETLIFY_AUTH_TOKEN" ]; then echo "::error::NETLIFY_AUTH_TOKEN is missing — add it at https://github.com/npoluri1/MY_BLOG_AI/settings/secrets/actions"; exit 1; fi
+          if [ -z "$NETLIFY_SITE_ID" ]; then echo "::error::NETLIFY_SITE_ID is missing — add it at https://github.com/npoluri1/MY_BLOG_AI/settings/secrets/actions"; exit 1; fi
+          echo "Both NETLIFY_AUTH_TOKEN and NETLIFY_SITE_ID are present."
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
       - name: Deploy to Netlify (production)
-        uses: netlify/actions/cli@v2.0
-        with:
-          args: >-
-            deploy --prod
-            --dir=dist
-            --message="GH Actions deploy @ ${{ github.sha }}"
+        run: npx netlify deploy --prod --dir=dist --message="GH Actions deploy @ ${{ github.sha }}"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
