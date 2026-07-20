@@ -1,0 +1,722 @@
+---
+// /library — Browse every image + PDF / DOCX / notebook synced from the
+// local file library. Reads /files/manifest.json (emitted by scripts/sync-files.mjs)
+// at build time, splits files into images vs. documents, and renders filterable
+// grids with a search field, kind filter, sort, and a "Fetch files" button
+// that re-fetches the manifest (cache-busted) so newly-built files surface
+// without a hard page reload.
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { readFileSync, existsSync, statSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { join } from 'node:path';
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
+const MANIFEST_PATH = join(__dirname, '..', 'public', 'files', 'manifest.json');
+
+let manifest = { files: [], counts: { image: 0, docs: 0, video: 0, other: 0 }, total: 0, generatedAt: null, source: '' };
+let manifestError = null;
+
+try {
+  if (existsSync(MANIFEST_PATH)) {
+    manifest = JSON.parse(readFileSync(MANIFEST_PATH, 'utf8'));
+  } else {
+    manifestError = 'manifest.json not found at build time';
+  }
+} catch (err) {
+  manifestError = 'could not parse manifest.json: ' + err.message;
+}
+
+// Keep only the data we need for the browser to avoid crushing the page weight.
+// Strip large fields the lightbox doesn't need; keep path/name/ext/kind/category/mime/sizeBytes/uploadedAt.
+const allFiles = (manifest.files || []).map(f => ({
+  path: f.path,
+  name: f.name,
+  ext: f.ext,
+  kind: f.kind,
+  category: f.category,
+  mime: f.mime,
+  sizeKb: Math.round((f.sizeBytes || 0) / 1024),
+  uploadedAt: f.uploadedAt,
+  uploadedDateLabel: f.uploadedAt ? new Date(f.uploadedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '',
+}));
+
+const images = allFiles.filter(f => f.kind === 'image');
+const docs   = allFiles.filter(f => f.kind === 'docs');
+const other  = allFiles.filter(f => f.kind === 'video' || f.kind === 'other');
+
+// Build a year-month index so the day-grouped headers render fast on the client.
+const monthLabels = [...new Set(images.map(f => f.uploadedAt?.slice(0, 7)).filter(Boolean))].sort().reverse();
+
+const fmtTotalSize = (bytes) => {
+  if (!bytes) return '0 B';
+  const units = ['B', 'KB', 'MB', 'GB'];
+  let v = bytes, u = 0;
+  while (v >= 1024 && u < units.length - 1) { v /= 1024; u++; }
+  return `${v.toFixed(v < 10 && u > 0 ? 1 : 0)} ${units[u]}`;
+};
+const totalBytes = allFiles.reduce((s, f) => s + (f.sizeBytes || 0), 0);
+---
+
+<BaseLayout title="Library — Naga Siva Poluri" description="Complete file library: images, PDFs, research papers, and notes curated from LinkedIn and beyond.">
+  <div class="library-page">
+    <div class="page-header">
+      <div class="container">
+        <span class="section-eyebrow reveal">PUBLIC ARCHIVE</span>
+        <h1 class="reveal stagger-1">The Library</h1>
+        <p class="subtitle reveal stagger-2">
+          Every image, research paper, technical report, and document synced from the source archive
+          — filterable, searchable, and made for browsing.
+        </p>
+
+        <div class="library-stats reveal stagger-3">
+          <span class="stat"><strong>{images.length.toLocaleString()}</strong> images</span>
+          <span class="stat-divider"></span>
+          <span class="stat"><strong>{docs.length.toLocaleString()}</strong> documents</span>
+          {other.length > 0 && (
+            <>
+              <span class="stat-divider"></span>
+              <span class="stat"><strong>{other.length.toLocaleString()}</strong> other</span>
+            </>
+          )}
+          <span class="stat-divider"></span>
+          <span class="stat"><strong>{fmtTotalSize(totalBytes)}</strong> total</span>
+          <span class="stat-divider"></span>
+          <span class="stat"><strong>{manifest.source || '—'}</strong></span>
+        </div>
+
+        <div class="fetch-row reveal stagger-4">
+          <button id="fetch-files" class="btn-fetch" type="button" aria-label="Re-fetch latest file manifest">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><polyline points="21 4 21 12 13 12"/></svg>
+            <span class="btn-fetch-label">Fetch files</span>
+          </button>
+          <div id="fetch-status" class="fetch-status" aria-live="polite">
+            {manifest.generatedAt
+              ? <>Last synced · <time datetime={manifest.generatedAt}>{new Date(manifest.generatedAt).toLocaleString()}</time></>
+              : <>Manifest empty. Run <code>npm run sync:files</code> locally and rebuild.</>}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {manifestError && (
+      <div class="container">
+        <div class="library-error">
+          <strong>Library not synced yet.</strong>
+          <p>{manifestError}</p>
+          <p>Run <code>npm run sync:files</code> from the project root (or set <code>SYNC_SOURCE_DIR</code> and re-run) to populate <code>public/files/</code>. Then commit the new files and rebuild.</p>
+        </div>
+      </div>
+    )}
+
+    {allFiles.length > 0 && (
+      <section class="library-section">
+        <div class="container">
+          <div class="library-controls">
+            <div class="kind-tabs" role="tablist">
+              <button class="kind-tab active" data-kind="image" role="tab" aria-selected="true">Images <span class="kind-count">{images.length.toLocaleString()}</span></button>
+              <button class="kind-tab" data-kind="docs" role="tab" aria-selected="false">Documents <span class="kind-count">{docs.length.toLocaleString()}</span></button>
+              <button class="kind-tab" data-kind="other" role="tab" aria-selected="false">Other <span class="kind-count">{other.length.toLocaleString()}</span></button>
+            </div>
+
+            <div class="library-search-row">
+              <div class="library-search-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input id="librarySearch" type="search" placeholder="Search by filename…" autocomplete="off" aria-label="Search files" />
+                <button id="librarySearchClear" type="button" class="library-search-clear" aria-label="Clear search">×</button>
+              </div>
+              <div class="library-sort">
+                <label for="librarySort">Sort</label>
+                <select id="librarySort">
+                  <option value="newest" selected>Newest uploaded</option>
+                  <option value="oldest">Oldest uploaded</option>
+                  <option value="largest">Largest file</option>
+                  <option value="smallest">Smallest file</option>
+                  <option value="name">Name (A–Z)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="library-result-count" id="libraryResultCount" aria-live="polite">
+              {`Showing ${images.length.toLocaleString()} images`}
+            </div>
+          </div>
+
+          {/* Image grid — laid out in a stable masonry using CSS columns */}
+          <div class="image-grid-wrap" id="libraryImages">
+            {images.map((img, i) => (
+              <div class="library-tile" data-kind="image" data-name={img.name.toLowerCase()} data-path={img.path} data-uploaded={img.uploadedAt} data-size={img.sizeKb}>
+                <button class="tile-button" type="button" data-idx={i} aria-label={`Open ${img.name}`}>
+                  <img src={img.path} alt={img.name} loading="lazy" decoding="async" />
+                  <span class="tile-overlay">
+                    <span class="tile-name">{img.name}</span>
+                    <span class="tile-meta">{img.sizeKb.toLocaleString()} KB · {img.uploadedDateLabel}</span>
+                  </span>
+                </button>
+              </div>
+            ))}
+          </div>
+
+          {/* Documents grid */}
+          <div class="doc-grid-wrap" id="libraryDocs" hidden>
+            {docs.map(doc => (
+              <a class="doc-card" href={doc.path} target="_blank" rel="noopener noreferrer" data-kind="docs" data-name={doc.name.toLowerCase()} data-path={doc.path} data-uploaded={doc.uploadedAt} data-size={doc.sizeKb}>
+                <div class="doc-card-top">
+                  <span class={`doc-kind-badge doc-${doc.ext}`}>{doc.ext.toUpperCase()}</span>
+                  <span class="doc-kind-size">{doc.sizeKb.toLocaleString()} KB</span>
+                </div>
+                <h3 class="doc-card-title">{doc.name}</h3>
+                <p class="doc-card-meta">Uploaded {doc.uploadedDateLabel}</p>
+                <span class="doc-card-cta">Open →</span>
+              </a>
+            ))}
+          </div>
+
+          <div class="library-grid-wrap" id="libraryOther" hidden>
+            {other.map(f => (
+              <a class="doc-card" href={f.path} target="_blank" rel="noopener noreferrer" data-kind={f.kind} data-name={f.name.toLowerCase()} data-path={f.path} data-uploaded={f.uploadedAt} data-size={f.sizeKb}>
+                <div class="doc-card-top">
+                  <span class={`doc-kind-badge doc-${f.ext}`}>{f.ext.toUpperCase()}</span>
+                  <span class="doc-kind-size">{f.sizeKb.toLocaleString()} KB</span>
+                </div>
+                <h3 class="doc-card-title">{f.name}</h3>
+                <p class="doc-card-meta">Uploaded {f.uploadedDateLabel}</p>
+                <span class="doc-card-cta">Open →</span>
+              </a>
+            ))}
+          </div>
+
+          <div id="libraryEmptyState" class="library-empty-state" hidden>
+            <p>No files match the current filter.</p>
+            <button type="button" id="libraryEmptyReset" class="library-empty-reset">Reset filters</button>
+          </div>
+        </div>
+      </section>
+    )}
+  </div>
+
+  {/* Lightbox */}
+  <div id="lightbox" class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close gallery">×</button>
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev" type="button" aria-label="Previous image">‹</button>
+    <button class="lightbox-nav lightbox-next" id="lightbox-next" type="button" aria-label="Next image">›</button>
+    <figure class="lightbox-figure">
+      <img id="lightbox-img" alt="" />
+      <figcaption id="lightbox-caption"></figcaption>
+    </figure>
+    <a id="lightbox-open" class="lightbox-open-original" target="_blank" rel="noopener noreferrer">Open original ↗</a>
+  </div>
+
+  {/* Minimal corpus for fetch-button refresh */}
+  <script id="library-corpus" type="application/json" set:html={JSON.stringify(allFiles.map(f => ({ path: f.path, name: f.name, kind: f.kind, ext: f.ext, mime: f.mime, sizeKb: f.sizeKb, uploadedAt: f.uploadedAt })))} />
+</BaseLayout>
+
+<style>
+  .library-page { padding-top: var(--header-height); }
+  .page-header { padding: 6rem 0 3rem; text-align: center; position: relative; }
+  .page-header::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 60%;
+    background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.12) 0%, rgba(20, 184, 166, 0.05) 40%, transparent 70%);
+    pointer-events: none;
+  }
+  .section-eyebrow {
+    display: inline-block; font-family: var(--font-display); font-size: 0.78rem;
+    letter-spacing: 0.18em; color: var(--accent-light); text-transform: uppercase;
+    padding: 0.4rem 1rem; border: 1px solid rgba(139, 92, 246, 0.3);
+    background: rgba(139, 92, 246, 0.08); border-radius: var(--radius-full); margin-bottom: 1rem;
+  }
+  .page-header h1 {
+    font-size: clamp(2.4rem, 5.5vw, 3.8rem); margin-bottom: 0.85rem; letter-spacing: -0.025em;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-light) 60%, var(--teal-light) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent; display: inline-block;
+  }
+  .subtitle { font-size: 1.05rem; color: var(--text-muted); max-width: 720px; margin: 0 auto 1.5rem; line-height: 1.7; }
+  .library-stats {
+    display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem;
+    padding: 0.55rem 1.25rem; background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border); border-radius: var(--radius-full);
+    font-family: var(--font-display); font-size: 0.82rem; color: var(--text-muted);
+    margin: 0 auto 1.5rem;
+  }
+  .library-stats strong { color: var(--text-primary); font-weight: 700; margin-right: 0.2rem; }
+  .library-stats .stat-divider { width: 4px; height: 4px; background: var(--text-muted); border-radius: 50%; opacity: 0.5; }
+
+  .fetch-row {
+    display: inline-flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  }
+  .btn-fetch {
+    display: inline-flex; align-items: center; gap: 0.55rem; cursor: pointer; user-select: none;
+    padding: 0.6rem 1.2rem; border-radius: var(--radius-full);
+    background: var(--gradient-accent); background-size: 200% 200%;
+    color: white; border: none;
+    font-family: var(--font-display); font-size: 0.82rem; font-weight: 700;
+    letter-spacing: 0.06em; transition: var(--transition-fast);
+    box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35);
+  }
+  .btn-fetch:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(139, 92, 246, 0.5); }
+  .btn-fetch:disabled { opacity: 0.6; cursor: progress; transform: none; }
+  .btn-fetch.is-loading svg { animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .fetch-status {
+    font-family: var(--font-display); font-size: 0.78rem; color: var(--text-muted);
+  }
+  .fetch-status code {
+    background: rgba(0,0,0,0.3); padding: 0.1rem 0.4rem;
+    border-radius: var(--radius-xs); font-family: var(--font-mono); color: var(--accent-light);
+  }
+
+  .library-error {
+    margin: 2rem auto; padding: 1.5rem 2rem; background: rgba(249, 115, 22, 0.08);
+    border: 1px solid rgba(249, 115, 22, 0.3); border-radius: var(--radius-md);
+    color: var(--text-primary); max-width: 720px;
+  }
+  .library-error strong { color: var(--coral); display: block; margin-bottom: 0.5rem; }
+  .library-error p { color: var(--text-muted); font-size: 0.95rem; margin: 0.4rem 0; }
+  .library-error code { font-family: var(--font-mono); background: rgba(0,0,0,0.2); padding: 0.05rem 0.35rem; border-radius: var(--radius-xs); color: var(--accent-light); }
+
+  /* Controls */
+  .library-section { padding: 2rem 0 6rem; border-top: 1px solid var(--border); }
+  .library-controls { max-width: 1320px; margin: 0 auto 2rem; }
+
+  .kind-tabs { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .kind-tab {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.55rem 1.2rem; border-radius: var(--radius-full);
+    border: 1px solid var(--border); background: var(--bg-card); color: var(--text-secondary);
+    font-family: var(--font-display); font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.04em; cursor: pointer; transition: var(--transition-fast);
+  }
+  .kind-tab:hover { border-color: var(--border-hover); color: var(--text-primary); }
+  .kind-tab.active { background: rgba(139, 92, 246, 0.2); border-color: var(--accent); color: var(--accent-light); }
+  .kind-count {
+    font-size: 0.7rem; background: rgba(255,255,255,0.06); padding: 0.1rem 0.55rem;
+    border-radius: var(--radius-full); color: var(--text-muted);
+  }
+  .kind-tab.active .kind-count { background: rgba(139, 92, 246, 0.3); color: var(--text-primary); }
+
+  .library-search-row {
+    display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;
+  }
+  .library-search-wrap {
+    position: relative; display: flex; align-items: center; gap: 0.5rem;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-full);
+    padding: 0.35rem 0.4rem 0.35rem 1rem; flex: 1 1 320px; min-width: 280px;
+    transition: var(--transition-fast);
+  }
+  .library-search-wrap:focus-within {
+    border-color: var(--accent); box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.12);
+  }
+  .library-search-wrap svg { color: var(--text-muted); flex-shrink: 0; }
+  .library-search-wrap input {
+    flex: 1; background: none; border: none; color: var(--text-primary);
+    font-family: var(--font-sans); font-size: 0.95rem; padding: 0.5rem 0.6rem;
+    outline: none; min-width: 0;
+  }
+  .library-search-wrap input::placeholder { color: var(--text-muted); }
+  .library-search-clear {
+    display: none; background: none; border: none; color: var(--text-muted);
+    width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 1.1rem;
+    transition: var(--transition-fast);
+  }
+  .library-search-clear.is-visible { display: inline-flex; }
+  .library-search-clear:hover { background: rgba(139, 92, 246, 0.15); color: var(--accent-light); }
+
+  .library-sort {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: var(--font-display); font-size: 0.8rem; color: var(--text-muted);
+    font-weight: 600; letter-spacing: 0.04em;
+  }
+  .library-sort select {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm);
+    color: var(--text-primary); padding: 0.4rem 0.6rem; font-family: var(--font-sans);
+    font-size: 0.85rem; cursor: pointer;
+  }
+  .library-sort select:focus { outline: none; border-color: var(--accent); }
+
+  .library-result-count {
+    text-align: center; font-family: var(--font-display); font-size: 0.82rem;
+    color: var(--text-muted); margin-bottom: 1.5rem; font-weight: 600;
+  }
+
+  /* Image grid (CSS columns for natural masonry) */
+  .image-grid-wrap {
+    column-count: 3;
+    column-gap: 0.85rem;
+    max-width: 1320px; margin: 0 auto;
+  }
+  @media (max-width: 900px) { .image-grid-wrap { column-count: 2; } }
+  @media (max-width: 540px) { .image-grid-wrap { column-count: 1; } }
+
+  .library-tile {
+    break-inside: avoid; margin-bottom: 0.85rem; position: relative;
+    border-radius: var(--radius-md); overflow: hidden; background: var(--bg-card);
+    border: 1px solid var(--glass-border); transition: var(--transition);
+  }
+  .library-tile:hover {
+    border-color: var(--border-hover); transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  .library-tile.hidden-tile { display: none; }
+
+  .tile-button {
+    display: block; width: 100%; padding: 0; border: 0; background: transparent;
+    cursor: zoom-in; text-align: left; color: inherit;
+  }
+  .tile-button img {
+    display: block; width: 100%; height: auto; transition: transform 0.4s var(--ease-out);
+  }
+  .library-tile:hover .tile-button img { transform: scale(1.04); }
+
+  .tile-overlay {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 0.7rem 0.9rem;
+    background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.85) 100%);
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .library-tile:hover .tile-overlay { opacity: 1; }
+  .tile-name {
+    font-family: var(--font-mono); font-size: 0.78rem; color: white;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .tile-meta {
+    font-family: var(--font-display); font-size: 0.7rem; color: rgba(255,255,255,0.7);
+    margin-top: 0.2rem;
+  }
+
+  /* Document + Other grid */
+  .doc-grid-wrap, .library-grid-wrap {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem; max-width: 1320px; margin: 0 auto;
+  }
+  .doc-card {
+    display: flex; flex-direction: column; gap: 0.4rem;
+    padding: 1.25rem 1.4rem; background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius-md); text-decoration: none; color: inherit;
+    transition: var(--transition-fast);
+    position: relative;
+  }
+  .doc-card:hover {
+    border-color: var(--accent); background: var(--bg-card-hover);
+    transform: translateY(-2px); box-shadow: var(--shadow-md);
+  }
+  .doc-card.hidden-card { display: none; }
+  .doc-card-top {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--font-mono); font-size: 0.72rem;
+  }
+  .doc-kind-badge {
+    background: rgba(96, 165, 250, 0.18); color: var(--blue); padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-sm); font-weight: 700; letter-spacing: 0.06em;
+  }
+  .doc-pdf { background: rgba(239, 68, 68, 0.18); color: #fca5a5; }
+  .doc-docx, .doc-doc { background: rgba(59, 130, 246, 0.18); color: var(--blue); }
+  .doc-xlsx, .doc-xls { background: rgba(20, 184, 166, 0.18); color: var(--teal-light); }
+  .doc-pptx, .doc-ppt { background: rgba(249, 115, 22, 0.18); color: var(--coral); }
+  .doc-ipynb { background: rgba(139, 92, 246, 0.18); color: var(--accent-light); }
+  .doc-txt, .doc-md, .doc-csv, .doc-log { background: rgba(255,255,255,0.08); color: var(--text-muted); }
+
+  .doc-kind-size { color: var(--text-muted); font-weight: 500; }
+  .doc-card-title {
+    font-family: var(--font-mono); font-size: 0.9rem; color: var(--text-primary);
+    word-break: break-all; line-height: 1.35; margin: 0.25rem 0;
+  }
+  .doc-card-meta { font-family: var(--font-display); font-size: 0.75rem; color: var(--text-muted); margin: 0; }
+  .doc-card-cta { font-family: var(--font-display); font-size: 0.82rem; color: var(--accent-light); font-weight: 700; margin-top: 0.4rem; }
+
+  /* Empty state */
+  .library-empty-state {
+    text-align: center; padding: 4rem 1rem; color: var(--text-muted); max-width: 480px; margin: 0 auto;
+  }
+  .library-empty-state[hidden] { display: none; }
+  .library-empty-reset {
+    background: var(--gradient-accent); background-size: 200% 200%; color: white; border: none;
+    padding: 0.7rem 1.5rem; border-radius: var(--radius-full); font-family: var(--font-display);
+    font-weight: 700; cursor: pointer; transition: var(--transition-fast);
+    margin-top: 1rem; box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35);
+  }
+  .library-empty-reset:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(139, 92, 246, 0.5); }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    padding: 2rem; backdrop-filter: blur(8px);
+  }
+  .lightbox[hidden] { display: none; }
+  .lightbox-figure {
+    display: flex; flex-direction: column; align-items: center; gap: 0.8rem; max-width: 90vw; max-height: 90vh;
+  }
+  .lightbox-figure img {
+    max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: var(--radius-sm);
+    box-shadow: 0 10px 60px rgba(0,0,0,0.4);
+  }
+  #lightbox-caption {
+    font-family: var(--font-mono); font-size: 0.85rem; color: rgba(255,255,255,0.75);
+    text-align: center; max-width: 90vw; word-break: break-all;
+  }
+  .lightbox-close {
+    position: absolute; top: 1rem; right: 1.5rem; background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15); color: white;
+    width: 48px; height: 48px; border-radius: 50%; font-size: 1.6rem;
+    cursor: pointer; transition: var(--transition-fast);
+  }
+  .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+  .lightbox-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+    color: white; width: 56px; height: 56px; border-radius: 50%;
+    font-size: 2rem; cursor: pointer; transition: var(--transition-fast);
+    display: none;
+  }
+  .lightbox.has-multiple .lightbox-nav { display: inline-flex; align-items: center; justify-content: center; }
+  .lightbox-nav:hover { background: rgba(255,255,255,0.2); }
+  .lightbox-prev { left: 1.5rem; }
+  .lightbox-next { right: 1.5rem; }
+  .lightbox-open-original {
+    position: absolute; bottom: 1rem; right: 1.5rem;
+    font-family: var(--font-display); font-size: 0.8rem; font-weight: 600;
+    color: var(--accent-light); text-decoration: none;
+    padding: 0.5rem 1rem; border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius-full);
+    background: rgba(255,255,255,0.05);
+  }
+  .lightbox-open-original:hover { background: rgba(255,255,255,0.15); color: white; }
+</style>
+
+<script is:inline>
+  // Library client controller: search, sort, filter, lightbox, fetch-manifest.
+  (function () {
+    if (typeof document === 'undefined') return;
+
+    function ready(fn) {
+      if (document.readyState !== 'loading') fn();
+      else document.addEventListener('DOMContentLoaded', fn);
+    }
+
+    ready(function () {
+      const corpusEl = document.getElementById('library-corpus');
+      const searchInput = document.getElementById('librarySearch');
+      const searchClear = document.getElementById('librarySearchClear');
+      const sortSelect = document.getElementById('librarySort');
+      const kindTabs = document.querySelectorAll('.kind-tab');
+      const emptyState = document.getElementById('libraryEmptyState');
+      const emptyReset = document.getElementById('libraryEmptyReset');
+      const resultCount = document.getElementById('libraryResultCount');
+      const fetchBtn = document.getElementById('fetch-files');
+      const fetchStatus = document.getElementById('fetch-status');
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxCaption = document.getElementById('lightbox-caption');
+      const lightboxOpen = document.getElementById('lightbox-open');
+      const lightboxClose = document.getElementById('lightbox-close');
+      const lightboxPrev = document.getElementById('lightbox-prev');
+      const lightboxNext = document.getElementById('lightbox-next');
+      const imgGrid = document.getElementById('libraryImages');
+      const docGrid = document.getElementById('libraryDocs');
+      const otherGrid = document.getElementById('libraryOther');
+
+      let corpus = [];
+      try { corpus = JSON.parse(corpusEl?.textContent || '[]'); } catch (e) { corpus = []; }
+
+      let activeKind = 'image';
+      let query = '';
+      let sortMode = 'newest';
+      let currentImgIndex = -1;
+
+      function getVisibleNodes() {
+        if (activeKind === 'image') return Array.from(imgGrid?.querySelectorAll('.library-tile') || []);
+        if (activeKind === 'docs') return Array.from(docGrid?.querySelectorAll('.doc-card') || []);
+        return Array.from(otherGrid?.querySelectorAll('.doc-card') || []);
+      }
+
+      function doesMatch(node, q) {
+        if (!q) return true;
+        const n = node.dataset.name || '';
+        return n.indexOf(q) !== -1;
+      }
+
+      function sortVisible() {
+        const nodes = getVisibleNodes();
+        if (!nodes.length) return;
+        const dataset = new Map(nodes.map(n => [n, {
+          uploaded: n.dataset.uploaded || '',
+          size: parseInt(n.dataset.size || '0', 10) || 0,
+          name: n.dataset.name || '',
+        }]));
+        const sorter = {
+          newest:    (a, b) => dataset.get(b).uploaded.localeCompare(dataset.get(a).uploaded),
+          oldest:    (a, b) => dataset.get(a).uploaded.localeCompare(dataset.get(b).uploaded),
+          largest:   (a, b) => dataset.get(b).size - dataset.get(a).size,
+          smallest:  (a, b) => dataset.get(a).size - dataset.get(b).size,
+          name:      (a, b) => dataset.get(a).name.localeCompare(dataset.get(b).name),
+        }[sortMode] || ((a, b) => 0);
+        const parent = nodes[0].parentNode;
+        const sorted = nodes.slice().sort(sorter);
+        for (const n of sorted) parent.appendChild(n);
+      }
+
+      function applyFilters() {
+        const qlow = (query || '').trim().toLowerCase();
+        const nodes = getVisibleNodes();
+        let visible = 0;
+        for (const n of nodes) {
+          const show = doesMatch(n, qlow);
+          n.classList.toggle('hidden-tile', !show);
+          n.classList.toggle('hidden-card', !show);
+          if (show) visible++;
+        }
+        if (emptyState) emptyState.hidden = visible !== 0;
+        if (resultCount) {
+          const label = activeKind === 'image' ? 'image' : (activeKind === 'docs' ? 'document' : 'file');
+          resultCount.textContent = `Showing ${visible.toLocaleString()} of ${nodes.length.toLocaleString()} ${label}${nodes.length === 1 ? '' : 's'}`;
+        }
+        if (searchClear) searchClear.classList.toggle('is-visible', !!qlow);
+      }
+
+      function switchKind(kind) {
+        activeKind = kind;
+        kindTabs.forEach(t => {
+          const isActive = t.dataset.kind === kind;
+          t.classList.toggle('active', isActive);
+          t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+        if (imgGrid) imgGrid.hidden = kind !== 'image';
+        if (docGrid) docGrid.hidden = kind !== 'docs';
+        if (otherGrid) otherGrid.hidden = !(kind === 'other');
+        sortVisible();
+        applyFilters();
+      }
+
+      kindTabs.forEach(t => {
+        t.addEventListener('click', () => switchKind(t.dataset.kind));
+      });
+
+      let debounceTimer = 0;
+      if (searchInput) {
+        searchInput.addEventListener('input', () => {
+          clearTimeout(debounceTimer);
+          debounceTimer = window.setTimeout(() => {
+            query = searchInput.value || '';
+            applyFilters();
+          }, 120);
+        });
+      }
+      if (searchClear) {
+        searchClear.addEventListener('click', () => {
+          if (searchInput) searchInput.value = '';
+          query = '';
+          applyFilters();
+          if (searchInput) searchInput.focus();
+        });
+      }
+      if (sortSelect) {
+        sortSelect.addEventListener('change', () => {
+          sortMode = sortSelect.value || 'newest';
+          sortVisible();
+        });
+      }
+      if (emptyReset) {
+        emptyReset.addEventListener('click', () => {
+          if (searchInput) searchInput.value = '';
+          query = '';
+          switchKind('image');
+          if (searchInput) searchInput.focus();
+        });
+      }
+
+      // Lightbox
+      function openLightbox(idx) {
+        const nodes = Array.from(imgGrid?.querySelectorAll('.library-tile:not(.hidden-tile)') || []);
+        if (!nodes.length) return;
+        currentImgIndex = idx;
+        const node = nodes[idx];
+        const path = node.dataset.path;
+        const name = node.dataset.name;
+        lightboxImg.src = path;
+        lightboxImg.alt = name;
+        lightboxCaption.textContent = name;
+        lightboxOpen.href = path;
+        lightbox.classList.toggle('has-multiple', nodes.length > 1);
+        lightbox.hidden = false;
+        document.body.style.overflow = 'hidden';
+      }
+      function closeLightbox() { lightbox.hidden = true; document.body.style.overflow = ''; currentImgIndex = -1; }
+      function lightboxStep(delta) {
+        const nodes = Array.from(imgGrid?.querySelectorAll('.library-tile:not(.hidden-tile)') || []);
+        if (nodes.length === 0) return;
+        const len = nodes.length;
+        currentImgIndex = ((currentImgIndex + delta) % len + len) % len;
+        const node = nodes[currentImgIndex];
+        const path = node.dataset.path;
+        lightboxImg.src = path;
+        lightboxImg.alt = node.dataset.name;
+        lightboxCaption.textContent = node.dataset.name;
+        lightboxOpen.href = path;
+      }
+
+      if (imgGrid) {
+        imgGrid.addEventListener('click', (e) => {
+          const btn = e.target.closest('.tile-button');
+          if (!btn) return;
+          const idxInVisible = Array.from(imgGrid.querySelectorAll('.library-tile:not(.hidden-tile)')).indexOf(btn.closest('.library-tile'));
+          openLightbox(idxInVisible);
+        });
+      }
+      if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+      if (lightboxPrev) lightboxPrev.addEventListener('click', () => lightboxStep(-1));
+      if (lightboxNext) lightboxNext.addEventListener('click', () => lightboxStep(1));
+      if (lightbox) {
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+      }
+      document.addEventListener('keydown', (e) => {
+        if (lightbox.hidden) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft' && lightbox.classList.contains('has-multiple')) lightboxStep(-1);
+        if (e.key === 'ArrowRight' && lightbox.classList.contains('has-multiple')) lightboxStep(1);
+      });
+
+      // Fetch files: re-fetch manifest.json with cache buster, surface status.
+      // If new files appear, the user can re-run `npm run sync:files` locally + rebuild + push.
+      if (fetchBtn) {
+        fetchBtn.addEventListener('click', async () => {
+          if (fetchBtn.disabled) return;
+          fetchBtn.disabled = true;
+          fetchBtn.classList.add('is-loading');
+          const origLabel = fetchBtn.querySelector('.btn-fetch-label').textContent;
+          fetchBtn.querySelector('.btn-fetch-label').textContent = 'Fetching…';
+          try {
+            const res = await fetch('/files/manifest.json?v=' + Date.now(), { cache: 'no-store' });
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const data = await res.json();
+            const myCount = corpus.length;
+            const newCount = (data.files || []).length;
+            const generated = data.generatedAt ? new Date(data.generatedAt).toLocaleString() : 'unknown';
+            if (typeof fetchStatus !== 'undefined' && fetchStatus) {
+              fetchStatus.innerHTML = `Last synced · <time datetime="${data.generatedAt}">${generated}</time> · ${newCount.toLocaleString()} files indexed${newCount > myCount ? ` (↑ ${(newCount - myCount).toLocaleString()} new since this build)` : ''}`;
+            }
+            // If the manifest now contains more files than this page was rendered with,
+            // gently notify that a build is needed to surface them in the grid.
+            if (newCount > myCount) {
+              if (!document.getElementById('fetch-notice')) {
+                const notice = document.createElement('div');
+                notice.id = 'fetch-notice';
+                notice.className = 'library-notice';
+                notice.innerHTML = '<strong>New files detected.</strong> This page was rendered from the previous build — run <code>npm run sync:files</code> locally then rebuild + push to surface them in the grid.';
+                document.querySelector('.library-controls')?.appendChild(notice);
+              }
+            }
+          } catch (err) {
+            if (fetchStatus) fetchStatus.innerHTML = '<span style="color: var(--coral)">Fetch failed: ' + err.message + '. The page was rendered from the build-time manifest.</span>';
+          } finally {
+            fetchBtn.disabled = false;
+            fetchBtn.classList.remove('is-loading');
+            fetchBtn.querySelector('.btn-fetch-label').textContent = origLabel;
+          }
+        });
+      }
+
+      // Initial render: sort + filter
+      switchKind('image');
+    });
+  })();
+</script>

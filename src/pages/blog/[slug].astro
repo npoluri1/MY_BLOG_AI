@@ -1,6 +1,12 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
+import { readFileSync, existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { join } from 'node:path';
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
+const MANIFEST_PATH = join(__dirname, '..', '..', 'public', 'files', 'manifest.json');
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -21,6 +27,67 @@ const allPosts = (await getCollection('blog'))
   .filter(p => p.id !== post.id)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
+
+// -------- Per-post image match (manifest-driven) --------
+// Load manifest if present. Each image entry exposes `uploadedAt` (mtime ISO),
+// so we score images by absolute day-distance to the post's pubDate, keep
+// top 4 within ±60 days. Explicit `post.data.images` arrays take priority.
+let manifestFiles = [];
+try {
+  if (existsSync(MANIFEST_PATH)) {
+    const m = JSON.parse(readFileSync(MANIFEST_PATH, 'utf8'));
+    manifestFiles = (m.files || []).filter(f => f.kind === 'image');
+  }
+} catch (e) { /* ignore */ }
+
+const MS_PER_DAY = 86_400_000;
+function attachImagesForPost(postItem) {
+  const explicit = Array.isArray(postItem.data.images) ? postItem.data.images : [];
+  // Resolve explicit paths so we can dedup with auto matches.
+  const explicitPaths = new Set(explicit.map(p => typeof p === 'string' ? p : '').filter(Boolean));
+
+  if (manifestFiles.length === 0) {
+    return {
+      items: explicit.map(p => ({ path: p, name: p.split('/').pop() || p, source: 'explicit' })),
+      hasManifest: false,
+      hasAutoMatched: false,
+    };
+  }
+  const pubTime = postItem.data.pubDate.valueOf();
+  const scored = manifestFiles
+    .filter(f => f.uploadedAt && !explicitPaths.has(f.path))
+    .map(f => {
+      const uploadTime = new Date(f.uploadedAt).valueOf();
+      const dayDelta = Math.abs(uploadTime - pubTime) / MS_PER_DAY;
+      return { ...f, dayDelta };
+    })
+    .filter(f => f.dayDelta <= 60)
+    .sort((a, b) => a.dayDelta - b.dayDelta)
+    .slice(0, 4);
+
+  const auto = scored.map(f => ({
+    path: f.path,
+    name: f.name,
+    sizeKb: Math.round((f.sizeBytes || 0) / 1024),
+    uploadedAt: f.uploadedAt,
+    dayDelta: f.dayDelta,
+    source: 'auto',
+  }));
+
+  const explicitItems = explicit.map(p => ({
+    path: p,
+    name: p.split('/').pop() || p,
+    source: 'explicit',
+  }));
+
+  return {
+    items: [...explicitItems, ...auto],
+    hasManifest: true,
+    hasAutoMatched: auto.length > 0,
+  };
+}
+
+const attachment = attachImagesForPost(post);
 ---
 
 <BaseLayout title={`${post.data.title} — Naga Siva Poluri`} description={post.data.description} image={post.data.image || post.data.heroImage}>
@@ -55,6 +122,53 @@ const allPosts = (await getCollection('blog'))
     </div>
   </article>
 
+  {attachment.items.length > 0 && (
+    <section class="related-images-section" data-attach-source={attachment.source || 'mixed'}>
+      <div class="container-narrow">
+        <header class="related-images-header reveal">
+          <h2>Related Images</h2>
+          <p class="related-images-sub">
+            {attachment.hasAutoMatched && (
+              <>
+                Auto-matched by upload-date proximity ({' '}
+                <abbr title="These images were surfaced because their mtime timestamp in the source library was within ~60 days of this post's publish date. Surface them via /library to inspect or pin via the `images` frontmatter field.">heuristic</abbr>
+                {' '}— pin via <code>images</code> frontmatter for explicit binding).
+              </>
+            )}
+            {!attachment.hasAutoMatched && attachment.hasManifest && (
+              <>Pinned via <code>images</code> frontmatter.</>
+            )}
+            {!attachment.hasManifest && (
+              <>Run <code>npm run sync:files</code> to surface auto-matched images from the source archive.</>
+            )}
+          </p>
+        </header>
+
+        <div class="related-images-grid">
+          {attachment.items.map((img, i) => (
+            <button
+              type="button"
+              class="related-image-tile reveal"
+              data-path={img.path}
+              data-name={img.name}
+              data-source={img.source}
+              style={`animation-delay:${(i * 0.06).toFixed(2)}s`}
+              aria-label={`Open ${img.name}`}
+            >
+              <img src={img.path} alt={img.name} loading="lazy" decoding="async" />
+              <span class="related-image-caption">
+                <span class={img.source === 'auto' ? 'related-image-badge related-image-badge-auto' : 'related-image-badge related-image-badge-explicit'}>
+                  {img.source === 'auto' ? 'auto-matched' : 'pinned'}
+                </span>
+                <span class="related-image-name">{img.name}</span>
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <div class="post-share">
     <div class="container-narrow">
       <div class="share-bar reveal">
@@ -85,73 +199,45 @@ const allPosts = (await getCollection('blog'))
       </div>
     </section>
   )}
+
+  {/* Inline lightbox reused by the related-images grid */}
+  <div id="post-lightbox" class="post-lightbox" hidden role="dialog" aria-modal="true">
+    <button class="post-lightbox-close" type="button" aria-label="Close">×</button>
+    <button class="post-lightbox-nav post-lightbox-prev" type="button" aria-label="Previous image">‹</button>
+    <button class="post-lightbox-nav post-lightbox-next" type="button" aria-label="Next image">›</button>
+    <figure>
+      <img id="post-lightbox-img" alt="" />
+      <figcaption id="post-lightbox-caption"></figcaption>
+    </figure>
+    <a id="post-lightbox-open" class="post-lightbox-original" target="_blank" rel="noopener noreferrer">Open in library ↗</a>
+  </div>
 </BaseLayout>
 
 <style>
   .reading-progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 3px;
-    background: var(--gradient-accent);
-    z-index: 1001;
-    width: 0%;
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: var(--gradient-accent); z-index: 1001; width: 0%;
     transition: width 0.1s linear;
   }
 
   .post-hero { padding: 10rem 0 3rem; position: relative; }
   .post-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+    content: ''; position: absolute; inset: 0;
     background: radial-gradient(ellipse at center top, rgba(139, 92, 246, 0.12) 0%, transparent 60%);
     pointer-events: none;
   }
-
   .back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    margin-bottom: 2rem;
-    font-weight: 500;
-    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2rem;
+    font-weight: 500; text-decoration: none;
   }
   .back-link:hover { color: var(--accent-light); gap: 0.7rem; }
 
-  .post-meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.25rem;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-  }
-  .post-reading {
-    padding: 0.25rem 0.75rem;
-    background: rgba(139, 92, 246, 0.1);
-    border-radius: var(--radius-full);
-    color: var(--accent-light);
-    font-size: 0.8rem;
-  }
-  .post-cat {
-    padding: 0.25rem 0.75rem;
-    background: rgba(20, 184, 166, 0.1);
-    border-radius: var(--radius-full);
-    color: var(--teal-light);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
+  .post-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 1.25rem; font-size: 0.9rem; color: var(--text-muted); }
+  .post-reading { padding: 0.25rem 0.75rem; background: rgba(139, 92, 246, 0.1); border-radius: var(--radius-full); color: var(--accent-light); font-size: 0.8rem; }
+  .post-cat { padding: 0.25rem 0.75rem; background: rgba(20, 184, 166, 0.1); border-radius: var(--radius-full); color: var(--teal-light); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
 
-  .post-title {
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    margin-bottom: 1.25rem;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-  }
+  .post-title { font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 1.25rem; line-height: 1.15; letter-spacing: -0.02em; }
   .post-desc { font-size: 1.15rem; color: var(--text-secondary); max-width: 700px; margin-bottom: 1.5rem; }
   .post-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
@@ -166,22 +252,78 @@ const allPosts = (await getCollection('blog'))
   .post-content .prose pre { margin: 2rem 0; padding: 1.5rem; font-size: 0.9rem; line-height: 1.6; }
   .post-content .prose img { border-radius: var(--radius-md); margin: 2rem 0; }
 
+  /* Related images */
+  .related-images-section {
+    padding: 3rem 0; border-top: 1px solid var(--border);
+    background: linear-gradient(180deg, transparent, rgba(139, 92, 246, 0.02));
+  }
+  .related-images-header {
+    text-align: center; margin-bottom: 2rem;
+  }
+  .related-images-header h2 { font-size: 1.6rem; margin-bottom: 0.5rem; }
+  .related-images-sub {
+    color: var(--text-muted); font-size: 0.88rem; max-width: 640px; margin: 0 auto;
+    line-height: 1.6;
+  }
+  .related-images-sub code, .related-images-sub abbr {
+    background: rgba(0,0,0,0.3); padding: 0.05rem 0.35rem; border-radius: var(--radius-xs);
+    font-family: var(--font-mono); color: var(--accent-light); cursor: help; text-decoration: none dotted underline;
+  }
+  .related-images-sub code { cursor: default; text-decoration: none; }
+
+  .related-images-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.85rem;
+  }
+  .related-image-tile {
+    display: block; width: 100%; padding: 0; border: 0;
+    background: var(--bg-card); border-radius: var(--radius-md);
+    overflow: hidden; cursor: zoom-in; position: relative;
+    border: 1px solid var(--glass-border); transition: var(--transition);
+    text-align: left; color: inherit;
+  }
+  .related-image-tile:hover {
+    border-color: var(--border-hover); transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  .related-image-tile img {
+    width: 100%; height: 140px; object-fit: cover;
+    transition: transform 0.4s var(--ease-out);
+  }
+  .related-image-tile:hover img { transform: scale(1.05); }
+  .related-image-caption {
+    display: flex; flex-direction: column; gap: 0.2rem; padding: 0.5rem 0.7rem 0.6rem;
+  }
+  .related-image-badge {
+    display: inline-block; font-family: var(--font-display); font-size: 0.65rem;
+    text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700;
+    padding: 0.15rem 0.5rem; border-radius: var(--radius-full);
+    align-self: flex-start;
+  }
+  .related-image-badge-auto {
+    background: rgba(20, 184, 166, 0.15); color: var(--teal-light);
+    border: 1px solid rgba(20, 184, 166, 0.3);
+  }
+  .related-image-badge-explicit {
+    background: rgba(139, 92, 246, 0.18); color: var(--accent-light);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+  }
+  .related-image-name {
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);
+    word-break: break-all; line-height: 1.35;
+  }
+
   .post-share { padding: 2rem 0; border-top: 1px solid var(--border); }
   .share-bar { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; max-width: 72ch; margin: 0 auto; }
   .share-label { font-weight: 600; color: var(--text-primary); font-size: 0.95rem; }
   .share-links { display: flex; gap: 0.75rem; }
   .share-link {
-    padding: 0.5rem 1.25rem;
-    border-radius: var(--radius-sm);
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    font-family: var(--font-sans);
-    transition: var(--transition-fast);
-    text-decoration: none;
+    padding: 0.5rem 1.25rem; border-radius: var(--radius-sm);
+    background: var(--glass-bg); border: 1px solid var(--glass-border);
+    color: var(--text-secondary); font-size: 0.85rem; font-weight: 500;
+    cursor: pointer; font-family: var(--font-sans);
+    transition: var(--transition-fast); text-decoration: none;
   }
   .share-link:hover { background: rgba(139, 92, 246, 0.15); border-color: var(--border-accent); color: var(--accent-light); }
 
@@ -194,10 +336,47 @@ const allPosts = (await getCollection('blog'))
   .related-card-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; flex: 1; margin-bottom: 1rem; }
   .related-link { font-size: 0.85rem; font-weight: 600; color: var(--accent-light); }
 
+  .container-narrow { max-width: 72ch; margin: 0 auto; padding-left: 1.5rem; padding-right: 1.5rem; }
+
+  /* Post-page inline lightbox (matches Library's) */
+  .post-lightbox {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999;
+    display: flex; align-items: center; justify-content: center; padding: 2rem;
+  }
+  .post-lightbox[hidden] { display: none; }
+  .post-lightbox figure { display: flex; flex-direction: column; align-items: center; gap: 0.8rem; max-width: 90vw; max-height: 80vh; }
+  .post-lightbox figure img { max-width: 100%; max-height: 65vh; object-fit: contain; border-radius: var(--radius-sm); box-shadow: 0 10px 60px rgba(0,0,0,0.4); }
+  #post-lightbox-caption { font-family: var(--font-mono); font-size: 0.85rem; color: rgba(255,255,255,0.75); text-align: center; max-width: 90vw; word-break: break-all; }
+  .post-lightbox-close {
+    position: absolute; top: 1rem; right: 1.5rem; background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15); color: white; width: 48px; height: 48px;
+    border-radius: 50%; font-size: 1.6rem; cursor: pointer;
+  }
+  .post-lightbox-close:hover { background: rgba(255,255,255,0.2); }
+  .post-lightbox-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+    color: white; width: 56px; height: 56px; border-radius: 50%;
+    font-size: 2rem; cursor: pointer; display: none;
+  }
+  .post-lightbox.has-multiple .post-lightbox-nav { display: inline-flex; align-items: center; justify-content: center; }
+  .post-lightbox-nav:hover { background: rgba(255,255,255,0.2); }
+  .post-lightbox-prev { left: 1.5rem; }
+  .post-lightbox-next { right: 1.5rem; }
+  .post-lightbox-original {
+    position: absolute; bottom: 1rem; right: 1.5rem;
+    font-family: var(--font-display); font-size: 0.8rem; font-weight: 600;
+    color: var(--accent-light); text-decoration: none;
+    padding: 0.5rem 1rem; border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius-full);
+    background: rgba(255,255,255,0.05);
+  }
+
   @media (max-width: 768px) {
     .post-hero { padding-top: 8rem; }
     .related-grid { grid-template-columns: 1fr; }
     .post-content .prose { font-size: 1rem; }
+    .related-images-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.6rem; }
+    .related-image-tile img { height: 110px; }
   }
 </style>
 
@@ -221,5 +400,46 @@ const allPosts = (await getCollection('blog'))
         });
       });
     }
+
+    // Post-page inline lightbox controller for the related-images tiles.
+    const lb = document.getElementById('post-lightbox');
+    const lbImg = document.getElementById('post-lightbox-img');
+    const lbCap = document.getElementById('post-lightbox-caption');
+    const lbOpen = document.getElementById('post-lightbox-open');
+    const lbClose = lb?.querySelector('.post-lightbox-close');
+    const lbPrev = lb?.querySelector('.post-lightbox-prev');
+    const lbNext = lb?.querySelector('.post-lightbox-next');
+    const tiles = Array.from(document.querySelectorAll('.related-image-tile'));
+    let lbIndex = -1;
+
+    function show(idx) {
+      if (!tiles.length) return;
+      lbIndex = ((idx % tiles.length) + tiles.length) % tiles.length;
+      const t = tiles[lbIndex];
+      lbImg.src = t.dataset.path;
+      lbImg.alt = t.dataset.name;
+      lbCap.textContent = t.dataset.name;
+      lbOpen.href = '/library';
+    }
+    function open(idx) {
+      if (!tiles.length) return;
+      show(idx);
+      lb.classList.toggle('has-multiple', tiles.length > 1);
+      lb.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+    function close() { lb.hidden = true; document.body.style.overflow = ''; lbIndex = -1; }
+
+    tiles.forEach((t, i) => t.addEventListener('click', () => open(i)));
+    if (lbClose) lbClose.addEventListener('click', close);
+    if (lbPrev) lbPrev.addEventListener('click', () => show(lbIndex - 1));
+    if (lbNext) lbNext.addEventListener('click', () => show(lbIndex + 1));
+    if (lb) lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (lb.hidden) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(lbIndex - 1);
+      if (e.key === 'ArrowRight') show(lbIndex + 1);
+    });
   });
 </script>

@@ -1,0 +1,27 @@
+D:\WorkSpace\LinkedIn_AI_TechStack_Images\
+├── 01_core_agent_architecture/
+│   ├── basic_agent.py
+│   ├── system_prompts/
+│   └── tool_definitions/
+├── 02_memory_systems/
+│   ├── tiered_memory.py
+│   ├── redis_cache.py
+│   └── vector_store_setup/
+├── 03_multi_agent/
+│   ├── crewai_research.py
+│   ├── langgraph_orchestrator.py
+│   └── autogen_coding_team.py
+├── 04_production_deployment/
+│   ├── bounded_autonomy.py
+│   ├── human_in_loop.py
+│   └── security_guardrails.py
+├── 05_evaluation_observability/
+│   ├── langfuse_tracing.py
+│   ├── metric_calculations.py
+│   └── benchmark_tests/
+├── 06_projects/
+│   ├── project_1_rag_chatbot/
+│   ├── project_2_research_assistant/
+│   ├── project_3_code_debugger/
+│   └── project_4_voice_agent/
+└── README.md
