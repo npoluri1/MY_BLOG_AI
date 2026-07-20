@@ -195,6 +195,31 @@ const projects = [
 const GITHUB_USER = 'npoluri1';
 const GH_API = `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`;
 
+// Fallback descriptions for personal recent projects whose `description`
+// field on github.com is blank. Keeps the Open Source mirror informative
+// even for repos whose metadata wasn't backfilled. Edit this object as
+// you add or rename personal projects so visitors always see a useful
+// one-liner. Forked repos are intentionally NOT mapped here — GitHub
+// already returns upstream descriptions for those.
+const FALLBACK_DESCRIPTIONS = {
+  'AILearning_Agents': 'Personal experiments — RL-trained AI agents for coding tasks.',
+  'springboot-medical-app': 'Spring Boot learning project — healthcare records with REST + JPA.',
+  'prism-meeting-intelligence': 'AI pipeline that ingests meeting recordings and distills structured insights.',
+  'Momentum.AI': 'Personal AI productivity platform — daily momentum + agent-assisted planning.',
+  'ask-ira': 'Conversational RAG Q&A assistant for internal documentation.',
+  'enterprise-pdf-qa': 'Document corpus Q&A at enterprise scale (PDF / DOCX / spreadsheet).',
+  'BlueprintAI': 'Experiments with AI architecture blueprints and pattern generation.',
+  'books-daily-updates': 'Personal automation — daily book recommendations and reading updates.',
+  'SyntraHub': 'Collaboration hub — agent-to-agent orchestration experiments.',
+  'MY_BLOG_AI-b3599': 'Astro UI/UX experiment branch for the AI blog.',
+  'AgenticFilmPipeline': 'Agent-driven film/video production — multi-agent storyboarding and editing.',
+  'UniversalAI_Layer': 'Universal AI abstraction layer — one API surface across providers.',
+  'ai-content-hub': 'AI-powered content discovery and aggregation platform.',
+  'springboot-medicalapp': 'Spring Boot learning project — healthcare records with REST + JPA.',
+  'spring-techie-jenkins': 'Spring Boot + Jenkins CI playground — for tech-stack learning.',
+  'spring-jenkins': 'Spring + Jenkins reference setup, kept for pipeline experimentation.',
+};
+
 // Language → dot color (GitHub palette)
 const GH_LANG_COLORS = {
   JavaScript: '#f1e05a',
@@ -405,7 +430,7 @@ const githubProfileUrl = `https://github.com/${GITHUB_USER}`;
                     </svg>
                     <h3 class="os-title">{repo.name}</h3>
                   </header>
-                  <p class="os-desc">{repo.description || '—'}</p>
+                  <p class="os-desc">{repo.description || FALLBACK_DESCRIPTIONS[repo.name] || '—'}</p>
                   {repo.topics && repo.topics.length > 0 && (
                     <div class="os-topics">
                       {repo.topics.slice(0, 3).map((topic) => (
